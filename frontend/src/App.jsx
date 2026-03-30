@@ -5,7 +5,7 @@ import './index.css';
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/pokedex">
       <header className="site-header">
         <Link to="/" className="site-logo">Pokédex</Link>
       </header>
