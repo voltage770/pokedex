@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      const path = window.location.pathname;
+      const repo = '/pokedex';
+      if (path.startsWith(repo)) {
+        sessionStorage.setItem('redirect', path);
+      }
+      window.location.replace('https://voltage770.github.io/pokedex/');
+    </script>
+  </head>
+  <body></body>
+</html>
