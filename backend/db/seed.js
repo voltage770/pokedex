@@ -3,9 +3,12 @@
  * Fetches the first 151 Pokémon from PokéAPI and seeds MySQL.
  * Run once: node db/seed.js
  */
-require('dotenv').config({ path: '../.env' });
+require('dotenv').config({ path: __dirname + '/../.env' })
 const axios = require('axios');
 const mysql = require('mysql2/promise');
+
+/* debug */
+console.log('Connecting to:', process.env.DB_HOST, process.env.DB_PORT)
 
 const DB_CONFIG = {
   host:     process.env.DB_HOST || 'localhost',
