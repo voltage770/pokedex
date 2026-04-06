@@ -1,4 +1,4 @@
-name: Deploy Frontend to GitHub Pages
+name: deploy app to github pages
 
 on:
   push:
@@ -18,30 +18,28 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node
+      - name: setup node
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
-          cache-dependency-path: frontend/package.json
+          cache-dependency-path: app/package.json
 
-      - name: Install dependencies
-        working-directory: frontend
+      - name: install dependencies
+        working-directory: app
         run: npm install
 
-      - name: Build
-        working-directory: frontend
-        env:
-          VITE_API_URL: ${{ secrets.VITE_API_URL }}
+      - name: build
+        working-directory: app
         run: npm run build
 
-      - name: Upload artifact
+      - name: upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: frontend/dist
+          path: app/dist
 
   deploy:
     needs: build
@@ -50,6 +48,6 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Deploy to GitHub Pages
+      - name: deploy to github pages
         id: deployment
         uses: actions/deploy-pages@v4

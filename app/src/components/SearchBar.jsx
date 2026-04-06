@@ -12,7 +12,7 @@ export default function SearchBar({ onSearch }) {
     <div className="search-bar">
       <input
         type="text"
-        placeholder="Search Pokémon..."
+        placeholder="search pokémon..."
         value={value}
         onChange={handleChange}
         className="search-input"

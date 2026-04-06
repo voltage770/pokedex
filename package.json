@@ -2,10 +2,9 @@
   "name": "pokedex",
   "version": "1.0.0",
   "scripts": {
-    "start": "node backend/server.js",
-    "install:backend": "cd backend && npm install",
-    "install:frontend": "cd frontend && npm install",
-    "seed": "cd backend && node db/seed.js"
+    "dev":      "cd app && npm run dev",
+    "build":    "cd app && npm run build",
+    "generate": "cd scripts && node db/generate.js"
   },
   "engines": {
     "node": ">=20.0.0"
