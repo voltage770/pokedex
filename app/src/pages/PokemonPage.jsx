@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
+import { formatName } from '../utils/formatName';
 import { usePokemonDetail } from '../hooks/usePokemon';
 import { NAME_TO_ID } from '../utils/api';
 import ABILITIES from '../data/abilities.json';
@@ -67,10 +68,10 @@ function EvoChain({ evolutions, currentName }) {
             >
               <img
                 src={NAME_TO_ID[name] ? `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${NAME_TO_ID[name]}.png` : ''}
-                alt={name}
+                alt={formatName(name)}
                 onError={e => { e.target.style.display = 'none'; }}
               />
-              <span>{name}</span>
+              <span>{formatName(name)}</span>
             </Link>
             {step && (
               <div className="evo-arrow">
@@ -107,6 +108,7 @@ function AbilityModal({ ability, onClose }) {
 
 export default function PokemonPage() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const { pokemon, loading, error } = usePokemonDetail(id);
   const [selectedAbility, setSelectedAbility] = useState(null);
 
@@ -121,7 +123,7 @@ export default function PokemonPage() {
   return (
     <div className="detail-page">
       <div className="detail-top-row">
-        <Link to="/" className="back-link">← back</Link>
+        <button className="back-link" onClick={() => navigate(-1)}>← back</button>
         <div className="detail-nav">
           {pokemon.id > 1 && (
             <Link to={`/pokemon/${pokemon.id - 1}`}>← #{String(pokemon.id - 1).padStart(3, '0')}</Link>
@@ -151,7 +153,7 @@ export default function PokemonPage() {
         <div className="detail-right">
           <div className="detail-name-row">
             <div>
-              <h1>{pokemon.name}</h1>
+              <h1>{formatName(pokemon.name)}</h1>
               {pokemon.genus && <p className="detail-genus">{pokemon.genus}</p>}
             </div>
             <div className="detail-id-block">

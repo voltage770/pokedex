@@ -47,7 +47,7 @@ export function useCompare(ids = []) {
   const [error, setError]     = useState(null);
 
   useEffect(() => {
-    if (!ids.length) return;
+    if (!ids.length) { setPokemon([]); return; }
     setLoading(true);
     comparePokemon(ids)
       .then(setPokemon)

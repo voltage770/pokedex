@@ -1,51 +1,68 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { usePokemonList } from '../hooks/usePokemon';
 import PokemonCard from '../components/PokemonCard';
 import SearchBar from '../components/SearchBar';
 import FilterPanel from '../components/FilterPanel';
-import ComparePanel from '../components/ComparePanel';
 
-export default function HomePage() {
-  const [filters, setFilters]       = useState({});
-  const [compareIds, setCompareIds] = useState([]);
+const PAGE_SIZE = 60;
+const FILTER_KEYS = ['search', 'type', 'generation', 'cls', 'stat', 'minStat', 'sort', 'sortDir'];
 
-  const { pokemon, loading, error } = usePokemonList({ ...filters, limit: 60 });
+export default function HomePage({ enabledFilters = {}, filterOrder = [] }) {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [visible, setVisible]           = useState(PAGE_SIZE);
+
+  // derive filters object from URL params
+  const filters = Object.fromEntries(
+    FILTER_KEYS.map(k => [k, searchParams.get(k) || undefined]).filter(([, v]) => v)
+  );
+
+  const setFilters = useCallback((newFilters) => {
+    const params = {};
+    Object.entries(newFilters).forEach(([k, v]) => {
+      if (v !== undefined && v !== '') params[k] = v;
+    });
+    setSearchParams(params, { replace: true });
+  }, [setSearchParams]);
+
+  const { pokemon, loading, error } = usePokemonList({ ...filters, limit: 9999 });
+
+  // reset visible count whenever filters change
+  useEffect(() => { setVisible(PAGE_SIZE); }, [searchParams.toString()]);
+
+  const CONTENT_KEYS  = ['search', 'type', 'generation', 'cls', 'stat', 'minStat'];
+  const hasFilters    = CONTENT_KEYS.some(k => filters[k]);
+  const displayed     = hasFilters ? pokemon : pokemon.slice(0, visible);
+  const hasMore       = !hasFilters && visible < pokemon.length;
 
   const handleSearch = useCallback((search) => {
-    setFilters(f => ({ ...f, search: search || undefined }));
-  }, []);
-
-  const toggleCompare = (poke) => {
-    setCompareIds(prev => {
-      if (prev.includes(poke.id)) return prev.filter(id => id !== poke.id);
-      if (prev.length >= 3) return prev;
-      return [...prev, poke.id];
-    });
-  };
+    setFilters({ ...filters, search: search || undefined });
+  }, [filters, setFilters]);
 
   return (
     <div className="home-layout">
-      <FilterPanel filters={filters} onChange={setFilters} />
+      <FilterPanel filters={filters} onChange={setFilters} enabledFilters={enabledFilters} filterOrder={filterOrder} />
 
       <main className="home-main">
-        <SearchBar onSearch={handleSearch} />
+        <SearchBar value={filters.search || ''} onSearch={handleSearch} />
 
         {error   && <p className="error">error: {error}</p>}
         {loading && <p className="loading">loading pokémon...</p>}
 
         <div className="pokemon-grid">
-          {pokemon.map(p => (
-            <PokemonCard
-              key={p.id}
-              pokemon={p}
-              onCompareToggle={toggleCompare}
-              isCompared={compareIds.includes(p.id)}
-            />
+          {displayed.map(p => (
+            <PokemonCard key={p.id} pokemon={p} />
           ))}
         </div>
 
         {!loading && pokemon.length === 0 && (
           <p className="empty">no pokémon found. try adjusting your filters.</p>
+        )}
+
+        {!loading && hasMore && (
+          <button className="load-more-btn" onClick={() => setVisible(v => v + PAGE_SIZE)}>
+            show more
+          </button>
         )}
 
         <footer className="home-footer">
@@ -59,11 +76,6 @@ export default function HomePage() {
           </p>
         </footer>
       </main>
-
-      <ComparePanel
-        selectedIds={compareIds}
-        onRemove={id => setCompareIds(prev => prev.filter(i => i !== id))}
-      />
     </div>
   );
 }

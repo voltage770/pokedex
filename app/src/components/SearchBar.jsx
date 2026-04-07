@@ -1,22 +1,18 @@
-import { useState } from 'react';
-
-export default function SearchBar({ onSearch }) {
-  const [value, setValue] = useState('');
-
-  const handleChange = (e) => {
-    setValue(e.target.value);
-    onSearch(e.target.value);
-  };
-
+export default function SearchBar({ value = '', onSearch }) {
   return (
     <div className="search-bar">
       <input
         type="text"
         placeholder="search pokémon..."
         value={value}
-        onChange={handleChange}
+        onChange={e => onSearch(e.target.value)}
         className="search-input"
       />
+      {value && (
+        <button className="search-clear-btn" onClick={() => onSearch('')}>
+          clear
+        </button>
+      )}
     </div>
   );
 }

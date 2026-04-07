@@ -82,6 +82,14 @@ async function fetchOne(id) {
   const genusEntry = sp.genera.find(g => g.language.name === 'en');
   const evolutions = await getEvoChain(sp.evolution_chain.url);
 
+  const nonDefault = sp.varieties.filter(v => !v.is_default).map(v => v.pokemon.name);
+  const megaForms     = nonDefault.filter(n => n.includes('-mega'));
+  const gmaxForms     = nonDefault.filter(n => n.includes('-gmax'));
+  const regionalForms = nonDefault.filter(n => /-(alola|galar|hisui|paldea)/.test(n));
+  const altForms      = nonDefault.filter(n =>
+    !n.includes('-mega') && !n.includes('-gmax') && !/-(?:alola|galar|hisui|paldea)/.test(n)
+  );
+
   return {
     id:              p.id,
     name:            p.name,
@@ -107,6 +115,11 @@ async function fetchOne(id) {
     habitat:         sp.habitat?.name || null,
     is_legendary:    sp.is_legendary,
     is_mythical:     sp.is_mythical,
+    is_baby:         sp.is_baby,
+    mega_forms:      megaForms,
+    gmax_forms:      gmaxForms,
+    regional_forms:  regionalForms,
+    alt_forms:       altForms,
     evolutions,
   };
 }

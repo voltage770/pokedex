@@ -27,15 +27,39 @@ function getStat(p, name) {
   return (p.stats.find(s => s.stat_name === name) || { base_value: 0 }).base_value;
 }
 
+// ultra beast pokedex IDs (no dedicated field in data)
+const ULTRA_BEAST_IDS = new Set([793,794,795,796,797,798,799,803,804,805,806]);
+
+function matchesClass(p, cls) {
+  switch (cls) {
+    case 'legendary':        return p.is_legendary && !p.is_mythical;
+    case 'mythical':         return p.is_mythical;
+    case 'paradox':          return p.genus === 'Paradox Pokémon';
+    case 'ultra-beast':      return ULTRA_BEAST_IDS.has(p.id);
+    case 'pseudo-legendary': return !p.is_legendary && !p.is_mythical && totalStats(p) === 600;
+    case 'baby':             return !!p.is_baby;
+    case 'has-mega':         return p.mega_forms?.length > 0;
+    case 'has-gmax':         return p.gmax_forms?.length > 0;
+    case 'has-regional':     return p.regional_forms?.length > 0;
+    case 'regional-alola':   return p.regional_forms?.some(n => n.includes('-alola'));
+    case 'regional-galar':   return p.regional_forms?.some(n => n.includes('-galar'));
+    case 'regional-hisui':   return p.regional_forms?.some(n => n.includes('-hisui'));
+    case 'regional-paldea':  return p.regional_forms?.some(n => n.includes('-paldea'));
+    case 'has-forms':        return p.alt_forms?.length > 0;
+    default: return true;
+  }
+}
+
 // filtered, sorted, paginated list
 export function getPokemon(filters = {}) {
-  const { search, type, generation, stat, minStat, sort = 'id', sortDir = 'asc', limit = 20, offset = 0 } = filters;
+  const { search, type, generation, cls, stat, minStat, sort = 'id', sortDir = 'asc', limit = 20, offset = 0 } = filters;
 
   let results = ALL;
 
-  if (search)     results = results.filter(p => p.name.includes(search.toLowerCase()));
+  if (search)     results = results.filter(p => p.name.toLowerCase().includes(search.toLowerCase()));
   if (type)       results = results.filter(p => p.types.includes(type));
   if (generation) results = results.filter(p => p.generation === Number(generation));
+  if (cls)        results = results.filter(p => matchesClass(p, cls));
   if (stat && minStat) {
     const min = Number(minStat);
     results = results.filter(p => getStat(p, stat) >= min);
