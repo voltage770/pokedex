@@ -48,11 +48,19 @@ function parseEvoChain(node, steps = []) {
   for (const next of (node.evolves_to || [])) {
     const det = next.evolution_details[0] || {};
     steps.push({
-      from:      node.species.name,
-      to:        next.species.name,
-      min_level: det.min_level     || null,
-      trigger:   det.trigger?.name || null,
-      item:      det.item?.name    || null,
+      from:            node.species.name,
+      to:              next.species.name,
+      trigger:         det.trigger?.name         || null,
+      min_level:       det.min_level             || null,
+      item:            det.item?.name            || null,
+      location:        det.location?.name        || null,
+      time_of_day:     det.time_of_day           || null,
+      min_happiness:   det.min_happiness         || null,
+      known_move:      det.known_move?.name      || null,
+      known_move_type: det.known_move_type?.name || null,
+      trade_species:   det.trade_species?.name   || null,
+      needs_rain:      det.needs_overworld_rain  || null,
+      turn_upside_down: det.turn_upside_down     || null,
     });
     parseEvoChain(next, steps);
   }
@@ -90,6 +98,33 @@ async function fetchOne(id) {
     !n.includes('-mega') && !n.includes('-gmax') && !/-(?:alola|galar|hisui|paldea)/.test(n)
   );
 
+  // alt forms to skip entirely: pikachu costumes/caps, koraidon/miraidon travel modes
+  const skipAltFormsFor = new Set(['pikachu', 'koraidon', 'miraidon']);
+  const filteredAltForms = skipAltFormsFor.has(p.name)
+    ? []
+    : altForms.filter(n => !n.endsWith('-totem'));
+
+  // fetch sprites, artwork, types, stats, and abilities for all form variants
+  const allFormNames = [...megaForms, ...gmaxForms, ...regionalForms, ...filteredAltForms];
+  const form_data = {};
+  for (const formName of allFormNames) {
+    try {
+      await sleep(DELAY_MS);
+      const { data: fd } = await axios.get(`${POKEAPI}/pokemon/${formName}`);
+      form_data[formName] = {
+        sprite_url:    fd.sprites.front_default,
+        sprite_shiny:  fd.sprites.front_shiny,
+        artwork_url:   fd.sprites.other?.['official-artwork']?.front_default || null,
+        artwork_shiny: fd.sprites.other?.['official-artwork']?.front_shiny   || null,
+        types:         fd.types.sort((a, b) => a.slot - b.slot).map(t => t.type.name),
+        stats:         fd.stats.map(s => ({ stat_name: s.stat.name, base_value: s.base_stat })),
+        abilities:     fd.abilities.map(a => ({ ability_name: a.ability.name, is_hidden: a.is_hidden })),
+      };
+    } catch (e) {
+      // form not found or fetch error — skip
+    }
+  }
+
   return {
     id:              p.id,
     name:            p.name,
@@ -116,10 +151,11 @@ async function fetchOne(id) {
     is_legendary:    sp.is_legendary,
     is_mythical:     sp.is_mythical,
     is_baby:         sp.is_baby,
-    mega_forms:      megaForms,
-    gmax_forms:      gmaxForms,
-    regional_forms:  regionalForms,
-    alt_forms:       altForms,
+    mega_forms:     megaForms,
+    gmax_forms:     gmaxForms,
+    regional_forms: regionalForms,
+    alt_forms:      altForms,
+    form_data,
     evolutions,
   };
 }

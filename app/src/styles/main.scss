@@ -70,6 +70,114 @@
   --shadow-lg:    0 8px 28px rgba(120, 0, 160, .28);
 }
 
+[data-theme='ereader'] {
+  --bg:           #f0eeea;
+  --bg-card:      #faf9f7;
+  --bg-sidebar:   #e4e2dd;
+  --bg-header:    #faf9f7;
+  --text:         #0a0a0a;
+  --text-muted:   #3a3a3a;
+  --text-subtle:  #6a6a6a;
+  --border:       #aaaaaa;
+  --accent:       #111111;
+  --accent-hover: #333333;
+  --shadow-sm:    none;
+  --shadow-md:    none;
+  --shadow-lg:    none;
+  --radius:       4px;
+  --radius-sm:    2px;
+}
+
+// e-reader: desaturate type badges so they don't jar against the monochrome palette
+[data-theme='ereader'] .type-badge {
+  filter: grayscale(1);
+}
+
+// ─── ease mode ───────────────────────────────────────────────────────────────
+// reduces motion and visual complexity for sensitive eyes
+
+[data-ease='true'] {
+  *, *::before, *::after {
+    transition: none !important;
+    animation:  none !important;
+  }
+
+  // larger base font, heavier weight, looser leading
+  html { font-size: 18px; }
+  body {
+    line-height: 1.8;
+    font-weight: 500;
+  }
+
+  // flatten cards — shadows are visually noisy
+  .pokemon-card,
+  .detail-card,
+  .ability-modal { box-shadow: none !important; }
+
+  // slightly dim images so artwork doesn't blast the eyes
+  img { opacity: .85; }
+
+  // bigger, bolder card names
+  .pokemon-name {
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0;
+  }
+
+  // bigger id/gen labels on cards
+  .pokemon-id,
+  .gen-badge { font-size: .78rem; }
+
+  // larger type badges
+  .type-badge {
+    font-size: .75rem;
+    padding: 3px 11px;
+  }
+
+  // search bar — bigger text and taller input
+  .search-input {
+    font-size: 1.05rem;
+    padding: 13px 72px 13px 18px;
+  }
+
+  // filter panel — larger labels and inputs
+  .filter-panel {
+    label  { font-size: .85rem; }
+    select,
+    input[type='number'] { font-size: .95rem; padding: 9px 12px; }
+    h2     { font-size: .78rem; }
+  }
+
+  // stat section: bolder labels, taller bars, bigger values
+  .stat-label { font-size: .85rem; font-weight: 600; }
+  .stat-value { font-size: .9rem;  font-weight: 700; }
+  .stat-track { height: 11px; }
+
+  // ability pills — more padding, easier to tap
+  .abilities-list li { font-size: .9rem; }
+
+  // detail page headings and text
+  .detail-right h1  { font-size: 2rem; }
+  .detail-genus     { font-size: .95rem; }
+  .detail-flavor    { font-size: .95rem; line-height: 1.8; }
+  .meta-label       { font-size: .72rem; }
+  .meta-value       { font-size: 1rem; font-weight: 600; }
+
+  // form chip tabs — bigger tap targets
+  .form-chip { padding: 6px 14px; font-size: .8rem; }
+
+  // evo chain — bigger node labels and arrow text
+  .evo-pokemon span { font-size: .88rem; font-weight: 700; }
+  .evo-arrow        { font-size: .85rem; }
+
+  // section headings inside detail
+  .detail-stats h2,
+  .abilities-list h2 { font-size: .78rem; }
+
+  // stat bars: no width transition (already killed above)
+  .stat-fill { transition: none !important; }
+}
+
 // ─── type badge colors ────────────────────────────────────────────────────────
 
 $type-colors: (
@@ -201,9 +309,10 @@ img {
 
   &.settings-cog,
   &.settings-burger {
-    font-size: 1.2rem;
-    padding: 3px 9px;
-    line-height: 1;
+    padding: 6px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 
@@ -932,6 +1041,48 @@ img {
   }
 }
 
+// form variant chips
+
+.form-chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 12px;
+  gap: 0;
+}
+
+.form-chip-divider {
+  width: 1px;
+  height: 12px;
+  background: var(--border);
+  margin: 0 6px;
+  flex-shrink: 0;
+}
+
+.form-chip {
+  all: unset;
+  font-size: .72rem;
+  font-weight: 500;
+  text-transform: capitalize;
+  color: var(--text-subtle);
+  padding: 6px 10px;
+  margin-bottom: -1px;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition: color .15s ease, border-color .15s ease;
+
+  &:hover {
+    color: var(--text);
+  }
+
+  &.active {
+    color: var(--text);
+    font-weight: 600;
+    border-bottom-color: var(--accent);
+  }
+}
+
 .ability-btn {
   all: unset;
   display: block;
@@ -1052,10 +1203,45 @@ img {
   gap: 12px;
 }
 
-.evo-step {
+.evo-node {
   display: flex;
   align-items: center;
   gap: 12px;
+}
+
+.evo-children {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  &--branch {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+}
+
+.evo-branch-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.evo-regional {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+.evo-region-label {
+  display: block;
+  font-size: .7rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+  margin-bottom: 16px;
+  text-align: center;
 }
 
 .evo-arrow {
@@ -1070,6 +1256,12 @@ img {
     font-size: .7rem;
     color: var(--text-subtle);
     white-space: nowrap;
+  }
+
+  &--mega {
+    color: var(--accent);
+
+    span { color: var(--accent); }
   }
 }
 
@@ -1107,6 +1299,15 @@ img {
 .evo-current {
   border-color: var(--accent);
   box-shadow: var(--shadow-sm);
+}
+
+.evo-pokemon--form {
+  cursor: default;
+
+  &:hover {
+    border-color: var(--border);
+    box-shadow: none;
+  }
 }
 
 // ─── detail nav ──────────────────────────────────────────────────────────────
@@ -1802,7 +2003,11 @@ img {
     gap: 8px;
   }
 
-  .evo-step {
+  .evo-node {
+    gap: 8px;
+  }
+
+  .evo-branch-row {
     gap: 8px;
   }
 

@@ -1,4 +1,4 @@
-export default function SearchBar({ value = '', onSearch }) {
+export default function SearchBar({ value = '', onSearch, onEnter }) {
   return (
     <div className="search-bar">
       <input
@@ -6,6 +6,7 @@ export default function SearchBar({ value = '', onSearch }) {
         placeholder="search pokémon..."
         value={value}
         onChange={e => onSearch(e.target.value)}
+        onKeyDown={e => { if (e.key === 'Enter') onEnter?.(); }}
         className="search-input"
       />
       {value && (

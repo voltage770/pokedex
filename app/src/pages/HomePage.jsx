@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 import { usePokemonList } from '../hooks/usePokemon';
 import PokemonCard from '../components/PokemonCard';
 import SearchBar from '../components/SearchBar';
@@ -11,6 +11,7 @@ const FILTER_KEYS = ['search', 'type', 'generation', 'cls', 'stat', 'minStat', '
 export default function HomePage({ enabledFilters = {}, filterOrder = [] }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const [visible, setVisible]           = useState(PAGE_SIZE);
+  const navigate                        = useNavigate();
 
   // derive filters object from URL params
   const filters = Object.fromEntries(
@@ -44,14 +45,18 @@ export default function HomePage({ enabledFilters = {}, filterOrder = [] }) {
       <FilterPanel filters={filters} onChange={setFilters} enabledFilters={enabledFilters} filterOrder={filterOrder} />
 
       <main className="home-main">
-        <SearchBar value={filters.search || ''} onSearch={handleSearch} />
+        <SearchBar
+          value={filters.search || ''}
+          onSearch={handleSearch}
+          onEnter={() => { if (displayed.length > 0) navigate(`/pokemon/${displayed[0].id}`); }}
+        />
 
         {error   && <p className="error">error: {error}</p>}
         {loading && <p className="loading">loading pokémon...</p>}
 
         <div className="pokemon-grid">
           {displayed.map(p => (
-            <PokemonCard key={p.id} pokemon={p} />
+            <PokemonCard key={p.uid || p.id} pokemon={p} />
           ))}
         </div>
 
