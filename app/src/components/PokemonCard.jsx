@@ -17,7 +17,6 @@ export default function PokemonCard({ pokemon }) {
       <Link to={linkTo} state={{ from: location.pathname + location.search }} className="card-link">
         <div className="card-header">
           <span className="pokemon-id">#{padId}</span>
-          <span className="gen-badge">gen {pokemon.generation}</span>
         </div>
         <img src={image} alt={pokemon.name} className="pokemon-sprite" loading="lazy" />
         <h3 className="pokemon-name">{pokemon.form ? formatFormName(pokemon.form) : formatName(pokemon.name)}</h3>

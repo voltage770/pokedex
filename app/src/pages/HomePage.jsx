@@ -28,8 +28,11 @@ export default function HomePage({ enabledFilters = {}, filterOrder = [] }) {
 
   const { pokemon, loading, error } = usePokemonList({ ...filters, limit: 9999 });
 
-  // reset visible count whenever filters change
-  useEffect(() => { setVisible(PAGE_SIZE); }, [searchParams.toString()]);
+  // reset visible count and scroll position whenever filters change
+  useEffect(() => {
+    setVisible(PAGE_SIZE);
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }, [searchParams.toString()]);
 
   const CONTENT_KEYS  = ['search', 'type', 'generation', 'cls', 'stat', 'minStat'];
   const hasFilters    = CONTENT_KEYS.some(k => filters[k]);

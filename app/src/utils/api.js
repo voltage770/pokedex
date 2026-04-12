@@ -11,7 +11,7 @@ export const FORM_SUFFIX_SPECIES = [
   'dudunsparce', 'wormadam',  'basculegion', 'darmanitan', 'jellicent',
   'pyroar',      'meowstic',  'aegislash',   'gourgeist',  'lycanroc',
   'toxtricity',  'urshifu',   'oinkologne',  'maushold',   'palafin',
-  'shaymin',
+  'shaymin',     'tatsugiri',
 ];
 
 const _speciesAliases = FORM_SUFFIX_SPECIES.reduce((acc, species) => {
@@ -22,9 +22,46 @@ const _speciesAliases = FORM_SUFFIX_SPECIES.reduce((acc, species) => {
 
 export const NAME_TO_ID = { ..._nameToId, ..._speciesAliases };
 
-// returns the chip label for the "base" form of a pokemon whose stored name includes a form suffix
-// e.g. 'toxtricity-amped' → 'amped', 'meowth' → null (caller should use 'base')
+// base form labels keyed by the pokemon's actual stored name in pokemon.json.
+// takes precedence over FORM_SUFFIX_SPECIES stripping so labels are exact rather than derived.
+const BASE_FORM_LABELS = {
+  // forces of nature — stored with '-incarnate' suffix
+  'tornadus-incarnate':         'incarnate forme',
+  'thundurus-incarnate':        'incarnate forme',
+  'landorus-incarnate':         'incarnate forme',
+  'enamorus-incarnate':         'incarnate forme',
+  // morpeko — stored as 'morpeko-full-belly'
+  'morpeko-full-belly':         'full belly mode',
+  // legendary / mythical
+  'giratina-altered':           'altered forme',
+  'deoxys-normal':              'normal forme',
+  'shaymin-land':               'land forme',
+  'keldeo-ordinary':            'ordinary form',
+  'meloetta-aria':              'aria forme',
+  'zygarde-50':                 '50% forme',
+  // battle / ability forms
+  'aegislash-shield':           'shield forme',
+  'wishiwashi-solo':            'solo form',
+  'mimikyu-disguised':          'disguised form',
+  'eiscue-ice':                 'ice face',
+  'castform':                   'normal form',   // base castform has no suffix
+  // style / appearance
+  'oricorio-baile':             'baile style',
+  'squawkabilly-green-plumage': 'green plumage',
+  'tatsugiri-curly':            'curly form',
+  'basculin-red-striped':       'red-striped form',
+  'pumpkaboo-average':          'average size',
+  // gender forms
+  'indeedee-male':              'male',
+  // mode forms (FORM_SUFFIX_SPECIES — override suffix-stripping to get full label)
+  'darmanitan-standard':        'standard mode',
+};
+
+// returns the chip label for the "base" form button
+// handles both pokemon whose stored name has a form suffix (FORM_SUFFIX_SPECIES)
+// and pokemon whose base slug has a proper named form (BASE_FORM_LABELS)
 export function getBaseFormLabel(pokemonName) {
+  if (BASE_FORM_LABELS[pokemonName] !== undefined) return BASE_FORM_LABELS[pokemonName];
   for (const species of FORM_SUFFIX_SPECIES) {
     if (pokemonName.startsWith(species + '-')) {
       return pokemonName.slice(species.length + 1).replace(/-/g, ' ');
@@ -48,18 +85,22 @@ export const FORM_TO_BASE_ID = Object.fromEntries(
 export const EXCLUDED_FORMS = new Set(['pikachu-alola-cap']);
 
 // returns all forms to expand into cards for a given class filter
-// single-form filters return at most one entry; multi-form filters expand all available
+// single-form filters return at most one entry; multi-form filters expand all available.
+// regional matching uses a region-suffix regex (not endsWith) so forms with extra suffixes
+// after the region name — like tauros-paldea-combat-breed — are still caught, and all matches
+// are returned rather than just the first.
 function highlightFormsFor(p, cls) {
   const has = f => !!p.form_data?.[f] && !EXCLUDED_FORMS.has(f);
+  const regionMatches = (region) => (p.regional_forms || []).filter(n => new RegExp(`-${region}(-|$)`).test(n) && has(n));
   switch (cls) {
     case 'has-mega':        return (p.mega_forms     || []).filter(has);
     case 'has-gmax':        return (p.gmax_forms     || []).filter(has);
     case 'has-regional':    return (p.regional_forms || []).filter(has);
     case 'has-forms':       return (p.alt_forms      || []).filter(has);
-    case 'regional-alola':  { const f = p.regional_forms?.find(n => n.endsWith('-alola'));  return f && has(f) ? [f] : []; }
-    case 'regional-galar':  { const f = p.regional_forms?.find(n => n.endsWith('-galar'));  return f && has(f) ? [f] : []; }
-    case 'regional-hisui':  { const f = p.regional_forms?.find(n => n.endsWith('-hisui'));  return f && has(f) ? [f] : []; }
-    case 'regional-paldea': { const f = p.regional_forms?.find(n => n.endsWith('-paldea')); return f && has(f) ? [f] : []; }
+    case 'regional-alola':  return regionMatches('alola');
+    case 'regional-galar':  return regionMatches('galar');
+    case 'regional-hisui':  return regionMatches('hisui');
+    case 'regional-paldea': return regionMatches('paldea');
     default: return [];
   }
 }
@@ -245,20 +286,27 @@ function buildRegionalEvolutions(pokemon) {
       const overrideKey = `${fromForm}->${toForm}`;
       const ov = REGIONAL_EVO_OVERRIDES[overrideKey];
       if (!chains[region]) chains[region] = [];
+      const pick = (key) => ov && key in ov ? ov[key] : step[key] ?? null;
+      // when the pre-evo has no regional form, the edge is inferred from the base pre-evo →
+      // regional evo (e.g. goomy → sliggoo-hisui). these transitions are always region-gated, so
+      // default location to the region name unless an override or the base step already sets one.
+      const inferredFromBase = !fromRegions[region];
+      const pickedLocation = pick('location');
+      const location = pickedLocation ?? (inferredFromBase && !(ov && 'location' in ov) ? region : null);
       chains[region].push({
         from:            fromForm,
         to:              toForm,
-        trigger:         ov?.trigger         ?? step.trigger,
-        min_level:       ov?.min_level       ?? step.min_level,
-        item:            ov?.item            ?? step.item,
-        location:        ov?.location        ?? step.location        ?? null,
-        time_of_day:     ov?.time_of_day     ?? step.time_of_day     ?? null,
-        min_happiness:   ov?.min_happiness   ?? step.min_happiness   ?? null,
-        known_move:      ov?.known_move      ?? step.known_move      ?? null,
-        known_move_type: ov?.known_move_type ?? step.known_move_type ?? null,
-        trade_species:   ov?.trade_species   ?? step.trade_species   ?? null,
-        needs_rain:      ov?.needs_rain      ?? step.needs_rain      ?? null,
-        turn_upside_down: ov?.turn_upside_down ?? step.turn_upside_down ?? null,
+        trigger:         pick('trigger'),
+        min_level:       pick('min_level'),
+        item:            pick('item'),
+        location,
+        time_of_day:     pick('time_of_day'),
+        min_happiness:   pick('min_happiness'),
+        known_move:      pick('known_move'),
+        known_move_type: pick('known_move_type'),
+        trade_species:   pick('trade_species'),
+        needs_rain:      pick('needs_rain'),
+        turn_upside_down: pick('turn_upside_down'),
       });
     }
   }
@@ -339,6 +387,57 @@ const MEGA_STONE = {
   'diancie-mega':       'diancite',
   'sceptile-mega':      'sceptilite',
   'swampert-mega':      'swampertite',
+  // additional mega stones beyond the Gen VI canon set — all real, sourced from bulbapedia's
+  // Mega Stone list. three of these (magearna-original, tatsugiri-curly/droopy/stretchy) don't
+  // have their own stones on bulbapedia, so they share the base species' stone.
+  'clefable-mega':          'clefablite',
+  'victreebel-mega':        'victreebelite',
+  'starmie-mega':           'starminite',
+  'dragonite-mega':         'dragoninite',
+  'meganium-mega':          'meganiumite',
+  'feraligatr-mega':        'feraligite',
+  'skarmory-mega':          'skarmorite',
+  'froslass-mega':          'froslassite',
+  'heatran-mega':           'heatranite',
+  'darkrai-mega':           'darkranite',
+  'emboar-mega':            'emboarite',
+  'excadrill-mega':         'excadrite',
+  'scolipede-mega':         'scolipite',
+  'scrafty-mega':           'scraftinite',
+  'eelektross-mega':        'eelektrossite',
+  'chandelure-mega':        'chandelurite',
+  'chesnaught-mega':        'chesnaughtite',
+  'delphox-mega':           'delphoxite',
+  'greninja-mega':          'greninjite',
+  'pyroar-mega':            'pyroarite',
+  'floette-mega':           'floettite',
+  'malamar-mega':           'malamarite',
+  'barbaracle-mega':        'barbaracite',
+  'dragalge-mega':          'dragalgite',
+  'hawlucha-mega':          'hawluchanite',
+  'zygarde-mega':           'zygardite',
+  'drampa-mega':            'drampanite',
+  'zeraora-mega':           'zeraorite',
+  'falinks-mega':           'falinksite',
+  'raichu-mega-x':          'raichunite-x',
+  'raichu-mega-y':          'raichunite-y',
+  'chimecho-mega':          'chimechite',
+  'absol-mega-z':           'absolite-z',
+  'staraptor-mega':         'staraptite',
+  'garchomp-mega-z':        'garchompite-z',
+  'lucario-mega-z':         'lucarionite-z',
+  'golurk-mega':            'golurkite',
+  'meowstic-mega':          'meowsticite',
+  'crabominable-mega':      'crabominite',
+  'golisopod-mega':         'golisopite',
+  'magearna-mega':          'magearnite',
+  'magearna-original-mega': 'magearnite',
+  'scovillain-mega':        'scovillainite',
+  'baxcalibur-mega':        'baxcalibrite',
+  'tatsugiri-curly-mega':   'tatsugirinite',
+  'tatsugiri-droopy-mega':  'tatsugirinite',
+  'tatsugiri-stretchy-mega':'tatsugirinite',
+  'glimmora-mega':          'glimmoranite',
 };
 
 // pokemon that can only be reached by evolving a regional form — exclude from the base evo chain
@@ -347,24 +446,54 @@ const REGIONAL_ONLY_EVO_TARGETS = new Set([
   'mr-rime', 'sneasler', 'overqwil', 'clodsire',
 ]);
 
+// species-level slugs in PokeAPI evolution chains that should be rewritten to a specific form
+// because only that form participates in the evolution. without this, the chain references a
+// species name that doesn't resolve to any card (e.g. 'basculin' — only white-striped evolves).
+const SPECIES_FORM_REWRITE = {
+  basculin: 'basculin-white-striped',
+};
+
+function rewriteSpeciesForms(step) {
+  const from = SPECIES_FORM_REWRITE[step.from] || step.from;
+  const to   = SPECIES_FORM_REWRITE[step.to]   || step.to;
+  return (from === step.from && to === step.to) ? step : { ...step, from, to };
+}
+
 // single pokemon by id
 export function getPokemonById(id) {
   const pokemon = ALL.find(p => p.id === Number(id));
   if (!pokemon) return Promise.reject(new Error('not found'));
   const evolutions = (pokemon.evolutions || [])
     .filter(s => !REGIONAL_ONLY_EVO_TARGETS.has(s.to))
-    .flatMap(s => BRANCHING_EVO_OVERRIDES[`${s.from}->${s.to}`] || [s]);
+    .flatMap(s => BRANCHING_EVO_OVERRIDES[`${s.from}->${s.to}`] || [s])
+    .map(rewriteSpeciesForms);
 
-  // synthesize mega steps for every pokemon in the chain (including the current one)
+  // synthesize mega steps for every pokemon in the chain (including the current one).
+  // the mega's parent is derived from its slug (strip `-mega` / `-mega-x/y/z`) so species with
+  // per-variant megas — like tatsugiri's curly/droopy/stretchy mega, each belonging to its own
+  // base variant — attach under the correct parent instead of all stacking off the default form.
+  // explicit overrides handle cases where the parent can't be derived from the slug: e.g.
+  // zygarde-mega is only accessible from zygarde-complete, not the default zygarde-50.
+  const MEGA_PARENT_OVERRIDES = {
+    'zygarde-mega': 'zygarde-complete',
+  };
   const byName = Object.fromEntries(ALL.map(p => [p.name, p]));
   const inChain = new Set([pokemon.name, ...evolutions.map(s => s.from), ...evolutions.map(s => s.to)]);
   const megaSteps = [];
+  const resolveMegaParent = (megaForm, fallback) => {
+    if (MEGA_PARENT_OVERRIDES[megaForm]) return MEGA_PARENT_OVERRIDES[megaForm];
+    const m = megaForm.match(/^(.+?)-mega(?:-[xyz])?$/);
+    if (!m) return fallback;
+    const candidate = m[1];
+    if (byName[candidate] || FORM_TO_BASE_ID[candidate]) return candidate;
+    return fallback;
+  };
   for (const name of inChain) {
     const p = byName[name];
     if (!p?.mega_forms?.length) continue;
     for (const megaForm of p.mega_forms) {
       megaSteps.push({
-        from: name,
+        from: resolveMegaParent(megaForm, name),
         to: megaForm,
         trigger: 'mega-evolution',
         item: MEGA_STONE[megaForm] || null,

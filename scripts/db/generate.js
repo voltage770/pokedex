@@ -24,6 +24,30 @@ const MAX_ID       = 1025;
 const DELAY_MS     = 120;
 const OUT_POKEMON  = path.join(__dirname, '../../app/src/data/pokemon.json');
 const OUT_ABILITIES = path.join(__dirname, '../../app/src/data/abilities.json');
+const FORM_FLAVOR_PATH   = path.join(__dirname, 'form_flavor.json');
+const FORM_ARTWORK_PATH  = path.join(__dirname, 'form_artwork.json');
+const FORM_ALIASES_PATH  = path.join(__dirname, 'form_flavor_aliases.json');
+
+// persistent form-specific flavor text scraped from bulbapedia — not overwritten by this script
+const FORM_FLAVOR = fs.existsSync(FORM_FLAVOR_PATH)
+  ? JSON.parse(fs.readFileSync(FORM_FLAVOR_PATH, 'utf-8'))
+  : {};
+
+// persistent form-specific artwork / sprite overrides for forms where pokeapi is missing images
+// (e.g. megas outside the Gen VI canon set whose artwork pokeapi never ingested). keyed by form
+// slug, values hold any of: artwork_url, artwork_shiny, sprite_url, sprite_shiny. each key is
+// merged into form_data[slug] after pokeapi fetch, so regenerating never drops them.
+const FORM_ARTWORK = fs.existsSync(FORM_ARTWORK_PATH)
+  ? JSON.parse(fs.readFileSync(FORM_ARTWORK_PATH, 'utf-8'))
+  : {};
+
+// alias map for forms that share flavor text with another form (e.g. toxtricity-low-key-gmax
+// and toxtricity-amped-gmax share one dex entry on bulbapedia). keyed as aliasSlug → sourceSlug.
+// source can be another form slug (in form_data) or the base species name (matches p.name,
+// copies flavorText). applied after the FORM_FLAVOR merge so the alias reflects the latest text.
+const FORM_FLAVOR_ALIASES = fs.existsSync(FORM_ALIASES_PATH)
+  ? JSON.parse(fs.readFileSync(FORM_ALIASES_PATH, 'utf-8'))
+  : {};
 
 const evoCache = new Map();
 
@@ -119,10 +143,38 @@ async function fetchOne(id) {
         types:         fd.types.sort((a, b) => a.slot - b.slot).map(t => t.type.name),
         stats:         fd.stats.map(s => ({ stat_name: s.stat.name, base_value: s.base_stat })),
         abilities:     fd.abilities.map(a => ({ ability_name: a.ability.name, is_hidden: a.is_hidden })),
+        height:        fd.height,
+        weight:        fd.weight,
+        ev_yield:      fd.stats.filter(s => s.effort > 0).map(s => ({ stat_name: s.stat.name, effort: s.effort })),
       };
     } catch (e) {
       // form not found or fetch error — skip
     }
+  }
+
+  // merge scraped form-specific flavor text from form_flavor.json
+  for (const [formSlug, text] of Object.entries(FORM_FLAVOR)) {
+    if (form_data[formSlug]) form_data[formSlug].flavor_text = text;
+  }
+
+  // merge manual artwork / sprite overrides from form_artwork.json (covers forms pokeapi doesn't
+  // have images for — e.g. megas outside the Gen VI canon set). only overwrites the fields
+  // explicitly present in the cache.
+  for (const [formSlug, overrides] of Object.entries(FORM_ARTWORK)) {
+    if (!form_data[formSlug]) continue;
+    for (const [key, value] of Object.entries(overrides)) {
+      form_data[formSlug][key] = value;
+    }
+  }
+
+  // apply flavor-text aliases: forms that share a dex entry with another form. runs after the
+  // form_flavor merge so the source is always the latest text. source can be another form_data
+  // slug or the species base (matched against p.name, sourced from flavorText).
+  for (const [aliasSlug, sourceSlug] of Object.entries(FORM_FLAVOR_ALIASES)) {
+    if (!form_data[aliasSlug]) continue;
+    const sourceText = form_data[sourceSlug]?.flavor_text
+      ?? (p.name === sourceSlug ? flavorText : null);
+    if (sourceText) form_data[aliasSlug].flavor_text = sourceText;
   }
 
   return {
@@ -140,6 +192,7 @@ async function fetchOne(id) {
     types:           p.types.sort((a, b) => a.slot - b.slot).map(t => t.type.name),
     stats:           p.stats.map(s => ({ stat_name: s.stat.name, base_value: s.base_stat })),
     abilities:       p.abilities.map(a => ({ ability_name: a.ability.name, is_hidden: a.is_hidden })),
+    ev_yield:        p.stats.filter(s => s.effort > 0).map(s => ({ stat_name: s.stat.name, effort: s.effort })),
     flavor_text:     flavorText,
     genus:           genusEntry ? genusEntry.genus : null,
     catch_rate:      sp.capture_rate,

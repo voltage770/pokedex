@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useParams, Link, useNavigate, useSearchParams } from 'react-router-dom';
+import React, { useState, useRef, useLayoutEffect } from 'react';
+import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import { formatName, formatFormName } from '../utils/formatName';
 import { usePokemonDetail } from '../hooks/usePokemon';
 import { NAME_TO_ID, FORM_DATA, FORM_TO_BASE_ID, EXCLUDED_FORMS, getBaseFormLabel, FORM_SUFFIX_SPECIES } from '../utils/api';
@@ -9,6 +9,16 @@ const STAT_LABELS = {
   hp:               'HP',
   attack:           'Attack',
   defense:          'Defense',
+  'special-attack': 'Sp. Atk',
+  'special-defense':'Sp. Def',
+  speed:            'Speed',
+};
+
+// abbreviated labels used in the compact ev yield line
+const EV_STAT_LABELS = {
+  hp:               'HP',
+  attack:           'Atk',
+  defense:          'Def',
   'special-attack': 'Sp. Atk',
   'special-defense':'Sp. Def',
   speed:            'Speed',
@@ -35,11 +45,19 @@ function StatRow({ stat }) {
   );
 }
 
-// converts gender_rate (-1 = genderless, 0–8 = female eighths) to readable string
-function genderText(rate) {
-  if (rate === -1) return 'genderless';
-  const femalePct = Math.round((rate / 8) * 100);
-  return `${100 - femalePct}% m / ${femalePct}% f`;
+function GenderDisplay({ rate }) {
+  if (rate == null) return <span className="meta-value">—</span>;
+  if (rate === -1)  return <span className="meta-value">—</span>;
+  const femalePct = (rate / 8) * 100;
+  const malePct   = 100 - femalePct;
+  const fmt = n => n % 1 === 0 ? `${n}%` : `${n.toFixed(1)}%`;
+  return (
+    <span className="gender-display">
+      {malePct > 0   && <span className="gender-m">♂ {fmt(malePct)}</span>}
+      {malePct > 0 && femalePct > 0 && <span className="gender-sep">|</span>}
+      {femalePct > 0 && <span className="gender-f">♀ {fmt(femalePct)}</span>}
+    </span>
+  );
 }
 
 function buildAdj(steps) {
@@ -56,45 +74,53 @@ function findRoots(steps) {
   return [...new Set(steps.map(s => s.from))].filter(n => !toSet.has(n));
 }
 
-function formatItem(item) {
-  if (!item) return '';
-  // evolution stones are single compound words (thunderstone, firestone, etc.)
-  if (item.endsWith('-stone')) return item.replace(/-/g, '');
-  return item.replace(/-/g, ' ');
+function formatSlug(slug) {
+  if (!slug) return '';
+  return slug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
 }
 
 function EvoArrow({ step }) {
   if (step.isMega) {
-    const stone = step.item ? formatItem(step.item) : null;
+    const stone  = step.item ? formatSlug(step.item) : null;
     const isMove = step.item === 'dragon-ascent';
     return (
       <div className="evo-arrow evo-arrow--mega">
         ↔
-        {stone && <span>{isMove ? `move: ${stone}` : stone}</span>}
+        {stone && <span>{isMove ? `know ${stone}` : stone}</span>}
       </div>
     );
   }
 
-  const conditions = [];
-  if (step.min_level)       conditions.push(`lv ${step.min_level}`);
-  if (step.item)            conditions.push(formatItem(step.item));
-  if (step.trade_species)   conditions.push(`for ${step.trade_species}`);
-  if (step.min_happiness)   conditions.push('happiness');
-  if (step.known_move_type) conditions.push(`${step.known_move_type} move`);
-  if (step.known_move)      conditions.push(step.known_move);
-  if (step.time_of_day)     conditions.push(step.time_of_day);
-  if (step.needs_rain)      conditions.push('rain');
-  if (step.turn_upside_down) conditions.push('upside down');
-  if (step.location)        conditions.push(`in ${step.location}`);
-  if (step.nature)          conditions.push(step.nature);
-  // fall back to trigger name only if nothing else was captured
-  if (!conditions.length && step.trigger && step.trigger !== 'level-up' && step.trigger !== 'use-item') {
-    conditions.push(step.trigger);
+  const trigger = step.trigger;
+  const chips   = [];
+
+  if (step.min_level)        chips.push(`lv ${step.min_level}`);
+
+  if (step.item) {
+    if (trigger === 'use-item') chips.push(`use ${formatSlug(step.item)}`);
+    else if (trigger === 'trade') chips.push(`trade holding ${formatSlug(step.item)}`);
+    else                          chips.push(`hold ${formatSlug(step.item)}`);
   }
+
+  if (trigger === 'trade' && !step.item && !step.trade_species) chips.push('trade');
+  if (step.trade_species)    chips.push(`trade for ${formatName(step.trade_species)}`);
+
+  if (step.known_move)       chips.push(`know ${formatSlug(step.known_move)}`);
+  if (step.known_move_type)  chips.push(`${formatSlug(step.known_move_type)} move`);
+  if (step.min_happiness)    chips.push('high friendship');
+  if (step.time_of_day)      chips.push(step.time_of_day);
+  if (step.needs_rain)       chips.push('rain');
+  if (step.turn_upside_down) chips.push('upside down');
+  if (step.location)         chips.push(`in ${formatSlug(step.location)}`);
+  if (step.nature)           chips.push(`${step.nature} nature`);
+
+  // catch-all for uncommon triggers (shed, spin, etc.)
+  if (!chips.length && trigger && trigger !== 'level-up') chips.push(formatSlug(trigger));
+
   return (
     <div className="evo-arrow">
       →
-      {conditions.map(c => <span key={c}>{c}</span>)}
+      {chips.map(c => <span key={c}>{c}</span>)}
     </div>
   );
 }
@@ -110,6 +136,44 @@ function getSpeciesName(pokemonName) {
   return pokemonName;
 }
 
+// full overrides — for forms where suffix stripping produces an incomplete or misleading label
+const FORM_CHIP_LABEL_OVERRIDES = {
+  'calyrex-ice':                 'ice rider',
+  'calyrex-shadow':              'shadow rider',
+  'zygarde-10':                  '10% forme',
+  'zygarde-complete':            'complete forme',
+};
+
+// trailing word appended to derived chip labels for a given pokemon's form set
+// e.g. 'giratina-altered' → 'forme' means 'origin' becomes 'origin forme'
+const FORM_WORD_SUFFIXES = {
+  // -forme
+  'giratina-altered':      'forme',
+  'deoxys-normal':         'forme',
+  'shaymin-land':          'forme',
+  'meloetta-aria':         'forme',
+  'aegislash-shield':      'forme',
+  // -mode
+  'darmanitan-standard':   'mode',
+  'morpeko-full-belly':    'mode',
+  // -face
+  'eiscue-ice':            'face',
+  // -style
+  'oricorio-baile':        'style',
+  'urshifu-single-strike': 'style',
+  // -form
+  'keldeo-ordinary':       'form',
+  'wishiwashi-solo':       'form',
+  'mimikyu-disguised':     'form',
+  'castform':              'form',
+  'tatsugiri-curly':       'form',
+  'lycanroc-midday':       'form',
+  'toxtricity-amped':      'form',
+  'basculin-red-striped':  'form',
+  // -size
+  'pumpkaboo-average':     'size',
+};
+
 // derives a short display label for a form chip by stripping the shared prefix with the base name
 // e.g. getFormChipLabel('charizard-mega-x', 'charizard')       → 'mega x'
 //      getFormChipLabel('vulpix-alola', 'vulpix')              → 'alolan'
@@ -117,6 +181,7 @@ function getSpeciesName(pokemonName) {
 //      getFormChipLabel('toxtricity-low-key-gmax', 'toxtricity-amped') → 'low key gmax'
 //      getFormChipLabel('charizard-gmax', 'charizard')         → 'gigantamax'
 function getFormChipLabel(formName, pokemonName) {
+  if (FORM_CHIP_LABEL_OVERRIDES[formName]) return FORM_CHIP_LABEL_OVERRIDES[formName];
   // gmax: show "{variant} gmax" or "gigantamax" if no variant
   if (formName.endsWith('-gmax')) {
     const speciesName  = getSpeciesName(pokemonName);
@@ -127,17 +192,25 @@ function getFormChipLabel(formName, pokemonName) {
     return variant ? `${variant} gmax` : 'gigantamax';
   }
 
-  const pokeWords = pokemonName.split('-');
+  // strip the SPECIES prefix, not the full pokemon-name prefix. this keeps the variant-specific
+  // part in the label when the current pokemon is already a specific variant (e.g. viewing
+  // tatsugiri-curly, the chip for tatsugiri-curly-mega must say "curly mega form" not "mega form").
+  const speciesName = getSpeciesName(pokemonName);
+  const pokeWords = speciesName.split('-');
   const formWords = formName.split('-');
   let i = 0;
   while (i < pokeWords.length && i < formWords.length && pokeWords[i] === formWords[i]) i++;
   const suffix = formWords.slice(i).join('-');
   if (!suffix)                  return 'base';
   if (REGION_ADJECTIVE[suffix]) return REGION_ADJECTIVE[suffix];
-  return suffix.split('-').join(' ');
+  const label = suffix.split('-').join(' ');
+  const word  = FORM_WORD_SUFFIXES[pokemonName];
+  return word ? `${label} ${word}` : label;
 }
 
 function EvoNode({ name, currentName, adj }) {
+  const { id: currentId } = useParams();
+  const navigate = useNavigate();
   const id = NAME_TO_ID[name];
   const baseSlug = name.replace(REGION_SUFFIX, ''); // for sprite fallback lookup only
   const baseId   = id || NAME_TO_ID[baseSlug] || FORM_TO_BASE_ID[name];
@@ -154,18 +227,26 @@ function EvoNode({ name, currentName, adj }) {
   );
 
   // form nodes link to the base pokemon page with ?form= to trigger the form view
-  const linkTo = id
-    ? `/pokemon/${id}`
-    : NAME_TO_ID[baseSlug]   ? `/pokemon/${NAME_TO_ID[baseSlug]}?form=${name}`
-    : FORM_TO_BASE_ID[name]  ? `/pokemon/${FORM_TO_BASE_ID[name]}?form=${name}`
+  const destId = id ?? NAME_TO_ID[baseSlug] ?? FORM_TO_BASE_ID[name] ?? null;
+  const linkTo = destId
+    ? (id ? `/pokemon/${id}` : `/pokemon/${destId}?form=${name}`)
     : null;
 
   return (
     <div className="evo-node">
       {linkTo ? (
-        <Link to={linkTo} className={`evo-pokemon${name === currentName ? ' evo-current' : ''}`}>
+        <div
+          role="link"
+          tabIndex={0}
+          className={`evo-pokemon${name === currentName ? ' evo-current' : ''}`}
+          // preventDefault on mousedown blocks the browser's focus-on-click, which would otherwise scroll .evo-chain (an overflow-x container) to bring the clicked card "into view". keyboard tab focus still works.
+          onMouseDown={e => e.preventDefault()}
+          onClick={() => navigate(linkTo, { replace: true, state: { noScroll: true } })}
+          onKeyDown={e => e.key === 'Enter' && navigate(linkTo, { replace: true, state: { noScroll: true } })}
+          style={{ cursor: 'pointer' }}
+        >
           {nodeContent}
-        </Link>
+        </div>
       ) : (
         <div className={`evo-pokemon evo-pokemon--form${name === currentName ? ' evo-current' : ''}`}>
           {nodeContent}
@@ -189,8 +270,11 @@ function EvoChain({ evolutions, currentName }) {
   if (!evolutions?.length) return <p style={{ color: 'var(--text-subtle)', fontSize: '.85rem' }}>none</p>;
   const adj = buildAdj(evolutions);
   const roots = findRoots(evolutions);
+  // multi-root chains (e.g. tatsugiri's per-variant mega chains) stack vertically instead of
+  // fanning out horizontally — each root is its own independent evolution line.
+  const chainClass = `evo-chain${roots.length > 1 ? ' evo-chain--multi-root' : ''}`;
   return (
-    <div className="evo-chain">
+    <div className={chainClass}>
       {roots.map(root => (
         <EvoNode key={root} name={root} currentName={currentName} adj={adj} />
       ))}
@@ -221,6 +305,14 @@ function RegionalEvoChains({ regionalEvolutions, currentName }) {
 // primal/origin/special forms fall into alt_forms from the generator
 const FORM_GROUP_ORDER = ['alt_forms', 'regional_forms', 'mega_forms', 'gmax_forms'];
 
+// species-specific chip ordering — used when the default alt_forms order doesn't match the
+// intuitive progression for that species. each entry is a list of form slugs (null = base chip)
+// in the desired display order. chips not present in the override are appended at the end.
+const SPECIES_FORM_ORDER = {
+  // zygarde: 10% → 50% (base) → complete → mega
+  'zygarde-50': ['zygarde-10', null, 'zygarde-complete', 'zygarde-mega'],
+};
+
 function FormChips({ pokemon, activeForm, onSelect }) {
   const available = new Set(Object.keys(pokemon.form_data || {}));
 
@@ -230,10 +322,18 @@ function FormChips({ pokemon, activeForm, onSelect }) {
 
   if (!allForms.length) return null;
 
-  const chips = [
+  let chips = [
     { form: null,  label: getBaseFormLabel(pokemon.name) || 'base' },
     ...allForms.map(f => ({ form: f, label: getFormChipLabel(f, pokemon.name) })),
   ];
+
+  const orderOverride = SPECIES_FORM_ORDER[pokemon.name];
+  if (orderOverride) {
+    const byForm = new Map(chips.map(c => [c.form, c]));
+    const reordered = orderOverride.map(f => byForm.get(f)).filter(Boolean);
+    const seen = new Set(orderOverride);
+    chips = [...reordered, ...chips.filter(c => !seen.has(c.form))];
+  }
 
   return (
     <div className="form-chips">
@@ -257,7 +357,7 @@ function AbilityModal({ ability, onClose }) {
     <div className="ability-modal-overlay" onClick={onClose}>
       <div className="ability-modal" onClick={e => e.stopPropagation()}>
         <div className="ability-modal-header">
-          <span className="ability-modal-name">{ability.name}</span>
+          <span className="ability-modal-name">{ability.name.replace(/-/g, ' ')}</span>
           {ability.is_hidden && <em className="ability-modal-hidden">hidden</em>}
           <button className="ability-modal-close" onClick={onClose}>✕</button>
         </div>
@@ -276,6 +376,30 @@ export default function PokemonPage() {
   const { pokemon, loading, error } = usePokemonDetail(id);
   const [selectedAbility, setSelectedAbility] = useState(null);
 
+  // scroll-anchor the evo chain across evo-card navigations so changes in hero/flavor-text height
+  // don't make the chain jump up or down in the viewport. onClickCapture records the container top
+  // before navigate fires, useLayoutEffect measures the new top after the new pokemon or form
+  // renders and corrects window scrollY by the delta so the chain stays pinned in place. a rAF
+  // retry catches residual shift from late-arriving layout (font swap, image decode, etc.) before
+  // paint. form changes (e.g. exeggutor ↔ exeggutor-alola) keep the same pokemon id but swap
+  // flavor text / types / stats, so the form param is part of the dep.
+  const formParam = searchParams.get('form');
+  const evoRef = useRef(null);
+  const anchorTopRef = useRef(null);
+  useLayoutEffect(() => {
+    if (anchorTopRef.current === null || !evoRef.current) return;
+    const target = anchorTopRef.current;
+    const apply  = () => {
+      if (!evoRef.current) return;
+      const delta = evoRef.current.getBoundingClientRect().top - target;
+      if (delta) window.scrollBy(0, delta);
+    };
+    apply();
+    const raf = requestAnimationFrame(apply);
+    anchorTopRef.current = null;
+    return () => cancelAnimationFrame(raf);
+  }, [pokemon?.id, formParam]);
+
   if (loading) return <div className="page-center">loading...</div>;
   if (error)   return <div className="page-center error">error: {error}</div>;
   if (!pokemon) return null;
@@ -291,23 +415,26 @@ export default function PokemonPage() {
   const artworkSh = activeFormData
     ? (activeFormData.artwork_shiny || activeFormData.sprite_shiny || null)
     : (pokemon.artwork_shiny || pokemon.sprite_shiny);
-  const types     = activeFormData?.types     || pokemon.types     || [];
-  const stats     = activeFormData?.stats     || pokemon.stats     || [];
-  const abilities = activeFormData?.abilities || pokemon.abilities || [];
+  const types    = activeFormData?.types    || pokemon.types    || [];
+  const stats    = activeFormData?.stats    || pokemon.stats    || [];
+  const abilities= activeFormData?.abilities|| pokemon.abilities|| [];
+  const height   = activeFormData?.height   ?? pokemon.height;
+  const weight   = activeFormData?.weight   ?? pokemon.weight;
+  const evYield  = activeFormData?.ev_yield ?? pokemon.ev_yield ?? [];
 
-  // regional evo steps where `from` is a base pokemon (not a regional form) get merged
-  // into the main evo chain so they display as branches rather than separate chains
+  // inline a region's chain into the main chain only if at least one of its steps is
+  // base→regional (e.g. goomy → sliggoo-hisui). that guarantees the chain attaches to a species
+  // in the main tree, and all subsequent regional→regional steps inline alongside so the whole
+  // regional line renders connected instead of fragmenting across main + separate. chains made
+  // entirely of regional→regional steps (e.g. slowpoke-galar, meowth, sneasel-hisui) stay in the
+  // separate section as before.
   const REGION_FORM_SUFFIX = /-(alola|galar|hisui|paldea)$/;
   const inlineEvoSteps = [];
   const separateRegionalEvos = {};
   for (const [region, steps] of Object.entries(pokemon.regionalEvolutions || {})) {
-    const separate = [];
-    for (const step of steps) {
-      const fromIsBase = !REGION_FORM_SUFFIX.test(step.from) && !!NAME_TO_ID[step.from];
-      if (fromIsBase) inlineEvoSteps.push(step);
-      else separate.push(step);
-    }
-    if (separate.length) separateRegionalEvos[region] = separate;
+    const hasBaseEntry = steps.some(s => !REGION_FORM_SUFFIX.test(s.from) && !!NAME_TO_ID[s.from]);
+    if (hasBaseEntry) inlineEvoSteps.push(...steps);
+    else              separateRegionalEvos[region] = steps;
   }
   const mergedEvolutions = [...(pokemon.evolutions || []), ...inlineEvoSteps];
 
@@ -317,9 +444,9 @@ export default function PokemonPage() {
         <button className="back-link" onClick={() => navigate(-1)}>← back</button>
         <div className="detail-nav">
           {pokemon.id > 1 && (
-            <Link to={`/pokemon/${pokemon.id - 1}`}>← #{String(pokemon.id - 1).padStart(3, '0')}</Link>
+            <button onClick={() => navigate(`/pokemon/${pokemon.id - 1}`, { replace: true })}>← #{String(pokemon.id - 1).padStart(3, '0')}</button>
           )}
-          <Link to={`/pokemon/${pokemon.id + 1}`}>#{String(pokemon.id + 1).padStart(3, '0')} →</Link>
+          <button onClick={() => navigate(`/pokemon/${pokemon.id + 1}`, { replace: true })}>#{String(pokemon.id + 1).padStart(3, '0')} →</button>
         </div>
       </div>
 
@@ -346,7 +473,10 @@ export default function PokemonPage() {
               {pokemon.genus && <p className="detail-genus">{pokemon.genus}</p>}
             </div>
             <div className="detail-id-block">
-              <span className="detail-id">#{padId}</span>
+              <div className="detail-id-row">
+                <span className="detail-gen">gen {pokemon.generation}</span>
+                <span className="detail-id">#{padId}</span>
+              </div>
               {(pokemon.is_legendary || pokemon.is_mythical) && (
                 <span className={`special-badge ${pokemon.is_mythical ? 'mythical' : 'legendary'}`}>
                   {pokemon.is_mythical ? 'mythical' : 'legendary'}
@@ -363,27 +493,23 @@ export default function PokemonPage() {
 
           <FormChips pokemon={pokemon} activeForm={selectedForm} onSelect={selectForm} />
 
-          {pokemon.flavor_text && (
-            <p className="detail-flavor">{pokemon.flavor_text}</p>
+          {(activeFormData?.flavor_text || pokemon.flavor_text) && (
+            <p className="detail-flavor">{activeFormData?.flavor_text || pokemon.flavor_text}</p>
           )}
 
-          {/* quick stats: height, weight, gen */}
+          {/* quick stats: height, weight, gender */}
           <div className="detail-meta">
             <div className="meta-chip">
-              <span className="meta-label">generation</span>
-              <span className="meta-value">{pokemon.generation}</span>
-            </div>
-            <div className="meta-chip">
               <span className="meta-label">height</span>
-              <span className="meta-value">{(pokemon.height / 10).toFixed(1)} m</span>
+              <span className="meta-value">{(height / 10).toFixed(1)} m</span>
             </div>
             <div className="meta-chip">
               <span className="meta-label">weight</span>
-              <span className="meta-value">{(pokemon.weight / 10).toFixed(1)} kg</span>
+              <span className="meta-value">{(weight / 10).toFixed(1)} kg</span>
             </div>
             <div className="meta-chip">
-              <span className="meta-label">base exp</span>
-              <span className="meta-value">{pokemon.base_experience ?? '—'}</span>
+              <span className="meta-label">gender</span>
+              <GenderDisplay rate={pokemon.gender_rate} />
             </div>
           </div>
 
@@ -403,7 +529,7 @@ export default function PokemonPage() {
                     className="ability-btn"
                     onClick={() => setSelectedAbility({ name: a.ability_name, is_hidden: a.is_hidden })}
                   >
-                    <span style={a.is_hidden ? { fontStyle: 'italic' } : undefined}>{a.ability_name}</span>
+                    <span style={a.is_hidden ? { fontStyle: 'italic' } : undefined}>{a.ability_name.replace(/-/g, ' ')}</span>
                   </button>
                 </li>
               ))}
@@ -413,10 +539,28 @@ export default function PokemonPage() {
       </div>
 
       {/* evolution chain */}
-      <div className="detail-evolutions">
+      <div
+        className="detail-evolutions"
+        ref={evoRef}
+        // capture phase runs before child onClick handlers, so we can record the chain's top
+        // before navigate() triggers the re-render. only fire for actual clickable cards.
+        onClickCapture={e => {
+          if (e.target.closest('.evo-pokemon:not(.evo-pokemon--form)') && evoRef.current) {
+            anchorTopRef.current = evoRef.current.getBoundingClientRect().top;
+          }
+        }}
+      >
         <h2>evolution chain</h2>
-        <EvoChain evolutions={mergedEvolutions} currentName={pokemon.name} />
-        <RegionalEvoChains regionalEvolutions={separateRegionalEvos} currentName={pokemon.name} />
+        {(() => {
+          // when a form is selected, pass it as currentName so only an exact matching evo node
+          // gets highlighted. if no node matches (e.g. megas, gmaxes), nothing is highlighted.
+          // when no form is selected, highlight the base pokemon as usual.
+          const currentEvoName = selectedForm ?? pokemon.name;
+          return <>
+            <EvoChain evolutions={mergedEvolutions} currentName={currentEvoName} />
+            <RegionalEvoChains regionalEvolutions={separateRegionalEvos} currentName={currentEvoName} />
+          </>;
+        })()}
       </div>
 
       {/* extra species info */}
@@ -430,21 +574,21 @@ export default function PokemonPage() {
           <span className="meta-value">{pokemon.base_happiness ?? '—'}</span>
         </div>
         <div className="meta-chip">
-          <span className="meta-label">growth rate</span>
-          <span className="meta-value">{pokemon.growth_rate ?? '—'}</span>
+          <span className="meta-label">base exp</span>
+          <span className="meta-value">{pokemon.base_experience ?? '—'}</span>
         </div>
         <div className="meta-chip">
-          <span className="meta-label">gender</span>
-          <span className="meta-value">{pokemon.gender_rate != null ? genderText(pokemon.gender_rate) : '—'}</span>
+          <span className="meta-label">growth rate</span>
+          <span className="meta-value">{pokemon.growth_rate ?? '—'}</span>
         </div>
         <div className="meta-chip">
           <span className="meta-label">egg groups</span>
           <span className="meta-value">{(pokemon.egg_groups || []).filter(g => g !== 'no-eggs').join(', ') || 'none'}</span>
         </div>
-        {pokemon.habitat && (
+        {evYield.length > 0 && (
           <div className="meta-chip">
-            <span className="meta-label">habitat</span>
-            <span className="meta-value">{pokemon.habitat}</span>
+            <span className="meta-label">ev yield</span>
+            <span className="meta-value">{evYield.map(e => `${e.effort} ${EV_STAT_LABELS[e.stat_name] ?? e.stat_name}`).join(' / ')}</span>
           </div>
         )}
       </div>

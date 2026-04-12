@@ -1,10 +1,10 @@
 @use 'sass:list';
 
 // ─── tokens ───────────────────────────────────────────────────────────────────
-// default theme is warm — applied when no data-theme attribute is set
+// :root values are the fallback — light theme is the default
 
 :root,
-[data-theme='warm'] {
+[data-theme='light'] {
   --bg:           #f5ede0;
   --bg-card:      #fdf8f0;
   --bg-sidebar:   #ede3d5;
@@ -36,22 +36,6 @@
   --shadow-sm:    0 1px 3px rgba(0, 0, 0, .3);
   --shadow-md:    0 4px 16px rgba(0, 0, 0, .45);
   --shadow-lg:    0 8px 28px rgba(0, 0, 0, .6);
-}
-
-[data-theme='light'] {
-  --bg:           #f2f2f2;
-  --bg-card:      #ffffff;
-  --bg-sidebar:   #e8e8e8;
-  --bg-header:    #ffffff;
-  --text:         #161616;
-  --text-muted:   #525252;
-  --text-subtle:  #909090;
-  --border:       #dcdcdc;
-  --accent:       #7c6fcd;
-  --accent-hover: #6a5fbf;
-  --shadow-sm:    0 1px 3px rgba(0, 0, 0, .06);
-  --shadow-md:    0 4px 16px rgba(0, 0, 0, .09);
-  --shadow-lg:    0 8px 28px rgba(0, 0, 0, .13);
 }
 
 [data-theme='retro'] {
@@ -89,14 +73,11 @@
 }
 
 // e-reader: desaturate type badges so they don't jar against the monochrome palette
-[data-theme='ereader'] .type-badge {
-  filter: grayscale(1);
-}
 
-// ─── ease mode ───────────────────────────────────────────────────────────────
-// reduces motion and visual complexity for sensitive eyes
+// ─── a11y mode ───────────────────────────────────────────────────────────────
+// combines ease + colorblind effects: reduced motion, larger text, patterns on stat bars
 
-[data-ease='true'] {
+[data-a11y='true'] {
   *, *::before, *::after {
     transition: none !important;
     animation:  none !important;
@@ -124,9 +105,8 @@
     letter-spacing: 0;
   }
 
-  // bigger id/gen labels on cards
-  .pokemon-id,
-  .gen-badge { font-size: .78rem; }
+  // bigger id label on cards
+  .pokemon-id { font-size: .78rem; }
 
   // larger type badges
   .type-badge {
@@ -176,6 +156,28 @@
 
   // stat bars: no width transition (already killed above)
   .stat-fill { transition: none !important; }
+
+  // stat bars use diagonal stripes for non-color distinction
+  .stat-fill {
+    background-image: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 3px,
+      rgba(0, 0, 0, .15) 3px,
+      rgba(0, 0, 0, .15) 6px
+    );
+
+    &.high { background-color: #5cb85c; }
+    &.mid  { background-color: #e8c030; }
+    &.low  { background-color: var(--accent); }
+  }
+
+  // boost text contrast
+  --text-muted:  var(--text);
+  --text-subtle: var(--text-muted);
+
+  // card borders more visible
+  .pokemon-card { border-width: 2px; }
 }
 
 // ─── type badge colors ────────────────────────────────────────────────────────
@@ -365,6 +367,7 @@ img {
   color: var(--text-muted);
   cursor: pointer;
   user-select: none;
+  touch-action: none;
 
   input[type='checkbox'] {
     accent-color: var(--accent);
@@ -372,6 +375,12 @@ img {
     height: 13px;
     cursor: pointer;
     flex-shrink: 0;
+  }
+
+  &.is-dragging {
+    opacity: .5;
+    outline: 1px dashed var(--accent);
+    border-radius: var(--radius-sm);
   }
 }
 
@@ -429,37 +438,16 @@ img {
   }
 }
 
-// theme toggle — three small buttons
-.theme-toggle {
-  display: flex;
-  align-self: center;
-  gap: 4px;
+// theme dropdown select
+.theme-select {
+  width: 100%;
+  padding: 5px 8px;
+  font-size: .8rem;
   background: var(--bg);
+  color: var(--text);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
-  padding: 3px;
-  transition: background-color .25s ease;
-}
-
-.theme-btn {
-  padding: 4px 12px;
-  border-radius: var(--radius-sm);
-  font-size: .75rem;
-  font-weight: 500;
-  color: var(--text-muted);
-  background: transparent;
   cursor: pointer;
-  transition: background .2s ease, color .2s ease;
-
-  &:hover {
-    color: var(--text);
-  }
-
-  &.active {
-    background: var(--bg-card);
-    color: var(--text);
-    box-shadow: var(--shadow-sm);
-  }
 }
 
 // ─── home layout ─────────────────────────────────────────────────────────────
@@ -486,6 +474,12 @@ img {
   flex-direction: column;
   gap: 16px;
   transition: background-color .25s ease;
+  position: sticky;
+  top: 60px;
+  height: calc(100vh - 60px);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
 
   h2 {
     font-size: .7rem;
@@ -583,8 +577,15 @@ img {
 // ─── search bar ──────────────────────────────────────────────────────────────
 
 .search-bar {
-  position: relative;
-  margin-bottom: 20px;
+  position: sticky;
+  top: 60px;
+  z-index: 10;
+  background: var(--bg);
+  padding-top: 16px;
+  padding-bottom: 12px;
+  margin-bottom: 8px;
+  margin-top: -16px;
+  transition: background-color .25s ease;
 }
 
 .search-clear-btn {
@@ -680,15 +681,6 @@ img {
   letter-spacing: .04em;
 }
 
-.gen-badge {
-  font-size: .65rem;
-  font-weight: 600;
-  color: var(--text-subtle);
-  background: var(--bg-sidebar);
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  padding: 1px 7px;
-}
 
 .pokemon-sprite {
   width: 110px;
@@ -905,6 +897,19 @@ img {
   flex-shrink: 0;
 }
 
+.detail-id-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.detail-gen {
+  font-size: .75rem;
+  font-weight: 500;
+  color: var(--text-subtle);
+  letter-spacing: .04em;
+}
+
 .detail-genus {
   font-size: .85rem;
   color: var(--text-muted);
@@ -951,6 +956,18 @@ img {
   font-weight: 500;
   color: var(--text);
 }
+
+.gender-display {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: .9rem;
+  font-weight: 500;
+}
+
+.gender-m   { color: #5b8dd9; }
+.gender-f   { color: #c9547a; }
+.gender-sep { color: var(--text-subtle); }
 
 // stat bars
 
@@ -1004,6 +1021,22 @@ img {
   &.high   { background: #5cb85c; }
   &.mid    { background: #e8c030; }
   &.low    { background: var(--accent); }
+}
+
+.ev-yield {
+  font-size: .8rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+  margin-bottom: 0;
+}
+
+.ev-yield-label {
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-right: 6px;
+  text-transform: uppercase;
+  font-size: .7rem;
+  letter-spacing: .04em;
 }
 
 // abilities
@@ -1197,34 +1230,46 @@ img {
 
 .evo-chain {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
-  gap: 12px;
+  justify-content: safe center;
+  gap: 10px;
+  // vertical padding leaves room for selected-card ring + hover shadow, which would otherwise be clipped by overflow-x: auto
+  padding: 12px 0;
+  overflow-x: auto;
+
+  // multi-root chains (per-variant mega lines like tatsugiri's) stack vertically — each root
+  // is its own independent evolution row so they're readable instead of fanned across the
+  // horizontal scroll area.
+  &--multi-root {
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    overflow-x: visible;
+  }
 }
 
 .evo-node {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
 .evo-children {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 
   &--branch {
     flex-direction: column;
     align-items: flex-start;
-    gap: 16px;
+    gap: 14px;
   }
 }
 
 .evo-branch-row {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
 .evo-regional {
@@ -1251,11 +1296,15 @@ img {
   flex-direction: column;
   align-items: center;
   gap: 4px;
+  width: 88px;
+  flex-shrink: 0;
 
   span {
     font-size: .7rem;
     color: var(--text-subtle);
-    white-space: nowrap;
+    text-align: center;
+    white-space: normal;
+    word-break: break-word;
   }
 
   &--mega {
@@ -1270,9 +1319,11 @@ img {
   flex-direction: column;
   align-items: center;
   gap: 6px;
-  padding: 12px 16px;
+  padding: 10px;
+  width: 112px;
+  box-sizing: border-box;
   background: var(--bg);
-  border: 1px solid var(--border);
+  border: 2px solid var(--border);
   border-radius: var(--radius);
   transition: border-color .15s ease, box-shadow .15s ease;
   text-decoration: none;
@@ -1283,22 +1334,24 @@ img {
   }
 
   img {
-    width: 88px;
-    height: 88px;
+    width: 76px;
+    height: 76px;
     object-fit: contain;
   }
 
   span {
-    font-size: .8rem;
+    font-size: .75rem;
     font-weight: 500;
+    text-align: center;
     text-transform: capitalize;
     color: var(--text);
+    word-break: break-word;
   }
 }
 
 .evo-current {
   border-color: var(--accent);
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 20%, transparent), var(--shadow-sm);
 }
 
 .evo-pokemon--form {
@@ -1316,7 +1369,7 @@ img {
   display: flex;
   gap: 8px;
 
-  a {
+  a, button {
     font-size: .85rem;
     font-weight: 500;
     color: var(--text-muted);
@@ -1325,6 +1378,7 @@ img {
     border-radius: var(--radius-sm);
     background: var(--bg-card);
     transition: color .15s ease, border-color .15s ease;
+    cursor: pointer;
 
     &:hover {
       color: var(--text);
@@ -1732,35 +1786,6 @@ img {
   }
 }
 
-// ─── colorblind mode ─────────────────────────────────────────────────────────
-// adds patterns/borders for non-color distinction — does not touch type badges or sprites
-
-[data-colorblind='true'] {
-  // stat bars use diagonal stripes instead of solid color
-  .stat-fill {
-    background-image: repeating-linear-gradient(
-      45deg,
-      transparent,
-      transparent 3px,
-      rgba(0, 0, 0, .15) 3px,
-      rgba(0, 0, 0, .15) 6px
-    );
-
-    &.high { background-color: #5cb85c; }
-    &.mid  { background-color: #e8c030; }
-    &.low  { background-color: var(--accent); }
-  }
-
-  // boost text contrast
-  --text-muted:  var(--text);
-  --text-subtle: var(--text-muted);
-
-  // stat labels bolder
-  .stat-label, .stat-value { font-weight: 600; }
-
-  // card borders more visible
-  .pokemon-card { border-width: 2px; }
-}
 
 // ─── page center (loading/error states) ───────────────────────────────────────
 
@@ -1839,11 +1864,15 @@ img {
     min-height: calc(100vh - 52px);
   }
 
-  // filter panel becomes a horizontal scrolling strip
+  // filter panel becomes a sticky horizontal scrolling strip
   .filter-panel {
+    position: sticky;
+    top: 52px;
+    z-index: 20;
+    height: auto;
+    overflow-y: visible;
     flex-direction: row;
     overflow-x: auto;
-    overflow-y: visible;
     padding: 10px 16px;
     gap: 12px;
     border-right: none;
@@ -1909,7 +1938,9 @@ img {
     padding: 14px 14px 20px;
   }
 
-  .search-bar { margin-bottom: 14px; }
+  // `position: relative` (not `static`) so the absolutely-positioned .search-clear-btn inside
+  // still anchors to .search-bar. static would let the clear button escape into the results grid.
+  .search-bar { margin-bottom: 14px; position: relative; top: auto; }
 
   .pokemon-grid {
     grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
@@ -2011,8 +2042,13 @@ img {
     gap: 8px;
   }
 
+  .evo-arrow {
+    width: 80px;
+  }
+
   .evo-pokemon {
-    padding: 8px 10px;
+    padding: 8px;
+    width: 88px;
 
     img { width: 60px; height: 60px; }
 

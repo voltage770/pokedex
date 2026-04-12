@@ -31,11 +31,12 @@ export function usePokemonDetail(id) {
 
   useEffect(() => {
     if (!id) return;
-    setLoading(true);
+    // data is local/sync so transitions resolve in a microtask. keep the previous pokemon
+    // rendered until the new one arrives so the DOM above the evo chain doesn't collapse
+    // into a "loading..." flash, which would break scroll-anchoring on navigation.
     getPokemonById(id)
-      .then(setPokemon)
-      .catch(err => setError(err.message))
-      .finally(() => setLoading(false));
+      .then(p => { setPokemon(p); setLoading(false); })
+      .catch(err => { setError(err.message); setLoading(false); });
   }, [id]);
 
   return { pokemon, loading, error };

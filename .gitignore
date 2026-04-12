@@ -149,3 +149,11 @@ documentation
 # local tracking files
 worklog.md
 toolguide.html
+
+# local ai agent context / settings — not for the public repo
+CLAUDE.md
+.claude/
+
+# macos finder metadata
+.DS_Store
+**/.DS_Store

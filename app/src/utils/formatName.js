@@ -75,13 +75,33 @@ export function formatFormName(slug) {
   // mega: any segment equals 'mega'
   const megaIdx = parts.indexOf('mega');
   if (megaIdx !== -1) {
-    const baseSlug = parts.slice(0, megaIdx).join('-');
-    const baseName = OVERRIDES[baseSlug] || parts.slice(0, megaIdx).map(titleCase).join(' ');
-    const variant  = parts.slice(megaIdx + 1).map(p => p.toUpperCase()).join(' ');
-    return ['Mega', baseName, variant].filter(Boolean).join(' ');
+    const preMegaParts  = parts.slice(0, megaIdx);
+    const postMegaParts = parts.slice(megaIdx + 1);
+
+    // find the longest pre-mega prefix that matches an OVERRIDE entry — this covers multi-word
+    // species names like kommo-o, mr-mime, porygon-z so they don't get misread as species+variant.
+    let speciesEnd = 1;
+    for (let i = preMegaParts.length; i >= 1; i--) {
+      if (OVERRIDES[preMegaParts.slice(0, i).join('-')]) { speciesEnd = i; break; }
+    }
+    const speciesSlug = preMegaParts.slice(0, speciesEnd).join('-');
+    const speciesName = OVERRIDES[speciesSlug] || preMegaParts.slice(0, speciesEnd).map(titleCase).join(' ');
+    const variantParts = preMegaParts.slice(speciesEnd);
+
+    // variant sitting before '-mega' (tatsugiri-droopy-mega, magearna-original-mega) — render
+    // the variant in parentheses: "Mega Tatsugiri (Droopy)", "Mega Magearna (Original)".
+    // this is visually distinct from the single-letter x/y/z suffix pattern (Mega Charizard X).
+    if (variantParts.length > 0) {
+      const variantLabel = variantParts.map(titleCase).join(' ');
+      return `Mega ${speciesName} (${variantLabel})`;
+    }
+
+    // standard mega — optional single-letter x/y/z suffix after '-mega'
+    const suffix = postMegaParts.map(p => p.toUpperCase()).join(' ');
+    return ['Mega', speciesName, suffix].filter(Boolean).join(' ');
   }
 
-  // gmax: last segment is 'gmax' → "GMAX {variant} {base}"
+  // gmax: last segment is 'gmax' → "GMAX {base}" or "GMAX {base} ({variant})"
   if (parts[parts.length - 1] === 'gmax') {
     const body = parts.slice(0, -1);
     let splitAt = body.length;
@@ -91,7 +111,7 @@ export function formatFormName(slug) {
     const baseSlug = body.slice(0, splitAt).join('-');
     const baseName = OVERRIDES[baseSlug] || body.slice(0, splitAt).map(titleCase).join(' ');
     const variant  = body.slice(splitAt).map(titleCase).join(' ');
-    return ['GMAX', variant, baseName].filter(Boolean).join(' ');
+    return variant ? `GMAX ${baseName} (${variant})` : `GMAX ${baseName}`;
   }
 
   // regional: find a region word anywhere in the parts (handles both
