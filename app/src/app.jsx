@@ -53,7 +53,13 @@ function shuffle(arr) {
   return out;
 }
 
-function HeaderSprites() {
+// animation durations for the sprite strip (milliseconds).
+// normal is the default drift; a11y slows it ~73% so motion-sensitive users
+// still get a living header without it whipping past.
+const SPRITE_ANIM_NORMAL_MS = 52000;
+const SPRITE_ANIM_A11Y_MS   = 90000;
+
+function HeaderSprites({ a11y }) {
   // shuffle once per mount so the ordering is random per session but stable
   // across re-renders (otherwise the strip would reshuffle on every state
   // change in the header and jitter mid-animation).
@@ -61,15 +67,62 @@ function HeaderSprites() {
     const shuffled = shuffle(HEADER_SPRITE_IDS);
     return [...shuffled, ...shuffled];
   }, []);
+
+  // JS-managed animation via the Web Animations API rather than CSS. two
+  // reasons: (1) on a11y toggle we can retime the running animation in place
+  // — compute current progress, update duration, seek currentTime to preserve
+  // that progress — so sprites keep moving without a reset. CSS animation
+  // changes would restart from 0. (2) the universal
+  // `[data-a11y='true'] * { animation: none !important }` rule in main.scss
+  // only kills CSS animations; WAAPI animations are on a separate track and
+  // sail right past it.
+  const stripRef = useRef(null);
+  const animRef  = useRef(null);
+
+  useEffect(() => {
+    const el = stripRef.current;
+    if (!el) return;
+    animRef.current = el.animate(
+      [
+        { transform: 'translateX(0)' },
+        { transform: 'translateX(-50%)' },
+      ],
+      {
+        duration:   a11y ? SPRITE_ANIM_A11Y_MS : SPRITE_ANIM_NORMAL_MS,
+        iterations: Infinity,
+        easing:     'linear',
+      },
+    );
+    return () => animRef.current?.cancel();
+    // intentionally mount-only: a11y-driven retime is handled by the next
+    // effect so we don't cancel+restart the animation.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    const anim = animRef.current;
+    if (!anim) return;
+    const timing      = anim.effect?.getComputedTiming?.();
+    const oldDuration = typeof timing?.duration === 'number' ? timing.duration : SPRITE_ANIM_NORMAL_MS;
+    const currentTime = Number(anim.currentTime) || 0;
+    const progress    = (currentTime % oldDuration) / oldDuration;
+    const newDuration = a11y ? SPRITE_ANIM_A11Y_MS : SPRITE_ANIM_NORMAL_MS;
+    anim.effect?.updateTiming({ duration: newDuration });
+    // seek so the visual position survives the retime; without this the
+    // strip would jump backward/forward to whatever spot corresponds to the
+    // raw currentTime in the new duration.
+    anim.currentTime = newDuration * progress;
+  }, [a11y]);
+
   // structural note: outer `.header-sprites-clip` handles positioning + the
   // header-width clip box. inner `.header-sprites` has `width: max-content`
-  // so its `-50%` keyframe translates by exactly half the content width —
+  // so its `-50%` transform translates by exactly half the content width —
   // one full copy — landing sprite[count] where sprite[0] started. merging
   // the clip and the animated element would force the animated element's
   // width to match the header, breaking the loop math.
   return (
     <div className="header-sprites-clip" aria-hidden="true">
-      <div className="header-sprites">
+      <div className="header-sprites" ref={stripRef}>
         {strip.map((id, i) => (
           <img
             key={i}
@@ -139,7 +192,7 @@ function AppHeader({ theme, setTheme, a11y, setA11y, enabledFilters, toggleFilte
 
   return (
     <header className="site-header">
-      <HeaderSprites />
+      <HeaderSprites a11y={a11y} />
       <Link to="/pokedex" className="site-logo">pokédex</Link>
 
       <div className="header-right">

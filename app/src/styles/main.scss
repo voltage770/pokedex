@@ -295,18 +295,18 @@ img {
 }
 
 // inner strip: width:max-content means the element is as wide as its content
-// (both copies of the shuffled sprite list combined). that makes
-// `translateX(-50%)` equal exactly half the content width — one full copy —
-// so sprite[count] lands where sprite[0] started and the loop is seamless.
+// (both copies of the shuffled sprite list combined). the actual
+// translateX(0 → -50%) animation is managed by the Web Animations API in
+// app.jsx (not CSS) so that toggling a11y can retime the animation in place
+// instead of restarting it; see HeaderSprites in app.jsx for the rationale.
 // each sprite uses margin-right (not flex gap) so every sprite occupies an
-// identical stride; this keeps the -50% landing on a whole-sprite boundary.
+// identical stride, which keeps the -50% landing on a whole-sprite boundary.
 .header-sprites {
   display: flex;
   align-items: center;
   height: 100%;
   width: max-content;
   opacity: .9;
-  animation: header-sprites-scroll 52s linear infinite;
 
   img {
     flex: 0 0 auto;
@@ -317,11 +317,6 @@ img {
   }
 }
 
-@keyframes header-sprites-scroll {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
-}
-
 // per-theme tuning — opacity only, no color filters. sprites render at full
 // saturation across every theme. dark gets a slightly lower opacity because
 // bright sprites on a near-black bg visually pop more than the same opacity
@@ -330,24 +325,20 @@ img {
 [data-theme='retro']   .header-sprites { opacity: .9;  }
 [data-theme='ereader'] .header-sprites { opacity: .85; }
 
-// a11y mode: the strip still animates (we never want the header to go dead),
-// but at a slower rate so the motion is gentler for motion-sensitive users.
-// `!important` + the full `animation` shorthand (with name) is required to
-// beat the universal `[data-a11y='true'] *` rule above which clears
-// animation via `animation: none !important`. the img opacity reset is
-// required for the same reason — the `[data-a11y='true'] img` rule above
-// dims all images to .85, and we don't want it compounding with the strip's
-// own opacity.
-[data-a11y='true'] .header-sprites {
-  animation: header-sprites-scroll 90s linear infinite !important;
-}
+// a11y mode: the sprite strip keeps drifting (WAAPI animation in app.jsx
+// retimes itself without restarting — toggling a11y won't reset sprite
+// positions). the CSS overrides below only handle the visual side:
+//   - .header-sprites img opacity reset, so the universal
+//     `[data-a11y='true'] img { opacity: .85 }` rule doesn't compound with
+//     the strip's own .9 parent opacity and dim the sprites further.
+//   - solid .site-logo / .settings-btn backgrounds, so the scrolling sprites
+//     don't bleed through the control surfaces and focus targets stay
+//     high-contrast.
 [data-a11y='true'] .header-sprites img {
   opacity: 1;
 }
 [data-a11y='true'] .site-logo,
 [data-a11y='true'] .settings-btn {
-  // solid background blocks the scrolling sprites from bleeding through
-  // the control surfaces so focus targets stay high-contrast
   background: var(--bg-header);
 }
 
