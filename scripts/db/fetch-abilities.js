@@ -1,9 +1,9 @@
 /**
- * fetch_abilities.js
+ * fetch-abilities.js
  * reads existing pokemon.json, fetches english short_effect for every
  * unique ability from pokeapi, writes app/src/data/abilities.json
  *
- * run with: node db/fetch_abilities.js
+ * run with: node db/fetch-abilities.js
  */
 
 const axios = require('axios');

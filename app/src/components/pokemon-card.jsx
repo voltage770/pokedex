@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { formatName, formatFormName } from '../utils/formatName';
+import { formatName, formatFormName } from '../utils/format-name';
 
 // single card in the grid — links to detail page
 export default function PokemonCard({ pokemon }) {

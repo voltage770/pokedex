@@ -1,12 +1,15 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, Fragment } from 'react';
 import { BrowserRouter, Routes, Route, Link, useLocation, useNavigationType, useSearchParams } from 'react-router-dom';
-import HomePage from './pages/HomePage';
-import PokemonPage from './pages/PokemonPage';
-import ComparePage from './pages/ComparePage';
-import TeamPage from './pages/TeamPage';
-import LorePage from './pages/LorePage';
+import HomePage from './pages/home-page';
+import PokemonPage from './pages/pokemon-page';
+import ComparePage from './pages/compare-page';
+import TeamPage from './pages/team-page';
+import LorePage from './pages/lore-page';
+import NewsPage from './pages/news-page';
 
 const FEATURES = [
+  { to: '/',        label: 'news' },
+  { to: '/pokedex', label: 'pokédex' },
   { to: '/compare', label: 'compare' },
   { to: '/team',    label: 'team builder' },
   { to: '/lore',    label: 'lore & legends' },
@@ -70,7 +73,7 @@ function AppHeader({ theme, setTheme, a11y, setA11y, enabledFilters, toggleFilte
 
   return (
     <header className="site-header">
-      <Link to="/" className="site-logo">pokédex</Link>
+      <Link to="/pokedex" className="site-logo">pokédex</Link>
 
       <div className="header-right">
         <div className="settings-anchor" ref={featuresRef}>
@@ -84,12 +87,12 @@ function AppHeader({ theme, setTheme, a11y, setA11y, enabledFilters, toggleFilte
           {featuresOpen && (
             <div className="settings-modal features-modal">
               {FEATURES.map((f, i) => (
-                <>
+                <Fragment key={f.to}>
                   {i > 0 && <div className="dropdown-divider" />}
-                  <Link key={f.to} to={f.to} className="feature-link" onClick={() => setFeaturesOpen(false)}>
+                  <Link to={f.to} className="feature-link" onClick={() => setFeaturesOpen(false)}>
                     {f.label}
                   </Link>
-                </>
+                </Fragment>
               ))}
             </div>
           )}
@@ -257,7 +260,8 @@ export default function App() {
         filterOrder={filterOrder} reorderFilters={reorderFilters}
       />
       <Routes>
-        <Route path="/"            element={<HomePage enabledFilters={enabledFilters} filterOrder={filterOrder} />} />
+        <Route path="/"            element={<NewsPage />} />
+        <Route path="/pokedex"     element={<HomePage enabledFilters={enabledFilters} filterOrder={filterOrder} />} />
         <Route path="/pokemon/:id" element={<PokemonPage />} />
         <Route path="/compare"     element={<ComparePage />} />
         <Route path="/team"        element={<TeamPage />} />

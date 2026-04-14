@@ -24,9 +24,9 @@ const MAX_ID       = 1025;
 const DELAY_MS     = 120;
 const OUT_POKEMON  = path.join(__dirname, '../../app/src/data/pokemon.json');
 const OUT_ABILITIES = path.join(__dirname, '../../app/src/data/abilities.json');
-const FORM_FLAVOR_PATH   = path.join(__dirname, 'form_flavor.json');
-const FORM_ARTWORK_PATH  = path.join(__dirname, 'form_artwork.json');
-const FORM_ALIASES_PATH  = path.join(__dirname, 'form_flavor_aliases.json');
+const FORM_FLAVOR_PATH   = path.join(__dirname, 'form-flavor.json');
+const FORM_ARTWORK_PATH  = path.join(__dirname, 'form-artwork.json');
+const FORM_ALIASES_PATH  = path.join(__dirname, 'form-flavor-aliases.json');
 
 // persistent form-specific flavor text scraped from bulbapedia — not overwritten by this script
 const FORM_FLAVOR = fs.existsSync(FORM_FLAVOR_PATH)
@@ -152,12 +152,12 @@ async function fetchOne(id) {
     }
   }
 
-  // merge scraped form-specific flavor text from form_flavor.json
+  // merge scraped form-specific flavor text from form-flavor.json
   for (const [formSlug, text] of Object.entries(FORM_FLAVOR)) {
     if (form_data[formSlug]) form_data[formSlug].flavor_text = text;
   }
 
-  // merge manual artwork / sprite overrides from form_artwork.json (covers forms pokeapi doesn't
+  // merge manual artwork / sprite overrides from form-artwork.json (covers forms pokeapi doesn't
   // have images for — e.g. megas outside the Gen VI canon set). only overwrites the fields
   // explicitly present in the cache.
   for (const [formSlug, overrides] of Object.entries(FORM_ARTWORK)) {
@@ -168,7 +168,7 @@ async function fetchOne(id) {
   }
 
   // apply flavor-text aliases: forms that share a dex entry with another form. runs after the
-  // form_flavor merge so the source is always the latest text. source can be another form_data
+  // form-flavor merge so the source is always the latest text. source can be another form_data
   // slug or the species base (matched against p.name, sourced from flavorText).
   for (const [aliasSlug, sourceSlug] of Object.entries(FORM_FLAVOR_ALIASES)) {
     if (!form_data[aliasSlug]) continue;

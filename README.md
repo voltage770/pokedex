@@ -21,7 +21,8 @@ cd app && npm install && npm run dev
 ```bash
 cd scripts && npm install
 node db/generate.js          # fetch pokeapi (~15–20 min)
-node db/patch_evolutions.js  # patch evo conditions pokeapi gets wrong
-node db/fetch_abilities.js   # rebuild ability descriptions
-node db/scrape_flavor.js     # scrape bulbapedia for form-specific flavor text
+node db/patch-evolutions.js  # patch evo conditions pokeapi gets wrong
+node db/fetch-abilities.js   # rebuild ability descriptions
+node db/scrape-flavor.js     # scrape bulbapedia for form-specific flavor text
+node news/fetch-news.js      # regenerate bundled news.json fallback
 ```

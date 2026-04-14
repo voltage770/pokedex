@@ -1,0 +1,297 @@
+{
+  "updated": "2026-04-14T03:20:28.526Z",
+  "count": 19,
+  "sources": [
+    {
+      "id": "pokebeach",
+      "name": "pokebeach",
+      "url": "https://www.pokebeach.com/"
+    },
+    {
+      "id": "nintendolife",
+      "name": "nintendo life",
+      "url": "https://www.nintendolife.com/feeds/news"
+    }
+  ],
+  "entries": [
+    {
+      "id": "nintendolife-2026-04-13-lego-releases-official-build-instructions-for-pok-mon-kanto-",
+      "source": "nintendolife",
+      "source_name": "nintendo life",
+      "label": "pokémon news",
+      "title": "LEGO Releases Official Build Instructions For Pokémon Kanto Region Badges",
+      "url": "https://www.nintendolife.com/news/2026/04/lego-releases-official-build-instructions-for-pokemon-kanto-region-badges",
+      "published": "2026-04-13T17:45:00.000Z",
+      "excerpt": "No need to spend THAT many Poké Dollars. Back in February, Lego released a wave of Pokémon sets — somehow, the first ones ever — for the franchise's 30th anniversary. But one of the most-popular ended up being a small…",
+      "image": "https://images.nintendolife.com/7f5908ed19823/large.jpg",
+      "youtube_id": null,
+      "tags": []
+    },
+    {
+      "id": "pokebeach-2026-04-13-chaos-rising-preorders-finally-open-on-pokemon-center-the-la",
+      "source": "pokebeach",
+      "source_name": "pokebeach",
+      "label": "pokémon tcg",
+      "title": "“Chaos Rising” Preorders Finally Open on Pokemon Center, The Latest Ever for a Set",
+      "url": "https://www.pokebeach.com/2026/04/chaos-rising-preorders-finally-open-on-pokemon-center-the-latest-ever-for-a-set",
+      "published": "2026-04-13T13:24:00.000Z",
+      "excerpt": "",
+      "image": "https://www.pokebeach.com/news/2026/03/Chaos-Rising-Pokemon-Center-Elite-Trainer-Box-1920x1200.jpg",
+      "youtube_id": null,
+      "tags": [
+        "tcg"
+      ]
+    },
+    {
+      "id": "pokebeach-2026-04-13-chaos-rising-prerelease-promos-revealed",
+      "source": "pokebeach",
+      "source_name": "pokebeach",
+      "label": "pokémon tcg",
+      "title": "“Chaos Rising” Prerelease Promos Revealed!",
+      "url": "https://www.pokebeach.com/2026/04/chaos-rising-prerelease-promos-revealed-but-still-no-pokemon-center-preorders-yet",
+      "published": "2026-04-13T12:45:00.000Z",
+      "excerpt": "",
+      "image": "https://www.pokebeach.com/news/2026/04/Chaos-Rising-Prerelease-Promos.jpg",
+      "youtube_id": null,
+      "tags": [
+        "tcg"
+      ]
+    },
+    {
+      "id": "nintendolife-2026-04-13-uk-charts-pok-mon-pokopia-is-starting-to-prove-its-staying-p",
+      "source": "nintendolife",
+      "source_name": "nintendo life",
+      "label": "pokémon pokopia",
+      "title": "UK Charts: Pokémon Pokopia Is Starting To Prove Its Staying Power",
+      "url": "https://www.nintendolife.com/news/2026/04/uk-charts-pokemon-pokopia-is-starting-to-prove-its-staying-power",
+      "published": "2026-04-13T09:00:00.000Z",
+      "excerpt": "But RE Requiem reigns supreme. The latest UK Charts data is in, and Pokémon Pokopia has turned in a solid performance this week to land at number 2. We can only imagine that stores have finally been provided with…",
+      "image": "https://images.nintendolife.com/25df7c66bb18c/large.jpg",
+      "youtube_id": null,
+      "tags": []
+    },
+    {
+      "id": "pokebeach-2026-04-13-pokemon-tcg-dream-painting-water-ecology-figurine-set-to-rel",
+      "source": "pokebeach",
+      "source_name": "pokebeach",
+      "label": "pokémon tcg",
+      "title": "Pokemon TCG “Dream Painting Water Ecology Figurine Set” to Release in April!",
+      "url": "https://www.pokebeach.com/2026/04/pokemon-tcg-dream-painting-water-ecology-figurine-set-to-release-in-april",
+      "published": "2026-04-13T02:54:00.000Z",
+      "excerpt": "",
+      "image": "https://www.pokebeach.com/news/2026/04/Illustration-Figure-Collection-Volume-2-2000x1200.jpg",
+      "youtube_id": null,
+      "tags": [
+        "tcg"
+      ]
+    },
+    {
+      "id": "pokebeach-2026-04-12-exclusive-lisia-s-appeal-to-release-in-chinese-starry-crysta",
+      "source": "pokebeach",
+      "source_name": "pokebeach",
+      "label": "pokémon tcg",
+      "title": "Exclusive Lisia’s Appeal to Release in Chinese “Starry Crystal” Set!",
+      "url": "https://www.pokebeach.com/2026/04/exclusive-lisias-appeal-to-release-in-chinese-starry-crystal-set",
+      "published": "2026-04-12T11:35:00.000Z",
+      "excerpt": "",
+      "image": "https://www.pokebeach.com/news/2026/04/Lisias-Appeal-Chinese-2000x1200.jpg",
+      "youtube_id": null,
+      "tags": [
+        "tcg"
+      ]
+    },
+    {
+      "id": "nintendolife-2026-04-12-poll-box-art-brawl-duel-mendel-palace",
+      "source": "nintendolife",
+      "source_name": "nintendo life",
+      "label": "pokémon news",
+      "title": "Poll: Box Art Brawl: Duel - Mendel Palace",
+      "url": "https://www.nintendolife.com/features/poll-box-art-brawl-duel-mendel-palace",
+      "published": "2026-04-12T09:00:00.000Z",
+      "excerpt": "Getting Game Freaky. We hope you're ready for another clash of covers, because it's time for this week's Box Art Brawl! Last time, thanks to a certain Super Mario Galaxy Movie appearance, we took a look at Star Fox:…",
+      "image": "https://images.nintendolife.com/21fb444d87c87/large.jpg",
+      "youtube_id": null,
+      "tags": []
+    },
+    {
+      "id": "pokebeach-2026-04-10-okidogi-barbaracle-the-newest-non-ex-pokemon-deck",
+      "source": "pokebeach",
+      "source_name": "pokebeach",
+      "label": "pokémon tcg",
+      "title": "Okidogi / Barbaracle — The Newest Non-ex Pokemon Deck",
+      "url": "https://www.pokebeach.com/2026/04/okidogi-barbaracle-the-newest-non-ex-pokemon-deck",
+      "published": "2026-04-10T19:55:00.000Z",
+      "excerpt": "",
+      "image": "https://www.pokebeach.com/news/2026/04/me3_en_043_std-2000x1200.jpg",
+      "youtube_id": null,
+      "tags": [
+        "tcg"
+      ]
+    },
+    {
+      "id": "pokebeach-2026-04-10-pokemon-center-announces-early-access-program-for-preorderin",
+      "source": "pokebeach",
+      "source_name": "pokebeach",
+      "label": "pokémon tcg",
+      "title": "Pokemon Center Announces Early Access Program for Preordering!",
+      "url": "https://www.pokebeach.com/2026/04/pokemon-center-announces-early-access-program-for-preordering",
+      "published": "2026-04-10T16:28:00.000Z",
+      "excerpt": "",
+      "image": "https://www.pokebeach.com/news/2026/03/Chaos-Rising-Pokemon-Center-Elite-Trainer-Box-1920x1200.jpg",
+      "youtube_id": null,
+      "tags": [
+        "tcg"
+      ]
+    },
+    {
+      "id": "pokebeach-2026-04-07-2026-north-american-international-championships-prizing-and-",
+      "source": "pokebeach",
+      "source_name": "pokebeach",
+      "label": "pokémon tcg",
+      "title": "2026 North American International Championships Prizing and Registration Dates Revealed!",
+      "url": "https://www.pokebeach.com/2026/04/2026-north-american-international-championships-prizing-and-registration-dates-revealed",
+      "published": "2026-04-07T18:46:00.000Z",
+      "excerpt": "",
+      "image": "https://www.pokebeach.com/news/2026/04/2026naic_welcomekit-2048x1152-1-2000x1152.png",
+      "youtube_id": null,
+      "tags": [
+        "tcg"
+      ]
+    },
+    {
+      "id": "pokebeach-2026-04-06-pitch-black-pokemon-tcg-set-to-release-in-july-featuring-meg",
+      "source": "pokebeach",
+      "source_name": "pokebeach",
+      "label": "pokémon tcg",
+      "title": "“Pitch Black” Pokemon TCG Set to Release in July Featuring Mega Darkrai ex!",
+      "url": "https://www.pokebeach.com/2026/04/pitch-black-pokemon-tcg-set-to-release-in-july-featuring-mega-darkrai-ex",
+      "published": "2026-04-06T15:20:00.000Z",
+      "excerpt": "",
+      "image": "https://www.pokebeach.com/news/2025/12/Mega-Darkrai-3.jpg",
+      "youtube_id": null,
+      "tags": [
+        "tcg"
+      ]
+    },
+    {
+      "id": "pokebeach-2026-04-03-first-impressions-early-takeaways-from-the-post-rotation-for",
+      "source": "pokebeach",
+      "source_name": "pokebeach",
+      "label": "pokémon tcg",
+      "title": "First Impressions — Early Takeaways from the Post-Rotation Format",
+      "url": "https://www.pokebeach.com/2026/04/first-impressions-early-takeaways-from-the-post-rotation-format",
+      "published": "2026-04-03T14:00:00.000Z",
+      "excerpt": "",
+      "image": "https://www.pokebeach.com/news/2024/05/165-Unfair-Stamp-Twilight-Masquerade-2000x1200.png",
+      "youtube_id": null,
+      "tags": [
+        "tcg"
+      ]
+    },
+    {
+      "id": "pokebeach-2026-04-02-worlds-2026-interest-list-now-open",
+      "source": "pokebeach",
+      "source_name": "pokebeach",
+      "label": "pokémon tcg",
+      "title": "Worlds 2026 Interest List Now Open!",
+      "url": "https://www.pokebeach.com/2026/04/worlds-2026-interest-list-now-open",
+      "published": "2026-04-02T21:03:00.000Z",
+      "excerpt": "",
+      "image": "https://www.pokebeach.com/news/2026/02/key-art-2048-2000x1200.png",
+      "youtube_id": null,
+      "tags": [
+        "tcg"
+      ]
+    },
+    {
+      "id": "pokebeach-2026-04-02-the-new-bdif-dragapult-ex-s-reign-of-terror-continues",
+      "source": "pokebeach",
+      "source_name": "pokebeach",
+      "label": "pokémon tcg",
+      "title": "The New BDIF — Dragapult ex’s Reign of Terror Continues",
+      "url": "https://www.pokebeach.com/2026/04/the-new-bdif-dragapult-exs-reign-of-terror-continues",
+      "published": "2026-04-02T14:00:00.000Z",
+      "excerpt": "",
+      "image": "https://www.pokebeach.com/news/2026/03/sv8-5_en_165_std-2000x1200.jpg",
+      "youtube_id": null,
+      "tags": [
+        "tcg"
+      ]
+    },
+    {
+      "id": "pokebeach-2026-04-02-30th-celebration-pokemon-tcg-set-announced-releasing-worldwi",
+      "source": "pokebeach",
+      "source_name": "pokebeach",
+      "label": "pokémon tcg",
+      "title": "“30th Celebration” Pokemon TCG Set Announced, Releasing Worldwide in September!",
+      "url": "https://www.pokebeach.com/2026/04/30th-celebration-pokemon-tcg-set-announced-releasing-worldwide-in-september",
+      "published": "2026-04-02T12:41:00.000Z",
+      "excerpt": "",
+      "image": "https://www.pokebeach.com/news/2025/11/cel.004.charizard-2000x1200.png",
+      "youtube_id": null,
+      "tags": [
+        "tcg"
+      ]
+    },
+    {
+      "id": "pokebeach-2026-04-02-first-partner-illustration-collection-series-2-revealed-for-",
+      "source": "pokebeach",
+      "source_name": "pokebeach",
+      "label": "pokémon tcg",
+      "title": "“First Partner Illustration Collection” Series 2 Revealed for June Featuring Johto, Unova, and Galar!",
+      "url": "https://www.pokebeach.com/2026/04/first-partner-illustration-collection-series-2-revealed-for-june-featuring-johto-unova-and-galar",
+      "published": "2026-04-02T12:14:00.000Z",
+      "excerpt": "",
+      "image": "https://www.pokebeach.com/news/2026/04/First-Partner-Illustration-Collection-Series-2-1919x1200.jpg",
+      "youtube_id": null,
+      "tags": [
+        "tcg"
+      ]
+    },
+    {
+      "id": "pokebeach-2026-03-31-english-mega-darkrai-ex-set-coming-in-july-is-tpci-changing-",
+      "source": "pokebeach",
+      "source_name": "pokebeach",
+      "label": "pokémon tcg",
+      "title": "English Mega Darkrai ex Set Coming in July, Is TPCi Changing How International Set Releases Work?",
+      "url": "https://www.pokebeach.com/2026/03/english-mega-darkrai-ex-set-coming-in-july-is-tpci-changing-how-international-set-releases-work",
+      "published": "2026-03-31T16:04:00.000Z",
+      "excerpt": "",
+      "image": "https://www.pokebeach.com/news/2025/12/Mega-Darkrai-3.jpg",
+      "youtube_id": null,
+      "tags": [
+        "tcg"
+      ]
+    },
+    {
+      "id": "pokebeach-2026-03-31-pokemon-and-lego-announce-tcg-card-building-contest-winning-",
+      "source": "pokebeach",
+      "source_name": "pokebeach",
+      "label": "pokémon tcg",
+      "title": "Pokemon and LEGO Announce TCG Card Building Contest, Winning Design to Become Official LEGO Set!",
+      "url": "https://www.pokebeach.com/2026/03/pokemon-and-lego-announce-tcg-card-building-contest-winning-design-to-become-official-lego-set",
+      "published": "2026-03-31T15:06:00.000Z",
+      "excerpt": "",
+      "image": "https://www.pokebeach.com/news/2026/03/5d710651-298a-4544-98ef-517771e6b4b6-resize_to_fill-750x500-1.jpg",
+      "youtube_id": null,
+      "tags": [
+        "tcg"
+      ]
+    },
+    {
+      "id": "pokebeach-2026-03-28-new-format-new-opportunities-the-winning-decks-of-the-rotati",
+      "source": "pokebeach",
+      "source_name": "pokebeach",
+      "label": "pokémon tcg",
+      "title": "New Format, New Opportunities — The Winning Decks of the Rotation",
+      "url": "https://www.pokebeach.com/2026/03/new-format-new-opportunities-the-winning-decks-of-the-rotation",
+      "published": "2026-03-28T14:00:00.000Z",
+      "excerpt": "",
+      "image": "https://www.pokebeach.com/news/2026/03/P614_EN_107-2x-2000x1200.png",
+      "youtube_id": null,
+      "tags": [
+        "tcg"
+      ]
+    }
+  ]
+}

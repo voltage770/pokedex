@@ -1,9 +1,9 @@
 import { useState, useCallback, useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
-import { usePokemonList } from '../hooks/usePokemon';
-import PokemonCard from '../components/PokemonCard';
-import SearchBar from '../components/SearchBar';
-import FilterPanel from '../components/FilterPanel';
+import { usePokemonList } from '../hooks/use-pokemon';
+import PokemonCard from '../components/pokemon-card';
+import SearchBar from '../components/search-bar';
+import FilterPanel from '../components/filter-panel';
 
 const PAGE_SIZE = 60;
 const FILTER_KEYS = ['search', 'type', 'generation', 'cls', 'stat', 'minStat', 'sort', 'sortDir'];

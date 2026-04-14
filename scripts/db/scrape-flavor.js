@@ -1,18 +1,18 @@
 /**
- * scrape_flavor.js
+ * scrape-flavor.js
  * scrapes bulbapedia pokedex entries for alternate form flavor text.
- * writes results to form_flavor.json and patches pokemon.json.
+ * writes results to form-flavor.json and patches pokemon.json.
  *
  * bulk mode (no url) — iterates all pokemon with uncovered forms:
- *   node db/scrape_flavor.js [--only slug1,slug2] [--skip slug1,slug2] [--dry-run] [--no-patch]
+ *   node db/scrape-flavor.js [--only slug1,slug2] [--skip slug1,slug2] [--dry-run] [--no-patch]
  *
  * single mode (provide url + base slug) — one pokemon, supports manual label mapping:
- *   node db/scrape_flavor.js <bulbapedia-url> <base-slug> [--map "Label=slug,..."]
+ *   node db/scrape-flavor.js <bulbapedia-url> <base-slug> [--map "Label=slug,..."]
  *
  * examples:
- *   node db/scrape_flavor.js
- *   node db/scrape_flavor.js --only charizard,mewtwo
- *   node db/scrape_flavor.js "https://bulbapedia.bulbagarden.net/wiki/Calyrex_(Pokémon)" calyrex --map "Ice Rider=calyrex-ice,Shadow Rider=calyrex-shadow"
+ *   node db/scrape-flavor.js
+ *   node db/scrape-flavor.js --only charizard,mewtwo
+ *   node db/scrape-flavor.js "https://bulbapedia.bulbagarden.net/wiki/Calyrex_(Pokémon)" calyrex --map "Ice Rider=calyrex-ice,Shadow Rider=calyrex-shadow"
  */
 
 const axios = require('axios');
@@ -23,8 +23,8 @@ const API           = 'https://bulbapedia.bulbagarden.net/w/api.php';
 const DELAY_MS      = 600;   // between api calls within one pokemon
 const BETWEEN_MS    = 1500;  // extra delay between pokemon
 const POKEMON_PATH  = path.join(__dirname, '../../app/src/data/pokemon.json');
-const FLAVOR_PATH   = path.join(__dirname, 'form_flavor.json');
-const ALIASES_PATH  = path.join(__dirname, 'form_flavor_aliases.json');
+const FLAVOR_PATH   = path.join(__dirname, 'form-flavor.json');
+const ALIASES_PATH  = path.join(__dirname, 'form-flavor-aliases.json');
 
 // alias map — forms that share flavor text with another form. applied as a post-scrape step
 // so the aliased value is always derived from the latest source. shared with generate.js.
@@ -524,7 +524,7 @@ async function runSingle(args) {
   // base flavor is cached under the base species slug so subsequent runs skip re-fetching
   if (base) flavorStore[baseName] = base;
   fs.writeFileSync(FLAVOR_PATH, JSON.stringify(flavorStore, null, 2));
-  console.log(`wrote ${Object.keys(foundForms).length} form entr${Object.keys(foundForms).length === 1 ? 'y' : 'ies'}${base ? ' + 1 base' : ''} to form_flavor.json`);
+  console.log(`wrote ${Object.keys(foundForms).length} form entr${Object.keys(foundForms).length === 1 ? 'y' : 'ies'}${base ? ' + 1 base' : ''} to form-flavor.json`);
 
   if (!noPatch) {
     const pokemon = JSON.parse(fs.readFileSync(POKEMON_PATH, 'utf-8'));
@@ -550,7 +550,7 @@ async function main() {
   // single mode: first arg looks like a URL
   if (args[0] && args[0].startsWith('http')) {
     if (!args[1]) {
-      console.error('usage: node db/scrape_flavor.js <bulbapedia-url> <base-slug> [--map "Label=slug,..."]');
+      console.error('usage: node db/scrape-flavor.js <bulbapedia-url> <base-slug> [--map "Label=slug,..."]');
       process.exit(1);
     }
     return runSingle(args);
@@ -660,7 +660,7 @@ async function main() {
   }
 
   console.log(`\n✓ scraped ${totalFound} form entries + ${totalBase} base entries`);
-  console.log(`  form_flavor.json updated`);
+  console.log(`  form-flavor.json updated`);
 
   if (allUnresolved.length) {
     console.log(`\nunresolved forms (need manual scraping or --map):`);

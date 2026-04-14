@@ -1,4 +1,4 @@
-import { useTypes } from '../hooks/usePokemon';
+import { useTypes } from '../hooks/use-pokemon';
 
 const GENERATIONS = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 const STATS = ['hp', 'attack', 'defense', 'special-attack', 'special-defense', 'speed'];

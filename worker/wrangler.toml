@@ -1,0 +1,11 @@
+name = "pokedex-news"
+main = "src/index.js"
+compatibility_date = "2025-09-01"
+
+# edge cache is handled via the Cache API in code — no KV/R2/D1 bindings
+# needed. the worker is stateless: every request either reads the edge cache
+# or re-fetches the upstream sources and writes back.
+
+# after `wrangler deploy`, the default url will be:
+#   https://pokedex-news.<your-subdomain>.workers.dev
+# paste that into app/src/pages/news-page.jsx as NEWS_API_URL.

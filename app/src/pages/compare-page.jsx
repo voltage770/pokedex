@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useCompare } from '../hooks/usePokemon';
+import { useCompare } from '../hooks/use-pokemon';
 import { getPokemon } from '../utils/api';
-import { formatName } from '../utils/formatName';
+import { formatName } from '../utils/format-name';
 
 const STAT_LABELS = {
   hp:               'HP',

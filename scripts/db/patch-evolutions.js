@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 // Manually corrects evolution entries that PokeAPI returns with null trigger/conditions.
-// Run after generate.js or patch_stats.js whenever the JSON is regenerated.
+// Run after generate.js or patch-stats.js whenever the JSON is regenerated.
 //
 // Usage:
-//   node db/patch_evolutions.js [--dry-run]
+//   node db/patch-evolutions.js [--dry-run]
 
 const { readFileSync, writeFileSync } = require('fs');
 const path = require('path');

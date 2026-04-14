@@ -1,4 +1,4 @@
-import { useCompare } from '../hooks/usePokemon';
+import { useCompare } from '../hooks/use-pokemon';
 import { Link } from 'react-router-dom';
 
 const STAT_LABELS = {

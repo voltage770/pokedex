@@ -1,7 +1,7 @@
 import React, { useState, useRef, useLayoutEffect } from 'react';
 import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
-import { formatName, formatFormName } from '../utils/formatName';
-import { usePokemonDetail } from '../hooks/usePokemon';
+import { formatName, formatFormName } from '../utils/format-name';
+import { usePokemonDetail } from '../hooks/use-pokemon';
 import { NAME_TO_ID, FORM_DATA, FORM_TO_BASE_ID, EXCLUDED_FORMS, getBaseFormLabel, FORM_SUFFIX_SPECIES } from '../utils/api';
 import ABILITIES from '../data/abilities.json';
 

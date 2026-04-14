@@ -1,11 +1,11 @@
 /**
- * patch_stats.js
+ * patch-stats.js
  * patches pokemon.json with ev_yield for all base pokemon
  * and height/weight/ev_yield for all form_data entries.
  * only fetches from pokeapi — no bulbapedia calls.
  *
  * usage:
- *   node db/patch_stats.js [--only slug1,slug2] [--dry-run]
+ *   node db/patch-stats.js [--only slug1,slug2] [--dry-run]
  */
 
 const axios = require('axios');
