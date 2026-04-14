@@ -37,8 +37,21 @@
 
 // how long the cloudflare edge cache holds onto a built response before
 // considering it stale. 30 min is a good balance between "fresh news" and
-// "don't hammer upstream sources". cloudflare serves cached responses
-// literally from memory at the nearest data center, so HITs are ~1ms.
+// "don't hammer upstream sources".
+//
+// cadence: every `/news.json` request either returns the cached copy
+// instantly (~60ms) or pays the upstream-refresh cost (~1–3 sec fetching
+// pokebeach + serebii in parallel) and writes a fresh copy back to cache.
+// so the FIRST visitor per-region after each 30-min window pays the miss;
+// everyone else in that region within the next 30 min gets a HIT.
+//
+// "per region" matters: cloudflare's edge cache is per data center, so
+// SJC and FRA each maintain their own copies and trigger their own
+// refreshes. low-traffic sites like this one end up with a handful of
+// upstream fetches per hour total — very polite to the sources.
+//
+// override with ?refresh=1 to force a fresh rebuild (see the route
+// handler below).
 const CACHE_TTL_SECONDS = 30 * 60;
 
 // the most entries ever included in a response. protects against a runaway
@@ -77,15 +90,19 @@ const SOURCES = [
     // for pokebeach entries — cards still render fine without them.
   },
   {
-    id:   'nintendolife',
-    name: 'nintendo life',
-    url:  'https://www.nintendolife.com/feeds/news',
-    kind: 'rss',
-    pokemonOnly: true,
-    // nintendo life is a general switch-news site. their RSS feed is clean
-    // and has full content:encoded + media:content per item, but it's not
-    // filtered to pokemon — their `?tag=pokemon` query param is cosmetic.
-    // we keyword-filter after parsing.
+    id:   'serebii',
+    name: 'serebii',
+    url:  'https://www.serebii.net/',
+    kind: 'serebii-html',
+    // serebii's homepage posts one big daily news roundup per day, but each
+    // roundup is structured internally as a series of `.pics` + `.subcat`
+    // blocks — one sub-entry per topic (pokémon go, champions, masters,
+    // sleep, tcg pocket, etc.). parseSerebii walks those sub-entries and
+    // returns each as its own news item with its own image and body. serebii
+    // is hosted on nginx (NOT behind cloudflare) so the worker can reach it
+    // reliably without cross-cf blocking. the page is ISO-8859-1 encoded,
+    // so fetchSource decodes the raw bytes via TextDecoder instead of calling
+    // .text() which assumes utf-8.
   },
 ];
 
@@ -99,7 +116,16 @@ const POKEMON_KEYWORDS = ['pokemon', 'pokémon', 'pokeball', 'pokéball', 'pikac
 // ORDER MATTERS: specific topics come before generic ones so "pokemon go"
 // isn't swallowed by a bare "pokemon" fallback.
 
+// ORDERING MATTERS — first pattern match wins. more specific topics must sit
+// before their generic parents so "tcg pocket" isn't swallowed by bare "tcg",
+// "pokemon go fest" isn't swallowed by bare "pokemon go", etc.
 const TOPIC_LABELS = [
+  // tcg variants come before the generic `pokémon tcg` below — "pocket" and
+  // "live" are distinct games with separate communities and should be tagged
+  // individually so readers can tell them apart from the physical card game.
+  { label: 'pokémon tcg pocket', patterns: ['tcg pocket', 'tcg-pocket', 'pokemon pocket', 'pokémon pocket', 'tcgp'] },
+  { label: 'pokémon tcg live',   patterns: ['tcg live', 'tcg-live', 'tcgl'] },
+
   { label: 'pokémon go',        patterns: ['pokemon go', 'pokémon go', 'niantic'] },
   { label: 'pokémon home',      patterns: ['pokemon home', 'pokémon home'] },
   { label: 'pokémon tcg',       patterns: ['tcg', 'trading card', 'card game', 'booster pack'] },
@@ -373,6 +399,187 @@ function parsePokebeach(html) {
 }
 
 // ╔══════════════════════════════════════════════════════════════════════════╗
+// ║  SECTION 3.5 — serebii homepage scraper                                  ║
+// ║  ---------------------------------------                                 ║
+// ║  serebii posts one daily news roundup per day, but each roundup is      ║
+// ║  structured as a series of per-topic sub-entries. each sub-entry has    ║
+// ║  this shape:                                                             ║
+// ║                                                                          ║
+// ║    <div class="pics"><a href="..."><img src="..."/></a></div>           ║
+// ║    <div class="subcat">                                                  ║
+// ║      <h3>In The Games Department</h3>                                    ║
+// ║      <p class="title">Pokémon GO</p>                                     ║
+// ║      <p>body text...</p>                                                 ║
+// ║    </div>                                                                ║
+// ║                                                                          ║
+// ║  we walk the page's day blocks, then walk the sub-entries within each   ║
+// ║  day, and emit each sub-entry as its own news item with its own image.  ║
+// ║  one day on serebii ≈ 5–10 items after scraping, which is great for     ║
+// ║  the news feed.                                                          ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
+
+// serebii pic urls are site-relative — resolve against the site root.
+const SEREBII_BASE = 'https://www.serebii.net';
+function resolveSerebiiUrl(u) {
+  if (!u) return null;
+  if (/^https?:\/\//i.test(u)) return u;
+  if (u.startsWith('/')) return SEREBII_BASE + u;
+  return SEREBII_BASE + '/' + u;
+}
+
+// "13-04-2026 05:42 BST / 00:42 EDT" → Date. serebii's primary date is BST
+// (british summer time, UTC+1). we approximate as UTC+1 which is correct
+// for most of the year; precise tz doesn't affect "hours ago" display.
+function parseSerebiiDate(text) {
+  if (!text) return null;
+  const m = text.match(/(\d{1,2})-(\d{1,2})-(\d{4})\s+(\d{1,2}):(\d{2})/);
+  if (!m) return null;
+  const day   = Number(m[1]);
+  const month = Number(m[2]) - 1;
+  const year  = Number(m[3]);
+  const hour  = Number(m[4]);
+  const min   = Number(m[5]);
+  const d = new Date(Date.UTC(year, month, day, hour - 1, min, 0));
+  return Number.isNaN(d.getTime()) ? null : d;
+}
+
+// heuristic title rewrite: serebii tags every sub-entry with a section name
+// ("Pokémon GO", "Pokémon TCG Pocket", "Pokémon Champions") rather than a real
+// headline, so the card title tells readers *what section* but not *what news*.
+// this derives a better title by pulling the first sentence of the body and
+// stripping common boilerplate. when the first sentence is a content-free
+// shell ("X has announced the next event"), falls through to two sentences.
+//
+// NOTE: this logic is duplicated in scripts/news/fetch-news.js — keep both in sync.
+const SEREBII_BOILERPLATE_PREFIXES = [
+  /^the pok[eé]mon company(?: international)? has (?:announced|revealed|confirmed)(?: that)?\s+/i,
+  /^niantic has (?:announced|revealed|confirmed)(?: that)?\s+/i,
+  /^nintendo has (?:announced|revealed|confirmed)(?: that)?\s+/i,
+  /^game freak has (?:announced|revealed|confirmed)(?: that)?\s+/i,
+  /^it has (?:just )?been (?:officially )?(?:announced|revealed|confirmed)(?: that)?\s+/i,
+  /^it's been (?:officially )?(?:announced|revealed|confirmed)(?: that)?\s+/i,
+  /^following(?: on from)? (?:the )?(?:previous|recent|yesterday's).*?,\s+/i,
+  /^as (?:was )?(?:announced|revealed|teased|confirmed)(?: previously| earlier| yesterday)?,\s+/i,
+];
+const SEREBII_GENERIC_OPENERS = [
+  /has (?:announced|begun|started|revealed) (?:the )?(?:next|latest) (?:event|delivery focus|update|patch|run)$/i,
+  /has (?:been )?(?:announced|revealed)$/i,
+  /has received (?:a|an|its) (?:latest )?(?:bug[- ]fix )?(?:update|patch)$/i,
+  /^(?:the )?(?:next|latest) .+ (?:event|update) has (?:been announced|begun|started)$/i,
+  /has announced some(?: big)? changes/i,
+  /has announced the next delivery focus$/i,
+];
+
+function serebiiFirstSentenceEnd(text) {
+  const m = text.match(/[.!?](?=\s+[A-Z]|\s*$)/);
+  return m ? m.index + 1 : -1;
+}
+
+function inferSerebiiTitle(topicTitle, bodyText) {
+  if (!bodyText) return topicTitle;
+  const stripTerminal = (s) => s.replace(/[.!?]+$/, '').trim();
+
+  const end1 = serebiiFirstSentenceEnd(bodyText);
+  let sentence = end1 >= 0 ? bodyText.slice(0, end1) : bodyText;
+  let candidate = stripTerminal(sentence);
+
+  if (SEREBII_GENERIC_OPENERS.some(re => re.test(candidate)) && end1 >= 0) {
+    const rest = bodyText.slice(end1).replace(/^\s+/, '');
+    const end2 = serebiiFirstSentenceEnd(rest);
+    const tail = end2 >= 0 ? rest.slice(0, end2) : rest;
+    candidate = stripTerminal(bodyText.slice(0, end1) + ' ' + tail);
+  }
+
+  let stripped = false;
+  for (const re of SEREBII_BOILERPLATE_PREFIXES) {
+    const next = candidate.replace(re, '');
+    if (next !== candidate) { candidate = next; stripped = true; }
+  }
+  if (stripped && candidate.length > 0) {
+    candidate = candidate.charAt(0).toUpperCase() + candidate.slice(1);
+  }
+
+  const MAX = 110;
+  if (candidate.length > MAX) {
+    const cut = candidate.slice(0, MAX);
+    const lastSpace = cut.lastIndexOf(' ');
+    candidate = (lastSpace > MAX * 0.6 ? cut.slice(0, lastSpace) : cut).trimEnd() + '…';
+  }
+
+  if (candidate.length < 18) return topicTitle;
+  if (candidate.toLowerCase() === topicTitle.toLowerCase()) return topicTitle;
+  return candidate;
+}
+
+function parseSerebii(html) {
+  const items = [];
+
+  // split the homepage into one chunk per day. each day starts with
+  // <h2><a href="/news/YYYY/DD-Month-YYYY.shtml" id="...">Title</a></h2>
+  // and ends at the next <!-- end_news --> marker.
+  const dayRe = /<h2><a\s+href="(\/news\/\d{4}\/[^"]+\.shtml)"[^>]*>([\s\S]*?)<\/a><\/h2>([\s\S]*?)<!-- end_news -->/gi;
+
+  let match;
+  while ((match = dayRe.exec(html)) !== null) {
+    const dayUrl  = resolveSerebiiUrl(match[1]);
+    const dayBody = match[3];
+
+    // date lives in a <span class="date">…</span> immediately after the h2
+    const dateMatch = dayBody.match(/<span class="date">([^<]+)<\/span>/i);
+    const parsedDate = dateMatch ? parseSerebiiDate(dateMatch[1]) : null;
+
+    // find every sub-entry: a <div class="pics">…</div> followed by a
+    // <div class="subcat">…</div>. we match them in document order.
+    const picsRe = /<div class="pics">([\s\S]*?)<\/div>\s*<div class="subcat"[^>]*>([\s\S]*?)<\/div>/gi;
+    let picMatch;
+    let subIndex = 0;
+    while ((picMatch = picsRe.exec(dayBody)) !== null) {
+      const picsBlock   = picMatch[1];
+      const subcatBlock = picMatch[2];
+
+      // pic URL + linked href (used as the article url)
+      const hrefMatch = picsBlock.match(/<a[^>]+href="([^"]+)"/i);
+      const imgMatch  = picsBlock.match(/<img[^>]+src="([^"]+)"/i);
+      const picHref   = hrefMatch ? resolveSerebiiUrl(decodeEntities(hrefMatch[1])) : dayUrl;
+      const image     = imgMatch  ? resolveSerebiiUrl(decodeEntities(imgMatch[1]))  : null;
+
+      // topic title from <p class="title">
+      const titleMatch = subcatBlock.match(/<p class="title">([\s\S]*?)<\/p>/i);
+      if (!titleMatch) { subIndex++; continue; }
+      const topicTitle = stripHtml(titleMatch[1]);
+
+      // department label from <h3>
+      const deptMatch = subcatBlock.match(/<h3>([\s\S]*?)<\/h3>/i);
+      const dept = deptMatch ? stripHtml(deptMatch[1]) : '';
+
+      // body = everything inside subcat except the <h3> and title <p>
+      let bodyHtml = subcatBlock
+        .replace(/<h3>[\s\S]*?<\/h3>/i, '')
+        .replace(/<p class="title">[\s\S]*?<\/p>/i, '');
+
+      // derive a real headline from the body first sentence. falls back to
+      // the topic label if the body is empty or the extracted sentence is
+      // too short / identical. keep topicTitle in categories below so the
+      // deriveLabel() call in normalize() still sees the section name.
+      const derivedTitle = inferSerebiiTitle(topicTitle, stripHtml(bodyHtml));
+
+      items.push({
+        title:       derivedTitle,
+        link:        picHref,
+        pubDate:     parsedDate ? parsedDate.toUTCString() : null,
+        description: stripHtml(bodyHtml),
+        content:     bodyHtml, // keep raw html so youtube-id extraction works
+        mediaUrl:    image,
+        categories:  [dept, topicTitle].filter(Boolean),
+        _subIndex:   subIndex++,
+      });
+    }
+  }
+
+  return items;
+}
+
+// ╔══════════════════════════════════════════════════════════════════════════╗
 // ║  SECTION 4 — normalize                                                   ║
 // ║  ---------------------                                                   ║
 // ║  both parsers above return objects with the same shape (title, link,    ║
@@ -472,7 +679,8 @@ function normalize(source, raw) {
 async function fetchSource(source) {
   // match the Accept header to the format we expect — helps a few servers
   // pick the right representation when they support content negotiation.
-  const accept = source.kind === 'pokebeach-html'
+  const isHtml = source.kind === 'pokebeach-html' || source.kind === 'serebii-html';
+  const accept = isHtml
     ? 'text/html,application/xhtml+xml'
     : 'application/rss+xml, application/xml, text/xml, */*';
 
@@ -493,20 +701,142 @@ async function fetchSource(source) {
   });
 
   if (!res.ok) throw new Error(`${source.id}: ${res.status} ${res.statusText}`);
-  const body = await res.text();
+
+  // serebii's homepage is ISO-8859-1 encoded. if we call res.text() directly
+  // its assumed utf-8 decoding mangles every non-ascii character (é → �).
+  // read the raw bytes and decode with the charset from the content-type
+  // header, falling back to utf-8 for everything else.
+  let body;
+  if (isHtml) {
+    const buf = await res.arrayBuffer();
+    const ct = res.headers.get('content-type') || '';
+    const m = ct.match(/charset=([\w-]+)/i);
+    const charset = (m ? m[1] : 'utf-8').toLowerCase();
+    body = new TextDecoder(charset).decode(buf);
+  } else {
+    body = await res.text();
+  }
 
   // dispatch to the right parser based on source.kind.
-  const raws = source.kind === 'pokebeach-html' ? parsePokebeach(body) : parseRss(body);
+  let raws;
+  if      (source.kind === 'pokebeach-html') raws = parsePokebeach(body);
+  else if (source.kind === 'serebii-html')   raws = parseSerebii(body);
+  else                                       raws = parseRss(body);
 
   // normalize each raw item into the final shape.
   let items = raws.map(r => normalize(source, r));
 
-  // optional pokemon-keyword filter for general feeds (nintendo life).
+  // optional pokemon-keyword filter for general feeds (not used by any
+  // current source but kept wired for future additions).
   if (source.pokemonOnly) {
     items = items.filter(i => matchesPokemon(i.title, i.excerpt));
   }
 
   return items;
+}
+
+// ─── cross-source deduplication ───────────────────────────────────────────────
+//
+// different sources frequently surface the same article — e.g. pokebeach
+// reports a tcg release and google news also indexes it from pokemon.com,
+// leading to two near-identical entries. we dedupe by comparing title word
+// sets with jaccard similarity, keeping whichever copy has the richer
+// metadata (image + excerpt). O(n²) in the number of kept entries, which is
+// fine for n ≤ ~100.
+
+// common english stop words we don't want influencing title similarity.
+const STOP_WORDS = new Set([
+  'the','a','an','and','or','is','are','was','were','be','been','being','to',
+  'for','of','in','on','at','by','with','from','as','that','this','these',
+  'those','it','its','but','not','if','then','so','has','have','had','will',
+  'would','can','could','should','may','might','just','new','now','up','out',
+]);
+
+// tokenize a title into a set of significant lowercase words (length ≥ 3,
+// not in STOP_WORDS, not pure digits).
+function titleWords(s) {
+  const out = new Set();
+  if (!s) return out;
+  const cleaned = s.toLowerCase().replace(/[^a-z0-9\s]/g, ' ');
+  for (const w of cleaned.split(/\s+/)) {
+    if (w.length < 3) continue;
+    if (STOP_WORDS.has(w)) continue;
+    if (/^\d+$/.test(w)) continue;
+    out.add(w);
+  }
+  return out;
+}
+
+// jaccard similarity = |A ∩ B| / |A ∪ B|. 1.0 is identical, 0.0 is disjoint.
+function jaccard(a, b) {
+  if (a.size === 0 || b.size === 0) return 0;
+  let intersection = 0;
+  for (const w of a) if (b.has(w)) intersection++;
+  const union = a.size + b.size - intersection;
+  return intersection / union;
+}
+
+// higher score = better candidate to keep when two entries are duplicates.
+// image is weighted heaviest because the UI viewport is dead space without it.
+function qualityScore(e) {
+  let s = 0;
+  if (e.image)     s += 3;
+  if (e.excerpt)   s += 2;
+  if (e.published) s += 1;
+  return s;
+}
+
+// walk the entries list and collapse near-duplicates. two entries are
+// considered duplicates when:
+//   - jaccard similarity of their title word sets is ≥ SIMILARITY_THRESHOLD, AND
+//   - they were published within SIMILARITY_WINDOW_MS of each other (or
+//     one/both are undated)
+//
+// the date window prevents false positives from sources that reuse topic
+// names as titles — e.g. serebii tags every pokémon go entry with the title
+// "pokémon go", so without a date constraint the dedup would collapse an
+// entire week of unrelated go news into one card.
+const SIMILARITY_THRESHOLD = 0.7;
+const SIMILARITY_WINDOW_MS = 48 * 60 * 60 * 1000;
+
+function withinWindow(isoA, isoB) {
+  if (!isoA || !isoB) return true; // can't disprove — allow jaccard to decide
+  const a = new Date(isoA).getTime();
+  const b = new Date(isoB).getTime();
+  if (Number.isNaN(a) || Number.isNaN(b)) return true;
+  return Math.abs(a - b) <= SIMILARITY_WINDOW_MS;
+}
+
+function dedupeEntries(entries) {
+  const kept = [];
+  const keptWords = [];
+  let collapsed = 0;
+  for (const entry of entries) {
+    const words = titleWords(entry.title);
+    let dupIndex = -1;
+    for (let i = 0; i < kept.length; i++) {
+      // only compare entries from DIFFERENT sources. within one source the
+      // id-based dedup is authoritative — legitimate same-day sub-entries
+      // that share topic names shouldn't get collapsed.
+      if (entry.source === kept[i].source) continue;
+      if (!withinWindow(entry.published, kept[i].published)) continue;
+      if (jaccard(words, keptWords[i]) >= SIMILARITY_THRESHOLD) {
+        dupIndex = i;
+        break;
+      }
+    }
+    if (dupIndex === -1) {
+      kept.push(entry);
+      keptWords.push(words);
+    } else {
+      collapsed++;
+      if (qualityScore(entry) > qualityScore(kept[dupIndex])) {
+        kept[dupIndex] = entry;
+        keptWords[dupIndex] = words;
+      }
+    }
+  }
+  return { kept, collapsed };
 }
 
 async function buildPayload() {
@@ -530,14 +860,17 @@ async function buildPayload() {
     }
   });
 
-  // dedupe entries by stable id. across two sources you can occasionally
-  // get the same article (e.g. if you ever add a mirror).
-  const seen = new Set();
-  const deduped = all.filter(e => {
-    if (seen.has(e.id)) return false;
-    seen.add(e.id);
+  // first-pass: dedupe by stable id (same article twice from one source).
+  const seenIds = new Set();
+  const byId = all.filter(e => {
+    if (seenIds.has(e.id)) return false;
+    seenIds.add(e.id);
     return true;
   });
+
+  // second-pass: cross-source similarity dedup. keeps the richer copy of
+  // any near-duplicate (see dedupeEntries above).
+  const { kept: deduped, collapsed } = dedupeEntries(byId);
 
   // sort newest-first by published iso string. string-compare works here
   // because iso timestamps sort correctly lexicographically. items with
@@ -550,11 +883,12 @@ async function buildPayload() {
   });
 
   return {
-    updated: new Date().toISOString(),
-    count:   Math.min(deduped.length, MAX_ENTRIES),
-    sources: SOURCES.map(s => ({ id: s.id, name: s.name, url: s.url })),
+    updated:   new Date().toISOString(),
+    count:     Math.min(deduped.length, MAX_ENTRIES),
+    collapsed, // how many near-duplicates were folded into their winner
+    sources:   SOURCES.map(s => ({ id: s.id, name: s.name, url: s.url })),
     failed,
-    entries: deduped.slice(0, MAX_ENTRIES),
+    entries:   deduped.slice(0, MAX_ENTRIES),
   };
 }
 

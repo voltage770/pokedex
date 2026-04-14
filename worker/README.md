@@ -131,10 +131,41 @@ great for debugging upstream parsing issues.
 - Dashboard → Workers & Pages → pokedex-news → Metrics
 - Shows requests/day, cpu time, error rate, cache hit ratio
 
-**Cache behavior:** the edge cache is per-colo (each Cloudflare data center
-has its own copy). First hit in a given region is a MISS, subsequent hits
-there are HITs for up to 30 min. This means upstream sources get hit once
-per region per 30 min in the worst case — still well within polite scraping.
+**Cache behavior / update cadence:** controlled by one constant near the top
+of `src/index.js`:
+
+```js
+const CACHE_TTL_SECONDS = 30 * 60; // 30 min
+```
+
+What this means end-to-end:
+
+1. The frontend's news page hits `/news.json` on every mount — there's no
+   browser-side caching of the JSON itself.
+2. The worker checks Cloudflare's per-colo edge cache (`caches.default`) for
+   a copy of the response. If present and not yet expired → HIT, returned
+   in ~60ms, no upstream calls.
+3. If absent or expired → MISS. The worker fetches pokebeach and serebii in
+   parallel, parses, dedupes, builds the payload, writes it back to the
+   cache, and returns it (~1–3 sec depending on upstream latency).
+4. Subsequent visitors to that colo within the next 30 minutes get HITs.
+
+So in practice the **first visitor after each 30-minute window expires**
+pays the ~2 sec upstream refresh; everyone else in that region for the next
+30 minutes sees the cached copy instantly. "That region" matters because
+the edge cache is **per Cloudflare data center** — each geographic region
+has its own independent cache. Visitors in SJC and FRA each trigger their
+own refreshes. For low-traffic sites that's at most a handful of upstream
+fetches per hour, very polite to the sources.
+
+**Tuning:** shorter TTL = fresher news + more misses + more upstream hits.
+Longer TTL = fewer misses but staler content. 30 min is a good balance for
+pokemon news sources that don't publish more than a few times per day.
+
+**Force refresh anytime:** `GET /news.json?refresh=1` bypasses the cache
+for that one call, rebuilds the payload from upstream, and writes the fresh
+copy back into the cache. Handy when you deploy a parser change and want
+the effect visible immediately without waiting out the TTL.
 
 ---
 

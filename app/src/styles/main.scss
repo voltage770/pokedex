@@ -266,6 +266,89 @@ img {
   border-bottom: 1px solid var(--border);
   box-shadow: var(--shadow-sm);
   transition: background-color .25s ease;
+
+  // ensure interactive children sit above the decorative sprite strip.
+  // note: we do NOT set overflow:hidden on the header itself because the
+  // settings / features dropdowns render as descendants and would be clipped.
+  // the sprite strip clips itself via its own overflow:hidden instead.
+  > .site-logo,
+  > .header-right {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+// decorative scrolling sprite strip sitting behind header content. two-element
+// structure: an outer clip box (.header-sprites-clip) pinned to the header
+// with overflow: hidden + the edge fade mask, and an inner strip
+// (.header-sprites) with width: max-content that actually animates. keeping
+// them separate is what lets the -50% keyframe translate by the content
+// width rather than the header width.
+.header-sprites-clip {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 80px, #000 calc(100% - 80px), transparent 100%);
+          mask-image: linear-gradient(90deg, transparent 0, #000 80px, #000 calc(100% - 80px), transparent 100%);
+}
+
+// inner strip: width:max-content means the element is as wide as its content
+// (both copies of the shuffled sprite list combined). that makes
+// `translateX(-50%)` equal exactly half the content width — one full copy —
+// so sprite[count] lands where sprite[0] started and the loop is seamless.
+// each sprite uses margin-right (not flex gap) so every sprite occupies an
+// identical stride; this keeps the -50% landing on a whole-sprite boundary.
+.header-sprites {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: max-content;
+  opacity: .9;
+  animation: header-sprites-scroll 52s linear infinite;
+
+  img {
+    flex: 0 0 auto;
+    width: 52px;
+    height: 52px;
+    margin-right: 24px;
+    image-rendering: pixelated;
+  }
+}
+
+@keyframes header-sprites-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+// per-theme tuning — opacity only, no color filters. sprites render at full
+// saturation across every theme. dark gets a slightly lower opacity because
+// bright sprites on a near-black bg visually pop more than the same opacity
+// on light backgrounds.
+[data-theme='dark']    .header-sprites { opacity: .78; }
+[data-theme='retro']   .header-sprites { opacity: .9;  }
+[data-theme='ereader'] .header-sprites { opacity: .85; }
+
+// a11y mode: the strip still animates (we never want the header to go dead),
+// but at a slower rate so the motion is gentler for motion-sensitive users.
+// `!important` + the full `animation` shorthand (with name) is required to
+// beat the universal `[data-a11y='true'] *` rule above which clears
+// animation via `animation: none !important`. the img opacity reset is
+// required for the same reason — the `[data-a11y='true'] img` rule above
+// dims all images to .85, and we don't want it compounding with the strip's
+// own opacity.
+[data-a11y='true'] .header-sprites {
+  animation: header-sprites-scroll 90s linear infinite !important;
+}
+[data-a11y='true'] .header-sprites img {
+  opacity: 1;
+}
+[data-a11y='true'] .site-logo,
+[data-a11y='true'] .settings-btn {
+  // solid background blocks the scrolling sprites from bleeding through
+  // the control surfaces so focus targets stay high-contrast
+  background: var(--bg-header);
 }
 
 .site-logo {
@@ -1851,6 +1934,17 @@ img {
     padding: 0 16px;
     height: 52px;
   }
+
+  // scale sprites down for the shorter mobile header so they don't crowd the
+  // 52px row, and tighten the edge fade so the strip still reads as a
+  // continuous pattern at narrow widths. because each sprite still has its
+  // own margin-right and the inner strip is `width: max-content`, the -50%
+  // loop math holds regardless of the exact sprite-w + margin values.
+  .header-sprites-clip {
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 48px, #000 calc(100% - 48px), transparent 100%);
+            mask-image: linear-gradient(90deg, transparent 0, #000 48px, #000 calc(100% - 48px), transparent 100%);
+  }
+  .header-sprites img { width: 42px; height: 42px; margin-right: 18px; }
 
   .site-logo {
     font-size: 1.05rem;

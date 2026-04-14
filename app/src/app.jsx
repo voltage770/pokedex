@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, Fragment } from 'react';
+import { useState, useEffect, useRef, useMemo, Fragment } from 'react';
 import { BrowserRouter, Routes, Route, Link, useLocation, useNavigationType, useSearchParams } from 'react-router-dom';
 import HomePage from './pages/home-page';
 import PokemonPage from './pages/pokemon-page';
@@ -16,6 +16,72 @@ const FEATURES = [
 ];
 
 const THEMES = ['light', 'dark', 'retro', 'ereader'];
+
+// every base starter across gen 1 → gen 9, plus pichu. shuffled on mount and
+// doubled (JSX below) so the keyframe's `translateX(-50%)` lands sprite[count]
+// exactly where sprite[0] started. the inner `.header-sprites` element is
+// `width: max-content` in CSS, so -50% is always half the real content width
+// regardless of this roster's length — adding or removing entries here just
+// works, no CSS update needed.
+const HEADER_SPRITE_IDS = [
+  // gen 1
+  1, 4, 7,
+  // gen 2 (+ pichu)
+  152, 155, 158, 172,
+  // gen 3
+  252, 255, 258,
+  // gen 4
+  387, 390, 393,
+  // gen 5
+  495, 498, 501,
+  // gen 6
+  650, 653, 656,
+  // gen 7
+  722, 725, 728,
+  // gen 8
+  810, 813, 816,
+  // gen 9
+  906, 909, 912,
+];
+
+function shuffle(arr) {
+  const out = [...arr];
+  for (let i = out.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [out[i], out[j]] = [out[j], out[i]];
+  }
+  return out;
+}
+
+function HeaderSprites() {
+  // shuffle once per mount so the ordering is random per session but stable
+  // across re-renders (otherwise the strip would reshuffle on every state
+  // change in the header and jitter mid-animation).
+  const strip = useMemo(() => {
+    const shuffled = shuffle(HEADER_SPRITE_IDS);
+    return [...shuffled, ...shuffled];
+  }, []);
+  // structural note: outer `.header-sprites-clip` handles positioning + the
+  // header-width clip box. inner `.header-sprites` has `width: max-content`
+  // so its `-50%` keyframe translates by exactly half the content width —
+  // one full copy — landing sprite[count] where sprite[0] started. merging
+  // the clip and the animated element would force the animated element's
+  // width to match the header, breaking the loop math.
+  return (
+    <div className="header-sprites-clip" aria-hidden="true">
+      <div className="header-sprites">
+        {strip.map((id, i) => (
+          <img
+            key={i}
+            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`}
+            alt=""
+            decoding="async"
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
 
 const OPTIONAL_FILTERS = [
   { key: 'type',    label: 'type' },
@@ -73,6 +139,7 @@ function AppHeader({ theme, setTheme, a11y, setA11y, enabledFilters, toggleFilte
 
   return (
     <header className="site-header">
+      <HeaderSprites />
       <Link to="/pokedex" className="site-logo">pokédex</Link>
 
       <div className="header-right">

@@ -147,10 +147,10 @@ function matchesClass(p, cls) {
     case 'has-mega':         return p.mega_forms?.length > 0;
     case 'has-gmax':         return p.gmax_forms?.length > 0;
     case 'has-regional':     return p.regional_forms?.length > 0;
-    case 'regional-alola':   return p.regional_forms?.some(n => n.endsWith('-alola'));
-    case 'regional-galar':   return p.regional_forms?.some(n => n.endsWith('-galar'));
-    case 'regional-hisui':   return p.regional_forms?.some(n => n.endsWith('-hisui'));
-    case 'regional-paldea':  return p.regional_forms?.some(n => n.endsWith('-paldea'));
+    case 'regional-alola':   return p.regional_forms?.some(n => /-alola(-|$)/.test(n));
+    case 'regional-galar':   return p.regional_forms?.some(n => /-galar(-|$)/.test(n));
+    case 'regional-hisui':   return p.regional_forms?.some(n => /-hisui(-|$)/.test(n));
+    case 'regional-paldea':  return p.regional_forms?.some(n => /-paldea(-|$)/.test(n));
     case 'has-forms':        return p.alt_forms?.length > 0;
     default: return true;
   }
@@ -221,9 +221,13 @@ const REGIONAL_EVO_OVERRIDES = {
   'cubone->marowak-alola':           { trigger: 'level-up', item: null,            min_level: 28,   location: 'alola', time_of_day: 'night' },
 };
 
-// cases where a regional form evolves into a completely new species (not a regional form of
-// an existing species), so the chain can't be inferred from regional_forms alone.
-// keyed by base species name. steps here are merged into the inferred chains, with dedup.
+// regional form chains that can't be inferred from regional_forms alone. two classes of cases:
+//  1) a regional form evolves into a completely new species (e.g. meowth-galar → perrserker)
+//  2) the base species is stored under a form-suffixed name (FORM_SUFFIX_SPECIES) and/or its
+//     regional forms have extra suffixes beyond the region name (e.g. darmanitan-standard with
+//     regional forms darmanitan-galar-standard / darmanitan-galar-zen), which cleanRegion can't
+//     normalize and byName can't resolve via the bare species name.
+// keyed by the stored pokemon name. steps here are merged into the inferred chains, with dedup.
 const REGIONAL_NEW_SPECIES = {
   // galarian meowth line
   meowth:      { galar:  [{ from: 'meowth-galar',    to: 'perrserker', trigger: 'level-up', min_level: 28 }] },
@@ -256,6 +260,10 @@ const REGIONAL_NEW_SPECIES = {
   wooper:      { paldea: [{ from: 'wooper-paldea',   to: 'clodsire',   trigger: 'level-up', min_level: 20 }] },
   quagsire:    { paldea: [{ from: 'wooper-paldea',   to: 'clodsire',   trigger: 'level-up', min_level: 20 }] },
   clodsire:    { paldea: [{ from: 'wooper-paldea',   to: 'clodsire',   trigger: 'level-up', min_level: 20 }] },
+  // galarian darumaka/darmanitan — can't be inferred (darmanitan is stored as darmanitan-standard
+  // and its galar forms are darmanitan-galar-standard / darmanitan-galar-zen)
+  darumaka:              { galar: [{ from: 'darumaka-galar', to: 'darmanitan-galar-standard', trigger: 'level-up', min_level: 35 }] },
+  'darmanitan-standard': { galar: [{ from: 'darumaka-galar', to: 'darmanitan-galar-standard', trigger: 'level-up', min_level: 35 }] },
 };
 
 // builds { region: [{from, to, ...conditions}] } for regional form evolution chains.

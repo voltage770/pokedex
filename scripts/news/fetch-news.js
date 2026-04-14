@@ -34,11 +34,17 @@ const SOURCES = [
     kind: 'pokebeach-html',
   },
   {
-    id:   'nintendolife',
-    name: 'nintendo life',
-    url:  'https://www.nintendolife.com/feeds/news',
-    kind: 'rss',
-    pokemonOnly: true,
+    id:   'serebii',
+    name: 'serebii',
+    url:  'https://www.serebii.net/',
+    kind: 'serebii-html',
+    // serebii's homepage posts one big daily news roundup per day, but each
+    // roundup is structured internally as a series of `.pics` + `.subcat`
+    // blocks — one sub-entry per topic (pokémon go, champions, masters,
+    // sleep, tcg pocket, etc.). parseSerebii walks those sub-entries and
+    // returns each as its own news item with its own image and body. the
+    // page is ISO-8859-1 encoded, so fetchSource decodes the raw bytes
+    // via TextDecoder instead of calling .text() which assumes utf-8.
   },
 ];
 
@@ -49,7 +55,16 @@ const POKEMON_KEYWORDS = ['pokemon', 'pokémon', 'pokeball', 'pokéball', 'pikac
 // array is a list of lowercase substrings; if any appear in title+excerpt we
 // tag the entry with that label. order matters: more specific topics first so
 // "pokemon go" isn't swallowed by the generic "pokemon" fallback.
+// ORDERING MATTERS — first pattern match wins. more specific topics must sit
+// before their generic parents so "tcg pocket" isn't swallowed by bare "tcg",
+// "pokemon go fest" isn't swallowed by bare "pokemon go", etc.
 const TOPIC_LABELS = [
+  // tcg variants come before the generic `pokémon tcg` below — "pocket" and
+  // "live" are distinct games with separate communities and should be tagged
+  // individually so readers can tell them apart from the physical card game.
+  { label: 'pokémon tcg pocket', patterns: ['tcg pocket', 'tcg-pocket', 'pokemon pocket', 'pokémon pocket', 'tcgp'] },
+  { label: 'pokémon tcg live',   patterns: ['tcg live', 'tcg-live', 'tcgl'] },
+
   { label: 'pokémon go',        patterns: ['pokemon go', 'pokémon go', 'niantic'] },
   { label: 'pokémon home',      patterns: ['pokemon home', 'pokémon home'] },
   { label: 'pokémon tcg',       patterns: ['tcg', 'trading card', 'card game', 'booster pack'] },
@@ -270,6 +285,197 @@ function parsePokebeach(html) {
   return items;
 }
 
+// ─── serebii homepage scraper ─────────────────────────────────────────────────
+// serebii's homepage lists ~7 days of news, each day as one <h2> header
+// followed by a series of sub-entries until the next <!-- end_news --> marker.
+// each sub-entry is structured as:
+//
+//   <div class="pics"><a href="..."><img src="..." alt="..."/></a></div>
+//   <div class="subcat">
+//     <h3>In The Games Department</h3>
+//     <p class="title">Pokémon GO</p>
+//     <p>body paragraph here...</p>
+//   </div>
+//
+// we walk each day block, pair up pics+subcat, and emit one news item per
+// sub-entry. each gets: topic title, the body paragraph as excerpt, the pic
+// url as the image, the day's shared date, and a link back to either the pic
+// anchor href (topic section) or the parent day's archive page.
+
+// serebii pic urls are site-relative — resolve against the site root.
+const SEREBII_BASE = 'https://www.serebii.net';
+function resolveSerebiiUrl(u) {
+  if (!u) return null;
+  if (/^https?:\/\//i.test(u)) return u;
+  if (u.startsWith('/')) return SEREBII_BASE + u;
+  return SEREBII_BASE + '/' + u;
+}
+
+// "13-04-2026 05:42 BST / 00:42 EDT" → Date. serebii's primary date is BST
+// (british summer time, UTC+1) or GMT (UTC+0) depending on the time of year.
+// we approximate as UTC+1 since most posts happen during BST months. precise
+// tz doesn't matter for a "posted X hours ago" display.
+function parseSerebiiDate(text) {
+  if (!text) return null;
+  const m = text.match(/(\d{1,2})-(\d{1,2})-(\d{4})\s+(\d{1,2}):(\d{2})/);
+  if (!m) return null;
+  const day   = Number(m[1]);
+  const month = Number(m[2]) - 1;
+  const year  = Number(m[3]);
+  const hour  = Number(m[4]);
+  const min   = Number(m[5]);
+  // BST = UTC+1, so subtract 1 hour to get UTC.
+  const d = new Date(Date.UTC(year, month, day, hour - 1, min, 0));
+  return Number.isNaN(d.getTime()) ? null : d;
+}
+
+// heuristic title rewrite: serebii tags every sub-entry with a section name
+// ("Pokémon GO", "Pokémon TCG Pocket", "Pokémon Champions") rather than a real
+// headline, so the card title tells readers *what section* but not *what news*.
+// this derives a better title by pulling the first sentence of the body and
+// stripping common boilerplate. when the first sentence is a content-free
+// shell ("X has announced the next event"), falls through to two sentences.
+//
+// NOTE: this logic is duplicated in worker/src/index.js — keep both in sync.
+const SEREBII_BOILERPLATE_PREFIXES = [
+  /^the pok[eé]mon company(?: international)? has (?:announced|revealed|confirmed)(?: that)?\s+/i,
+  /^niantic has (?:announced|revealed|confirmed)(?: that)?\s+/i,
+  /^nintendo has (?:announced|revealed|confirmed)(?: that)?\s+/i,
+  /^game freak has (?:announced|revealed|confirmed)(?: that)?\s+/i,
+  /^it has (?:just )?been (?:officially )?(?:announced|revealed|confirmed)(?: that)?\s+/i,
+  /^it's been (?:officially )?(?:announced|revealed|confirmed)(?: that)?\s+/i,
+  /^following(?: on from)? (?:the )?(?:previous|recent|yesterday's).*?,\s+/i,
+  /^as (?:was )?(?:announced|revealed|teased|confirmed)(?: previously| earlier| yesterday)?,\s+/i,
+];
+const SEREBII_GENERIC_OPENERS = [
+  /has (?:announced|begun|started|revealed) (?:the )?(?:next|latest) (?:event|delivery focus|update|patch|run)$/i,
+  /has (?:been )?(?:announced|revealed)$/i,
+  /has received (?:a|an|its) (?:latest )?(?:bug[- ]fix )?(?:update|patch)$/i,
+  /^(?:the )?(?:next|latest) .+ (?:event|update) has (?:been announced|begun|started)$/i,
+  /has announced some(?: big)? changes/i,
+  /has announced the next delivery focus$/i,
+];
+
+// find end-index of first sentence. lookahead requires terminator → whitespace
+// + uppercase (or end of string) so abbreviations like "No. 12" or "etc." don't
+// count as sentence boundaries.
+function serebiiFirstSentenceEnd(text) {
+  const m = text.match(/[.!?](?=\s+[A-Z]|\s*$)/);
+  return m ? m.index + 1 : -1;
+}
+
+function inferSerebiiTitle(topicTitle, bodyText) {
+  if (!bodyText) return topicTitle;
+  const stripTerminal = (s) => s.replace(/[.!?]+$/, '').trim();
+
+  const end1 = serebiiFirstSentenceEnd(bodyText);
+  let sentence = end1 >= 0 ? bodyText.slice(0, end1) : bodyText;
+  let candidate = stripTerminal(sentence);
+
+  // if sentence 1 is a content-free shell, include sentence 2 as well
+  if (SEREBII_GENERIC_OPENERS.some(re => re.test(candidate)) && end1 >= 0) {
+    const rest = bodyText.slice(end1).replace(/^\s+/, '');
+    const end2 = serebiiFirstSentenceEnd(rest);
+    const tail = end2 >= 0 ? rest.slice(0, end2) : rest;
+    candidate = stripTerminal(bodyText.slice(0, end1) + ' ' + tail);
+  }
+
+  // strip boilerplate opening clauses
+  let stripped = false;
+  for (const re of SEREBII_BOILERPLATE_PREFIXES) {
+    const next = candidate.replace(re, '');
+    if (next !== candidate) { candidate = next; stripped = true; }
+  }
+  if (stripped && candidate.length > 0) {
+    candidate = candidate.charAt(0).toUpperCase() + candidate.slice(1);
+  }
+
+  // truncate at a word boundary
+  const MAX = 110;
+  if (candidate.length > MAX) {
+    const cut = candidate.slice(0, MAX);
+    const lastSpace = cut.lastIndexOf(' ');
+    candidate = (lastSpace > MAX * 0.6 ? cut.slice(0, lastSpace) : cut).trimEnd() + '…';
+  }
+
+  if (candidate.length < 18) return topicTitle;
+  if (candidate.toLowerCase() === topicTitle.toLowerCase()) return topicTitle;
+  return candidate;
+}
+
+function parseSerebii(html) {
+  const items = [];
+
+  // split the homepage into one chunk per day. each day starts with
+  // <h2><a href="/news/YYYY/DD-Month-YYYY.shtml" id="DD-Month-YYYY">Title</a></h2>
+  // and ends at the next <!-- end_news --> marker.
+  const dayRe = /<h2><a\s+href="(\/news\/\d{4}\/[^"]+\.shtml)"[^>]*>([\s\S]*?)<\/a><\/h2>([\s\S]*?)<!-- end_news -->/gi;
+
+  let match;
+  while ((match = dayRe.exec(html)) !== null) {
+    const dayUrl      = resolveSerebiiUrl(match[1]);
+    const dayTitle    = stripHtml(match[2]);
+    const dayBody     = match[3];
+
+    // date lives in a <span class="date">…</span> immediately after the h2
+    const dateMatch = dayBody.match(/<span class="date">([^<]+)<\/span>/i);
+    const parsedDate = dateMatch ? parseSerebiiDate(dateMatch[1]) : null;
+    const dayIso = parsedDate ? parsedDate.toISOString() : null;
+
+    // find every sub-entry: a <div class="pics">…</div> followed eventually
+    // by a <div class="subcat">…</div>. the subcat ends at its closing tag.
+    // we match them as pairs in document order.
+    const picsRe = /<div class="pics">([\s\S]*?)<\/div>\s*<div class="subcat"[^>]*>([\s\S]*?)<\/div>/gi;
+    let picMatch;
+    let subIndex = 0;
+    while ((picMatch = picsRe.exec(dayBody)) !== null) {
+      const picsBlock   = picMatch[1];
+      const subcatBlock = picMatch[2];
+
+      // pic URL + linked href (used as the article url)
+      const hrefMatch = picsBlock.match(/<a[^>]+href="([^"]+)"/i);
+      const imgMatch  = picsBlock.match(/<img[^>]+src="([^"]+)"/i);
+      const picHref   = hrefMatch ? resolveSerebiiUrl(decodeEntities(hrefMatch[1])) : dayUrl;
+      const image     = imgMatch  ? resolveSerebiiUrl(decodeEntities(imgMatch[1]))  : null;
+
+      // topic title from <p class="title">
+      const titleMatch = subcatBlock.match(/<p class="title">([\s\S]*?)<\/p>/i);
+      if (!titleMatch) { subIndex++; continue; }
+      const topicTitle = stripHtml(titleMatch[1]);
+
+      // department label from <h3> (e.g. "In The Games Department")
+      const deptMatch = subcatBlock.match(/<h3>([\s\S]*?)<\/h3>/i);
+      const dept = deptMatch ? stripHtml(deptMatch[1]) : '';
+
+      // body = everything inside subcat except the <h3> and <p class="title">
+      // lines. simplest: strip those two tags from the block before stripHtml.
+      let bodyHtml = subcatBlock
+        .replace(/<h3>[\s\S]*?<\/h3>/i, '')
+        .replace(/<p class="title">[\s\S]*?<\/p>/i, '');
+      const excerpt = stripHtml(bodyHtml);
+
+      // derive a real headline from the body first sentence — see
+      // inferSerebiiTitle above. falls back to the topic label if the body
+      // is empty or the extracted sentence is too short / identical.
+      const derivedTitle = inferSerebiiTitle(topicTitle, excerpt);
+
+      items.push({
+        title:       derivedTitle,
+        link:        picHref,
+        pubDate:     parsedDate ? parsedDate.toUTCString() : null,
+        description: excerpt,
+        content:     bodyHtml, // keep raw html so youtube-id extraction works
+        mediaUrl:    image,
+        categories:  [dept, topicTitle].filter(Boolean),
+        _iso:        dayIso,
+        _subIndex:   subIndex++,
+      });
+    }
+  }
+
+  return items;
+}
+
 // ─── normalize ────────────────────────────────────────────────────────────────
 
 function slugify(s) {
@@ -310,7 +516,8 @@ function normalize(source, raw) {
 
 async function fetchSource(source) {
   console.log(`  fetching ${source.name} (${source.url})`);
-  const accept = source.kind === 'pokebeach-html'
+  const isHtml = source.kind === 'pokebeach-html' || source.kind === 'serebii-html';
+  const accept = isHtml
     ? 'text/html,application/xhtml+xml'
     : 'application/rss+xml, application/xml, text/xml, */*';
   const res = await fetch(source.url, {
@@ -321,9 +528,28 @@ async function fetchSource(source) {
     },
   });
   if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
-  const body = await res.text();
 
-  const raws = source.kind === 'pokebeach-html' ? parsePokebeach(body) : parseRss(body);
+  // serebii's homepage is ISO-8859-1 encoded. if we call res.text() directly
+  // its assumed utf-8 decoding mangles every non-ascii char (é → �). read
+  // the raw bytes and decode with the correct charset from the content-type
+  // header (falling back to utf-8 for everything else).
+  let body;
+  if (isHtml) {
+    const buf = await res.arrayBuffer();
+    const ct = res.headers.get('content-type') || '';
+    const m = ct.match(/charset=([\w-]+)/i);
+    const charset = (m ? m[1] : 'utf-8').toLowerCase();
+    body = new TextDecoder(charset).decode(buf);
+  } else {
+    body = await res.text();
+  }
+
+  // dispatch to the right parser.
+  let raws;
+  if      (source.kind === 'pokebeach-html') raws = parsePokebeach(body);
+  else if (source.kind === 'serebii-html')   raws = parseSerebii(body);
+  else                                       raws = parseRss(body);
+
   let items = raws.map(r => normalize(source, r));
   if (source.pokemonOnly) {
     const before = items.length;
@@ -331,6 +557,111 @@ async function fetchSource(source) {
     console.log(`    filtered ${before} → ${items.length} pokemon entries`);
   }
   return items;
+}
+
+// ─── cross-source dedup ───────────────────────────────────────────────────────
+//
+// different sources often surface the same article — e.g. pokebeach reports a
+// tcg release and google news also indexes it from pokemon.com, leading to two
+// near-identical entries. we dedupe by comparing title word sets with jaccard
+// similarity, keeping whichever copy has the richer metadata (image + excerpt).
+
+// common english stop words we don't want influencing title similarity scores.
+const STOP_WORDS = new Set([
+  'the','a','an','and','or','is','are','was','were','be','been','being','to',
+  'for','of','in','on','at','by','with','from','as','that','this','these',
+  'those','it','its','but','not','if','then','so','has','have','had','will',
+  'would','can','could','should','may','might','just','new','now','up','out',
+]);
+
+// tokenize a title into a set of significant lowercase words (length ≥ 3,
+// not in STOP_WORDS). punctuation and numbers-only tokens are dropped.
+function titleWords(s) {
+  const out = new Set();
+  if (!s) return out;
+  const cleaned = s.toLowerCase().replace(/[^a-z0-9\s]/g, ' ');
+  for (const w of cleaned.split(/\s+/)) {
+    if (w.length < 3) continue;
+    if (STOP_WORDS.has(w)) continue;
+    if (/^\d+$/.test(w)) continue;
+    out.add(w);
+  }
+  return out;
+}
+
+// jaccard similarity = |A ∩ B| / |A ∪ B|. 1.0 is identical, 0.0 is disjoint.
+function jaccard(a, b) {
+  if (a.size === 0 || b.size === 0) return 0;
+  let intersection = 0;
+  for (const w of a) if (b.has(w)) intersection++;
+  const union = a.size + b.size - intersection;
+  return intersection / union;
+}
+
+// higher score = better candidate to keep when two entries are duplicates.
+// image is weighted heaviest because the UI viewport is dead space without it.
+function qualityScore(e) {
+  let s = 0;
+  if (e.image)     s += 3;
+  if (e.excerpt)   s += 2;
+  if (e.published) s += 1;
+  return s;
+}
+
+// walk the entries list and collapse near-duplicates. two entries are
+// considered duplicates when:
+//   - jaccard similarity of their title word sets is ≥ SIMILARITY_THRESHOLD, AND
+//   - they were published within SIMILARITY_WINDOW_MS of each other (or one
+//     or both are undated)
+//
+// the date window prevents false positives from sources that reuse topic
+// names as titles — e.g. serebii tags every pokémon go entry with the title
+// "pokémon go", so without a date constraint the dedup would collapse an
+// entire week of unrelated go news into one card. O(n²) in kept entries.
+const SIMILARITY_THRESHOLD  = 0.7;
+const SIMILARITY_WINDOW_MS  = 48 * 60 * 60 * 1000; // 48h
+
+function withinWindow(isoA, isoB) {
+  if (!isoA || !isoB) return true; // can't disprove — allow jaccard to decide
+  const a = new Date(isoA).getTime();
+  const b = new Date(isoB).getTime();
+  if (Number.isNaN(a) || Number.isNaN(b)) return true;
+  return Math.abs(a - b) <= SIMILARITY_WINDOW_MS;
+}
+
+function dedupeEntries(entries) {
+  const kept = [];
+  const keptWords = [];
+  let collapsed = 0;
+  for (const entry of entries) {
+    const words = titleWords(entry.title);
+    let dupIndex = -1;
+    for (let i = 0; i < kept.length; i++) {
+      // only compare entries from DIFFERENT sources. within one source the
+      // id-based dedup is authoritative — a source like serebii can have
+      // legitimate same-day sub-entries that share topic names ("pokémon
+      // go" covering two separate events in one day) and we don't want to
+      // collapse those.
+      if (entry.source === kept[i].source) continue;
+      if (!withinWindow(entry.published, kept[i].published)) continue;
+      if (jaccard(words, keptWords[i]) >= SIMILARITY_THRESHOLD) {
+        dupIndex = i;
+        break;
+      }
+    }
+    if (dupIndex === -1) {
+      kept.push(entry);
+      keptWords.push(words);
+    } else {
+      collapsed++;
+      // replace stored entry only if the new one scores strictly higher
+      if (qualityScore(entry) > qualityScore(kept[dupIndex])) {
+        kept[dupIndex] = entry;
+        keptWords[dupIndex] = words;
+      }
+    }
+  }
+  return { kept, collapsed };
 }
 
 async function main() {
@@ -348,13 +679,21 @@ async function main() {
     }
   }
 
-  // dedupe by id (same title+date+source)
-  const seen = new Set();
-  const deduped = all.filter(e => {
-    if (seen.has(e.id)) return false;
-    seen.add(e.id);
+  // first-pass: dedupe by stable id (same article from the same source twice).
+  const seenIds = new Set();
+  const byId = all.filter(e => {
+    if (seenIds.has(e.id)) return false;
+    seenIds.add(e.id);
     return true;
   });
+
+  // second-pass: dedupe across sources by title similarity. see dedupeEntries
+  // and SIMILARITY_THRESHOLD above. runs before sorting because the "kept"
+  // winner is chosen by quality score, not publish date.
+  const { kept: deduped, collapsed } = dedupeEntries(byId);
+  if (collapsed > 0) {
+    console.log(`collapsed ${collapsed} cross-source near-duplicate${collapsed === 1 ? '' : 's'}`);
+  }
 
   // sort newest-first; undated entries sink to the bottom
   deduped.sort((a, b) => {
@@ -367,10 +706,11 @@ async function main() {
   const capped = deduped.slice(0, MAX_ENTRIES);
 
   const payload = {
-    updated: new Date().toISOString(),
-    count:   capped.length,
-    sources: SOURCES.map(s => ({ id: s.id, name: s.name, url: s.url })),
-    entries: capped,
+    updated:   new Date().toISOString(),
+    count:     capped.length,
+    collapsed,
+    sources:   SOURCES.map(s => ({ id: s.id, name: s.name, url: s.url })),
+    entries:   capped,
   };
 
   fs.mkdirSync(path.dirname(OUT_FILE), { recursive: true });

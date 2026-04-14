@@ -157,3 +157,8 @@ CLAUDE.md
 # macos finder metadata
 .DS_Store
 **/.DS_Store
+
+# throwaway / prototype scripts under scripts/news — kept locally for
+# iterating on heuristics against live upstream data, not part of the
+# production pipeline
+scripts/news/probe-*.js
