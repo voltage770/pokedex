@@ -32,7 +32,7 @@ import bundledNews from '../data/news.json';
 // news.json takes over transparently.
 const NEWS_API_URL =
   import.meta.env.VITE_NEWS_API ||
-  'https://pokedex-news.workers.dev/news.json'; // TODO: replace with real subdomain after first deploy
+  'https://pokedex-news.voltage770.workers.dev/news.json';
 
 // how long we'll wait for the worker before giving up and showing the
 // bundled fallback. the worker's cold-start + upstream fetch on a cache
