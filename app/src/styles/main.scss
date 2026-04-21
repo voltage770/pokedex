@@ -2329,7 +2329,7 @@ img {
       background: var(--bg-sidebar);
       border: 1px solid var(--border);
       color: var(--text-muted);
-      text-transform: capitalize;
+      text-transform: lowercase;
     }
   }
 }
@@ -2418,7 +2418,7 @@ img {
   border-radius: var(--radius-sm);
   background: var(--bg);
   color: var(--text-muted);
-  text-transform: capitalize;
+  text-transform: lowercase;
 
   strong {
     color: var(--text);

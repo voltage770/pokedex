@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import balls from '../data/pokeballs.json';
 
 const STANDARD_ORDER = ['poke-ball', 'great-ball', 'ultra-ball', 'master-ball', 'safari-ball', 'sport-ball'];
@@ -12,11 +12,26 @@ const SECTIONS = [
   { key: 'apricorn-balls', label: 'apricorn', sort: (a, b) => a.name.localeCompare(b.name) },
 ];
 
+const SECTIONED_BALLS = SECTIONS.map(s => ({
+  ...s,
+  items: balls.filter(b => b.category === s.key).sort(s.sort),
+})).filter(s => s.items.length);
+
 function formatBallName(slug) {
   return slug.replace(/-/g, ' ');
 }
 
-function BallModal({ ball, onClose }) {
+function BallModal({ ball, onPrev, onNext, onClose }) {
+  useEffect(() => {
+    const handleKey = (e) => {
+      if (e.key === 'Escape') onClose();
+      else if (e.key === 'ArrowLeft') { e.preventDefault(); onPrev(); }
+      else if (e.key === 'ArrowRight') { e.preventDefault(); onNext(); }
+    };
+    window.addEventListener('keydown', handleKey);
+    return () => window.removeEventListener('keydown', handleKey);
+  }, [onPrev, onNext, onClose]);
+
   return (
     <div className="ability-modal-overlay" onClick={onClose}>
       <div className="ball-modal" onClick={e => e.stopPropagation()}>
@@ -38,32 +53,46 @@ function BallModal({ ball, onClose }) {
 }
 
 export default function PokeballsPage() {
-  const [selected, setSelected] = useState(null);
+  const [selected, setSelected] = useState(null); // { sectionIdx, index }
+
+  const close = useCallback(() => setSelected(null), []);
+  const cycle = useCallback((delta) => {
+    setSelected(s => {
+      if (!s) return s;
+      const n = SECTIONED_BALLS[s.sectionIdx].items.length;
+      return { ...s, index: ((s.index + delta) % n + n) % n };
+    });
+  }, []);
+  const prev = useCallback(() => cycle(-1), [cycle]);
+  const next = useCallback(() => cycle(1), [cycle]);
+
+  const currentBall = selected
+    ? SECTIONED_BALLS[selected.sectionIdx].items[selected.index]
+    : null;
 
   return (
     <div className="items-page">
       <h1>pokéballs</h1>
       <p className="items-page__sub">{balls.length} types</p>
 
-      {SECTIONS.map(section => {
-        const items = balls.filter(b => b.category === section.key).sort(section.sort);
-        if (!items.length) return null;
-        return (
-          <div key={section.key} className="items-section">
-            <h2 className="items-section__label">{section.label}</h2>
-            <div className="ball-grid">
-              {items.map(b => (
-                <button key={b.id} className="ball-thumb" onClick={() => setSelected(b)}>
-                  {b.sprite && <img src={b.sprite} alt={b.name} />}
-                  <span>{formatBallName(b.name)}</span>
-                </button>
-              ))}
-            </div>
+      {SECTIONED_BALLS.map((section, sectionIdx) => (
+        <div key={section.key} className="items-section">
+          <h2 className="items-section__label">{section.label}</h2>
+          <div className="ball-grid">
+            {section.items.map((b, index) => (
+              <button key={b.id} className="ball-thumb"
+                      onClick={() => setSelected({ sectionIdx, index })}>
+                {b.sprite && <img src={b.sprite} alt={b.name} />}
+                <span>{formatBallName(b.name)}</span>
+              </button>
+            ))}
           </div>
-        );
-      })}
+        </div>
+      ))}
 
-      {selected && <BallModal ball={selected} onClose={() => setSelected(null)} />}
+      {currentBall && (
+        <BallModal ball={currentBall} onPrev={prev} onNext={next} onClose={close} />
+      )}
     </div>
   );
 }
