@@ -1,19 +1,8 @@
 // ─── NewsPage ────────────────────────────────────────────────────────────────
 //
-// two-tier data flow:
-//
-//   1. on mount we render the BUNDLED news.json immediately — whatever was
-//      committed into the repo the last time `scripts/news/fetch-news.js`
-//      was run. this is the fallback; it's always available with no network.
-//
-//   2. in parallel we fire a `fetch()` at the cloudflare worker's /news.json
-//      endpoint to get LIVE data. if it resolves cleanly we swap the bundled
-//      copy out for the live copy. if it fails we keep showing the bundled
-//      copy and surface a small "using cached copy" pill.
-//
-// this gives instant rendering (no loading spinner) AND fresh data (as soon
-// as the worker responds) AND resilience (page still works if the worker is
-// down, cors-blocked, or the user is offline).
+// on mount we show a loading state and fetch live data from the cloudflare
+// worker. if the fetch fails (network error, timeout, bad payload) we fall
+// back to the bundled news.json and show a "using cached copy" pill.
 
 import { useEffect, useState } from 'react';
 import bundledNews from '../data/news.json';
@@ -176,14 +165,7 @@ async function fetchLiveNews(signal) {
 }
 
 export default function NewsPage() {
-  // initial state = bundled news. react renders this on the very first
-  // paint — no empty state, no loading spinner. when the worker fetch
-  // resolves, we replace it with the live data.
-  const [data, setData]     = useState(bundledNews);
-  // status is just for the tiny pill in the header meta row:
-  //   'loading'  → spinner-like "refreshing…" pill
-  //   'live'     → no pill, we got live data
-  //   'fallback' → "using cached copy" pill (worker unreachable)
+  const [data, setData]     = useState(null);
   const [status, setStatus] = useState('loading');
 
   useEffect(() => {
@@ -201,9 +183,9 @@ export default function NewsPage() {
         setData(live);
         setStatus('live');
       })
-      .catch(() => {
-        // any failure — network error, 5xx, timeout, bad json — lands here.
-        // we leave `data` as the bundled copy and flip status to 'fallback'.
+      .catch(err => {
+        if (err?.name === 'AbortError') return;
+        setData(bundledNews);
         setStatus('fallback');
       })
       .finally(() => {
@@ -229,17 +211,29 @@ export default function NewsPage() {
       <header className="news-page__header">
         <h1>news</h1>
         <p className="news-page__meta">
-          {entries.length} recent entries
-          {updatedText && <> · updated {updatedText}</>}
-          {sources.length > 0 && (
-            <> · sources: {sources.map(s => s.name).join(', ')}</>
+          {status === 'loading' ? (
+            <span className="news-page__tag">refreshing…</span>
+          ) : (
+            <>
+              {entries.length} recent entries
+              {updatedText && <> · updated {updatedText}</>}
+              {sources.length > 0 && (
+                <> · sources: {sources.map(s => s.name).join(', ')}</>
+              )}
+              {status === 'fallback' && <> · <span className="news-page__tag news-page__tag--warn">using cached copy</span></>}
+            </>
           )}
-          {status === 'loading'  && <> · <span className="news-page__tag">refreshing…</span></>}
-          {status === 'fallback' && <> · <span className="news-page__tag news-page__tag--warn">using cached copy</span></>}
         </p>
       </header>
 
-      {entries.length === 0 ? (
+      {status === 'loading' ? (
+        <div className="news-page__loading">
+          <div className="news-page__loading-dots">
+            <span /><span /><span />
+          </div>
+          <p>fetching latest news…</p>
+        </div>
+      ) : entries.length === 0 ? (
         <p className="news-page__empty">
           no entries yet — run <code>node news/fetch-news.js</code> from <code>scripts/</code>.
         </p>

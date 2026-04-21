@@ -124,9 +124,11 @@ async function fetchOne(id) {
 
   // alt forms to skip entirely: pikachu costumes/caps, koraidon/miraidon travel modes
   const skipAltFormsFor = new Set(['pikachu', 'koraidon', 'miraidon']);
+  // individual form slugs to always exclude (duplicates of other forms, etc.)
+  const skipFormSlugs = new Set(['greninja-battle-bond']);
   const filteredAltForms = skipAltFormsFor.has(p.name)
     ? []
-    : altForms.filter(n => !n.endsWith('-totem'));
+    : altForms.filter(n => !n.endsWith('-totem') && !skipFormSlugs.has(n));
 
   // fetch sprites, artwork, types, stats, and abilities for all form variants
   const allFormNames = [...megaForms, ...gmaxForms, ...regionalForms, ...filteredAltForms];

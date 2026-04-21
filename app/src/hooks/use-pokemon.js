@@ -42,19 +42,19 @@ export function usePokemonDetail(id) {
   return { pokemon, loading, error };
 }
 
-export function useCompare(ids = []) {
+export function useCompare(entries = []) {
   const [pokemon, setPokemon] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError]     = useState(null);
 
   useEffect(() => {
-    if (!ids.length) { setPokemon([]); return; }
+    if (!entries.length) { setPokemon([]); return; }
     setLoading(true);
-    comparePokemon(ids)
+    comparePokemon(entries)
       .then(setPokemon)
       .catch(err => setError(err.message))
       .finally(() => setLoading(false));
-  }, [ids.join(',')]);
+  }, [JSON.stringify(entries)]);
 
   return { pokemon, loading, error };
 }

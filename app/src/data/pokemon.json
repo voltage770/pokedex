@@ -5000,7 +5000,12 @@
             "base_value": 70
           }
         ],
-        "abilities": [],
+        "abilities": [
+          {
+            "ability_name": "magic-bounce",
+            "is_hidden": false
+          }
+        ],
         "flavor_text": "It flies by using the power of moonlight to control gravity within a radius of around it.",
         "height": 17,
         "weight": 423,
@@ -9583,7 +9588,12 @@
             "base_value": 70
           }
         ],
-        "abilities": [],
+        "abilities": [
+          {
+            "ability_name": "innards-out",
+            "is_hidden": false
+          }
+        ],
         "flavor_text": "The volume of this Pokémon's acid has increased due to Mega Evolution, filling its mouth. If it's not careful, the acid will overflow and spill out.",
         "height": 45,
         "weight": 1255,
@@ -15968,7 +15978,12 @@
             "base_value": 120
           }
         ],
-        "abilities": [],
+        "abilities": [
+          {
+            "ability_name": "huge-power",
+            "is_hidden": false
+          }
+        ],
         "flavor_text": "Its movements have become more humanlike. Whether it's simply trying to communicate or wants to supplant humanity is unclear.",
         "height": 23,
         "weight": 800,
@@ -19907,7 +19922,12 @@
             "base_value": 100
           }
         ],
-        "abilities": [],
+        "abilities": [
+          {
+            "ability_name": "multiscale",
+            "is_hidden": false
+          }
+        ],
         "flavor_text": "Mega Evolution has excessively powered up this Pokémon's feelings of kindness. It finishes off its opponents with mercy in its heart.",
         "height": 22,
         "weight": 2900,
@@ -20537,7 +20557,12 @@
             "base_value": 80
           }
         ],
-        "abilities": [],
+        "abilities": [
+          {
+            "ability_name": "mega-sol",
+            "is_hidden": false
+          }
+        ],
         "flavor_text": "This Pokémon can fire a tremendously powerful from its four flowers. Another name for this is Cannon.",
         "height": 24,
         "weight": 2010,
@@ -21302,7 +21327,12 @@
             "base_value": 78
           }
         ],
-        "abilities": [],
+        "abilities": [
+          {
+            "ability_name": "dragonize",
+            "is_hidden": false
+          }
+        ],
         "flavor_text": "With its arms and hoodlike fin, this Pokémon forms a gigantic set of jaws with a bite 10 times as powerful as Mega Feraligatr's actual jaws.",
         "height": 23,
         "weight": 1088,
@@ -28957,7 +28987,12 @@
             "base_value": 110
           }
         ],
-        "abilities": [],
+        "abilities": [
+          {
+            "ability_name": "stalwart",
+            "is_hidden": false
+          }
+        ],
         "flavor_text": "It flies faster than the speed of sound. After whipping up shock waves to send enemies flying, it finishes them off with its talons.",
         "height": 17,
         "weight": 404,
@@ -43305,7 +43340,12 @@
             "base_value": 65
           }
         ],
-        "abilities": [],
+        "abilities": [
+          {
+            "ability_name": "levitate",
+            "is_hidden": false
+          }
+        ],
         "flavor_text": "It vibrates its entire body to attack in all directions using sound waves. Any who hear the vibrations get so confused, they forget who they are.",
         "height": 12,
         "weight": 80,
@@ -56771,7 +56811,12 @@
             "base_value": 120
           }
         ],
-        "abilities": [],
+        "abilities": [
+          {
+            "ability_name": "snow-warning",
+            "is_hidden": false
+          }
+        ],
         "flavor_text": "This Pokémon can use eerie cold air imbued with ghost energy to freeze even insubstantial things, such as flames or the wind.",
         "height": 26,
         "weight": 296,
@@ -59277,7 +59322,12 @@
             "base_value": 75
           }
         ],
-        "abilities": [],
+        "abilities": [
+          {
+            "ability_name": "mold-breaker",
+            "is_hidden": false
+          }
+        ],
         "flavor_text": "Brandishing a blazing flame shaped like a serpentine spear, it rushes in to rescue its imperiled allies.",
         "height": 18,
         "weight": 1803,
@@ -62460,7 +62510,12 @@
             "base_value": 103
           }
         ],
-        "abilities": [],
+        "abilities": [
+          {
+            "ability_name": "piercing-drill",
+            "is_hidden": false
+          }
+        ],
         "flavor_text": "If this Pokémon brings its arms and head together to form a streamlined shape and spins at high speeds, it can destroy anything.",
         "height": 9,
         "weight": 600,
@@ -71338,7 +71393,12 @@
             "base_value": 90
           }
         ],
-        "abilities": [],
+        "abilities": [
+          {
+            "ability_name": "infiltrator",
+            "is_hidden": false
+          }
+        ],
         "flavor_text": "One of its eyes is a window linking our world with the afterlife. This Pokémon draws in hatred and converts it into power.",
         "height": 25,
         "weight": 696,
@@ -72808,7 +72868,12 @@
             "base_value": 55
           }
         ],
-        "abilities": [],
+        "abilities": [
+          {
+            "ability_name": "unseen-fist",
+            "is_hidden": false
+          }
+        ],
         "flavor_text": "The energy within Golurk has been stimulated by Mega Evolution. The Pokémon could explode at any moment.",
         "height": 40,
         "weight": 3300,
@@ -75895,7 +75960,12 @@
             "base_value": 44
           }
         ],
-        "abilities": [],
+        "abilities": [
+          {
+            "ability_name": "bulletproof",
+            "is_hidden": false
+          }
+        ],
         "flavor_text": "It has fortified armor and a will to defend at all costs. Both are absurdly strong.",
         "height": 16,
         "weight": 900,
@@ -76264,7 +76334,12 @@
             "base_value": 134
           }
         ],
-        "abilities": [],
+        "abilities": [
+          {
+            "ability_name": "levitate",
+            "is_hidden": false
+          }
+        ],
         "flavor_text": "It wields flaming branches to dazzle its opponents before incinerating them with a huge fireball.",
         "height": 15,
         "weight": 390,
@@ -76597,7 +76672,6 @@
     "gmax_forms": [],
     "regional_forms": [],
     "alt_forms": [
-      "greninja-battle-bond",
       "greninja-ash"
     ],
     "form_data": {
@@ -76636,61 +76710,16 @@
             "base_value": 142
           }
         ],
-        "abilities": [],
+        "abilities": [
+          {
+            "ability_name": "protean",
+            "is_hidden": false
+          }
+        ],
         "flavor_text": "This Pokémon spins a giant shuriken at high speed to make it float, then clings to it upside down to catch opponents unawares.",
         "height": 15,
         "weight": 400,
         "ev_yield": []
-      },
-      "greninja-battle-bond": {
-        "sprite_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10116.png",
-        "sprite_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10116.png",
-        "artwork_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10116.png",
-        "artwork_shiny": null,
-        "types": [
-          "water",
-          "dark"
-        ],
-        "stats": [
-          {
-            "stat_name": "hp",
-            "base_value": 72
-          },
-          {
-            "stat_name": "attack",
-            "base_value": 95
-          },
-          {
-            "stat_name": "defense",
-            "base_value": 67
-          },
-          {
-            "stat_name": "special-attack",
-            "base_value": 103
-          },
-          {
-            "stat_name": "special-defense",
-            "base_value": 71
-          },
-          {
-            "stat_name": "speed",
-            "base_value": 122
-          }
-        ],
-        "abilities": [
-          {
-            "ability_name": "battle-bond",
-            "is_hidden": false
-          }
-        ],
-        "height": 15,
-        "weight": 400,
-        "ev_yield": [
-          {
-            "stat_name": "speed",
-            "effort": 3
-          }
-        ]
       },
       "greninja-ash": {
         "sprite_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10117.png",
@@ -78100,7 +78129,12 @@
             "base_value": 102
           }
         ],
-        "abilities": [],
+        "abilities": [
+          {
+            "ability_name": "fairy-aura",
+            "is_hidden": false
+          }
+        ],
         "flavor_text": "The Eternal Flower has absorbed all the energy from Mega Evolution. The flower now attacks enemies on its own.",
         "height": 2,
         "weight": 1008,
@@ -78971,7 +79005,12 @@
             "base_value": 124
           }
         ],
-        "abilities": [],
+        "abilities": [
+          {
+            "ability_name": "trace",
+            "is_hidden": false
+          }
+        ],
         "flavor_text": "Mega Meowstic can use its psychic power to compress or expand anything. It overwhelms foes by contorting space itself.",
         "height": 8,
         "weight": 101,
@@ -81603,7 +81642,12 @@
             "base_value": 118
           }
         ],
-        "abilities": [],
+        "abilities": [
+          {
+            "ability_name": "no-guard",
+            "is_hidden": false
+          }
+        ],
         "flavor_text": "Mega Evolution has pumped up all its muscles. Hawlucha flexes to show off its strength.",
         "height": 10,
         "weight": 250,
@@ -86349,7 +86393,12 @@
             "base_value": 33
           }
         ],
-        "abilities": [],
+        "abilities": [
+          {
+            "ability_name": "iron-fist",
+            "is_hidden": false
+          }
+        ],
         "flavor_text": "It can pulverize reinforced concrete with a light swing of one of its fists, each of which is covered in a thick layer of ice.",
         "height": 26,
         "weight": 2528,
@@ -91360,7 +91409,12 @@
             "base_value": 36
           }
         ],
-        "abilities": [],
+        "abilities": [
+          {
+            "ability_name": "berserk",
+            "is_hidden": false
+          }
+        ],
         "flavor_text": "Drampa's cells have been invigorated, allowing it to regain its youth. It manipulates the atmosphere to summon storms.",
         "height": 30,
         "weight": 2405,
@@ -110958,7 +111012,12 @@
             "base_value": 75
           }
         ],
-        "abilities": [],
+        "abilities": [
+          {
+            "ability_name": "spicy-spray",
+            "is_hidden": false
+          }
+        ],
         "flavor_text": "Mega Evolution has dialed up this Pokémon's spiciness. It swings its 'necktie' around to wallop its foes.",
         "height": 12,
         "weight": 220,
@@ -112762,7 +112821,12 @@
             "base_value": 101
           }
         ],
-        "abilities": [],
+        "abilities": [
+          {
+            "ability_name": "adaptability",
+            "is_hidden": false
+          }
+        ],
         "flavor_text": "Glimmora's petals—now larger and separated from its main body—rotate around it to provide defense while scattering poisonous fragments.",
         "height": 28,
         "weight": 770,

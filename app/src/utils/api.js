@@ -1,4 +1,5 @@
 import ALL from '../data/pokemon.json';
+import { formatFormName } from './format-name';
 
 // name → id lookup for evo chain sprite resolution
 // includes species-name aliases for pokemon whose stored name has a form suffix
@@ -82,7 +83,7 @@ export const FORM_TO_BASE_ID = Object.fromEntries(
 
 // returns the form name to highlight in list cards for a given class filter
 // forms that exist in the data but should never be surfaced in the UI
-export const EXCLUDED_FORMS = new Set(['pikachu-alola-cap']);
+export const EXCLUDED_FORMS = new Set(['pikachu-alola-cap', 'greninja-battle-bond']);
 
 // returns all forms to expand into cards for a given class filter
 // single-form filters return at most one entry; multi-form filters expand all available.
@@ -116,7 +117,8 @@ function slim(p, formName) {
     generation:   p.generation,
     sprite_url:   p.sprite_url,
     sprite_shiny: p.sprite_shiny,
-    artwork_url:  formData?.artwork_url || formData?.sprite_url || p.artwork_url,
+    artwork_url:   formData?.artwork_url || formData?.sprite_url || p.artwork_url,
+    artwork_shiny: formData?.artwork_shiny || formData?.sprite_shiny || p.artwork_shiny,
     types:        formData?.types || p.types,
     stats:        p.stats,
     form:         formName || null,
@@ -513,9 +515,83 @@ export function getPokemonById(id) {
   return Promise.resolve({ ...pokemon, evolutions: [...evolutions, ...megaSteps], regionalEvolutions: buildRegionalEvolutions(pokemon) });
 }
 
-// multiple pokemon by id array for compare
-export function comparePokemon(ids = []) {
-  return Promise.resolve(ids.map(id => ALL.find(p => p.id === id)).filter(Boolean));
+// multiple pokemon by id array for compare, with optional form overrides
+// entries: [{ id, form? }, ...]
+export function comparePokemon(entries = []) {
+  return Promise.resolve(entries.map(({ id, form }) => {
+    const p = ALL.find(x => x.id === id);
+    if (!p) return null;
+    if (!form) return p;
+    const fd = p.form_data?.[form];
+    if (!fd) return p;
+    return {
+      ...p,
+      types:      fd.types      || p.types,
+      stats:      fd.stats      || p.stats,
+      abilities:  fd.abilities  || p.abilities,
+      sprite_url: fd.sprite_url || p.sprite_url,
+      artwork_url: fd.artwork_url || fd.sprite_url || p.artwork_url,
+      artwork_shiny: fd.artwork_shiny || fd.sprite_shiny || p.artwork_shiny,
+      height:     fd.height     ?? p.height,
+      weight:     fd.weight     ?? p.weight,
+      _form: form,
+    };
+  }).filter(Boolean));
+}
+
+// search that includes forms as separate results for the compare picker.
+// matches against both slugs and display names so queries like "mega rai",
+// "raichu alola", "alolan raichu" all work. tokens are order-independent.
+// results are ranked: name starts with query > name contains query.
+export function searchWithForms(query, limit = 12) {
+  if (!query?.trim()) return Promise.resolve([]);
+  const tokens = query.toLowerCase().split(/\s+/).filter(Boolean);
+  const tokensMatch = (text) => tokens.every(t => text.includes(t));
+  const startsWithFirst = tokens[0];
+
+  // score: 0 = starts with first token, 1 = contains only
+  function score(name, slug) {
+    if (name.startsWith(startsWithFirst) || slug.startsWith(startsWithFirst)) return 0;
+    return 1;
+  }
+
+  const hits = []; // { rank, item }
+
+  for (const p of ALL) {
+    const allForms = [
+      ...(p.mega_forms || []),
+      ...(p.gmax_forms || []),
+      ...(p.regional_forms || []),
+      ...(p.alt_forms || []),
+    ].filter(f => p.form_data?.[f]);
+
+    const baseName = formatFormName(p.name).toLowerCase();
+    const baseSlug = p.name;
+    const baseHit = tokensMatch(baseName) || tokensMatch(baseSlug);
+
+    const formHits = allForms.filter(f => {
+      const display = formatFormName(f).toLowerCase();
+      return tokensMatch(display) || tokensMatch(f);
+    });
+
+    if (baseHit && formHits.length === 0) {
+      const rank = score(baseName, baseSlug);
+      hits.push({ rank, item: slim(p, null) });
+      for (const f of allForms) {
+        hits.push({ rank, item: slim(p, f) });
+      }
+    } else if (formHits.length > 0) {
+      const baseRank = score(baseName, baseSlug);
+      if (baseHit) hits.push({ rank: baseRank, item: slim(p, null) });
+      for (const f of formHits) {
+        const display = formatFormName(f).toLowerCase();
+        hits.push({ rank: score(display, f), item: slim(p, f) });
+      }
+    }
+  }
+
+  hits.sort((a, b) => a.rank - b.rank);
+  return Promise.resolve(hits.slice(0, limit).map(h => h.item));
 }
 
 // all distinct types sorted

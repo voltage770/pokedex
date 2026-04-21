@@ -1,0 +1,1298 @@
+[
+  {
+    "id": 1,
+    "name": "cheri",
+    "item_name": "cheri-berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/cheri-berry.png",
+    "growth_time": 3,
+    "max_harvest": 5,
+    "size": 20,
+    "smoothness": 25,
+    "soil_dryness": 15,
+    "firmness": "soft",
+    "natural_gift_type": "fire",
+    "natural_gift_power": 60,
+    "flavors": {
+      "spicy": 10
+    },
+    "effect": "Held: Consumed when paralyzed to cure paralysis.",
+    "flavor_text": "A Berry to be consumed by Pokémon. If a Pokémon holds one, it can recover from paralysis on its own in battle."
+  },
+  {
+    "id": 2,
+    "name": "chesto",
+    "item_name": "chesto-berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/chesto-berry.png",
+    "growth_time": 3,
+    "max_harvest": 5,
+    "size": 80,
+    "smoothness": 25,
+    "soil_dryness": 15,
+    "firmness": "super-hard",
+    "natural_gift_type": "water",
+    "natural_gift_power": 60,
+    "flavors": {
+      "dry": 10
+    },
+    "effect": "Held: Consumed when asleep to cure sleep.",
+    "flavor_text": "A Berry to be consumed by Pokémon. If a Pokémon holds one, it can recover from sleep on its own in battle."
+  },
+  {
+    "id": 3,
+    "name": "pecha",
+    "item_name": "pecha-berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/pecha-berry.png",
+    "growth_time": 3,
+    "max_harvest": 5,
+    "size": 40,
+    "smoothness": 25,
+    "soil_dryness": 15,
+    "firmness": "very-soft",
+    "natural_gift_type": "electric",
+    "natural_gift_power": 60,
+    "flavors": {
+      "sweet": 10
+    },
+    "effect": "Held: Consumed when poisoned to cure poison.",
+    "flavor_text": "A Berry to be consumed by Pokémon. If a Pokémon holds one, it can recover from poisoning on its own in battle."
+  },
+  {
+    "id": 4,
+    "name": "rawst",
+    "item_name": "rawst-berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/rawst-berry.png",
+    "growth_time": 3,
+    "max_harvest": 5,
+    "size": 32,
+    "smoothness": 25,
+    "soil_dryness": 15,
+    "firmness": "hard",
+    "natural_gift_type": "grass",
+    "natural_gift_power": 60,
+    "flavors": {
+      "bitter": 10
+    },
+    "effect": "Held: Consumed when burned to cure a burn.",
+    "flavor_text": "A Berry to be consumed by Pokémon. If a Pokémon holds one, it can recover from a burn on its own in battle."
+  },
+  {
+    "id": 5,
+    "name": "aspear",
+    "item_name": "aspear-berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/aspear-berry.png",
+    "growth_time": 3,
+    "max_harvest": 5,
+    "size": 50,
+    "smoothness": 25,
+    "soil_dryness": 15,
+    "firmness": "super-hard",
+    "natural_gift_type": "ice",
+    "natural_gift_power": 60,
+    "flavors": {
+      "sour": 10
+    },
+    "effect": "Held: Consumed when frozen to cure frozen.",
+    "flavor_text": "A Berry to be consumed by Pokémon. If a Pokémon holds one, it can recover from being frozen on its own in battle."
+  },
+  {
+    "id": 6,
+    "name": "leppa",
+    "item_name": "leppa-berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/leppa-berry.png",
+    "growth_time": 4,
+    "max_harvest": 5,
+    "size": 28,
+    "smoothness": 20,
+    "soil_dryness": 15,
+    "firmness": "very-hard",
+    "natural_gift_type": "fighting",
+    "natural_gift_power": 60,
+    "flavors": {
+      "spicy": 10,
+      "sweet": 10,
+      "bitter": 10,
+      "sour": 10
+    },
+    "effect": "Held: Consumed when a move runs out of PP to restore its PP by 10.",
+    "flavor_text": "A Berry to be consumed by Pokémon. If a Pokémon holds one, it can restore 10 PP to a depleted move during battle."
+  },
+  {
+    "id": 7,
+    "name": "oran",
+    "item_name": "oran-berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/oran-berry.png",
+    "growth_time": 4,
+    "max_harvest": 5,
+    "size": 35,
+    "smoothness": 20,
+    "soil_dryness": 15,
+    "firmness": "super-hard",
+    "natural_gift_type": "poison",
+    "natural_gift_power": 60,
+    "flavors": {
+      "spicy": 10,
+      "dry": 10,
+      "bitter": 10,
+      "sour": 10
+    },
+    "effect": "Held: Consumed at 1/2 max HP to recover 10 HP.",
+    "flavor_text": "A Berry to be consumed by Pokémon. If a Pokémon holds one, it can restore its own HP by 10 points during battle."
+  },
+  {
+    "id": 8,
+    "name": "persim",
+    "item_name": "persim-berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/persim-berry.png",
+    "growth_time": 4,
+    "max_harvest": 5,
+    "size": 47,
+    "smoothness": 20,
+    "soil_dryness": 15,
+    "firmness": "hard",
+    "natural_gift_type": "ground",
+    "natural_gift_power": 60,
+    "flavors": {
+      "spicy": 10,
+      "dry": 10,
+      "sweet": 10,
+      "sour": 10
+    },
+    "effect": "Held: Consumed when confused to cure confusion.",
+    "flavor_text": "A Berry to be consumed by Pokémon. If a Pokémon holds one, it can recover from confusion on its own in battle."
+  },
+  {
+    "id": 9,
+    "name": "lum",
+    "item_name": "lum-berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/lum-berry.png",
+    "growth_time": 12,
+    "max_harvest": 5,
+    "size": 34,
+    "smoothness": 20,
+    "soil_dryness": 8,
+    "firmness": "super-hard",
+    "natural_gift_type": "flying",
+    "natural_gift_power": 60,
+    "flavors": {
+      "spicy": 10,
+      "dry": 10,
+      "sweet": 10,
+      "bitter": 10
+    },
+    "effect": "Held: Consumed to cure any status condition or confusion.",
+    "flavor_text": "A Berry to be consumed by Pokémon. If a Pokémon holds one, it can recover from any status condition during battle."
+  },
+  {
+    "id": 10,
+    "name": "sitrus",
+    "item_name": "sitrus-berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/sitrus-berry.png",
+    "growth_time": 8,
+    "max_harvest": 5,
+    "size": 95,
+    "smoothness": 20,
+    "soil_dryness": 7,
+    "firmness": "very-hard",
+    "natural_gift_type": "psychic",
+    "natural_gift_power": 60,
+    "flavors": {
+      "dry": 10,
+      "sweet": 10,
+      "bitter": 10,
+      "sour": 10
+    },
+    "effect": "Held: Consumed at 1/2 max HP to recover 1/4 max HP.",
+    "flavor_text": "A Berry to be consumed by Pokémon. If a Pokémon holds one, it can restore its own HP by a small amount during battle."
+  },
+  {
+    "id": 11,
+    "name": "figy",
+    "item_name": "figy-berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/figy-berry.png",
+    "growth_time": 5,
+    "max_harvest": 5,
+    "size": 100,
+    "smoothness": 25,
+    "soil_dryness": 10,
+    "firmness": "soft",
+    "natural_gift_type": "bug",
+    "natural_gift_power": 60,
+    "flavors": {
+      "spicy": 15
+    },
+    "effect": "Held: Consumed at 1/2 max HP to restore 1/8 max HP. Confuses Pokémon that dislike spicy flavor.",
+    "flavor_text": "If held by a Pokémon, it restores the user’s HP in a pinch, but it will cause confusion if the user hates the taste."
+  },
+  {
+    "id": 12,
+    "name": "wiki",
+    "item_name": "wiki-berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/wiki-berry.png",
+    "growth_time": 5,
+    "max_harvest": 5,
+    "size": 115,
+    "smoothness": 25,
+    "soil_dryness": 10,
+    "firmness": "hard",
+    "natural_gift_type": "rock",
+    "natural_gift_power": 60,
+    "flavors": {
+      "dry": 15
+    },
+    "effect": "Held: Consumed at 1/2 max HP to restore 1/8 max HP. Confuses Pokémon that dislike dry flavor.",
+    "flavor_text": "If held by a Pokémon, it restores the user’s HP in a pinch, but it will cause confusion if the user hates the taste."
+  },
+  {
+    "id": 13,
+    "name": "mago",
+    "item_name": "mago-berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/mago-berry.png",
+    "growth_time": 5,
+    "max_harvest": 5,
+    "size": 126,
+    "smoothness": 25,
+    "soil_dryness": 10,
+    "firmness": "hard",
+    "natural_gift_type": "ghost",
+    "natural_gift_power": 60,
+    "flavors": {
+      "sweet": 15
+    },
+    "effect": "Held: Consumed at 1/2 max HP to restore 1/8 max HP. Confuses Pokémon that dislike sweet flavor.",
+    "flavor_text": "If held by a Pokémon, it restores the user’s HP in a pinch, but it will cause confusion if the user hates the taste."
+  },
+  {
+    "id": 14,
+    "name": "aguav",
+    "item_name": "aguav-berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/aguav-berry.png",
+    "growth_time": 5,
+    "max_harvest": 5,
+    "size": 64,
+    "smoothness": 25,
+    "soil_dryness": 10,
+    "firmness": "super-hard",
+    "natural_gift_type": "dragon",
+    "natural_gift_power": 60,
+    "flavors": {
+      "bitter": 15
+    },
+    "effect": "Held: Consumed at 1/2 max HP to restore 1/8 max HP. Confuses Pokémon that dislike bitter flavor.",
+    "flavor_text": "If held by a Pokémon, it restores the user’s HP in a pinch, but it will cause confusion if the user hates the taste."
+  },
+  {
+    "id": 15,
+    "name": "iapapa",
+    "item_name": "iapapa-berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/iapapa-berry.png",
+    "growth_time": 5,
+    "max_harvest": 5,
+    "size": 223,
+    "smoothness": 25,
+    "soil_dryness": 10,
+    "firmness": "soft",
+    "natural_gift_type": "dark",
+    "natural_gift_power": 60,
+    "flavors": {
+      "sour": 15
+    },
+    "effect": "Held: Consumed at 1/2 max HP to restore 1/8 max HP. Confuses Pokémon that dislike sour flavor.",
+    "flavor_text": "If held by a Pokémon, it restores the user’s HP in a pinch, but it will cause confusion if the user hates the taste."
+  },
+  {
+    "id": 16,
+    "name": "razz",
+    "item_name": "razz-berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/razz-berry.png",
+    "growth_time": 2,
+    "max_harvest": 10,
+    "size": 120,
+    "smoothness": 20,
+    "soil_dryness": 35,
+    "firmness": "very-hard",
+    "natural_gift_type": "steel",
+    "natural_gift_power": 60,
+    "flavors": {
+      "spicy": 10,
+      "dry": 10
+    },
+    "effect": "Used for creating PokéBlocks and Poffins.",
+    "flavor_text": "Used to make Pokéblocks that will enhance your Coolness. Its red flesh is spicy when eaten."
+  },
+  {
+    "id": 17,
+    "name": "bluk",
+    "item_name": "bluk-berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/bluk-berry.png",
+    "growth_time": 2,
+    "max_harvest": 10,
+    "size": 108,
+    "smoothness": 20,
+    "soil_dryness": 35,
+    "firmness": "soft",
+    "natural_gift_type": "fire",
+    "natural_gift_power": 70,
+    "flavors": {
+      "dry": 10,
+      "sweet": 10
+    },
+    "effect": "Used for creating PokéBlocks and Poffins.",
+    "flavor_text": "Used to make Pokéblocks that will enhance your Beauty. Its blue flesh is dry when eaten."
+  },
+  {
+    "id": 18,
+    "name": "nanab",
+    "item_name": "nanab-berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/nanab-berry.png",
+    "growth_time": 2,
+    "max_harvest": 10,
+    "size": 77,
+    "smoothness": 20,
+    "soil_dryness": 35,
+    "firmness": "very-hard",
+    "natural_gift_type": "water",
+    "natural_gift_power": 70,
+    "flavors": {
+      "sweet": 10,
+      "bitter": 10
+    },
+    "effect": "Used for creating PokéBlocks and Poffins.",
+    "flavor_text": "Used to make Pokéblocks that will enhance your Cuteness. Its pink flesh is sweet when eaten."
+  },
+  {
+    "id": 19,
+    "name": "wepear",
+    "item_name": "wepear-berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/wepear-berry.png",
+    "growth_time": 2,
+    "max_harvest": 10,
+    "size": 74,
+    "smoothness": 20,
+    "soil_dryness": 35,
+    "firmness": "super-hard",
+    "natural_gift_type": "electric",
+    "natural_gift_power": 70,
+    "flavors": {
+      "bitter": 10,
+      "sour": 10
+    },
+    "effect": "Used for creating PokéBlocks and Poffins.",
+    "flavor_text": "Used to make Pokéblocks that will enhance your Cleverness. Its green flesh is bitter when eaten."
+  },
+  {
+    "id": 20,
+    "name": "pinap",
+    "item_name": "pinap-berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/pinap-berry.png",
+    "growth_time": 2,
+    "max_harvest": 10,
+    "size": 80,
+    "smoothness": 20,
+    "soil_dryness": 35,
+    "firmness": "hard",
+    "natural_gift_type": "grass",
+    "natural_gift_power": 70,
+    "flavors": {
+      "spicy": 10,
+      "sour": 10
+    },
+    "effect": "Used for creating PokéBlocks and Poffins.",
+    "flavor_text": "Used to make Pokéblocks that will enhance your Toughness. Its yellow flesh is sour when eaten."
+  },
+  {
+    "id": 21,
+    "name": "pomeg",
+    "item_name": "pomeg-berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/pomeg-berry.png",
+    "growth_time": 8,
+    "max_harvest": 5,
+    "size": 135,
+    "smoothness": 20,
+    "soil_dryness": 8,
+    "firmness": "very-hard",
+    "natural_gift_type": "ice",
+    "natural_gift_power": 70,
+    "flavors": {
+      "spicy": 10,
+      "sweet": 10,
+      "bitter": 10
+    },
+    "effect": "Drops HP Effort Values by 10 and raises happiness.",
+    "flavor_text": "A Berry to be consumed by Pokémon. Using it on a Pokémon makes it more friendly but lowers its HP base points."
+  },
+  {
+    "id": 22,
+    "name": "kelpsy",
+    "item_name": "kelpsy-berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/kelpsy-berry.png",
+    "growth_time": 8,
+    "max_harvest": 5,
+    "size": 150,
+    "smoothness": 20,
+    "soil_dryness": 8,
+    "firmness": "hard",
+    "natural_gift_type": "fighting",
+    "natural_gift_power": 70,
+    "flavors": {
+      "dry": 10,
+      "bitter": 10,
+      "sour": 10
+    },
+    "effect": "Drops Attack Effort Values by 10 and raises happiness.",
+    "flavor_text": "A Berry to be consumed by Pokémon. Using it on a Pokémon makes it more friendly but lowers its Attack base points."
+  },
+  {
+    "id": 23,
+    "name": "qualot",
+    "item_name": "qualot-berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/qualot-berry.png",
+    "growth_time": 8,
+    "max_harvest": 5,
+    "size": 110,
+    "smoothness": 20,
+    "soil_dryness": 8,
+    "firmness": "hard",
+    "natural_gift_type": "poison",
+    "natural_gift_power": 70,
+    "flavors": {
+      "spicy": 10,
+      "sweet": 10,
+      "sour": 10
+    },
+    "effect": "Drops Defense Effort Values by 10 and raises happiness.",
+    "flavor_text": "A Berry to be consumed by Pokémon. Using it on a Pokémon makes it more friendly but lowers its Defense base points."
+  },
+  {
+    "id": 24,
+    "name": "hondew",
+    "item_name": "hondew-berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/hondew-berry.png",
+    "growth_time": 8,
+    "max_harvest": 5,
+    "size": 162,
+    "smoothness": 20,
+    "soil_dryness": 8,
+    "firmness": "hard",
+    "natural_gift_type": "ground",
+    "natural_gift_power": 70,
+    "flavors": {
+      "spicy": 10,
+      "dry": 10,
+      "bitter": 10
+    },
+    "effect": "Drops Special Attack Effort Values by 10 and raises happiness.",
+    "flavor_text": "A Berry to be consumed by Pokémon. Using it on a Pokémon makes it more friendly but lowers its Sp. Atk base points."
+  },
+  {
+    "id": 25,
+    "name": "grepa",
+    "item_name": "grepa-berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/grepa-berry.png",
+    "growth_time": 8,
+    "max_harvest": 5,
+    "size": 149,
+    "smoothness": 20,
+    "soil_dryness": 8,
+    "firmness": "soft",
+    "natural_gift_type": "flying",
+    "natural_gift_power": 70,
+    "flavors": {
+      "dry": 10,
+      "sweet": 10,
+      "sour": 10
+    },
+    "effect": "Drops Special Defense Effort Values by 10 and raises happiness.",
+    "flavor_text": "A Berry to be consumed by Pokémon. Using it on a Pokémon makes it more friendly but lowers its Sp. Def base points."
+  },
+  {
+    "id": 26,
+    "name": "tamato",
+    "item_name": "tamato-berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tamato-berry.png",
+    "growth_time": 8,
+    "max_harvest": 5,
+    "size": 200,
+    "smoothness": 30,
+    "soil_dryness": 8,
+    "firmness": "soft",
+    "natural_gift_type": "psychic",
+    "natural_gift_power": 70,
+    "flavors": {
+      "spicy": 20,
+      "dry": 10
+    },
+    "effect": "Drops Speed Effort Values by 10 and raises happiness.",
+    "flavor_text": "A Berry to be consumed by Pokémon. Using it on a Pokémon makes it more friendly but lowers its Speed base points."
+  },
+  {
+    "id": 27,
+    "name": "cornn",
+    "item_name": "cornn-berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/cornn-berry.png",
+    "growth_time": 6,
+    "max_harvest": 10,
+    "size": 75,
+    "smoothness": 30,
+    "soil_dryness": 10,
+    "firmness": "hard",
+    "natural_gift_type": "bug",
+    "natural_gift_power": 70,
+    "flavors": {
+      "dry": 20,
+      "sweet": 10
+    },
+    "effect": "Used for creating PokéBlocks and Poffins.",
+    "flavor_text": "Used to make Pokéblocks that will enhance your Beauty, this Berry is rare in other regions."
+  },
+  {
+    "id": 28,
+    "name": "magost",
+    "item_name": "magost-berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/magost-berry.png",
+    "growth_time": 6,
+    "max_harvest": 10,
+    "size": 140,
+    "smoothness": 30,
+    "soil_dryness": 10,
+    "firmness": "hard",
+    "natural_gift_type": "rock",
+    "natural_gift_power": 70,
+    "flavors": {
+      "sweet": 20,
+      "bitter": 10
+    },
+    "effect": "Used for creating PokéBlocks and Poffins.",
+    "flavor_text": "Used to make Pokéblocks that will enhance your Cuteness, this Berry is rare in other regions."
+  },
+  {
+    "id": 29,
+    "name": "rabuta",
+    "item_name": "rabuta-berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/rabuta-berry.png",
+    "growth_time": 6,
+    "max_harvest": 10,
+    "size": 226,
+    "smoothness": 30,
+    "soil_dryness": 10,
+    "firmness": "soft",
+    "natural_gift_type": "ghost",
+    "natural_gift_power": 70,
+    "flavors": {
+      "bitter": 20,
+      "sour": 10
+    },
+    "effect": "Used for creating PokéBlocks and Poffins.",
+    "flavor_text": "Used to make Pokéblocks that will enhance your Cleverness, this Berry is rare in other regions."
+  },
+  {
+    "id": 30,
+    "name": "nomel",
+    "item_name": "nomel-berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/nomel-berry.png",
+    "growth_time": 6,
+    "max_harvest": 10,
+    "size": 285,
+    "smoothness": 30,
+    "soil_dryness": 10,
+    "firmness": "super-hard",
+    "natural_gift_type": "dragon",
+    "natural_gift_power": 70,
+    "flavors": {
+      "spicy": 10,
+      "sour": 20
+    },
+    "effect": "Used for creating PokéBlocks and Poffins.",
+    "flavor_text": "Used to make Pokéblocks that will enhance your Toughness, this Berry is rare in other regions."
+  },
+  {
+    "id": 31,
+    "name": "spelon",
+    "item_name": "spelon-berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/spelon-berry.png",
+    "growth_time": 15,
+    "max_harvest": 15,
+    "size": 133,
+    "smoothness": 35,
+    "soil_dryness": 8,
+    "firmness": "soft",
+    "natural_gift_type": "dark",
+    "natural_gift_power": 70,
+    "flavors": {
+      "spicy": 30,
+      "dry": 10
+    },
+    "effect": "Used for creating PokéBlocks and Poffins.",
+    "flavor_text": "Used to make Pokéblocks that will enhance your Cuteness, this Berry is rare in other regions."
+  },
+  {
+    "id": 32,
+    "name": "pamtre",
+    "item_name": "pamtre-berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/pamtre-berry.png",
+    "growth_time": 15,
+    "max_harvest": 15,
+    "size": 244,
+    "smoothness": 35,
+    "soil_dryness": 8,
+    "firmness": "very-soft",
+    "natural_gift_type": "steel",
+    "natural_gift_power": 70,
+    "flavors": {
+      "dry": 30,
+      "sweet": 10
+    },
+    "effect": "Used for creating PokéBlocks and Poffins.",
+    "flavor_text": "Used to make Pokéblocks that will enhance your Beauty, this Berry is rare in other regions."
+  },
+  {
+    "id": 33,
+    "name": "watmel",
+    "item_name": "watmel-berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/watmel-berry.png",
+    "growth_time": 15,
+    "max_harvest": 15,
+    "size": 250,
+    "smoothness": 35,
+    "soil_dryness": 8,
+    "firmness": "soft",
+    "natural_gift_type": "fire",
+    "natural_gift_power": 80,
+    "flavors": {
+      "sweet": 30,
+      "bitter": 10
+    },
+    "effect": "Used for creating PokéBlocks and Poffins.",
+    "flavor_text": "Used to make Pokéblocks that will enhance your Cleverness, this Berry is rare in other regions."
+  },
+  {
+    "id": 34,
+    "name": "durin",
+    "item_name": "durin-berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/durin-berry.png",
+    "growth_time": 15,
+    "max_harvest": 15,
+    "size": 280,
+    "smoothness": 35,
+    "soil_dryness": 8,
+    "firmness": "hard",
+    "natural_gift_type": "water",
+    "natural_gift_power": 80,
+    "flavors": {
+      "bitter": 30,
+      "sour": 10
+    },
+    "effect": "Used for creating PokéBlocks and Poffins.",
+    "flavor_text": "Used to make Pokéblocks that will enhance your Cleverness, this Berry is rare in other regions."
+  },
+  {
+    "id": 35,
+    "name": "belue",
+    "item_name": "belue-berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/belue-berry.png",
+    "growth_time": 15,
+    "max_harvest": 15,
+    "size": 300,
+    "smoothness": 35,
+    "soil_dryness": 8,
+    "firmness": "very-soft",
+    "natural_gift_type": "electric",
+    "natural_gift_power": 80,
+    "flavors": {
+      "spicy": 10,
+      "sour": 30
+    },
+    "effect": "Used for creating PokéBlocks and Poffins.",
+    "flavor_text": "Used to make Pokéblocks that will enhance your Beauty, this Berry is rare in other regions."
+  },
+  {
+    "id": 36,
+    "name": "occa",
+    "item_name": "occa-berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/occa-berry.png",
+    "growth_time": 18,
+    "max_harvest": 5,
+    "size": 90,
+    "smoothness": 30,
+    "soil_dryness": 6,
+    "firmness": "super-hard",
+    "natural_gift_type": "fire",
+    "natural_gift_power": 60,
+    "flavors": {
+      "spicy": 15,
+      "sweet": 10
+    },
+    "effect": "Held: Consumed when struck by a super-effective Fire-type attack to halve the damage.",
+    "flavor_text": "If held by a Pokémon, this Berry will lessen the damage taken from one supereffective Fire-type attack."
+  },
+  {
+    "id": 37,
+    "name": "passho",
+    "item_name": "passho-berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/passho-berry.png",
+    "growth_time": 18,
+    "max_harvest": 5,
+    "size": 33,
+    "smoothness": 30,
+    "soil_dryness": 6,
+    "firmness": "soft",
+    "natural_gift_type": "water",
+    "natural_gift_power": 60,
+    "flavors": {
+      "dry": 15,
+      "bitter": 10
+    },
+    "effect": "Held: Consumed when struck by a super-effective Water-type attack to halve the damage.",
+    "flavor_text": "If held by a Pokémon, this Berry will lessen the damage taken from one supereffective Water-type attack."
+  },
+  {
+    "id": 38,
+    "name": "wacan",
+    "item_name": "wacan-berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/wacan-berry.png",
+    "growth_time": 18,
+    "max_harvest": 5,
+    "size": 250,
+    "smoothness": 30,
+    "soil_dryness": 6,
+    "firmness": "very-soft",
+    "natural_gift_type": "electric",
+    "natural_gift_power": 60,
+    "flavors": {
+      "sweet": 15,
+      "sour": 10
+    },
+    "effect": "Held: Consumed when struck by a super-effective Electric-type attack to halve the damage.",
+    "flavor_text": "If held by a Pokémon, this Berry will lessen the damage taken from one supereffective Electric-type attack."
+  },
+  {
+    "id": 39,
+    "name": "rindo",
+    "item_name": "rindo-berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/rindo-berry.png",
+    "growth_time": 18,
+    "max_harvest": 5,
+    "size": 156,
+    "smoothness": 30,
+    "soil_dryness": 6,
+    "firmness": "soft",
+    "natural_gift_type": "grass",
+    "natural_gift_power": 60,
+    "flavors": {
+      "spicy": 10,
+      "bitter": 15
+    },
+    "effect": "Held: Consumed when struck by a super-effective Grass-type attack to halve the damage.",
+    "flavor_text": "If held by a Pokémon, this Berry will lessen the damage taken from one supereffective Grass-type attack."
+  },
+  {
+    "id": 40,
+    "name": "yache",
+    "item_name": "yache-berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/yache-berry.png",
+    "growth_time": 18,
+    "max_harvest": 5,
+    "size": 135,
+    "smoothness": 30,
+    "soil_dryness": 6,
+    "firmness": "very-hard",
+    "natural_gift_type": "ice",
+    "natural_gift_power": 60,
+    "flavors": {
+      "dry": 10,
+      "sour": 15
+    },
+    "effect": "Held: Consumed when struck by a super-effective Ice-type attack to halve the damage.",
+    "flavor_text": "If held by a Pokémon, this Berry will lessen the damage taken from one supereffective Ice-type attack."
+  },
+  {
+    "id": 41,
+    "name": "chople",
+    "item_name": "chople-berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/chople-berry.png",
+    "growth_time": 18,
+    "max_harvest": 5,
+    "size": 77,
+    "smoothness": 30,
+    "soil_dryness": 6,
+    "firmness": "soft",
+    "natural_gift_type": "fighting",
+    "natural_gift_power": 60,
+    "flavors": {
+      "spicy": 15,
+      "bitter": 10
+    },
+    "effect": "Held: Consumed when struck by a super-effective Fighting-type attack to halve the damage.",
+    "flavor_text": "If held by a Pokémon, this Berry will lessen the damage taken from one supereffective Fighting-type attack."
+  },
+  {
+    "id": 42,
+    "name": "kebia",
+    "item_name": "kebia-berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/kebia-berry.png",
+    "growth_time": 18,
+    "max_harvest": 5,
+    "size": 90,
+    "smoothness": 30,
+    "soil_dryness": 6,
+    "firmness": "hard",
+    "natural_gift_type": "poison",
+    "natural_gift_power": 60,
+    "flavors": {
+      "dry": 15,
+      "sour": 10
+    },
+    "effect": "Held: Consumed when struck by a super-effective Poison-type attack to halve the damage.",
+    "flavor_text": "If held by a Pokémon, this Berry will lessen the damage taken from one supereffective Poison-type attack."
+  },
+  {
+    "id": 43,
+    "name": "shuca",
+    "item_name": "shuca-berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/shuca-berry.png",
+    "growth_time": 18,
+    "max_harvest": 5,
+    "size": 42,
+    "smoothness": 30,
+    "soil_dryness": 6,
+    "firmness": "soft",
+    "natural_gift_type": "ground",
+    "natural_gift_power": 60,
+    "flavors": {
+      "spicy": 10,
+      "sweet": 15
+    },
+    "effect": "Held: Consumed when struck by a super-effective Ground-type attack to halve the damage.",
+    "flavor_text": "If held by a Pokémon, this Berry will lessen the damage taken from one supereffective Ground-type attack."
+  },
+  {
+    "id": 44,
+    "name": "coba",
+    "item_name": "coba-berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/coba-berry.png",
+    "growth_time": 18,
+    "max_harvest": 5,
+    "size": 278,
+    "smoothness": 30,
+    "soil_dryness": 6,
+    "firmness": "very-hard",
+    "natural_gift_type": "flying",
+    "natural_gift_power": 60,
+    "flavors": {
+      "dry": 10,
+      "bitter": 15
+    },
+    "effect": "Held: Consumed when struck by a super-effective Flying-type attack to halve the damage.",
+    "flavor_text": "If held by a Pokémon, this Berry will lessen the damage taken from one supereffective Flying-type attack."
+  },
+  {
+    "id": 45,
+    "name": "payapa",
+    "item_name": "payapa-berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/payapa-berry.png",
+    "growth_time": 18,
+    "max_harvest": 5,
+    "size": 252,
+    "smoothness": 30,
+    "soil_dryness": 6,
+    "firmness": "soft",
+    "natural_gift_type": "psychic",
+    "natural_gift_power": 60,
+    "flavors": {
+      "sweet": 10,
+      "sour": 15
+    },
+    "effect": "Held: Consumed when struck by a super-effective Psychic-type attack to halve the damage.",
+    "flavor_text": "If held by a Pokémon, this Berry will lessen the damage taken from one supereffective Psychic-type attack."
+  },
+  {
+    "id": 46,
+    "name": "tanga",
+    "item_name": "tanga-berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tanga-berry.png",
+    "growth_time": 18,
+    "max_harvest": 5,
+    "size": 42,
+    "smoothness": 35,
+    "soil_dryness": 6,
+    "firmness": "very-soft",
+    "natural_gift_type": "bug",
+    "natural_gift_power": 60,
+    "flavors": {
+      "spicy": 20,
+      "sour": 10
+    },
+    "effect": "Held: Consumed when struck by a super-effective Bug-type attack to halve the damage.",
+    "flavor_text": "If held by a Pokémon, this Berry will lessen the damage taken from one supereffective Bug-type attack."
+  },
+  {
+    "id": 47,
+    "name": "charti",
+    "item_name": "charti-berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/charti-berry.png",
+    "growth_time": 18,
+    "max_harvest": 5,
+    "size": 28,
+    "smoothness": 35,
+    "soil_dryness": 6,
+    "firmness": "very-soft",
+    "natural_gift_type": "rock",
+    "natural_gift_power": 60,
+    "flavors": {
+      "spicy": 10,
+      "dry": 20
+    },
+    "effect": "Held: Consumed when struck by a super-effective Rock-type attack to halve the damage.",
+    "flavor_text": "If held by a Pokémon, this Berry will lessen the damage taken from one supereffective Rock-type attack."
+  },
+  {
+    "id": 48,
+    "name": "kasib",
+    "item_name": "kasib-berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/kasib-berry.png",
+    "growth_time": 18,
+    "max_harvest": 5,
+    "size": 144,
+    "smoothness": 35,
+    "soil_dryness": 6,
+    "firmness": "hard",
+    "natural_gift_type": "ghost",
+    "natural_gift_power": 60,
+    "flavors": {
+      "dry": 10,
+      "sweet": 20
+    },
+    "effect": "Held: Consumed when struck by a super-effective Ghost-type attack to halve the damage.",
+    "flavor_text": "If held by a Pokémon, this Berry will lessen the damage taken from one supereffective Ghost-type attack."
+  },
+  {
+    "id": 49,
+    "name": "haban",
+    "item_name": "haban-berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/haban-berry.png",
+    "growth_time": 18,
+    "max_harvest": 5,
+    "size": 23,
+    "smoothness": 35,
+    "soil_dryness": 6,
+    "firmness": "soft",
+    "natural_gift_type": "dragon",
+    "natural_gift_power": 60,
+    "flavors": {
+      "sweet": 10,
+      "bitter": 20
+    },
+    "effect": "Held: Consumed when struck by a super-effective Dragon-type attack to halve the damage.",
+    "flavor_text": "If held by a Pokémon, this Berry will lessen the damage taken from one supereffective Dragon-type attack."
+  },
+  {
+    "id": 50,
+    "name": "colbur",
+    "item_name": "colbur-berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/colbur-berry.png",
+    "growth_time": 18,
+    "max_harvest": 5,
+    "size": 39,
+    "smoothness": 35,
+    "soil_dryness": 6,
+    "firmness": "super-hard",
+    "natural_gift_type": "dark",
+    "natural_gift_power": 60,
+    "flavors": {
+      "bitter": 10,
+      "sour": 20
+    },
+    "effect": "Held: Consumed when struck by a super-effective Dark-type attack to halve the damage.",
+    "flavor_text": "If held by a Pokémon, this Berry will lessen the damage taken from one supereffective Dark-type attack."
+  },
+  {
+    "id": 51,
+    "name": "babiri",
+    "item_name": "babiri-berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/babiri-berry.png",
+    "growth_time": 18,
+    "max_harvest": 5,
+    "size": 265,
+    "smoothness": 35,
+    "soil_dryness": 6,
+    "firmness": "super-hard",
+    "natural_gift_type": "steel",
+    "natural_gift_power": 60,
+    "flavors": {
+      "spicy": 25,
+      "dry": 10
+    },
+    "effect": "Held: Consumed when struck by a super-effective Steel-type attack to halve the damage.",
+    "flavor_text": "If held by a Pokémon, this Berry will lessen the damage taken from one supereffective Steel-type attack."
+  },
+  {
+    "id": 52,
+    "name": "chilan",
+    "item_name": "chilan-berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/chilan-berry.png",
+    "growth_time": 18,
+    "max_harvest": 5,
+    "size": 34,
+    "smoothness": 35,
+    "soil_dryness": 6,
+    "firmness": "very-soft",
+    "natural_gift_type": "normal",
+    "natural_gift_power": 60,
+    "flavors": {
+      "dry": 25,
+      "sweet": 10
+    },
+    "effect": "Held: Consumed when struck by a Normal-type attack to halve the damage.",
+    "flavor_text": "If held by a Pokémon, this Berry will lessen the damage taken from one Normal-type attack."
+  },
+  {
+    "id": 53,
+    "name": "liechi",
+    "item_name": "liechi-berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/liechi-berry.png",
+    "growth_time": 24,
+    "max_harvest": 5,
+    "size": 111,
+    "smoothness": 40,
+    "soil_dryness": 4,
+    "firmness": "very-hard",
+    "natural_gift_type": "grass",
+    "natural_gift_power": 80,
+    "flavors": {
+      "spicy": 30,
+      "dry": 10,
+      "sweet": 30
+    },
+    "effect": "Held: Consumed at 1/4 max HP to boost Attack.",
+    "flavor_text": "A Berry to be consumed by Pokémon. If a Pokémon holds one, its Attack stat will increase when it’s in a pinch."
+  },
+  {
+    "id": 54,
+    "name": "ganlon",
+    "item_name": "ganlon-berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/ganlon-berry.png",
+    "growth_time": 24,
+    "max_harvest": 5,
+    "size": 33,
+    "smoothness": 40,
+    "soil_dryness": 4,
+    "firmness": "very-hard",
+    "natural_gift_type": "ice",
+    "natural_gift_power": 80,
+    "flavors": {
+      "dry": 30,
+      "sweet": 10,
+      "bitter": 30
+    },
+    "effect": "Held: Consumed at 1/4 max HP to boost Defense.",
+    "flavor_text": "A Berry to be consumed by Pokémon. If a Pokémon holds one, its Defense stat will increase when it’s in a pinch."
+  },
+  {
+    "id": 55,
+    "name": "salac",
+    "item_name": "salac-berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/salac-berry.png",
+    "growth_time": 24,
+    "max_harvest": 5,
+    "size": 95,
+    "smoothness": 40,
+    "soil_dryness": 4,
+    "firmness": "very-hard",
+    "natural_gift_type": "fighting",
+    "natural_gift_power": 80,
+    "flavors": {
+      "sweet": 30,
+      "bitter": 10,
+      "sour": 30
+    },
+    "effect": "Held: Consumed at 1/4 max HP to boost Speed.",
+    "flavor_text": "A Berry to be consumed by Pokémon. If a Pokémon holds one, its Speed stat will increase when it’s in a pinch."
+  },
+  {
+    "id": 56,
+    "name": "petaya",
+    "item_name": "petaya-berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/petaya-berry.png",
+    "growth_time": 24,
+    "max_harvest": 5,
+    "size": 237,
+    "smoothness": 40,
+    "soil_dryness": 4,
+    "firmness": "very-hard",
+    "natural_gift_type": "poison",
+    "natural_gift_power": 80,
+    "flavors": {
+      "spicy": 30,
+      "bitter": 30,
+      "sour": 10
+    },
+    "effect": "Held: Consumed at 1/4 max HP to boost Special Attack.",
+    "flavor_text": "A Berry to be consumed by Pokémon. If a Pokémon holds one, its Sp. Atk stat will increase when it’s in a pinch."
+  },
+  {
+    "id": 57,
+    "name": "apicot",
+    "item_name": "apicot-berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/apicot-berry.png",
+    "growth_time": 24,
+    "max_harvest": 5,
+    "size": 75,
+    "smoothness": 40,
+    "soil_dryness": 4,
+    "firmness": "hard",
+    "natural_gift_type": "ground",
+    "natural_gift_power": 80,
+    "flavors": {
+      "spicy": 10,
+      "dry": 30,
+      "sour": 30
+    },
+    "effect": "Held: Consumed at 1/4 max HP to boost Special Defense.",
+    "flavor_text": "A Berry to be consumed by Pokémon. If a Pokémon holds one, its Sp. Def stat will increase when it’s in a pinch."
+  },
+  {
+    "id": 58,
+    "name": "lansat",
+    "item_name": "lansat-berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/lansat-berry.png",
+    "growth_time": 24,
+    "max_harvest": 5,
+    "size": 97,
+    "smoothness": 50,
+    "soil_dryness": 4,
+    "firmness": "soft",
+    "natural_gift_type": "flying",
+    "natural_gift_power": 80,
+    "flavors": {
+      "spicy": 30,
+      "dry": 10,
+      "sweet": 30,
+      "bitter": 10,
+      "sour": 30
+    },
+    "effect": "Held: Consumed at 1/4 max HP to boost critical hit ratio by two stages.",
+    "flavor_text": "A Berry to be consumed by Pokémon. If a Pokémon holds one, its critical-hit ratio will increase when it’s in a pinch."
+  },
+  {
+    "id": 59,
+    "name": "starf",
+    "item_name": "starf-berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/starf-berry.png",
+    "growth_time": 24,
+    "max_harvest": 5,
+    "size": 153,
+    "smoothness": 50,
+    "soil_dryness": 4,
+    "firmness": "super-hard",
+    "natural_gift_type": "psychic",
+    "natural_gift_power": 80,
+    "flavors": {
+      "spicy": 30,
+      "dry": 10,
+      "sweet": 30,
+      "bitter": 10,
+      "sour": 30
+    },
+    "effect": "Held: Consumed at 1/4 max HP to boost a random stat by two stages.",
+    "flavor_text": "A Berry to be consumed by Pokémon. If a Pokémon holds one, one of its stats will sharply increase when it’s in a pinch."
+  },
+  {
+    "id": 60,
+    "name": "enigma",
+    "item_name": "enigma-berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/enigma-berry.png",
+    "growth_time": 24,
+    "max_harvest": 5,
+    "size": 155,
+    "smoothness": 60,
+    "soil_dryness": 7,
+    "firmness": "hard",
+    "natural_gift_type": "bug",
+    "natural_gift_power": 80,
+    "flavors": {
+      "spicy": 40,
+      "dry": 10
+    },
+    "effect": "Held: Consumed when struck by a super-effective attack to restore 1/4 max HP.",
+    "flavor_text": "A Berry to be consumed by Pokémon. If a Pokémon holds one, being hit by a supereffective attack will restore its HP."
+  },
+  {
+    "id": 61,
+    "name": "micle",
+    "item_name": "micle-berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/micle-berry.png",
+    "growth_time": 24,
+    "max_harvest": 5,
+    "size": 41,
+    "smoothness": 60,
+    "soil_dryness": 7,
+    "firmness": "soft",
+    "natural_gift_type": "rock",
+    "natural_gift_power": 80,
+    "flavors": {
+      "dry": 40,
+      "sweet": 10
+    },
+    "effect": "Held: Consumed at 1/4 max HP to boost accuracy of next move by 20%. (Gen IV: Perfect accuracy)",
+    "flavor_text": "A Berry to be consumed by Pokémon. If a Pokémon holds one, its accuracy will increase just once when it’s in a pinch."
+  },
+  {
+    "id": 62,
+    "name": "custap",
+    "item_name": "custap-berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/custap-berry.png",
+    "growth_time": 24,
+    "max_harvest": 5,
+    "size": 267,
+    "smoothness": 60,
+    "soil_dryness": 7,
+    "firmness": "super-hard",
+    "natural_gift_type": "ghost",
+    "natural_gift_power": 80,
+    "flavors": {
+      "sweet": 40,
+      "bitter": 10
+    },
+    "effect": "Held: Consumed at 1/4 max HP when using a move to go first.",
+    "flavor_text": "A Berry to be consumed by Pokémon. If a Pokémon holds one, it will be able to move first just once when it’s in a pinch."
+  },
+  {
+    "id": 63,
+    "name": "jaboca",
+    "item_name": "jaboca-berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/jaboca-berry.png",
+    "growth_time": 24,
+    "max_harvest": 5,
+    "size": 33,
+    "smoothness": 60,
+    "soil_dryness": 7,
+    "firmness": "soft",
+    "natural_gift_type": "dragon",
+    "natural_gift_power": 80,
+    "flavors": {
+      "bitter": 40,
+      "sour": 10
+    },
+    "effect": "Held: Consumed to deal 1/8 attacker’s max HP when holder is struck by a physical attack.",
+    "flavor_text": "A Berry to be consumed by Pokémon. If a physical attack hits the Pokémon holding it, the attacker will also be hurt."
+  },
+  {
+    "id": 64,
+    "name": "rowap",
+    "item_name": "rowap-berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/rowap-berry.png",
+    "growth_time": 24,
+    "max_harvest": 5,
+    "size": 52,
+    "smoothness": 60,
+    "soil_dryness": 7,
+    "firmness": "very-soft",
+    "natural_gift_type": "dark",
+    "natural_gift_power": 80,
+    "flavors": {
+      "spicy": 10,
+      "sour": 40
+    },
+    "effect": "Held: Consumed to deal 1/8 attacker’s max HP when holder is struck by a special attack.",
+    "flavor_text": "A Berry to be consumed by Pokémon. If a special attack hits the Pokémon holding it, the attacker will also be hurt."
+  }
+]

@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useCompare } from '../hooks/use-pokemon';
-import { getPokemon } from '../utils/api';
-import { formatName } from '../utils/format-name';
+import { searchWithForms } from '../utils/api';
+import { formatName, formatFormName } from '../utils/format-name';
+import AbilityModal from '../components/ability-modal';
 
 const STAT_LABELS = {
   hp:               'HP',
@@ -14,31 +15,58 @@ const STAT_LABELS = {
 };
 
 export default function ComparePage() {
-  const [selectedIds, setSelectedIds] = useState([]);
-  const [query, setQuery]             = useState('');
-  const [results, setResults]         = useState([]);
+  const [entries, setEntries]   = useState([]);
+  const [query, setQuery]       = useState('');
+  const [results, setResults]   = useState([]);
+  const [hlIdx, setHlIdx]       = useState(-1);
+  const [selectedAbility, setSelectedAbility] = useState(null);
 
-  const { pokemon, loading } = useCompare(selectedIds);
+  const { pokemon, loading } = useCompare(entries);
 
   const handleSearch = async (e) => {
     const val = e.target.value;
     setQuery(val);
+    setHlIdx(-1);
     if (!val.trim()) { setResults([]); return; }
-    const data = await getPokemon({ search: val, limit: 8 });
+    const data = await searchWithForms(val, 12);
     setResults(data);
   };
 
+  const selectedUids = new Set(entries.map(e => e.form ? `${e.id}-${e.form}` : String(e.id)));
+  const filteredResults = results.filter(p => !selectedUids.has(p.uid));
+
   const add = (p) => {
-    if (selectedIds.includes(p.id) || selectedIds.length >= 3) return;
-    setSelectedIds(prev => [...prev, p.id]);
+    if (entries.length >= 3) return;
+    if (selectedUids.has(p.uid)) return;
+    setEntries(prev => [...prev, { id: p.id, form: p.form || null }]);
     setQuery('');
     setResults([]);
+    setHlIdx(-1);
   };
 
-  const remove = (id) => setSelectedIds(prev => prev.filter(i => i !== id));
+  const handleKeyDown = (e) => {
+    if (!filteredResults.length) return;
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      setHlIdx(i => (i + 1) % filteredResults.length);
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      setHlIdx(i => (i <= 0 ? filteredResults.length - 1 : i - 1));
+    } else if (e.key === 'Enter') {
+      e.preventDefault();
+      add(filteredResults[hlIdx >= 0 ? hlIdx : 0]);
+    } else if (e.key === 'Escape') {
+      setResults([]);
+      setHlIdx(-1);
+    }
+  };
+
+  const remove = (idx) => setEntries(prev => prev.filter((_, i) => i !== idx));
 
   const maxStat = (statName) =>
     Math.max(...pokemon.map(p => (p.stats?.find(s => s.stat_name === statName)?.base_value ?? 0)));
+
+  const displayName = (p) => p._form ? formatFormName(p._form) : formatName(p.name);
 
   return (
     <div className="compare-page">
@@ -47,7 +75,7 @@ export default function ComparePage() {
         <p className="compare-subhead">pick up to 3 pokémon to compare side by side</p>
       </div>
 
-      {selectedIds.length < 3 && (
+      {entries.length < 3 && (
         <div className="compare-search-wrap">
           <div className="compare-search-inner">
             <input
@@ -56,16 +84,19 @@ export default function ComparePage() {
               placeholder="search pokémon to add..."
               value={query}
               onChange={handleSearch}
-              onKeyDown={e => { if (e.key === 'Enter' && results.length > 0) add(results[0]); }}
+              onKeyDown={handleKeyDown}
               autoComplete="off"
             />
-            {results.length > 0 && (
+            {filteredResults.length > 0 && (
               <ul className="compare-results">
-                {results.map(p => (
-                  <li key={p.id}>
-                    <button onClick={() => add(p)} disabled={selectedIds.includes(p.id)}>
-                      <img src={p.sprite_url} alt={p.name} />
-                      <span>{formatName(p.name)}</span>
+                {filteredResults.map((p, i) => (
+                  <li key={p.uid} className={i === hlIdx ? 'highlighted' : ''}>
+                    <button
+                      onClick={() => add(p)}
+                      onMouseEnter={() => setHlIdx(i)}
+                    >
+                      <img src={p.artwork_url || p.sprite_url} alt={p.name} />
+                      <span>{p.form ? formatFormName(p.form) : formatName(p.name)}</span>
                     </button>
                   </li>
                 ))}
@@ -75,7 +106,7 @@ export default function ComparePage() {
         </div>
       )}
 
-      {selectedIds.length === 0 && (
+      {entries.length === 0 && (
         <p className="empty">search for a pokémon above to get started.</p>
       )}
 
@@ -87,17 +118,28 @@ export default function ComparePage() {
             <thead>
               <tr>
                 <th />
-                {pokemon.map(p => (
-                  <th key={p.id}>
+                {pokemon.map((p, i) => (
+                  <th key={p._form ? `${p.id}-${p._form}` : p.id}>
                     <div className="compare-th-inner">
-                      <button className="compare-remove-btn" onClick={() => remove(p.id)}>✕</button>
-                      <Link to={`/pokemon/${p.id}`}>
+                      <button className="compare-remove-btn" onClick={() => remove(i)}>✕</button>
+                      <Link to={p._form ? `/pokemon/${p.id}?form=${p._form}` : `/pokemon/${p.id}`}>
                         <img src={p.artwork_url || p.sprite_url} alt={p.name} />
-                        <span>{formatName(p.name)}</span>
+                        <span>{displayName(p)}</span>
                       </Link>
                       <div className="compare-types">
                         {(p.types || []).map(t => (
                           <span key={t} className={`type-badge type-${t}`}>{t}</span>
+                        ))}
+                      </div>
+                      <div className="compare-abilities-cell">
+                        {(p.abilities || []).map(a => (
+                          <button
+                            key={a.ability_name}
+                            className={`compare-ability-pill${a.is_hidden ? ' hidden' : ''}`}
+                            onClick={() => setSelectedAbility({ name: a.ability_name, is_hidden: a.is_hidden })}
+                          >
+                            {a.ability_name.replace(/-/g, ' ')}
+                          </button>
                         ))}
                       </div>
                     </div>
@@ -111,10 +153,11 @@ export default function ComparePage() {
                 return (
                   <tr key={key}>
                     <td className="compare-stat-label">{label}</td>
-                    {pokemon.map(p => {
+                    {pokemon.map((p, i) => {
                       const val = p.stats?.find(s => s.stat_name === key)?.base_value ?? 0;
+                      const uid = p._form ? `${p.id}-${p._form}` : p.id;
                       return (
-                        <td key={p.id} className={`compare-stat-cell${val === best && pokemon.length > 1 ? ' best' : ''}`}>
+                        <td key={uid} className={`compare-stat-cell${val === best && pokemon.length > 1 ? ' best' : ''}`}>
                           <div className="compare-bar-wrap">
                             <div className="compare-bar" style={{ width: `${Math.round((val / 255) * 100)}%` }} />
                             <span>{val}</span>
@@ -130,8 +173,9 @@ export default function ComparePage() {
                 {pokemon.map(p => {
                   const total = p.stats?.reduce((sum, s) => sum + s.base_value, 0) ?? 0;
                   const bestTotal = Math.max(...pokemon.map(q => q.stats?.reduce((sum, s) => sum + s.base_value, 0) ?? 0));
+                  const uid = p._form ? `${p.id}-${p._form}` : p.id;
                   return (
-                    <td key={p.id} className={`compare-stat-cell${total === bestTotal && pokemon.length > 1 ? ' best' : ''}`}>
+                    <td key={uid} className={`compare-stat-cell${total === bestTotal && pokemon.length > 1 ? ' best' : ''}`}>
                       <strong>{total}</strong>
                     </td>
                   );
@@ -140,6 +184,9 @@ export default function ComparePage() {
             </tbody>
           </table>
         </div>
+      )}
+      {selectedAbility && (
+        <AbilityModal ability={selectedAbility} onClose={() => setSelectedAbility(null)} />
       )}
     </div>
   );

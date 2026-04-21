@@ -8,9 +8,10 @@ import FilterPanel from '../components/filter-panel';
 const PAGE_SIZE = 60;
 const FILTER_KEYS = ['search', 'type', 'generation', 'cls', 'stat', 'minStat', 'sort', 'sortDir'];
 
-export default function HomePage({ enabledFilters = {}, filterOrder = [] }) {
+export default function HomePage({ enabledFilters = {}, filterOrder = [], toggleFilter }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const [visible, setVisible]           = useState(PAGE_SIZE);
+  const [shiny, setShiny]               = useState(() => localStorage.getItem('shinySprites') === 'true');
   const navigate                        = useNavigate();
 
   // derive filters object from URL params
@@ -45,7 +46,15 @@ export default function HomePage({ enabledFilters = {}, filterOrder = [] }) {
 
   return (
     <div className="home-layout">
-      <FilterPanel filters={filters} onChange={setFilters} enabledFilters={enabledFilters} filterOrder={filterOrder} />
+      <FilterPanel
+        filters={filters}
+        onChange={setFilters}
+        enabledFilters={enabledFilters}
+        filterOrder={filterOrder}
+        toggleFilter={toggleFilter}
+        shiny={shiny}
+        onShinyToggle={() => setShiny(s => { localStorage.setItem('shinySprites', !s); return !s; })}
+      />
 
       <main className="home-main">
         <SearchBar
@@ -59,7 +68,7 @@ export default function HomePage({ enabledFilters = {}, filterOrder = [] }) {
 
         <div className="pokemon-grid">
           {displayed.map(p => (
-            <PokemonCard key={p.uid || p.id} pokemon={p} />
+            <PokemonCard key={p.uid || p.id} pokemon={p} shiny={shiny} sort={filters.sort} />
           ))}
         </div>
 

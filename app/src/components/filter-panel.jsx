@@ -19,41 +19,34 @@ const CLASSES = [
   { value: 'has-forms',        label: 'has alternate forms' },
 ];
 const SORT_OPTIONS = [
-  { value: 'id',               label: 'number' },
-  { value: 'name',             label: 'name' },
-  { value: 'total',            label: 'total stats' },
-  { value: 'hp',               label: 'hp' },
-  { value: 'attack',           label: 'attack' },
-  { value: 'defense',          label: 'defense' },
-  { value: 'special-attack',   label: 'sp. atk' },
-  { value: 'special-defense',  label: 'sp. def' },
-  { value: 'speed',            label: 'speed' },
+  { value: 'id',               label: 'sort: number' },
+  { value: 'name',             label: 'sort: name' },
+  { value: 'total',            label: 'sort: total stats' },
+  { value: 'hp',               label: 'sort: hp' },
+  { value: 'attack',           label: 'sort: attack' },
+  { value: 'defense',          label: 'sort: defense' },
+  { value: 'special-attack',   label: 'sort: sp. atk' },
+  { value: 'special-defense',  label: 'sort: sp. def' },
+  { value: 'speed',            label: 'sort: speed' },
 ];
 
 const OPTIONAL_FILTER_RENDERERS = {
   type: ({ filters, update, types }) => (
-    <div key="type">
-      <label>type</label>
-      <select value={filters.type || ''} onChange={e => update('type', e.target.value)}>
-        <option value="">all</option>
-        {types.map(t => <option key={t} value={t}>{t}</option>)}
-      </select>
-    </div>
+    <select key="type" value={filters.type || ''} onChange={e => update('type', e.target.value)}>
+      <option value="">all types</option>
+      {types.map(t => <option key={t} value={t}>{t}</option>)}
+    </select>
   ),
   class: ({ filters, update }) => (
-    <div key="class">
-      <label>class</label>
-      <select value={filters.cls || ''} onChange={e => update('cls', e.target.value)}>
-        <option value="">all</option>
-        {CLASSES.map(c => <option key={c.value} value={c.value}>{c.label}</option>)}
-      </select>
-    </div>
+    <select key="class" value={filters.cls || ''} onChange={e => update('cls', e.target.value)}>
+      <option value="">all categories</option>
+      {CLASSES.map(c => <option key={c.value} value={c.value}>{c.label}</option>)}
+    </select>
   ),
   minStat: ({ filters, update }) => (
-    <div key="minStat">
-      <label>min stat</label>
+    <div key="minStat" className="filter-panel__min-stat">
       <select value={filters.stat || ''} onChange={e => update('stat', e.target.value)}>
-        <option value="">pick a stat</option>
+        <option value="">min stat…</option>
         {STATS.map(s => <option key={s} value={s}>{s}</option>)}
       </select>
       {filters.stat && (
@@ -61,7 +54,7 @@ const OPTIONAL_FILTER_RENDERERS = {
           type="number"
           min={0}
           max={255}
-          placeholder="min value"
+          placeholder="≥"
           value={filters.minStat || ''}
           onChange={e => update('minStat', e.target.value)}
           className="stat-input"
@@ -71,8 +64,13 @@ const OPTIONAL_FILTER_RENDERERS = {
   ),
 };
 
-// sidebar filters and sort controls for the home page grid
-export default function FilterPanel({ filters, onChange, enabledFilters = {}, filterOrder = ['type', 'class', 'minStat'] }) {
+const FILTER_OPTIONS = [
+  { key: 'type',    label: 'type' },
+  { key: 'class',   label: 'category' },
+  { key: 'minStat', label: 'min stat' },
+];
+
+export default function FilterPanel({ filters, onChange, enabledFilters = {}, filterOrder = ['type', 'class', 'minStat'], toggleFilter, shiny, onShinyToggle }) {
   const types = useTypes();
 
   const update = (key, value) => onChange({ ...filters, [key]: value || undefined });
@@ -82,48 +80,75 @@ export default function FilterPanel({ filters, onChange, enabledFilters = {}, fi
 
   return (
     <aside className="filter-panel">
-      <h2>filter</h2>
-
-      <div>
-        <label>generation</label>
-        <select value={filters.generation || ''} onChange={e => update('generation', e.target.value)}>
-          <option value="">all</option>
-          {GENERATIONS.map(g => <option key={g} value={g}>gen {g}</option>)}
-        </select>
-      </div>
+      <select value={filters.generation || ''} onChange={e => update('generation', e.target.value)}>
+        <option value="">all generations</option>
+        {GENERATIONS.map(g => <option key={g} value={g}>gen {g}</option>)}
+      </select>
 
       {filterOrder.map(key => enabledFilters[key] && OPTIONAL_FILTER_RENDERERS[key]?.(ctx))}
 
-      <hr className="filter-divider" />
-      <h2>sort</h2>
+      <select value={sort} onChange={e => onChange({ ...filters, sort: e.target.value })}>
+        {SORT_OPTIONS.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
+      </select>
 
-      <div>
-        <label>sort by</label>
-        <select value={sort} onChange={e => onChange({ ...filters, sort: e.target.value })}>
-          {SORT_OPTIONS.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
-        </select>
+      <div className="sort-options-strip">
+        <button
+          className={sortDir === 'asc' ? 'active' : ''}
+          onClick={() => onChange({ ...filters, sortDir: 'asc' })}
+        >
+          ↑
+        </button>
+        <button
+          className={sortDir === 'desc' ? 'active' : ''}
+          onClick={() => onChange({ ...filters, sortDir: 'desc' })}
+        >
+          ↓
+        </button>
+        <button
+          className={shiny ? 'active' : ''}
+          onClick={onShinyToggle}
+        >
+          shiny
+        </button>
       </div>
 
-      <div>
-        <label>direction</label>
-        <div className="sort-dir-toggle">
-          <button
-            className={sortDir === 'asc' ? 'active' : ''}
-            onClick={() => onChange({ ...filters, sortDir: 'asc' })}
-          >
-            ↑
-          </button>
-          <button
-            className={sortDir === 'desc' ? 'active' : ''}
-            onClick={() => onChange({ ...filters, sortDir: 'desc' })}
-          >
-            ↓
-          </button>
-        </div>
-      </div>
+      {toggleFilter && (
+        <>
+          <hr className="filter-divider" />
+          <div className="filter-toggles">
+            {FILTER_OPTIONS.map(f => (
+              <label key={f.key} className="filter-toggle-row">
+                <input
+                  type="checkbox"
+                  checked={!!enabledFilters[f.key]}
+                  onChange={() => {
+                    if (enabledFilters[f.key]) {
+                      const clear = { ...filters };
+                      if (f.key === 'type') delete clear.type;
+                      if (f.key === 'class') delete clear.cls;
+                      if (f.key === 'minStat') { delete clear.stat; delete clear.minStat; }
+                      onChange(clear);
+                    }
+                    toggleFilter(f.key);
+                  }}
+                />
+                <span>{f.label}</span>
+              </label>
+            ))}
+          </div>
+        </>
+      )}
 
       <hr className="filter-divider" />
-      <button className="reset-btn" onClick={() => onChange({})}>reset</button>
+      <button className="reset-btn" onClick={() => {
+        onChange({});
+        if (toggleFilter) {
+          FILTER_OPTIONS.forEach(f => {
+            if (enabledFilters[f.key]) toggleFilter(f.key);
+          });
+        }
+        if (shiny) onShinyToggle();
+      }}>reset</button>
     </aside>
   );
 }

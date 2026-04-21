@@ -6,16 +6,32 @@ import ComparePage from './pages/compare-page';
 import TeamPage from './pages/team-page';
 import LorePage from './pages/lore-page';
 import NewsPage from './pages/news-page';
+import TypesPage from './pages/types-page';
+import PokeballsPage from './pages/pokeballs-page';
+import BerriesPage from './pages/berries-page';
+import MovesPage from './pages/moves-page';
 
-const FEATURES = [
-  { to: '/',        label: 'news' },
-  { to: '/pokedex', label: 'pokédex' },
-  { to: '/compare', label: 'compare' },
-  { to: '/team',    label: 'team builder' },
-  { to: '/lore',    label: 'lore & legends' },
+const NAV_SECTIONS = [
+  {
+    items: [
+      { to: '/', label: 'news' },
+    ],
+  },
+  {
+    items: [
+      { to: '/berries',   label: 'berries' },
+      { to: '/compare',   label: 'compare' },
+      { to: '/lore',      label: 'lore & legends' },
+      { to: '/moves',     label: 'moves' },
+      { to: '/pokeballs', label: 'pokéballs' },
+      { to: '/pokedex',   label: 'pokédex' },
+      { to: '/team',      label: 'team builder' },
+      { to: '/types',     label: 'type chart' },
+    ],
+  },
 ];
 
-const THEMES = ['light', 'dark', 'retro', 'ereader'];
+const THEMES = ['light', 'dark', 'ereader', 'retro', 'nitro'];
 
 // every base starter across gen 1 → gen 9, plus pichu. shuffled on mount and
 // doubled (JSX below) so the keyframe's `translateX(-50%)` lands sprite[count]
@@ -136,11 +152,6 @@ function HeaderSprites({ a11y }) {
   );
 }
 
-const OPTIONAL_FILTERS = [
-  { key: 'type',    label: 'type' },
-  { key: 'class',   label: 'class' },
-  { key: 'minStat', label: 'min stat' },
-];
 
 const DEFAULT_FILTERS      = { type: true, class: false, minStat: false };
 const DEFAULT_FILTER_ORDER = ['type', 'class', 'minStat'];
@@ -177,9 +188,6 @@ function AppHeader({ theme, setTheme, a11y, setA11y, enabledFilters, toggleFilte
   const [featuresOpen, setFeaturesOpen] = useState(false);
   const visualsRef    = useRef(null);
   const featuresRef   = useRef(null);
-  const dragIndex     = useRef(null);
-  const touchIndex    = useRef(null);
-  const [draggingIndex, setDraggingIndex] = useState(null);
 
   useEffect(() => {
     const handler = (e) => {
@@ -193,9 +201,8 @@ function AppHeader({ theme, setTheme, a11y, setA11y, enabledFilters, toggleFilte
   return (
     <header className="site-header">
       <HeaderSprites a11y={a11y} />
-      <Link to="/pokedex" className="site-logo">pokédex</Link>
 
-      <div className="header-right">
+      <div className="header-left">
         <div className="settings-anchor" ref={featuresRef}>
           <button className="settings-btn settings-burger" onClick={() => setFeaturesOpen(o => !o)} aria-label="menu">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
@@ -206,18 +213,23 @@ function AppHeader({ theme, setTheme, a11y, setA11y, enabledFilters, toggleFilte
           </button>
           {featuresOpen && (
             <div className="settings-modal features-modal">
-              {FEATURES.map((f, i) => (
-                <Fragment key={f.to}>
-                  {i > 0 && <div className="dropdown-divider" />}
-                  <Link to={f.to} className="feature-link" onClick={() => setFeaturesOpen(false)}>
-                    {f.label}
-                  </Link>
+              {NAV_SECTIONS.map((section, si) => (
+                <Fragment key={si}>
+                  {si > 0 && <div className="dropdown-divider" />}
+                  {section.label && <div className="nav-section-label">{section.label}</div>}
+                  {section.items.map(f => (
+                    <Link key={f.to} to={f.to} className="feature-link" onClick={() => setFeaturesOpen(false)}>
+                      {f.label}
+                    </Link>
+                  ))}
                 </Fragment>
               ))}
             </div>
           )}
         </div>
+      </div>
 
+      <div className="header-right">
         <div className="settings-anchor" ref={visualsRef}>
           <button className="settings-btn settings-cog" onClick={() => setVisualsOpen(o => !o)} aria-label="settings">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
@@ -256,58 +268,6 @@ function AppHeader({ theme, setTheme, a11y, setA11y, enabledFilters, toggleFilte
                 <p className="settings-hint">adds patterns to stat bars, removes animations, increases font size and spacing, boosts contrast</p>
               </div>
 
-              <div className="dropdown-divider" />
-
-              <div className="settings-section">
-                <span className="settings-sublabel">filter options</span>
-                {filterOrder.map((key, i) => {
-                  const f = OPTIONAL_FILTERS.find(o => o.key === key);
-                  if (!f) return null;
-                  return (
-                    <label
-                      key={f.key}
-                      className={`settings-checkbox-row${draggingIndex === i ? ' is-dragging' : ''}`}
-                      data-drag-index={i}
-                      draggable
-                      onDragStart={() => { dragIndex.current = i; setDraggingIndex(i); }}
-                      onDragOver={e => {
-                        e.preventDefault();
-                        if (dragIndex.current === i) return;
-                        const next = [...filterOrder];
-                        const [moved] = next.splice(dragIndex.current, 1);
-                        next.splice(i, 0, moved);
-                        dragIndex.current = i;
-                        reorderFilters(next);
-                      }}
-                      onDragEnd={() => { setDraggingIndex(null); }}
-                      onTouchStart={() => { touchIndex.current = i; setDraggingIndex(i); }}
-                      onTouchMove={e => {
-                        const touch = e.touches[0];
-                        const el = document.elementFromPoint(touch.clientX, touch.clientY);
-                        const item = el?.closest('[data-drag-index]');
-                        if (!item) return;
-                        const targetIndex = Number(item.dataset.dragIndex);
-                        if (targetIndex === touchIndex.current) return;
-                        const next = [...filterOrder];
-                        const [moved] = next.splice(touchIndex.current, 1);
-                        next.splice(targetIndex, 0, moved);
-                        touchIndex.current = targetIndex;
-                        setDraggingIndex(targetIndex);
-                        reorderFilters(next);
-                      }}
-                      onTouchEnd={() => { touchIndex.current = null; setDraggingIndex(null); }}
-                    >
-                      <span className="drag-handle">⠿</span>
-                      <input
-                        type="checkbox"
-                        checked={!!enabledFilters[f.key]}
-                        onChange={() => toggleFilter(f.key)}
-                      />
-                      <span>{f.label}</span>
-                    </label>
-                  );
-                })}
-              </div>
             </div>
           )}
         </div>
@@ -381,9 +341,13 @@ export default function App() {
       />
       <Routes>
         <Route path="/"            element={<NewsPage />} />
-        <Route path="/pokedex"     element={<HomePage enabledFilters={enabledFilters} filterOrder={filterOrder} />} />
+        <Route path="/pokedex"     element={<HomePage enabledFilters={enabledFilters} filterOrder={filterOrder} toggleFilter={toggleFilter} />} />
         <Route path="/pokemon/:id" element={<PokemonPage />} />
         <Route path="/compare"     element={<ComparePage />} />
+        <Route path="/types"       element={<TypesPage />} />
+        <Route path="/moves"       element={<MovesPage />} />
+        <Route path="/pokeballs"   element={<PokeballsPage />} />
+        <Route path="/berries"     element={<BerriesPage />} />
         <Route path="/team"        element={<TeamPage />} />
         <Route path="/lore"        element={<LorePage />} />
       </Routes>

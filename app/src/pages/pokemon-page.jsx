@@ -3,7 +3,7 @@ import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import { formatName, formatFormName } from '../utils/format-name';
 import { usePokemonDetail } from '../hooks/use-pokemon';
 import { NAME_TO_ID, FORM_DATA, FORM_TO_BASE_ID, EXCLUDED_FORMS, getBaseFormLabel, FORM_SUFFIX_SPECIES } from '../utils/api';
-import ABILITIES from '../data/abilities.json';
+import AbilityModal from '../components/ability-modal';
 
 const STAT_LABELS = {
   hp:               'HP',
@@ -348,23 +348,6 @@ function FormChips({ pokemon, activeForm, onSelect }) {
           </button>
         </React.Fragment>
       ))}
-    </div>
-  );
-}
-
-function AbilityModal({ ability, onClose }) {
-  return (
-    <div className="ability-modal-overlay" onClick={onClose}>
-      <div className="ability-modal" onClick={e => e.stopPropagation()}>
-        <div className="ability-modal-header">
-          <span className="ability-modal-name">{ability.name.replace(/-/g, ' ')}</span>
-          {ability.is_hidden && <em className="ability-modal-hidden">hidden</em>}
-          <button className="ability-modal-close" onClick={onClose}>✕</button>
-        </div>
-        <p className="ability-modal-desc">
-          {ABILITIES[ability.name] || 'no description available.'}
-        </p>
-      </div>
     </div>
   );
 }
