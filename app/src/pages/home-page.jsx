@@ -12,7 +12,15 @@ export default function HomePage({ enabledFilters = {}, filterOrder = [], toggle
   const [searchParams, setSearchParams] = useSearchParams();
   const [visible, setVisible]           = useState(PAGE_SIZE);
   const [shiny, setShiny]               = useState(() => localStorage.getItem('shinySprites') === 'true');
+  // inlineForms: '' (base only) | 'regional' | 'all'. view preference, persists per user.
+  const [inlineForms, setInlineForms]   = useState(() => localStorage.getItem('inlineForms') || '');
   const navigate                        = useNavigate();
+
+  const updateInlineForms = useCallback((mode) => {
+    setInlineForms(mode);
+    if (mode) localStorage.setItem('inlineForms', mode);
+    else localStorage.removeItem('inlineForms');
+  }, []);
 
   // derive filters object from URL params
   const filters = Object.fromEntries(
@@ -27,13 +35,13 @@ export default function HomePage({ enabledFilters = {}, filterOrder = [], toggle
     setSearchParams(params, { replace: true });
   }, [setSearchParams]);
 
-  const { pokemon, loading, error } = usePokemonList({ ...filters, limit: 9999 });
+  const { pokemon, loading, error } = usePokemonList({ ...filters, inlineForms, limit: 9999 });
 
   // reset visible count and scroll position whenever filters change
   useEffect(() => {
     setVisible(PAGE_SIZE);
     window.scrollTo({ top: 0, behavior: 'instant' });
-  }, [searchParams.toString()]);
+  }, [searchParams.toString(), inlineForms]);
 
   const CONTENT_KEYS  = ['search', 'type', 'generation', 'cls', 'stat', 'minStat'];
   const hasFilters    = CONTENT_KEYS.some(k => filters[k]);
@@ -54,6 +62,8 @@ export default function HomePage({ enabledFilters = {}, filterOrder = [], toggle
         toggleFilter={toggleFilter}
         shiny={shiny}
         onShinyToggle={() => setShiny(s => { localStorage.setItem('shinySprites', !s); return !s; })}
+        inlineForms={inlineForms}
+        onInlineFormsChange={updateInlineForms}
       />
 
       <main className="home-main">

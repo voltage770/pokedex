@@ -115,9 +115,15 @@ async function fetchOne(id) {
   const evolutions = await getEvoChain(sp.evolution_chain.url);
 
   const nonDefault = sp.varieties.filter(v => !v.is_default).map(v => v.pokemon.name);
-  const megaForms     = nonDefault.filter(n => n.includes('-mega'));
-  const gmaxForms     = nonDefault.filter(n => n.includes('-gmax'));
-  const regionalForms = nonDefault.filter(n => /-(alola|galar|hisui|paldea)/.test(n));
+
+  // totem pokemon (SM/USUM stat-boosted battle variants) are not distinct forms —
+  // drop them from every form bucket. matches both trailing `-totem` (marowak-totem)
+  // and embedded `-totem-` (mimikyu-totem-busted, raticate-totem-alola).
+  const isTotem = (n) => /-totem(?:$|-)/.test(n);
+
+  const megaForms     = nonDefault.filter(n => n.includes('-mega') && !isTotem(n));
+  const gmaxForms     = nonDefault.filter(n => n.includes('-gmax') && !isTotem(n));
+  const regionalForms = nonDefault.filter(n => /-(alola|galar|hisui|paldea)/.test(n) && !isTotem(n));
   const altForms      = nonDefault.filter(n =>
     !n.includes('-mega') && !n.includes('-gmax') && !/-(?:alola|galar|hisui|paldea)/.test(n)
   );
@@ -128,7 +134,7 @@ async function fetchOne(id) {
   const skipFormSlugs = new Set(['greninja-battle-bond']);
   const filteredAltForms = skipAltFormsFor.has(p.name)
     ? []
-    : altForms.filter(n => !n.endsWith('-totem') && !skipFormSlugs.has(n));
+    : altForms.filter(n => !isTotem(n) && !skipFormSlugs.has(n));
 
   // fetch sprites, artwork, types, stats, and abilities for all form variants
   const allFormNames = [...megaForms, ...gmaxForms, ...regionalForms, ...filteredAltForms];
@@ -209,7 +215,7 @@ async function fetchOne(id) {
     mega_forms:     megaForms,
     gmax_forms:     gmaxForms,
     regional_forms: regionalForms,
-    alt_forms:      altForms,
+    alt_forms:      filteredAltForms,
     form_data,
     evolutions,
   };

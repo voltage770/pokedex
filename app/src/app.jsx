@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useMemo, Fragment } from 'react';
 import { BrowserRouter, Routes, Route, Link, useLocation, useNavigationType, useSearchParams } from 'react-router-dom';
+import { useModalAnimation } from './hooks/use-modal-animation';
 import HomePage from './pages/home-page';
 import PokemonPage from './pages/pokemon-page';
 import ComparePage from './pages/compare-page';
@@ -10,6 +11,7 @@ import TypesPage from './pages/types-page';
 import PokeballsPage from './pages/pokeballs-page';
 import BerriesPage from './pages/berries-page';
 import MovesPage from './pages/moves-page';
+import AboutPage from './pages/about-page';
 
 const NAV_SECTIONS = [
   {
@@ -29,9 +31,14 @@ const NAV_SECTIONS = [
       { to: '/types',     label: 'type chart' },
     ],
   },
+  {
+    items: [
+      { to: '/about', label: 'about' },
+    ],
+  },
 ];
 
-const THEMES = ['light', 'dark', 'ereader', 'retro', 'nitro'];
+const THEMES = ['auto', 'light', 'dark', 'ereader', 'retro', 'nitro'];
 
 // every base starter across gen 1 → gen 9, plus pichu. shuffled on mount and
 // doubled (JSX below) so the keyframe's `translateX(-50%)` lands sprite[count]
@@ -186,6 +193,8 @@ function ScrollManager() {
 function AppHeader({ theme, setTheme, a11y, setA11y, enabledFilters, toggleFilter, filterOrder, reorderFilters }) {
   const [visualsOpen,  setVisualsOpen]  = useState(false);
   const [featuresOpen, setFeaturesOpen] = useState(false);
+  const { displayed: visualsShown,  isClosing: visualsClosing }  = useModalAnimation(visualsOpen);
+  const { displayed: featuresShown, isClosing: featuresClosing } = useModalAnimation(featuresOpen);
   const visualsRef    = useRef(null);
   const featuresRef   = useRef(null);
 
@@ -211,8 +220,8 @@ function AppHeader({ theme, setTheme, a11y, setA11y, enabledFilters, toggleFilte
               <rect y="12" width="16" height="2" rx="1"/>
             </svg>
           </button>
-          {featuresOpen && (
-            <div className="settings-modal features-modal">
+          {featuresShown && (
+            <div className={`settings-modal features-modal${featuresClosing ? ' closing' : ''}`}>
               {NAV_SECTIONS.map((section, si) => (
                 <Fragment key={si}>
                   {si > 0 && <div className="dropdown-divider" />}
@@ -237,8 +246,8 @@ function AppHeader({ theme, setTheme, a11y, setA11y, enabledFilters, toggleFilte
             </svg>
           </button>
 
-          {visualsOpen && (
-            <div className="settings-modal">
+          {visualsShown && (
+            <div className={`settings-modal${visualsClosing ? ' closing' : ''}`}>
               <span className="settings-label">visuals</span>
 
               <div className="settings-section">
@@ -246,7 +255,7 @@ function AppHeader({ theme, setTheme, a11y, setA11y, enabledFilters, toggleFilte
                 <select
                   className="theme-select"
                   value={theme}
-                  onChange={e => setTheme(e.target.value)}
+                  onChange={e => { setTheme(e.target.value); setVisualsOpen(false); }}
                 >
                   {THEMES.map(t => (
                     <option key={t} value={t}>{t}</option>
@@ -262,7 +271,13 @@ function AppHeader({ theme, setTheme, a11y, setA11y, enabledFilters, toggleFilte
                   <span>a11y mode</span>
                   <div
                     className={`toggle-switch${a11y ? ' on' : ''}`}
-                    onClick={() => setA11y(v => !v)}
+                    onClick={() => {
+                      setA11y(v => !v);
+                      // let the 200ms toggle knob transition finish before the modal fades out,
+                      // so the user sees the switch reach its new position. matches the natural
+                      // delay from the native <select> closing before theme onChange fires.
+                      setTimeout(() => setVisualsOpen(false), 200);
+                    }}
                   />
                 </label>
                 <p className="settings-hint">adds patterns to stat bars, removes animations, increases font size and spacing, boosts contrast</p>
@@ -276,18 +291,34 @@ function AppHeader({ theme, setTheme, a11y, setA11y, enabledFilters, toggleFilte
   );
 }
 
-// applies and persists theme + a11y preferences
+// applies and persists theme + a11y preferences.
+// 'auto' follows the OS prefers-color-scheme setting live — we watch matchMedia so a
+// system-level toggle (e.g. macOS light→dark at sundown) updates the site immediately
+// without a reload. selecting any explicit theme overrides the OS preference.
 function useVisualSettings() {
   const [theme, setTheme] = useState(() => {
     const saved = localStorage.getItem('theme');
     // migrate old 'warm'/'cream' values to 'light'
-    return (saved === 'warm' || saved === 'cream') ? 'light' : (saved || 'light');
+    if (saved === 'warm' || saved === 'cream') return 'light';
+    // new/unset users default to 'auto' so first visit matches their system.
+    return saved || 'auto';
   });
   const [a11y, setA11y] = useState(() => localStorage.getItem('a11y') === 'true');
 
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('theme', theme);
+    if (theme !== 'auto') {
+      document.documentElement.setAttribute('data-theme', theme);
+      return;
+    }
+    // auto: resolve to light/dark from OS, and re-resolve on system change.
+    const mql = window.matchMedia('(prefers-color-scheme: dark)');
+    const apply = () => {
+      document.documentElement.setAttribute('data-theme', mql.matches ? 'dark' : 'light');
+    };
+    apply();
+    mql.addEventListener('change', apply);
+    return () => mql.removeEventListener('change', apply);
   }, [theme]);
 
   useEffect(() => {
@@ -350,6 +381,7 @@ export default function App() {
         <Route path="/berries"     element={<BerriesPage />} />
         <Route path="/team"        element={<TeamPage />} />
         <Route path="/lore"        element={<LorePage />} />
+        <Route path="/about"       element={<AboutPage />} />
       </Routes>
     </BrowserRouter>
   );

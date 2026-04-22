@@ -123,33 +123,6 @@ function NewsEntry({ entry }) {
   );
 }
 
-function AboutPanel() {
-  return (
-    <aside className="news-about">
-      <h2>about</h2>
-      <p>
-        a handmade pokédex built as a personal project — static react, no backend,
-        data sourced from pokeapi and curated by hand.
-      </p>
-      <ul className="news-about__links">
-        <li>
-          <a href="https://github.com/voltage770" target="_blank" rel="noopener noreferrer">
-            github / voltage770
-          </a>
-        </li>
-        <li>
-          <a href="https://www.twitch.tv/xgamesjc" target="_blank" rel="noopener noreferrer">
-            twitch / xgamesjc
-          </a>
-        </li>
-      </ul>
-      <p className="news-about__note">
-        more projects &amp; write-ups coming soon.
-      </p>
-    </aside>
-  );
-}
-
 // fetches the live feed from the cloudflare worker with a short timeout. on
 // any failure (network error, non-ok response, bad json, empty entries) the
 // caller falls back to the bundled copy — the page always renders something.
@@ -164,9 +137,13 @@ async function fetchLiveNews(signal) {
   return data;
 }
 
+const INITIAL_VISIBLE = 10;
+const PAGE_STEP = 10;
+
 export default function NewsPage() {
   const [data, setData]     = useState(null);
   const [status, setStatus] = useState('loading');
+  const [visible, setVisible] = useState(INITIAL_VISIBLE);
 
   useEffect(() => {
     // AbortController is the web-platform way to cancel an in-flight fetch.
@@ -215,10 +192,9 @@ export default function NewsPage() {
             <span className="news-page__tag">refreshing…</span>
           ) : (
             <>
-              {entries.length} recent entries
-              {updatedText && <> · updated {updatedText}</>}
+              {updatedText && <>updated {updatedText}</>}
               {sources.length > 0 && (
-                <> · sources: {sources.map(s => s.name).join(', ')}</>
+                <>{updatedText && ' · '}sources: {sources.map(s => s.name).join(', ')}</>
               )}
               {status === 'fallback' && <> · <span className="news-page__tag news-page__tag--warn">using cached copy</span></>}
             </>
@@ -238,17 +214,24 @@ export default function NewsPage() {
           no entries yet — run <code>node news/fetch-news.js</code> from <code>scripts/</code>.
         </p>
       ) : (
-        <div className="news-list">
-          {entries.map((e, i) => (
-            <div key={e.id} className="news-list__item">
-              {i > 0 && <hr className="news-divider" />}
-              <NewsEntry entry={e} />
-            </div>
-          ))}
-        </div>
+        <>
+          <div className="news-list">
+            {entries.slice(0, visible).map((e, i) => (
+              <div key={e.id} className="news-list__item">
+                {i > 0 && <hr className="news-divider" />}
+                <NewsEntry entry={e} />
+              </div>
+            ))}
+          </div>
+
+          {visible < entries.length && (
+            <button className="load-more-btn" onClick={() => setVisible(v => v + PAGE_STEP)}>
+              show more
+            </button>
+          )}
+        </>
       )}
 
-      <AboutPanel />
     </div>
   );
 }

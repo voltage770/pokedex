@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { useModalAnimation } from '../hooks/use-modal-animation';
 import balls from '../data/pokeballs.json';
 
 const STANDARD_ORDER = ['poke-ball', 'great-ball', 'ultra-ball', 'master-ball', 'safari-ball', 'sport-ball'];
@@ -21,7 +22,9 @@ function formatBallName(slug) {
   return slug.replace(/-/g, ' ');
 }
 
-function BallModal({ ball, onPrev, onNext, onClose }) {
+function BallModal({ ball, onPrev, onNext, onClose, closing, bump }) {
+  const modalRef = useRef(null);
+
   useEffect(() => {
     const handleKey = (e) => {
       if (e.key === 'Escape') onClose();
@@ -32,9 +35,24 @@ function BallModal({ ball, onPrev, onNext, onClose }) {
     return () => window.removeEventListener('keydown', handleKey);
   }, [onPrev, onNext, onClose]);
 
+  // cycle pulse driven imperatively via WAAPI. skip on initial mount (bump.n === 0) so the
+  // opening `modal-pop` animation plays cleanly, then pulse on each subsequent arrow press.
+  useEffect(() => {
+    if (bump.n === 0 || !modalRef.current) return;
+    const anim = modalRef.current.animate(
+      [
+        { transform: 'scale(1)' },
+        { transform: 'scale(1.025)', offset: .3 },
+        { transform: 'scale(1)' },
+      ],
+      { duration: 220, easing: 'ease-out' },
+    );
+    return () => anim.cancel();
+  }, [bump.n]);
+
   return (
-    <div className="ability-modal-overlay" onClick={onClose}>
-      <div className="ball-modal" onClick={e => e.stopPropagation()}>
+    <div className={`ability-modal-overlay${closing ? ' closing' : ''}`} onClick={onClose}>
+      <div ref={modalRef} className="ball-modal" onClick={e => e.stopPropagation()}>
         <div className="ball-modal__header">
           {ball.sprite && <img src={ball.sprite} alt={ball.name} />}
           <h2>{formatBallName(ball.name)}</h2>
@@ -43,9 +61,20 @@ function BallModal({ ball, onPrev, onNext, onClose }) {
         {ball.effect && <p className="ball-modal__effect">{ball.effect}</p>}
         {ball.flavor_text && <p className="ball-modal__flavor">{ball.flavor_text}</p>}
         <div className="ball-modal__meta">
-          {ball.cost > 0 && <span>₽{ball.cost.toLocaleString()}</span>}
-          {ball.cost === 0 && <span>not sold</span>}
-          <span>{ball.category?.replace(/-/g, ' ').replace(' balls', '')}</span>
+          <div className="info-cell">
+            <span className="info-cell__label">price</span>
+            <span className="info-cell__value">
+              {ball.cost > 0 ? `₽${ball.cost.toLocaleString()}` : 'not sold'}
+            </span>
+          </div>
+          {ball.category && (
+            <div className="info-cell">
+              <span className="info-cell__label">class</span>
+              <span className="info-cell__value">
+                {ball.category.replace(/-/g, ' ').replace(' balls', '')}
+              </span>
+            </div>
+          )}
         </div>
       </div>
     </div>
@@ -54,6 +83,7 @@ function BallModal({ ball, onPrev, onNext, onClose }) {
 
 export default function PokeballsPage() {
   const [selected, setSelected] = useState(null); // { sectionIdx, index }
+  const [bump, setBump] = useState({ n: 0, dir: 0 }); // cycle bump: increments on each arrow press, dir +1/-1
 
   const close = useCallback(() => setSelected(null), []);
   const cycle = useCallback((delta) => {
@@ -62,6 +92,7 @@ export default function PokeballsPage() {
       const n = SECTIONED_BALLS[s.sectionIdx].items.length;
       return { ...s, index: ((s.index + delta) % n + n) % n };
     });
+    setBump(b => ({ n: b.n + 1, dir: delta }));
   }, []);
   const prev = useCallback(() => cycle(-1), [cycle]);
   const next = useCallback(() => cycle(1), [cycle]);
@@ -69,6 +100,7 @@ export default function PokeballsPage() {
   const currentBall = selected
     ? SECTIONED_BALLS[selected.sectionIdx].items[selected.index]
     : null;
+  const { displayed: shownBall, isClosing } = useModalAnimation(currentBall);
 
   return (
     <div className="items-page">
@@ -90,8 +122,8 @@ export default function PokeballsPage() {
         </div>
       ))}
 
-      {currentBall && (
-        <BallModal ball={currentBall} onPrev={prev} onNext={next} onClose={close} />
+      {shownBall && (
+        <BallModal ball={shownBall} onPrev={prev} onNext={next} onClose={close} closing={isClosing} bump={bump} />
       )}
     </div>
   );

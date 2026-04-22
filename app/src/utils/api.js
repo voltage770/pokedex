@@ -106,6 +106,25 @@ function highlightFormsFor(p, cls) {
   }
 }
 
+// returns inline form slugs for the "view forms inline" toggle.
+// 'regional' = only regional variants. 'all' = mega + gmax + regional + alt forms.
+// forms are emitted in a stable order (mega → gmax → regional → alt) so cycling
+// through a species group reads in a predictable sequence.
+function inlineFormsFor(p, mode) {
+  if (!mode) return [];
+  const has = f => !!p.form_data?.[f] && !EXCLUDED_FORMS.has(f);
+  if (mode === 'regional') return (p.regional_forms || []).filter(has);
+  if (mode === 'all') {
+    return [
+      ...(p.mega_forms     || []),
+      ...(p.gmax_forms     || []),
+      ...(p.regional_forms || []),
+      ...(p.alt_forms      || []),
+    ].filter(has);
+  }
+  return [];
+}
+
 // slim shape returned by the list — detail/compare get the full object
 function slim(p, formName) {
   const formData = formName ? p.form_data?.[formName] : null;
@@ -160,7 +179,7 @@ function matchesClass(p, cls) {
 
 // filtered, sorted, paginated list
 export function getPokemon(filters = {}) {
-  const { search, type, generation, cls, stat, minStat, sort = 'id', sortDir = 'asc', limit = 20, offset = 0 } = filters;
+  const { search, type, generation, cls, stat, minStat, inlineForms, sort = 'id', sortDir = 'asc', limit = 20, offset = 0 } = filters;
 
   let results = ALL;
 
@@ -194,8 +213,19 @@ export function getPokemon(filters = {}) {
   return Promise.resolve(
     results
       .flatMap(p => {
-        const forms = highlightFormsFor(p, cls);
-        return forms.length ? forms.map(f => slim(p, f)) : [slim(p, null)];
+        // inline toggle reshapes cls from a form-replacer into a pure filter:
+        // when inline is on, emit base + forms (narrowed by cls if cls surfaces forms,
+        // otherwise the inline mode's own form set). this lets 'cls=regional-alola'
+        // + inline produce [raichu, raichu-alola] pairs instead of alolan-only cards.
+        const classForms = highlightFormsFor(p, cls);
+        if (inlineForms) {
+          const forms = classForms.length ? classForms : inlineFormsFor(p, inlineForms);
+          return [slim(p, null), ...forms.map(f => slim(p, f))];
+        }
+
+        // inline off: legacy behavior — cls-driven form sets replace the base card.
+        if (classForms.length) return classForms.map(f => slim(p, f));
+        return [slim(p, null)];
       })
       .slice(Number(offset), Number(offset) + Number(limit))
   );
@@ -563,7 +593,7 @@ export function searchWithForms(query, limit = 12) {
       ...(p.gmax_forms || []),
       ...(p.regional_forms || []),
       ...(p.alt_forms || []),
-    ].filter(f => p.form_data?.[f]);
+    ].filter(f => p.form_data?.[f] && !EXCLUDED_FORMS.has(f));
 
     const baseName = formatFormName(p.name).toLowerCase();
     const baseSlug = p.name;

@@ -70,7 +70,7 @@ const FILTER_OPTIONS = [
   { key: 'minStat', label: 'min stat' },
 ];
 
-export default function FilterPanel({ filters, onChange, enabledFilters = {}, filterOrder = ['type', 'class', 'minStat'], toggleFilter, shiny, onShinyToggle }) {
+export default function FilterPanel({ filters, onChange, enabledFilters = {}, filterOrder = ['type', 'class', 'minStat'], toggleFilter, shiny, onShinyToggle, inlineForms = '', onInlineFormsChange }) {
   const types = useTypes();
 
   const update = (key, value) => onChange({ ...filters, [key]: value || undefined });
@@ -112,6 +112,27 @@ export default function FilterPanel({ filters, onChange, enabledFilters = {}, fi
         </button>
       </div>
 
+      {onInlineFormsChange && (
+        <div className="filter-toggles">
+          <label className="filter-toggle-row">
+            <input
+              type="checkbox"
+              checked={inlineForms === 'regional'}
+              onChange={e => onInlineFormsChange(e.target.checked ? 'regional' : '')}
+            />
+            <span>show variants inline</span>
+          </label>
+          <label className="filter-toggle-row">
+            <input
+              type="checkbox"
+              checked={inlineForms === 'all'}
+              onChange={e => onInlineFormsChange(e.target.checked ? 'all' : '')}
+            />
+            <span>show forms inline</span>
+          </label>
+        </div>
+      )}
+
       {toggleFilter && (
         <>
           <hr className="filter-divider" />
@@ -148,6 +169,7 @@ export default function FilterPanel({ filters, onChange, enabledFilters = {}, fi
           });
         }
         if (shiny) onShinyToggle();
+        if (inlineForms && onInlineFormsChange) onInlineFormsChange('');
       }}>reset</button>
     </aside>
   );

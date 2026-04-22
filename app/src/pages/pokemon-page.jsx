@@ -2,6 +2,7 @@ import React, { useState, useRef, useLayoutEffect } from 'react';
 import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import { formatName, formatFormName } from '../utils/format-name';
 import { usePokemonDetail } from '../hooks/use-pokemon';
+import { useModalAnimation } from '../hooks/use-modal-animation';
 import { NAME_TO_ID, FORM_DATA, FORM_TO_BASE_ID, EXCLUDED_FORMS, getBaseFormLabel, FORM_SUFFIX_SPECIES } from '../utils/api';
 import AbilityModal from '../components/ability-modal';
 
@@ -358,6 +359,7 @@ export default function PokemonPage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const { pokemon, loading, error } = usePokemonDetail(id);
   const [selectedAbility, setSelectedAbility] = useState(null);
+  const { displayed: abilityShown, isClosing: abilityClosing } = useModalAnimation(selectedAbility);
 
   // scroll-anchor the evo chain across evo-card navigations so changes in hero/flavor-text height
   // don't make the chain jump up or down in the viewport. onClickCapture records the container top
@@ -576,8 +578,8 @@ export default function PokemonPage() {
         )}
       </div>
 
-      {selectedAbility && (
-        <AbilityModal ability={selectedAbility} onClose={() => setSelectedAbility(null)} />
+      {abilityShown && (
+        <AbilityModal ability={abilityShown} closing={abilityClosing} onClose={() => setSelectedAbility(null)} />
       )}
     </div>
   );

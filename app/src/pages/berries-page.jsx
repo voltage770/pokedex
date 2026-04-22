@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { useModalAnimation } from '../hooks/use-modal-animation';
 import berries from '../data/berries.json';
 
 const FLAVOR_ORDER = ['spicy', 'dry', 'sweet', 'bitter', 'sour'];
@@ -22,7 +23,9 @@ function formatName(slug) {
   return slug.replace(/-/g, ' ');
 }
 
-function BerryModal({ berry, onPrev, onNext, onClose }) {
+function BerryModal({ berry, onPrev, onNext, onClose, closing, bump }) {
+  const modalRef = useRef(null);
+
   useEffect(() => {
     const handleKey = (e) => {
       if (e.key === 'Escape') onClose();
@@ -33,11 +36,26 @@ function BerryModal({ berry, onPrev, onNext, onClose }) {
     return () => window.removeEventListener('keydown', handleKey);
   }, [onPrev, onNext, onClose]);
 
+  // cycle pulse driven imperatively via WAAPI. skip on initial mount (bump.n === 0) so the
+  // opening `modal-pop` animation plays cleanly, then pulse on each subsequent arrow press.
+  useEffect(() => {
+    if (bump.n === 0 || !modalRef.current) return;
+    const anim = modalRef.current.animate(
+      [
+        { transform: 'scale(1)' },
+        { transform: 'scale(1.025)', offset: .3 },
+        { transform: 'scale(1)' },
+      ],
+      { duration: 220, easing: 'ease-out' },
+    );
+    return () => anim.cancel();
+  }, [bump.n]);
+
   const hasFlavors = FLAVOR_ORDER.some(f => berry.flavors[f]);
 
   return (
-    <div className="ability-modal-overlay" onClick={onClose}>
-      <div className="ball-modal" onClick={e => e.stopPropagation()}>
+    <div className={`ability-modal-overlay${closing ? ' closing' : ''}`} onClick={onClose}>
+      <div ref={modalRef} className="ball-modal ball-modal--berry" onClick={e => e.stopPropagation()}>
         <div className="ball-modal__header">
           {berry.sprite && <img src={berry.sprite} alt={berry.name} />}
           <h2>{formatName(berry.name)} berry</h2>
@@ -49,7 +67,7 @@ function BerryModal({ berry, onPrev, onNext, onClose }) {
         {hasFlavors && (
           <div className="berry-flavors">
             {FLAVOR_ORDER.map(f => berry.flavors[f] ? (
-              <span key={f} className="berry-flavor">
+              <span key={f} className={`berry-flavor flavor-${f}`}>
                 {f} <strong>{berry.flavors[f]}</strong>
               </span>
             ) : null)}
@@ -58,15 +76,43 @@ function BerryModal({ berry, onPrev, onNext, onClose }) {
 
         <div className="ball-modal__meta">
           {berry.natural_gift_type && (
-            <span className={`type-badge type-${berry.natural_gift_type}`}>
-              {berry.natural_gift_type}
-            </span>
+            <div className="info-cell">
+              <span className="info-cell__label">type</span>
+              <span className="info-cell__value">
+                <span className={`type-badge type-${berry.natural_gift_type}`}>{berry.natural_gift_type}</span>
+              </span>
+            </div>
           )}
-          {berry.natural_gift_power > 0 && <span>power {berry.natural_gift_power}</span>}
-          {berry.growth_time > 0 && <span>{berry.growth_time}h growth</span>}
-          {berry.max_harvest > 0 && <span>max {berry.max_harvest}</span>}
-          {berry.size > 0 && <span>{berry.size / 10} cm</span>}
-          {berry.firmness && <span>{berry.firmness.replace(/-/g, ' ')}</span>}
+          {berry.natural_gift_power > 0 && (
+            <div className="info-cell">
+              <span className="info-cell__label">power</span>
+              <span className="info-cell__value">{berry.natural_gift_power}</span>
+            </div>
+          )}
+          {berry.growth_time > 0 && (
+            <div className="info-cell">
+              <span className="info-cell__label">growth</span>
+              <span className="info-cell__value">{berry.growth_time}h</span>
+            </div>
+          )}
+          {berry.max_harvest > 0 && (
+            <div className="info-cell">
+              <span className="info-cell__label">yield</span>
+              <span className="info-cell__value">{berry.max_harvest}</span>
+            </div>
+          )}
+          {berry.size > 0 && (
+            <div className="info-cell">
+              <span className="info-cell__label">size</span>
+              <span className="info-cell__value">{(berry.size / 10).toFixed(1)} cm</span>
+            </div>
+          )}
+          {berry.firmness && (
+            <div className="info-cell">
+              <span className="info-cell__label">firmness</span>
+              <span className="info-cell__value">{berry.firmness.replace(/-/g, ' ')}</span>
+            </div>
+          )}
         </div>
       </div>
     </div>
@@ -75,6 +121,7 @@ function BerryModal({ berry, onPrev, onNext, onClose }) {
 
 export default function BerriesPage() {
   const [selected, setSelected] = useState(null); // { sectionIdx, index }
+  const [bump, setBump] = useState({ n: 0, dir: 0 }); // cycle bump: increments on each arrow press, dir +1/-1
 
   const close = useCallback(() => setSelected(null), []);
   const cycle = useCallback((delta) => {
@@ -83,6 +130,7 @@ export default function BerriesPage() {
       const n = SECTIONED_BERRIES[s.sectionIdx].items.length;
       return { ...s, index: ((s.index + delta) % n + n) % n };
     });
+    setBump(b => ({ n: b.n + 1, dir: delta }));
   }, []);
   const prev = useCallback(() => cycle(-1), [cycle]);
   const next = useCallback(() => cycle(1), [cycle]);
@@ -90,6 +138,7 @@ export default function BerriesPage() {
   const currentBerry = selected
     ? SECTIONED_BERRIES[selected.sectionIdx].items[selected.index]
     : null;
+  const { displayed: shownBerry, isClosing } = useModalAnimation(currentBerry);
 
   return (
     <div className="items-page">
@@ -111,8 +160,8 @@ export default function BerriesPage() {
         </div>
       ))}
 
-      {currentBerry && (
-        <BerryModal berry={currentBerry} onPrev={prev} onNext={next} onClose={close} />
+      {shownBerry && (
+        <BerryModal berry={shownBerry} onPrev={prev} onNext={next} onClose={close} closing={isClosing} bump={bump} />
       )}
     </div>
   );

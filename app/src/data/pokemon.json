@@ -2786,8 +2786,7 @@
     "mega_forms": [],
     "gmax_forms": [],
     "regional_forms": [
-      "raticate-alola",
-      "raticate-totem-alola"
+      "raticate-alola"
     ],
     "alt_forms": [],
     "form_data": {
@@ -2843,64 +2842,6 @@
         "flavor_text": "It commands a nest of Rattata. Different nests don't get along, whipping up severe fights over feeding grounds.",
         "height": 7,
         "weight": 255,
-        "ev_yield": [
-          {
-            "stat_name": "speed",
-            "effort": 2
-          }
-        ]
-      },
-      "raticate-totem-alola": {
-        "sprite_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10093.png",
-        "sprite_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10093.png",
-        "artwork_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10093.png",
-        "artwork_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/10093.png",
-        "types": [
-          "dark",
-          "normal"
-        ],
-        "stats": [
-          {
-            "stat_name": "hp",
-            "base_value": 75
-          },
-          {
-            "stat_name": "attack",
-            "base_value": 71
-          },
-          {
-            "stat_name": "defense",
-            "base_value": 70
-          },
-          {
-            "stat_name": "special-attack",
-            "base_value": 40
-          },
-          {
-            "stat_name": "special-defense",
-            "base_value": 80
-          },
-          {
-            "stat_name": "speed",
-            "base_value": 77
-          }
-        ],
-        "abilities": [
-          {
-            "ability_name": "gluttony",
-            "is_hidden": false
-          },
-          {
-            "ability_name": "hustle",
-            "is_hidden": false
-          },
-          {
-            "ability_name": "thick-fat",
-            "is_hidden": true
-          }
-        ],
-        "height": 14,
-        "weight": 1050,
         "ev_yield": [
           {
             "stat_name": "speed",
@@ -14080,9 +14021,7 @@
     "regional_forms": [
       "marowak-alola"
     ],
-    "alt_forms": [
-      "marowak-totem"
-    ],
+    "alt_forms": [],
     "form_data": {
       "marowak-alola": {
         "sprite_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10115.png",
@@ -85841,9 +85780,7 @@
     "mega_forms": [],
     "gmax_forms": [],
     "regional_forms": [],
-    "alt_forms": [
-      "gumshoos-totem"
-    ],
+    "alt_forms": [],
     "form_data": {},
     "evolutions": [
       {
@@ -86142,9 +86079,7 @@
     "mega_forms": [],
     "gmax_forms": [],
     "regional_forms": [],
-    "alt_forms": [
-      "vikavolt-totem"
-    ],
+    "alt_forms": [],
     "form_data": {},
     "evolutions": [
       {
@@ -86833,9 +86768,7 @@
     "mega_forms": [],
     "gmax_forms": [],
     "regional_forms": [],
-    "alt_forms": [
-      "ribombee-totem"
-    ],
+    "alt_forms": [],
     "form_data": {},
     "evolutions": [
       {
@@ -87899,9 +87832,7 @@
     "mega_forms": [],
     "gmax_forms": [],
     "regional_forms": [],
-    "alt_forms": [
-      "araquanid-totem"
-    ],
+    "alt_forms": [],
     "form_data": {},
     "evolutions": [
       {
@@ -88087,9 +88018,7 @@
     "mega_forms": [],
     "gmax_forms": [],
     "regional_forms": [],
-    "alt_forms": [
-      "lurantis-totem"
-    ],
+    "alt_forms": [],
     "form_data": {},
     "evolutions": [
       {
@@ -88475,9 +88404,7 @@
     "mega_forms": [],
     "gmax_forms": [],
     "regional_forms": [],
-    "alt_forms": [
-      "salazzle-totem"
-    ],
+    "alt_forms": [],
     "form_data": {},
     "evolutions": [
       {
@@ -90973,9 +90900,7 @@
     "mega_forms": [],
     "gmax_forms": [],
     "regional_forms": [],
-    "alt_forms": [
-      "togedemaru-totem"
-    ],
+    "alt_forms": [],
     "form_data": {},
     "evolutions": [],
     "ev_yield": [
@@ -91050,9 +90975,7 @@
     "gmax_forms": [],
     "regional_forms": [],
     "alt_forms": [
-      "mimikyu-busted",
-      "mimikyu-totem-disguised",
-      "mimikyu-totem-busted"
+      "mimikyu-busted"
     ],
     "form_data": {
       "mimikyu-busted": {
@@ -91099,106 +91022,6 @@
         "flavor_text": "Even as it struggles beneath the cloth to repair the broken neck of its disguise, Mimikyu keeps up its impersonation of Pikachu.",
         "height": 2,
         "weight": 7,
-        "ev_yield": [
-          {
-            "stat_name": "special-defense",
-            "effort": 2
-          }
-        ]
-      },
-      "mimikyu-totem-disguised": {
-        "sprite_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10144.png",
-        "sprite_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10144.png",
-        "artwork_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10144.png",
-        "artwork_shiny": null,
-        "types": [
-          "ghost",
-          "fairy"
-        ],
-        "stats": [
-          {
-            "stat_name": "hp",
-            "base_value": 55
-          },
-          {
-            "stat_name": "attack",
-            "base_value": 90
-          },
-          {
-            "stat_name": "defense",
-            "base_value": 80
-          },
-          {
-            "stat_name": "special-attack",
-            "base_value": 50
-          },
-          {
-            "stat_name": "special-defense",
-            "base_value": 105
-          },
-          {
-            "stat_name": "speed",
-            "base_value": 96
-          }
-        ],
-        "abilities": [
-          {
-            "ability_name": "disguise",
-            "is_hidden": false
-          }
-        ],
-        "height": 4,
-        "weight": 28,
-        "ev_yield": [
-          {
-            "stat_name": "special-defense",
-            "effort": 2
-          }
-        ]
-      },
-      "mimikyu-totem-busted": {
-        "sprite_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10145.png",
-        "sprite_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10145.png",
-        "artwork_url": null,
-        "artwork_shiny": null,
-        "types": [
-          "ghost",
-          "fairy"
-        ],
-        "stats": [
-          {
-            "stat_name": "hp",
-            "base_value": 55
-          },
-          {
-            "stat_name": "attack",
-            "base_value": 90
-          },
-          {
-            "stat_name": "defense",
-            "base_value": 80
-          },
-          {
-            "stat_name": "special-attack",
-            "base_value": 50
-          },
-          {
-            "stat_name": "special-defense",
-            "base_value": 105
-          },
-          {
-            "stat_name": "speed",
-            "base_value": 96
-          }
-        ],
-        "abilities": [
-          {
-            "ability_name": "disguise",
-            "is_hidden": false
-          }
-        ],
-        "height": 4,
-        "weight": 28,
         "ev_yield": [
           {
             "stat_name": "special-defense",
@@ -91800,9 +91623,7 @@
     "mega_forms": [],
     "gmax_forms": [],
     "regional_forms": [],
-    "alt_forms": [
-      "kommo-o-totem"
-    ],
+    "alt_forms": [],
     "form_data": {},
     "evolutions": [
       {

@@ -12,14 +12,15 @@
   --text:         #2a1f14;
   --text-muted:   #7a6555;
   --text-subtle:  #b09a88;
-  --border:       #d9ccbc;
+  --border:       #c2aa8c;
   --accent:       #7c6fcd;
   --accent-hover: #6a5fbf;
   --shadow-sm:    0 1px 3px rgba(80, 55, 30, .08);
   --shadow-md:    0 4px 16px rgba(80, 55, 30, .12);
   --shadow-lg:    0 8px 28px rgba(80, 55, 30, .18);
-  --radius:       10px;
-  --radius-sm:    6px;
+  // rounded + friendly default, applied across every theme.
+  --radius:       22px;
+  --radius-sm:    14px;
 }
 
 [data-theme='dark'] {
@@ -30,7 +31,7 @@
   --text:         #f0e8dc;
   --text-muted:   #9a8a78;
   --text-subtle:  #5a5048;
-  --border:       #2e2a24;
+  --border:       #3e382f;
   --accent:       #9b8fe0;
   --accent-hover: #8878d0;
   --shadow-sm:    0 1px 3px rgba(0, 0, 0, .3);
@@ -46,7 +47,7 @@
   --text:         #280038;
   --text-muted:   #7030a0;
   --text-subtle:  #b868d0;
-  --border:       #d898ec;
+  --border:       #c878dc;
   --accent:       #c058d4;
   --accent-hover: #a840bc;
   --shadow-sm:    0 1px 3px rgba(120, 0, 160, .13);
@@ -62,14 +63,12 @@
   --text:         #0a0a0a;
   --text-muted:   #3a3a3a;
   --text-subtle:  #6a6a6a;
-  --border:       #aaaaaa;
+  --border:       #888888;
   --accent:       #111111;
   --accent-hover: #333333;
   --shadow-sm:    none;
   --shadow-md:    none;
   --shadow-lg:    none;
-  --radius:       4px;
-  --radius-sm:    2px;
 }
 
 [data-theme='nitro'] {
@@ -185,6 +184,10 @@
   --text-muted:  var(--text);
   --text-subtle: var(--text-muted);
 
+  // borders mixed from --text so they scale across every theme. stronger than
+  // the per-theme moderate border bump so a11y reads as deliberately high-contrast.
+  --border: color-mix(in srgb, var(--text) 55%, var(--bg));
+
   // card borders more visible
   .pokemon-card { border-width: 2px; }
 }
@@ -261,10 +264,25 @@ img {
   to   { opacity: 1; }
 }
 
+@keyframes modal-backdrop-out {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
 @keyframes modal-pop {
   from { opacity: 0; transform: scale(.85) translateY(12px); }
   to   { opacity: 1; transform: scale(1) translateY(0); }
 }
+
+// mirror of modal-pop for the close animation — same transforms read backward.
+@keyframes modal-pop-out {
+  from { opacity: 1; transform: scale(1) translateY(0); }
+  to   { opacity: 0; transform: scale(.85) translateY(12px); }
+}
+
+// cycle bump for berries/pokeballs modals is driven imperatively via WAAPI in each
+// page — kept out of CSS so we don't need a `key` remount (which caused a visible
+// backdrop flash between the unmount and mount phases).
 
 @keyframes stat-fill {
   from { width: 0; }
@@ -396,15 +414,20 @@ img {
   font-size: .75rem;
   font-weight: 500;
   color: var(--text-muted);
-  border: 1px solid var(--border);
+  // color-mix against --text so boundaries stay visible in every theme —
+  // the raw --border token collapses against --bg-header in nitro (identical
+  // yellow) and dark (near-identical charcoal).
+  background: color-mix(in srgb, var(--text) 6%, transparent);
+  border: 1px solid color-mix(in srgb, var(--text) 30%, transparent);
   border-radius: var(--radius-sm);
-  background: transparent;
   cursor: pointer;
-  transition: color .15s ease, border-color .15s ease;
+  transition: color .15s ease, border-color .15s ease, background-color .15s ease, box-shadow .15s ease;
 
   &:hover {
     color: var(--text);
-    border-color: var(--text-subtle);
+    background: color-mix(in srgb, var(--accent) 22%, var(--bg-card));
+    border-color: var(--accent);
+    box-shadow: 0 0 0 1px var(--accent);
   }
 
   &.settings-cog,
@@ -431,7 +454,9 @@ img {
   flex-direction: column;
   gap: 16px;
   z-index: 200;
-  animation: modal-pop .3s cubic-bezier(.34, 1.56, .64, 1);
+  animation: modal-pop .25s cubic-bezier(.34, 1.56, .64, 1);
+
+  &.closing { animation: modal-pop-out .25s ease-in forwards; }
 }
 
 .settings-section {
@@ -675,12 +700,13 @@ img {
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   background: transparent;
-  transition: background .15s ease, color .15s ease, border-color .15s ease;
+  transition: background .15s ease, color .15s ease, border-color .15s ease, box-shadow .15s ease;
 
   &:hover {
-    background: var(--bg-card);
-    color: var(--text);
-    border-color: var(--text-subtle);
+    background: color-mix(in srgb, var(--accent) 8%, transparent);
+    color: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 60%, transparent);
   }
 }
 
@@ -762,14 +788,20 @@ img {
   border-radius: var(--radius);
   box-shadow: var(--shadow-sm);
   overflow: hidden;
-  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
   animation: fade-in .3s ease both;
-  position: relative;
+
+  // hover: thick accent "border" via outer box-shadow ring (1px border + 3px
+  // ring reads as ~4px accent edge without altering element size). sprite
+  // steps forward 6%. translateY lifts the whole card.
+  .pokemon-sprite { transition: transform .25s ease; }
 
   &:hover {
     transform: translateY(-6px);
-    box-shadow: var(--shadow-lg);
     border-color: var(--accent);
+    box-shadow: var(--shadow-lg), 0 0 0 3px var(--accent);
+
+    .pokemon-sprite { transform: scale(1.07); }
   }
 }
 
@@ -885,10 +917,13 @@ img {
   border-radius: var(--radius-sm);
   background: transparent;
   cursor: pointer;
+  transition: background-color .15s ease, color .15s ease, border-color .15s ease, box-shadow .15s ease;
 
   &:hover {
     border-color: var(--accent);
     color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 8%, transparent);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 60%, transparent);
   }
 }
 
@@ -1263,6 +1298,12 @@ img {
   align-items: center;
   justify-content: center;
   animation: modal-backdrop .2s ease;
+
+  // close plays backdrop fade-out + pop-out on any inner modal. .closing lives on the overlay
+  // so a single flag drives both layers (backdrop + modal content).
+  &.closing { animation: modal-backdrop-out .25s ease forwards; }
+  &.closing .ability-modal,
+  &.closing .ball-modal { animation: modal-pop-out .25s ease-in forwards; }
 }
 
 .ability-modal {
@@ -1275,7 +1316,7 @@ img {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  animation: modal-pop .3s cubic-bezier(.34, 1.56, .64, 1);
+  animation: modal-pop .25s cubic-bezier(.34, 1.56, .64, 1);
 }
 
 .ability-modal-header {
@@ -1692,6 +1733,13 @@ img {
   }
 }
 
+// page wrapper for /about — centers the existing .news-about card in the viewport.
+.about-page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 48px 24px 64px;
+}
+
 // ─── compare page ────────────────────────────────────────────────────────────
 
 .compare-page {
@@ -1861,7 +1909,7 @@ img {
   flex: 1;
   height: 6px;
   background: var(--border);
-  border-radius: 3px;
+  border-radius: 999px;
   position: relative;
   min-width: 60px;
 
@@ -1871,7 +1919,7 @@ img {
     inset: 0;
     width: inherit;
     background: var(--accent);
-    border-radius: 3px;
+    border-radius: 999px;
   }
 }
 
@@ -1938,7 +1986,7 @@ img {
     width: 28px;
     height: 22px;
     border: 1px solid var(--border);
-    border-radius: 3px;
+    border-radius: 6px;
     margin-left: 10px;
 
     &:first-child { margin-left: 0; }
@@ -2243,12 +2291,16 @@ img {
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   cursor: pointer;
-  transition: border-color .15s ease, box-shadow .15s ease;
+  transition: border-color .15s ease, box-shadow .18s ease;
   font-family: inherit;
+
+  img { transition: transform .2s ease; }
 
   &:hover {
     border-color: var(--accent);
-    box-shadow: var(--shadow-sm);
+    box-shadow: var(--shadow-sm), 0 0 0 3px var(--accent);
+
+    img { transform: scale(1.07); }
   }
 
   img {
@@ -2275,8 +2327,20 @@ img {
   padding: 20px;
   max-width: 380px;
   width: 90vw;
+  // fixed height (not min-) guarantees zero size jitter when cycling — empty
+  // space from short items shows up between body text and the bottom-pinned
+  // info grid, via margin-top: auto on __meta. value is sized generously above
+  // the measured max content so no berry/ball text ever clips at this size.
+  // pages override via &--berry modifier since berries have an extra row.
+  // overflow-y: auto guards against unexpected longer content landing later.
+  height: 320px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
   box-shadow: var(--shadow-lg);
-  animation: modal-pop .3s cubic-bezier(.34, 1.56, .64, 1);
+  animation: modal-pop .25s cubic-bezier(.34, 1.56, .64, 1);
+
+  &--berry { height: 400px; }
 
   &__header {
     display: flex;
@@ -2316,21 +2380,49 @@ img {
     line-height: 1.5;
   }
 
+  // horizontal info grid — auto-fit packs 2 or 3 cells per row depending on
+  // modal width. 1px gap over a tinted background produces hairline dividers
+  // between cells (cheaper than per-cell borders, dividers collapse correctly
+  // at edges). pinned to the modal bottom via margin-top: auto so the footer
+  // grid holds position across items of varying body-text length.
   &__meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(95px, 1fr));
+    gap: 1px;
+    margin-top: auto;
+    background: color-mix(in srgb, var(--text) 10%, transparent);
+    border: 1px solid color-mix(in srgb, var(--text) 10%, transparent);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+  }
+}
 
-    > span {
-      font-size: .7rem;
-      font-weight: 500;
-      padding: 2px 8px;
-      border-radius: 999px;
-      background: var(--bg-sidebar);
-      border: 1px solid var(--border);
-      color: var(--text-muted);
-      text-transform: lowercase;
-    }
+// single data cell inside the info grid. label stacked over value, both
+// left-aligned for scannability. tabular-nums on the value keeps digits
+// column-aligned across cells.
+.info-cell {
+  background: var(--bg-card);
+  padding: 9px 11px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  &__label {
+    font-size: .6rem;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--text-subtle);
+  }
+
+  &__value {
+    font-size: .82rem;
+    font-weight: 500;
+    color: var(--text);
+    font-variant-numeric: tabular-nums;
+    text-transform: lowercase;
+
+    .type-badge { vertical-align: middle; }
   }
 }
 
@@ -2341,9 +2433,16 @@ img {
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
-  transition: border-color .15s ease;
+  transition: border-color .15s ease, box-shadow .18s ease;
 
-  &:hover { border-color: var(--accent); }
+  &__sprite { transition: transform .2s ease; }
+
+  &:hover {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent);
+
+    .item-card__sprite { transform: scale(1.07); }
+  }
 
   &__sprite {
     width: 48px;
@@ -2408,21 +2507,45 @@ img {
 .berry-flavors {
   display: flex;
   flex-wrap: wrap;
-  gap: 4px;
-  margin-bottom: 8px;
+  gap: 6px;
+  margin-bottom: 12px;
 }
 
+// flavor chips share pill dimensions with .meta-pill for visual consistency across
+// the modal. each flavor carries a subtle canonical color tint (spicy→red, etc.)
+// so the five flavors are distinguishable at a glance without being loud.
 .berry-flavor {
-  font-size: .68rem;
-  padding: 2px 7px;
-  border-radius: var(--radius-sm);
-  background: var(--bg);
-  color: var(--text-muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: .72rem;
+  padding: 5px 11px;
+  border-radius: 999px;
+  line-height: 1;
+  color: var(--text-subtle);
   text-transform: lowercase;
+  background: color-mix(in srgb, var(--text) 5%, transparent);
+  border: 1px solid color-mix(in srgb, var(--text) 12%, transparent);
 
   strong {
     color: var(--text);
     font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+
+  $flavor-colors: (
+    'spicy':  #e8603c,
+    'dry':    #5080e8,
+    'sweet':  #e898b8,
+    'bitter': #5cb85c,
+    'sour':   #e8c030,
+  );
+
+  @each $flavor, $color in $flavor-colors {
+    &.flavor-#{$flavor} {
+      background: color-mix(in srgb, #{$color} 14%, transparent);
+      border-color: color-mix(in srgb, #{$color} 38%, transparent);
+    }
   }
 }
 
@@ -3007,7 +3130,7 @@ img {
   }
 }
 
-// ereader: flatten shadows, square corners
+// ereader: flatten shadows (corners match the global rounded radii now)
 [data-theme='ereader'] {
   .news-media,
   .news-about { box-shadow: none; }
@@ -3015,7 +3138,6 @@ img {
   .news-entry__label {
     background: var(--text);
     color: var(--bg-card);
-    border-radius: 2px;
   }
 }
 

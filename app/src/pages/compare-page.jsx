@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useCompare } from '../hooks/use-pokemon';
+import { useModalAnimation } from '../hooks/use-modal-animation';
 import { searchWithForms } from '../utils/api';
 import { formatName, formatFormName } from '../utils/format-name';
 import AbilityModal from '../components/ability-modal';
@@ -20,6 +21,7 @@ export default function ComparePage() {
   const [results, setResults]   = useState([]);
   const [hlIdx, setHlIdx]       = useState(-1);
   const [selectedAbility, setSelectedAbility] = useState(null);
+  const { displayed: abilityShown, isClosing: abilityClosing } = useModalAnimation(selectedAbility);
 
   const { pokemon, loading } = useCompare(entries);
 
@@ -185,8 +187,8 @@ export default function ComparePage() {
           </table>
         </div>
       )}
-      {selectedAbility && (
-        <AbilityModal ability={selectedAbility} onClose={() => setSelectedAbility(null)} />
+      {abilityShown && (
+        <AbilityModal ability={abilityShown} closing={abilityClosing} onClose={() => setSelectedAbility(null)} />
       )}
     </div>
   );
