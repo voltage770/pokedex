@@ -1,6 +1,17 @@
 // ─── tokens ───────────────────────────────────────────────────────────────────
 // :root values are the fallback — light theme is the default
 
+// font-weight tiers. every weight rule across the site references one of
+// these vars so a11y mode can bump the whole scale +100 in one place
+// (see _a11y.scss). when adding new components, pick the tier that matches
+// the role (body / labels / subheadings / headings) — not a raw number.
+:root {
+  --fw-regular:  400;  // body text
+  --fw-medium:   500;  // labels, meta values, secondary emphasis
+  --fw-semibold: 600;  // subheadings, links, chips, buttons
+  --fw-bold:     700;  // headings, names, primary emphasis
+}
+
 :root,
 [data-theme='light'] {
   --bg:           #f5ede0;

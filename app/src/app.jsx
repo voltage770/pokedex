@@ -12,8 +12,15 @@ import TypesPage from './pages/types-page';
 import PokeballsPage from './pages/pokeballs-page';
 import BerriesPage from './pages/berries-page';
 import MovesPage from './pages/moves-page';
+import BadgesPage from './pages/badges-page';
 import AboutPage from './pages/about-page';
 
+// section flags:
+//   `divider: true` draws a hairline above the section (used to separate
+//                   news → resources and resources → about)
+//   `label`         renders a small uppercase subheading above the section
+//                   so the eye can lock onto a category in one scan rather
+//                   than reading 9 sibling links
 const NAV_SECTIONS = [
   {
     items: [
@@ -21,18 +28,32 @@ const NAV_SECTIONS = [
     ],
   },
   {
+    divider: true,
+    label:   'browse',
     items: [
+      { to: '/badges',    label: 'badges' },
       { to: '/berries',   label: 'berries' },
-      { to: '/compare',   label: 'compare' },
-      { to: '/lore',      label: 'lore & legends' },
       { to: '/moves',     label: 'moves' },
       { to: '/pokeballs', label: 'pokéballs' },
       { to: '/pokedex',   label: 'pokédex' },
-      { to: '/team',      label: 'team builder' },
       { to: '/types',     label: 'type chart' },
     ],
   },
   {
+    label: 'tools',
+    items: [
+      { to: '/compare', label: 'compare' },
+      { to: '/team',    label: 'team builder' },
+    ],
+  },
+  {
+    label: 'lore',
+    items: [
+      { to: '/lore', label: 'lore & legends' },
+    ],
+  },
+  {
+    divider: true,
     items: [
       { to: '/about', label: 'about' },
     ],
@@ -208,6 +229,51 @@ function AppHeader({ theme, setTheme, a11y, setA11y, enabledFilters, toggleFilte
     return () => document.removeEventListener('mousedown', handler);
   }, []);
 
+  // Escape closes whichever dropdown is open. only bind while one is — avoids
+  // catching Escape that might be meaningful elsewhere (e.g. in a modal).
+  useEffect(() => {
+    if (!visualsOpen && !featuresOpen) return;
+    const handler = (e) => {
+      if (e.key !== 'Escape') return;
+      setVisualsOpen(false);
+      setFeaturesOpen(false);
+    };
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
+  }, [visualsOpen, featuresOpen]);
+
+  // burger-menu keyboard nav: arrow up/down moves between feature-links,
+  // first item gets focus on open so the user can start arrow-ing immediately.
+  // Tab still works as a fallback. Enter on a focused link navigates (browser
+  // default for anchors). only the burger gets this treatment because the
+  // visuals dropdown contains a native <select> and a div toggle, which
+  // already handle their own keyboard semantics inconsistently — out of scope
+  // for this pass.
+  useEffect(() => {
+    if (!featuresOpen) return;
+    const root = featuresRef.current?.querySelector('.features-modal');
+    if (!root) return;
+    const items = [...root.querySelectorAll('.feature-link')];
+    if (!items.length) return;
+    // defer focus to the next frame so the dropdown's open animation doesn't
+    // get interrupted by a focus-driven repaint mid-frame
+    requestAnimationFrame(() => items[0]?.focus());
+
+    const handler = (e) => {
+      if (e.key !== 'ArrowDown' && e.key !== 'ArrowUp') return;
+      e.preventDefault();
+      const focused = document.activeElement;
+      let idx = items.indexOf(focused);
+      if (idx === -1) idx = 0;
+      else            idx = e.key === 'ArrowDown'
+                              ? (idx + 1) % items.length
+                              : (idx - 1 + items.length) % items.length;
+      items[idx]?.focus();
+    };
+    root.addEventListener('keydown', handler);
+    return () => root.removeEventListener('keydown', handler);
+  }, [featuresOpen]);
+
   return (
     <header className="site-header">
       <HeaderSprites a11y={a11y} />
@@ -225,10 +291,15 @@ function AppHeader({ theme, setTheme, a11y, setA11y, enabledFilters, toggleFilte
             <div className={`settings-modal features-modal${featuresClosing ? ' closing' : ''}`}>
               {NAV_SECTIONS.map((section, si) => (
                 <Fragment key={si}>
-                  {si > 0 && <div className="dropdown-divider" />}
+                  {section.divider && <div className="dropdown-divider" />}
                   {section.label && <div className="nav-section-label">{section.label}</div>}
                   {section.items.map(f => (
-                    <Link key={f.to} to={f.to} className="feature-link" onClick={() => setFeaturesOpen(false)}>
+                    <Link
+                      key={f.to}
+                      to={f.to}
+                      className={`feature-link${section.label ? ' feature-link--nested' : ''}`}
+                      onClick={() => setFeaturesOpen(false)}
+                    >
                       {f.label}
                     </Link>
                   ))}
@@ -378,6 +449,7 @@ export default function App() {
         <Route path="/moves"       element={<MovesPage />} />
         <Route path="/pokeballs"   element={<PokeballsPage />} />
         <Route path="/berries"     element={<BerriesPage />} />
+        <Route path="/badges"      element={<BadgesPage />} />
         <Route path="/team"        element={<TeamPage />} />
         <Route path="/lore"        element={<LorePage />} />
         <Route path="/about"       element={<AboutPage />} />

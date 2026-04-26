@@ -19,7 +19,7 @@
 
   h1 {
     font-size: 1.4rem;
-    font-weight: 700;
+    font-weight: var(--fw-bold);
     letter-spacing: .05em;
     color: var(--text);
     margin-bottom: 4px;
@@ -122,7 +122,7 @@
 
     span {
       font-size: .85rem;
-      font-weight: 600;
+      font-weight: var(--fw-semibold);
       color: var(--text);
     }
   }
@@ -150,7 +150,7 @@
 
 .compare-stat-label {
   font-size: .75rem;
-  font-weight: 600;
+  font-weight: var(--fw-semibold);
   letter-spacing: .06em;
   text-transform: uppercase;
   color: var(--text-subtle);
@@ -158,7 +158,7 @@
 }
 
 .compare-stat-cell {
-  &.best { color: var(--accent); font-weight: 700; }
+  &.best { color: var(--accent); font-weight: var(--fw-bold); }
 }
 
 .compare-bar-wrap {
@@ -205,7 +205,7 @@
   display: inline-block;
   font-family: inherit;
   font-size: .68rem;
-  font-weight: 500;
+  font-weight: var(--fw-medium);
   padding: 3px 8px;
   border-radius: 999px;
   background: var(--bg-sidebar);
@@ -232,7 +232,7 @@
 
   > h1 {
     font-size: 1.6rem;
-    font-weight: 700;
+    font-weight: var(--fw-bold);
     letter-spacing: .04em;
     margin: 0 0 20px;
   }
@@ -265,7 +265,7 @@
 
   h2 {
     font-size: .8rem;
-    font-weight: 600;
+    font-weight: var(--fw-semibold);
     letter-spacing: .08em;
     text-transform: uppercase;
     color: var(--text-subtle);
@@ -294,7 +294,7 @@
     height: 32px;
     text-align: center;
     font-size: .68rem;
-    font-weight: 600;
+    font-weight: var(--fw-semibold);
     text-transform: capitalize;
     border: 1px solid var(--border);
   }
@@ -322,68 +322,25 @@
   }
 }
 
+// minimal type-encoding: each effectiveness gets a single typographic
+// treatment, no backgrounds or color reliance. equal legibility across all
+// three states; the visual difference is just bold / regular / italic.
+//   2× → bold
+//   ½  → regular
+//   0  → italic
 .tc-cell {
-  color: transparent;
+  color: var(--text);
   background: var(--bg-card);
 
-  &.se {
-    background: rgba(76, 175, 80, .12);
-    color: #2e7d32;
-    font-weight: 700;
-    font-size: .74rem;
-  }
-
-  &.nve {
-    background: rgba(183, 74, 74, .1);
-    color: #b05050;
-    font-weight: 600;
-    font-size: .66rem;
-  }
-
+  &.se,
+  &.nve,
   &.imm {
-    background: rgba(0, 0, 0, .06);
-    color: #777;
-    font-weight: 600;
-    font-size: .64rem;
-    text-decoration: line-through;
+    font-size: 1rem;
   }
-}
 
-// dark theme adjustments
-[data-theme='dark'] .tc-cell {
-  &.se  { background: rgba(76, 175, 80, .15); color: #66bb6a; }
-  &.nve { background: rgba(183, 74, 74, .12); color: #c07070; }
-  &.imm { background: rgba(255, 255, 255, .04); color: #888; }
-}
-
-// retro theme
-[data-theme='retro'] .tc-cell {
-  &.se  { background: rgba(120, 100, 60, .15); color: #5a4a20; }
-  &.nve { background: rgba(120, 100, 60, .06); color: #aaa08a; }
-  &.imm { color: #c0b8a0; }
-}
-
-// ereader: pure weight/size distinction, no color reliance
-[data-theme='ereader'] .tc-cell {
-  &.se  { background: rgba(0, 0, 0, .08); color: #111; font-weight: 800; }
-  &.nve { background: transparent; color: #999; }
-  &.imm { background: transparent; color: #ccc; }
-}
-
-// a11y: add subtle patterns for extra distinction
-[data-a11y='true'] .tc-cell {
-  &.se {
-    background-image: repeating-linear-gradient(
-      45deg, transparent, transparent 3px,
-      rgba(76, 175, 80, .08) 3px, rgba(76, 175, 80, .08) 6px
-    );
-  }
-  &.imm {
-    background-image: repeating-linear-gradient(
-      -45deg, transparent, transparent 2px,
-      rgba(0, 0, 0, .04) 2px, rgba(0, 0, 0, .04) 4px
-    );
-  }
+  &.se  { font-weight: var(--fw-bold); }
+  &.nve { font-weight: var(--fw-regular); }
+  &.imm { font-weight: var(--fw-regular); font-style: italic; }
 }
 
 // ─── moves page ──────────────────────────────────────────────────────────────
@@ -396,7 +353,7 @@
 
   > h1 {
     font-size: 1.6rem;
-    font-weight: 700;
+    font-weight: var(--fw-bold);
     letter-spacing: .04em;
     margin: 0 0 4px;
   }
@@ -451,7 +408,7 @@
 
   th {
     font-size: .68rem;
-    font-weight: 600;
+    font-weight: var(--fw-semibold);
     letter-spacing: .06em;
     text-transform: uppercase;
     color: var(--text-subtle);
@@ -482,7 +439,7 @@
 }
 
 .moves-name {
-  font-weight: 500;
+  font-weight: var(--fw-medium);
   text-transform: capitalize;
   white-space: nowrap;
 }
@@ -509,7 +466,7 @@
 
   > h1 {
     font-size: 1.6rem;
-    font-weight: 700;
+    font-weight: var(--fw-bold);
     letter-spacing: .04em;
     margin: 0 0 4px;
   }
@@ -532,7 +489,7 @@
 
   &__label {
     font-size: .75rem;
-    font-weight: 600;
+    font-weight: var(--fw-semibold);
     letter-spacing: .08em;
     text-transform: uppercase;
     color: var(--text-subtle);
@@ -577,7 +534,7 @@
 
   span {
     font-size: .72rem;
-    font-weight: 500;
+    font-weight: var(--fw-medium);
     color: var(--text);
     text-transform: capitalize;
     text-align: center;
@@ -606,6 +563,7 @@
   animation: modal-pop .25s cubic-bezier(.34, 1.56, .64, 1);
 
   &--berry { height: 400px; }
+  &--badge { height: 380px; }
 
   &__header {
     display: flex;
@@ -623,7 +581,7 @@
     h2 {
       flex: 1;
       font-size: 1rem;
-      font-weight: 600;
+      font-weight: var(--fw-semibold);
       text-transform: capitalize;
       color: var(--text);
       margin: 0;
@@ -674,7 +632,7 @@
 
   &__label {
     font-size: .6rem;
-    font-weight: 600;
+    font-weight: var(--fw-semibold);
     letter-spacing: .08em;
     text-transform: uppercase;
     color: var(--text-subtle);
@@ -682,12 +640,21 @@
 
   &__value {
     font-size: .82rem;
-    font-weight: 500;
+    font-weight: var(--fw-medium);
     color: var(--text);
     font-variant-numeric: tabular-nums;
     text-transform: lowercase;
 
     .type-badge { vertical-align: middle; }
+  }
+
+  // multi-type variant — badges with several rotating types (trio badge) render
+  // multiple .type-badge spans in one cell. flex with a small gap keeps them
+  // tidy on one line, wrapping if the cell narrows past content width.
+  &__value--types {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 4px;
   }
 }
 
@@ -724,7 +691,7 @@
 
   &__name {
     font-size: .88rem;
-    font-weight: 600;
+    font-weight: var(--fw-semibold);
     text-transform: capitalize;
     margin: 0 0 4px;
     color: var(--text);
@@ -753,7 +720,7 @@
 
     > span {
       font-size: .68rem;
-      font-weight: 500;
+      font-weight: var(--fw-medium);
       padding: 2px 7px;
       border-radius: 999px;
       background: var(--bg-sidebar);
@@ -794,7 +761,7 @@
 
   strong {
     color: var(--text);
-    font-weight: 600;
+    font-weight: var(--fw-semibold);
     font-variant-numeric: tabular-nums;
   }
 
@@ -824,7 +791,7 @@
 
   h1 {
     font-size: 1.4rem;
-    font-weight: 700;
+    font-weight: var(--fw-bold);
     letter-spacing: .05em;
     color: var(--text);
     margin-bottom: 10px;
@@ -869,4 +836,5 @@
   font-size: .95rem;
   color: var(--text-muted);
 }
+
 

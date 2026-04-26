@@ -76,4 +76,30 @@ nve('fairy',   'fire', 'poison', 'steel');
 nve('normal',  'rock', 'steel');
 imm('normal',  'ghost');
 
-export { TYPES, E as effectiveness };
+// for a defending pokemon's type list, returns groups of attacking types
+// keyed by the resulting damage multiplier. neutral (1×) is omitted —
+// only deviations are actionable info on a detail page.
+//   { '4': [...], '2': [...], '0.5': [...], '0.25': [...], '0': [...] }
+function defensiveMatchups(defenderTypes) {
+  const groups = {};
+  for (const atk of TYPES) {
+    let mult = 1;
+    for (const def of defenderTypes) mult *= E[atk][def];
+    if (mult === 1) continue;
+    const key = String(mult);
+    (groups[key] ||= []).push(atk);
+  }
+  return groups;
+}
+
+// rendering order: most damaging first → most defensive last. label is the
+// human-readable multiplier glyph; consumer iterates and skips empty buckets.
+const MATCHUP_ORDER = [
+  { mult: 4,    label: '4×' },
+  { mult: 2,    label: '2×' },
+  { mult: 0.5,  label: '½'  },
+  { mult: 0.25, label: '¼'  },
+  { mult: 0,    label: '0'  },
+];
+
+export { TYPES, E as effectiveness, defensiveMatchups, MATCHUP_ORDER };

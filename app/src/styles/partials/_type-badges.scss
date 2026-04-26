@@ -25,7 +25,7 @@ $type-colors: (
 
 .type-badge {
   font-size: .65rem;
-  font-weight: 600;
+  font-weight: var(--fw-semibold);
   text-transform: capitalize;
   padding: 2px 9px;
   border-radius: 999px;

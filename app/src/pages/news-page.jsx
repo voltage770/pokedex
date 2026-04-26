@@ -4,7 +4,8 @@
 // worker. if the fetch fails (network error, timeout, bad payload) we fall
 // back to the bundled news.json and show a "using cached copy" pill.
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+import PullToRefresh from '../components/pull-to-refresh';
 import bundledNews from '../data/news.json';
 
 // the live news endpoint served by the cloudflare worker. the worker's
@@ -145,38 +146,27 @@ export default function NewsPage() {
   const [status, setStatus] = useState('loading');
   const [visible, setVisible] = useState(INITIAL_VISIBLE);
 
-  useEffect(() => {
-    // AbortController is the web-platform way to cancel an in-flight fetch.
-    // we use it twice: once from a setTimeout for the 6-second timeout, and
-    // once from the useEffect cleanup function if the user navigates away
-    // before the fetch finishes. without this, a slow fetch would try to
-    // call setState on an unmounted component (which react warns about and
-    // leaks memory).
+  // shared refresh function — used both for the initial mount load and for
+  // pull-to-refresh in standalone webapp mode. AbortController gives us
+  // a 6-second timeout. on success the live payload replaces whatever
+  // we're showing; on failure we fall back to the bundled copy.
+  const refresh = useCallback(async () => {
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
-
-    fetchLiveNews(controller.signal)
-      .then(live => {
-        setData(live);
-        setStatus('live');
-      })
-      .catch(err => {
-        if (err?.name === 'AbortError') return;
-        setData(bundledNews);
-        setStatus('fallback');
-      })
-      .finally(() => {
-        clearTimeout(timeout);
-      });
-
-    // useEffect cleanup: react calls this when the component unmounts.
-    // we cancel both the timeout and the fetch so nothing tries to call
-    // setData after we're gone.
-    return () => {
+    const timeout    = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
+    try {
+      const live = await fetchLiveNews(controller.signal);
+      setData(live);
+      setStatus('live');
+    } catch (err) {
+      if (err?.name === 'AbortError') return;
+      setData(bundledNews);
+      setStatus('fallback');
+    } finally {
       clearTimeout(timeout);
-      controller.abort();
-    };
-  }, []); // empty deps array → run once on mount, never again.
+    }
+  }, []);
+
+  useEffect(() => { refresh(); }, [refresh]);
 
   const { entries = [], updated, sources = [] } = data || {};
   const updatedText = updated
@@ -185,6 +175,7 @@ export default function NewsPage() {
 
   return (
     <div className="news-page">
+      <PullToRefresh onRefresh={refresh} />
       <header className="news-page__header">
         <h1>news</h1>
         <p className="news-page__meta">

@@ -1,3 +1,47 @@
+// ─── pull-to-refresh indicator ───────────────────────────────────────────────
+// fixed-position circular spinner that rides down with the user's finger
+// during a pull, rotates and changes color past the threshold to signal
+// "release to refresh", then spins while the refresh is in flight. component
+// itself only renders in standalone (home-screen webapp) mode.
+.ptr {
+  position: fixed;
+  top: -44px;                      // hidden above the viewport at rest
+  left: 50%;
+  margin-left: -22px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  box-shadow: var(--shadow-md);
+  z-index: 1000;
+  font-size: 1.4rem;
+  color: var(--text-muted);
+
+  &__icon {
+    display: inline-block;
+    transition: transform .2s ease, color .2s ease;
+  }
+
+  &--ready &__icon {
+    transform: rotate(180deg);
+    color: var(--accent);
+  }
+
+  &--refreshing &__icon {
+    animation: ptr-spin 1s linear infinite;
+    color: var(--accent);
+  }
+}
+
+@keyframes ptr-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
 // ─── news page ────────────────────────────────────────────────────────────────
 
 .news-page {
@@ -11,7 +55,7 @@
 
     h1 {
       font-size: 1.6rem;
-      font-weight: 700;
+      font-weight: var(--fw-bold);
       letter-spacing: .04em;
       margin: 0 0 4px;
       color: var(--text);
@@ -29,7 +73,7 @@
     padding: 1px 8px;
     border-radius: 999px;
     font-size: .7rem;
-    font-weight: 600;
+    font-weight: var(--fw-semibold);
     text-transform: uppercase;
     letter-spacing: .05em;
     background: var(--bg-sidebar);
@@ -119,25 +163,25 @@
     color: var(--bg-card);
     padding: 3px 9px;
     border-radius: 999px;
-    font-weight: 700;
+    font-weight: var(--fw-bold);
     font-size: .7rem;
   }
 
   &__dot {
     color: var(--text-subtle);
-    font-weight: 700;
+    font-weight: var(--fw-bold);
   }
 
   &__source {
     color: var(--text-muted);
-    font-weight: 600;
+    font-weight: var(--fw-semibold);
   }
 
   &__spacer { flex: 1; }
 
   &__date {
     color: var(--text-muted);
-    font-weight: 500;
+    font-weight: var(--fw-medium);
     font-variant-numeric: tabular-nums;
   }
 
@@ -149,7 +193,7 @@
   &__title {
     margin: 2px 0 6px;
     font-size: 1.15rem;
-    font-weight: 700;
+    font-weight: var(--fw-bold);
     line-height: 1.3;
 
     a {
@@ -172,7 +216,7 @@
   &__read {
     display: inline-block;
     font-size: .78rem;
-    font-weight: 600;
+    font-weight: var(--fw-semibold);
     color: var(--accent);
     text-decoration: none;
     letter-spacing: .02em;
@@ -187,7 +231,9 @@
   width: 100%;
   aspect-ratio: 16 / 9;
   background: var(--bg-sidebar);
-  border: 1px solid var(--border);
+  // chunkier framed thumbnail — 3px border in the active theme's accent
+  // color reads as a deliberate "framed photo" rather than a hairline crop.
+  border: 3px solid var(--accent);
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: var(--shadow-sm);
@@ -218,7 +264,7 @@
   h2 {
     margin: 0 0 10px;
     font-size: 1rem;
-    font-weight: 700;
+    font-weight: var(--fw-bold);
     letter-spacing: .06em;
     text-transform: uppercase;
     color: var(--text);
@@ -241,7 +287,7 @@
 
     a {
       font-size: .88rem;
-      font-weight: 600;
+      font-weight: var(--fw-semibold);
       color: var(--accent);
       text-decoration: none;
 

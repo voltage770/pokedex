@@ -17,7 +17,7 @@
 
 .back-link {
   font-size: .85rem;
-  font-weight: 500;
+  font-weight: var(--fw-medium);
   color: var(--text-muted);
   padding: 6px 12px;
   border: 1px solid var(--border);
@@ -53,7 +53,7 @@
 
 .detail-id {
   font-size: 1.4rem;
-  font-weight: 700;
+  font-weight: var(--fw-bold);
   color: var(--text);
   letter-spacing: .04em;
 }
@@ -96,7 +96,7 @@
 
   h1 {
     font-size: 1.8rem;
-    font-weight: 700;
+    font-weight: var(--fw-bold);
     text-transform: capitalize;
     letter-spacing: -.03em;
     line-height: 1.1;
@@ -128,7 +128,7 @@
 
 .detail-gen {
   font-size: .75rem;
-  font-weight: 500;
+  font-weight: var(--fw-medium);
   color: var(--text-subtle);
   letter-spacing: .04em;
 }
@@ -168,7 +168,7 @@
 
 .meta-label {
   font-size: .65rem;
-  font-weight: 600;
+  font-weight: var(--fw-semibold);
   letter-spacing: .08em;
   text-transform: uppercase;
   color: var(--text-subtle);
@@ -176,7 +176,7 @@
 
 .meta-value {
   font-size: .9rem;
-  font-weight: 500;
+  font-weight: var(--fw-medium);
   color: var(--text);
 }
 
@@ -185,7 +185,7 @@
   align-items: center;
   gap: 6px;
   font-size: .9rem;
-  font-weight: 500;
+  font-weight: var(--fw-medium);
 }
 
 .gender-m   { color: #5b8dd9; }
@@ -197,7 +197,7 @@
 .detail-stats {
   h2 {
     font-size: .7rem;
-    font-weight: 600;
+    font-weight: var(--fw-semibold);
     letter-spacing: .1em;
     text-transform: uppercase;
     color: var(--text-subtle);
@@ -216,12 +216,12 @@
 .stat-label {
   font-size: .75rem;
   color: var(--text-muted);
-  font-weight: 500;
+  font-weight: var(--fw-medium);
 }
 
 .stat-value {
   font-size: .8rem;
-  font-weight: 600;
+  font-weight: var(--fw-semibold);
   color: var(--text);
   text-align: right;
 }
@@ -254,7 +254,7 @@
 }
 
 .ev-yield-label {
-  font-weight: 600;
+  font-weight: var(--fw-semibold);
   color: var(--text-muted);
   margin-right: 6px;
   text-transform: uppercase;
@@ -272,7 +272,7 @@
 
   h2 {
     font-size: .7rem;
-    font-weight: 600;
+    font-weight: var(--fw-semibold);
     letter-spacing: .1em;
     text-transform: uppercase;
     color: var(--text-subtle);
@@ -282,7 +282,7 @@
 
   li {
     font-size: .82rem;
-    font-weight: 500;
+    font-weight: var(--fw-medium);
     text-transform: capitalize;
     background: var(--bg);
     border: 1px solid var(--border);
@@ -319,7 +319,7 @@
 .form-chip {
   all: unset;
   font-size: .72rem;
-  font-weight: 500;
+  font-weight: var(--fw-medium);
   text-transform: capitalize;
   color: var(--text-subtle);
   padding: 6px 10px;
@@ -334,7 +334,7 @@
 
   &.active {
     color: var(--text);
-    font-weight: 600;
+    font-weight: var(--fw-semibold);
     border-bottom-color: var(--accent);
   }
 }
@@ -350,6 +350,44 @@
   &:hover {
     background: var(--bg-sidebar);
     border-color: var(--text-subtle);
+  }
+}
+
+// defensive type matchups — one row per non-neutral multiplier bucket
+// (4× / 2× / ½ / ¼ / 0). multiplier glyph in a fixed-width column on the
+// left so all rows align; matching attack types as inline type-badges.
+.detail-matchups {
+  margin-top: 18px;
+}
+
+.matchup-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+
+  &:last-child {
+    padding-bottom: 0;
+    margin-bottom: 0;
+    border-bottom: none;
+  }
+
+  &__mult {
+    width: 28px;
+    text-align: right;
+    font-weight: var(--fw-bold);
+    font-size: .9rem;
+    color: var(--text);
+    flex-shrink: 0;
+    font-variant-numeric: tabular-nums;
+  }
+
+  &__types {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
   }
 }
 
@@ -393,7 +431,7 @@
 
 .ability-modal-name {
   font-size: .95rem;
-  font-weight: 600;
+  font-weight: var(--fw-semibold);
   text-transform: capitalize;
   color: var(--text);
   flex: 1;
@@ -402,7 +440,7 @@
 .ability-modal-hidden {
   font-style: normal;
   font-size: .7rem;
-  font-weight: 500;
+  font-weight: var(--fw-medium);
   color: var(--text-subtle);
   padding: 2px 8px;
   border: 1px solid var(--border);
@@ -412,13 +450,63 @@
 .ability-modal-close {
   all: unset;
   cursor: pointer;
-  font-size: .85rem;
+  font-size: 1.4rem;
+  font-weight: var(--fw-medium);
+  line-height: 1;
   color: var(--text-subtle);
-  padding: 2px 6px;
+  padding: 4px 10px;
   border-radius: var(--radius-sm);
-  transition: color .15s ease;
+  transition: color .15s ease, background-color .15s ease;
 
-  &:hover { color: var(--text); }
+  &:hover {
+    color: var(--text);
+    background: color-mix(in srgb, var(--text) 8%, transparent);
+  }
+}
+
+// chevron buttons rendered inside cycling-modal overlays (berries, pokeballs,
+// badges). anchored to the viewport edges via position: fixed so they sit
+// clear of the modal box on every breakpoint. low default opacity keeps them
+// from competing with the modal content; hover/focus brightens them so the
+// affordance is clear when the user reaches for one.
+.modal-cycle-arrow {
+  all: unset;
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 1.8rem;
+  line-height: 1;
+  color: rgba(255, 255, 255, .65);
+  background: rgba(0, 0, 0, .35);
+  cursor: pointer;
+  user-select: none;
+  z-index: 600; // above the .ability-modal-overlay (500)
+  transition: color .15s ease, background-color .15s ease, transform .15s ease;
+
+  &:hover, &:focus-visible {
+    color: rgba(255, 255, 255, .95);
+    background: rgba(0, 0, 0, .55);
+  }
+
+  &--prev { left: 12px;  padding-right: 3px; } // optical-center the chevron
+  &--next { right: 12px; padding-left:  3px; }
+}
+
+@media (max-width: 480px) {
+  // tighter on phones — less viewport real estate to spare
+  .modal-cycle-arrow {
+    width: 36px;
+    height: 36px;
+    font-size: 1.4rem;
+    &--prev { left: 6px;  }
+    &--next { right: 6px; }
+  }
 }
 
 .ability-modal-desc {
@@ -451,7 +539,7 @@
 
   h2 {
     font-size: .85rem;
-    font-weight: 600;
+    font-weight: var(--fw-semibold);
     letter-spacing: .05em;
     color: var(--text-muted);
     margin-bottom: 24px;
@@ -511,7 +599,7 @@
 .evo-region-label {
   display: block;
   font-size: .7rem;
-  font-weight: 600;
+  font-weight: var(--fw-semibold);
   letter-spacing: .1em;
   text-transform: uppercase;
   color: var(--text-subtle);
@@ -571,7 +659,7 @@
 
   span {
     font-size: .75rem;
-    font-weight: 500;
+    font-weight: var(--fw-medium);
     text-align: center;
     text-transform: capitalize;
     color: var(--text);
@@ -601,7 +689,7 @@
 
   a, button {
     font-size: .85rem;
-    font-weight: 500;
+    font-weight: var(--fw-medium);
     color: var(--text-muted);
     padding: 6px 12px;
     border: 1px solid var(--border);
@@ -628,7 +716,7 @@
 
   h2 {
     font-size: .7rem;
-    font-weight: 600;
+    font-weight: var(--fw-semibold);
     letter-spacing: .1em;
     text-transform: uppercase;
     color: var(--text-subtle);
@@ -666,7 +754,7 @@
 
     strong {
       font-size: .85rem;
-      font-weight: 600;
+      font-weight: var(--fw-semibold);
       text-transform: capitalize;
       color: var(--text);
     }
@@ -703,7 +791,7 @@
   span:first-child {
     font-size: .7rem;
     color: var(--text-muted);
-    font-weight: 500;
+    font-weight: var(--fw-medium);
   }
 }
 
@@ -714,7 +802,7 @@
 
   span {
     font-size: .72rem;
-    font-weight: 600;
+    font-weight: var(--fw-semibold);
     color: var(--text);
     min-width: 24px;
   }
@@ -733,7 +821,7 @@
 .special-badge {
   display: inline-block;
   font-size: .65rem;
-  font-weight: 700;
+  font-weight: var(--fw-bold);
   letter-spacing: .06em;
   text-transform: uppercase;
   padding: 3px 10px;

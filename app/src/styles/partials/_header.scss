@@ -96,7 +96,7 @@
 
 .site-logo {
   font-size: .75rem;
-  font-weight: 600;
+  font-weight: var(--fw-semibold);
   letter-spacing: .06em;
   color: var(--accent);
   padding: 3px 9px;
@@ -122,7 +122,7 @@
 .settings-btn {
   padding: 5px 12px;
   font-size: .75rem;
-  font-weight: 500;
+  font-weight: var(--fw-medium);
   color: var(--text-muted);
   // color-mix against --text so boundaries stay visible in every theme —
   // the raw --border token collapses against --bg-header in nitro (identical
@@ -177,7 +177,7 @@
 
 .settings-label {
   font-size: .65rem;
-  font-weight: 600;
+  font-weight: var(--fw-semibold);
   letter-spacing: .1em;
   text-transform: uppercase;
   color: var(--text-subtle);
@@ -185,7 +185,7 @@
 
 .settings-sublabel {
   font-size: .6rem;
-  font-weight: 600;
+  font-weight: var(--fw-semibold);
   letter-spacing: .08em;
   text-transform: uppercase;
   color: var(--text-subtle);
@@ -309,26 +309,39 @@
   opacity: .6;
 }
 
+// top-level menu rows — news, browse, tools, lore, about all share this look.
+// labels (browse/tools/lore) just inherit it via the same styling rules but
+// are non-interactive since they only group their child items.
 .nav-section-label {
-  font-size: .65rem;
-  font-weight: 600;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-  color: var(--text-subtle);
-  padding: 6px 12px 2px;
+  display: block;
+  padding: 7px 12px;
+  font-size: .82rem;
+  font-weight: var(--fw-bold);
+  color: var(--text);
+  pointer-events: none; // labels aren't clickable
 }
 
 .feature-link {
   display: block;
   padding: 7px 12px;
-  font-size: .8rem;
-  font-weight: 500;
-  color: var(--text-muted);
+  font-size: .82rem;
+  font-weight: var(--fw-bold);
+  color: var(--text);
   border-radius: var(--radius-sm);
   transition: background .15s ease, color .15s ease;
 
   &:hover {
     background: var(--bg);
     color: var(--text);
+  }
+
+  // nested items (under a label) read as supporting children: indented,
+  // smaller, less weighty, muted color. the contrast against the bolder
+  // top-level rows above is what makes the hierarchy obvious.
+  &--nested {
+    padding: 5px 12px 5px 22px;
+    font-size: .78rem;
+    font-weight: var(--fw-medium);
+    color: var(--text-muted);
   }
 }

@@ -4,7 +4,7 @@ export default function AboutPage() {
       <aside className="news-about">
         <h2>about</h2>
         <p>
-          a personal passion project with the goal of creating a useful and visually soothing
+          a personal passion project with the goal of creating a useful and aesthetically pleasing
           pokemon database - free from noise, distractions or ads
         </p>
         <ul className="news-about__links">

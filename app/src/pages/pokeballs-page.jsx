@@ -2,6 +2,8 @@ import { useEffect, useRef } from 'react';
 import { useModalAnimation } from '../hooks/use-modal-animation';
 import { useModalCycleNav } from '../hooks/use-modal-cycle-nav';
 import { formatSlugLower } from '../utils/format-name';
+import { pulseElement } from '../utils/pulse';
+import ModalCycleArrows from '../components/modal-cycle-arrows';
 import balls from '../data/pokeballs.json';
 
 const STANDARD_ORDER = ['poke-ball', 'great-ball', 'ultra-ball', 'master-ball', 'safari-ball', 'sport-ball'];
@@ -20,26 +22,20 @@ const SECTIONED_BALLS = SECTIONS.map(s => ({
   items: balls.filter(b => b.category === s.key).sort(s.sort),
 })).filter(s => s.items.length);
 
-function BallModal({ ball, onClose, closing, bump }) {
+function BallModal({ ball, onClose, onPrev, onNext, closing, bump }) {
   const modalRef = useRef(null);
 
-  // cycle pulse driven imperatively via WAAPI. skip on initial mount (bump.n === 0) so the
-  // opening `modal-pop` animation plays cleanly, then pulse on each subsequent arrow press.
+  // cycle pulse via WAAPI. skip on initial mount (bump.n === 0) so the
+  // opening `modal-pop` animation plays cleanly, then pulse on each cycle.
   useEffect(() => {
-    if (bump.n === 0 || !modalRef.current) return;
-    const anim = modalRef.current.animate(
-      [
-        { transform: 'scale(1)' },
-        { transform: 'scale(1.025)', offset: .3 },
-        { transform: 'scale(1)' },
-      ],
-      { duration: 220, easing: 'ease-out' },
-    );
-    return () => anim.cancel();
+    if (bump.n === 0) return;
+    const anim = pulseElement(modalRef.current);
+    return () => anim?.cancel();
   }, [bump.n]);
 
   return (
     <div className={`ability-modal-overlay${closing ? ' closing' : ''}`} onClick={onClose}>
+      <ModalCycleArrows onPrev={onPrev} onNext={onNext} />
       <div ref={modalRef} className="ball-modal" onClick={e => e.stopPropagation()}>
         <div className="ball-modal__header">
           {ball.sprite && <img src={ball.sprite} alt={ball.name} />}
@@ -70,7 +66,7 @@ function BallModal({ ball, onClose, closing, bump }) {
 }
 
 export default function PokeballsPage() {
-  const { current: currentBall, bump, open, close } = useModalCycleNav(SECTIONED_BALLS);
+  const { current: currentBall, bump, open, close, prev, next } = useModalCycleNav(SECTIONED_BALLS);
   const { displayed: shownBall, isClosing } = useModalAnimation(currentBall);
 
   return (
@@ -94,7 +90,7 @@ export default function PokeballsPage() {
       ))}
 
       {shownBall && (
-        <BallModal ball={shownBall} onClose={close} closing={isClosing} bump={bump} />
+        <BallModal ball={shownBall} onClose={close} onPrev={prev} onNext={next} closing={isClosing} bump={bump} />
       )}
     </div>
   );

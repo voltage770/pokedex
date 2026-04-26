@@ -1,6 +1,14 @@
+import { useEffect } from 'react';
 import ABILITIES from '../data/abilities.json';
 
 export default function AbilityModal({ ability, onClose, closing = false }) {
+  // close on Escape — keyboard parity with the cycling modals.
+  useEffect(() => {
+    const handler = (e) => { if (e.key === 'Escape') onClose(); };
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
+  }, [onClose]);
+
   return (
     <div className={`ability-modal-overlay${closing ? ' closing' : ''}`} onClick={onClose}>
       <div className="ability-modal" onClick={e => e.stopPropagation()}>

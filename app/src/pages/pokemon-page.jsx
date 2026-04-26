@@ -1,10 +1,12 @@
-import React, { useState, useRef, useLayoutEffect } from 'react';
+import React, { useState, useRef, useEffect, useLayoutEffect } from 'react';
 import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import { formatName, formatFormName, formatSlug } from '../utils/format-name';
 import { usePokemonDetail } from '../hooks/use-pokemon';
 import { useModalAnimation } from '../hooks/use-modal-animation';
 import { NAME_TO_ID, FORM_DATA, FORM_TO_BASE_ID, EXCLUDED_FORMS, getBaseFormLabel, FORM_SUFFIX_SPECIES } from '../utils/api';
 import { STAT_LABELS_FULL as STAT_LABELS, EV_STAT_LABELS } from '../utils/stats';
+import { defensiveMatchups, MATCHUP_ORDER } from '../utils/type-chart';
+import { pulseElement } from '../utils/pulse';
 import AbilityModal from '../components/ability-modal';
 
 // returns a tier class for stat bar color
@@ -346,6 +348,37 @@ export default function PokemonPage() {
   // paint. form changes (e.g. exeggutor ↔ exeggutor-alola) keep the same pokemon id but swap
   // flavor text / types / stats, so the form param is part of the dep.
   const formParam = searchParams.get('form');
+
+  // keyboard navigation between pokemon: ← / → mirror the visible prev/next
+  // buttons in the top nav row. only bind when we're not inside an open
+  // ability modal (which has its own Escape handling and shouldn't trap arrows
+  // since it's just text). bounds aren't enforced here — same as the buttons,
+  // which already happily navigate to nonexistent ids and let the route 404.
+  useEffect(() => {
+    if (!pokemon || abilityShown) return;
+    const handler = (e) => {
+      // ignore arrow keys when the user is typing in an input/textarea/etc.
+      const tag = e.target?.tagName;
+      if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || e.target?.isContentEditable) return;
+      if (e.key === 'ArrowLeft')       navigate(`/pokemon/${pokemon.id - 1}`, { replace: true });
+      else if (e.key === 'ArrowRight') navigate(`/pokemon/${pokemon.id + 1}`, { replace: true });
+    };
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
+  }, [pokemon, abilityShown, navigate]);
+
+  // pulse the detail card on pokemon/form change — same visual cue the
+  // cycling modals fire on arrow-key cycle, so prev/next here feels
+  // consistent with the berry/ball/badge experience. skips first render so
+  // the page doesn't pulse on direct visit.
+  const detailCardRef = useRef(null);
+  const detailFirstMountRef = useRef(true);
+  useEffect(() => {
+    if (detailFirstMountRef.current) { detailFirstMountRef.current = false; return; }
+    const anim = pulseElement(detailCardRef.current);
+    return () => anim?.cancel();
+  }, [pokemon?.id, formParam]);
+
   const evoRef = useRef(null);
   const anchorTopRef = useRef(null);
   useLayoutEffect(() => {
@@ -380,6 +413,7 @@ export default function PokemonPage() {
   const types    = activeFormData?.types    || pokemon.types    || [];
   const stats    = activeFormData?.stats    || pokemon.stats    || [];
   const abilities= activeFormData?.abilities|| pokemon.abilities|| [];
+  const matchups = defensiveMatchups(types);
   const height   = activeFormData?.height   ?? pokemon.height;
   const weight   = activeFormData?.weight   ?? pokemon.weight;
   const evYield  = activeFormData?.ev_yield ?? pokemon.ev_yield ?? [];
@@ -412,7 +446,7 @@ export default function PokemonPage() {
         </div>
       </div>
 
-      <div className="detail-card">
+      <div ref={detailCardRef} className="detail-card">
         {/* left column: artwork + sprites */}
         <div className="detail-left">
           <div className="sprite-row">
@@ -483,7 +517,7 @@ export default function PokemonPage() {
 
           {/* abilities */}
           <div>
-            <h2 style={{ fontSize: '.7rem', fontWeight: 600, letterSpacing: '.1em', textTransform: 'uppercase', color: 'var(--text-subtle)', marginBottom: '10px' }}>abilities</h2>
+            <h2 style={{ fontSize: '.7rem', fontWeight: 'var(--fw-semibold)', letterSpacing: '.1em', textTransform: 'uppercase', color: 'var(--text-subtle)', marginBottom: '10px' }}>abilities</h2>
             <ul className="abilities-list">
               {abilities.map(a => (
                 <li key={a.ability_name}>
@@ -496,6 +530,27 @@ export default function PokemonPage() {
                 </li>
               ))}
             </ul>
+          </div>
+
+          {/* defensive type matchups — damage taken from each attacking type
+              against this pokemon's current types. neutral (1×) is omitted;
+              groups appear in order of severity (4× → 0). */}
+          <div className="detail-matchups">
+            <h2 style={{ fontSize: '.7rem', fontWeight: 'var(--fw-semibold)', letterSpacing: '.1em', textTransform: 'uppercase', color: 'var(--text-subtle)', marginBottom: '10px' }}>damage taken</h2>
+            {MATCHUP_ORDER.map(({ mult, label }) => {
+              const list = matchups[String(mult)];
+              if (!list?.length) return null;
+              return (
+                <div key={mult} className="matchup-row">
+                  <span className="matchup-row__mult">{label}</span>
+                  <span className="matchup-row__types">
+                    {list.map(t => (
+                      <span key={t} className={`type-badge type-${t}`}>{t}</span>
+                    ))}
+                  </span>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
