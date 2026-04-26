@@ -1,0 +1,267 @@
+// ─── responsive — tablet / ipad portrait (641px – 1023px) ────────────────────
+
+@media (max-width: 1023px) {
+  .home-layout {
+    grid-template-columns: 200px 1fr;
+  }
+
+  .filter-panel {
+    padding: 20px 14px;
+  }
+
+  .detail-card {
+    grid-template-columns: 220px 1fr;
+    gap: 28px;
+    padding: 28px;
+  }
+
+  .detail-artwork {
+    width: 170px;
+    height: 170px;
+  }
+
+  .detail-page {
+    max-width: 100%;
+    padding: 24px 20px 40px;
+  }
+
+  .detail-right h1 {
+    font-size: 1.5rem;
+  }
+
+  .pokemon-grid {
+    grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
+  }
+
+  .evo-pokemon img {
+    width: 76px;
+    height: 76px;
+  }
+
+  .compare-panel {
+    padding: 16px 20px;
+  }
+}
+
+// ─── responsive — mobile (≤640px) ────────────────────────────────────────────
+
+@media (max-width: 640px) {
+  // ── header ──
+  .site-header {
+    padding: 0 16px;
+    height: 52px;
+  }
+
+  // scale sprites down for the shorter mobile header so they don't crowd the
+  // 52px row, and tighten the edge fade so the strip still reads as a
+  // continuous pattern at narrow widths. because each sprite still has its
+  // own margin-right and the inner strip is `width: max-content`, the -50%
+  // loop math holds regardless of the exact sprite-w + margin values.
+  .header-sprites-clip {
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 48px, #000 calc(100% - 48px), transparent 100%);
+            mask-image: linear-gradient(90deg, transparent 0, #000 48px, #000 calc(100% - 48px), transparent 100%);
+  }
+  .header-sprites img { width: 42px; height: 42px; margin-right: 18px; }
+
+  .site-logo {
+    font-size: 1.05rem;
+  }
+
+  // ── home layout ──
+  // single column: filter strip on top, main below, compare at bottom
+  .home-layout {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+    min-height: calc(100vh - 52px);
+  }
+
+  // filter panel becomes a sticky horizontal scrolling strip
+  .filter-panel {
+    position: sticky;
+    top: 52px;
+    z-index: 20;
+    height: auto;
+    overflow-y: visible;
+    flex-direction: row;
+    overflow-x: auto;
+    padding: 10px 16px;
+    gap: 12px;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    align-items: flex-end;
+    // hide scrollbar but keep scroll
+    scrollbar-width: none;
+    &::-webkit-scrollbar { display: none; }
+
+    select,
+    input[type='number'] {
+      width: auto;
+      min-width: 100px;
+      font-size: .8rem;
+      padding: 6px 8px;
+      flex-shrink: 0;
+    }
+
+    .filter-divider {
+      width: 1px;
+      height: 44px;
+      border: none;
+      border-left: 1px solid var(--border);
+      margin: 0;
+      align-self: flex-end;
+      flex-shrink: 0;
+    }
+
+    .sort-options-strip {
+      width: auto;
+
+      button { padding: 5px 4px; font-size: .72rem; }
+    }
+
+    .reset-btn {
+      margin-top: 0;
+      align-self: flex-end;
+      width: auto;
+      padding: 6px 14px;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+
+    .stat-input { margin-top: 3px; }
+  }
+
+  // ── main content ──
+  .home-main {
+    padding: 14px 14px 20px;
+  }
+
+  // `position: relative` (not `static`) so the absolutely-positioned .search-clear-btn inside
+  // still anchors to .search-bar. static would let the clear button escape into the results grid.
+  .search-bar { margin-bottom: 14px; position: relative; top: auto; }
+
+  .pokemon-grid {
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 10px;
+  }
+
+  .pokemon-sprite {
+    width: 88px;
+    height: 88px;
+  }
+
+  // ── compare panel ──
+  .compare-panel {
+    padding: 14px 14px;
+
+    h2 { margin-bottom: 10px; }
+  }
+
+  .compare-grid {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    scrollbar-width: none;
+    &::-webkit-scrollbar { display: none; }
+
+    padding-bottom: 4px;
+  }
+
+  .compare-col {
+    min-width: 130px;
+    flex-shrink: 0;
+    padding: 12px;
+
+    a img { width: 56px; height: 56px; }
+  }
+
+  // ── detail page ──
+  .detail-page {
+    padding: 16px 12px 36px;
+  }
+
+  .detail-top-row {
+    margin-bottom: 16px;
+  }
+
+  // stack artwork and info vertically
+  .detail-card {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 20px 16px;
+  }
+
+  // show default + shiny side by side on mobile
+  .sprite-row {
+    flex-direction: row;
+    justify-content: center;
+    gap: 24px;
+  }
+
+  .detail-artwork {
+    width: 140px;
+    height: 140px;
+  }
+
+  .detail-right {
+    gap: 16px;
+
+    h1 { font-size: 1.4rem; }
+  }
+
+  .detail-name-row {
+    align-items: center;
+  }
+
+  .detail-id {
+    font-size: 1.1rem;
+  }
+
+  .stat-row {
+    grid-template-columns: 70px 32px 1fr;
+    gap: 8px;
+  }
+
+  // ── evo chain ──
+  .detail-evolutions {
+    padding: 20px 16px;
+
+    h2 { margin-bottom: 16px; }
+  }
+
+  .evo-chain {
+    gap: 8px;
+  }
+
+  .evo-node {
+    gap: 8px;
+  }
+
+  .evo-branch-row {
+    gap: 8px;
+  }
+
+  .evo-arrow {
+    width: 80px;
+  }
+
+  .evo-pokemon {
+    padding: 8px;
+    width: 88px;
+
+    img { width: 60px; height: 60px; }
+
+    span { font-size: .72rem; }
+  }
+
+  // ── extra info ──
+  .detail-extra {
+    padding: 16px;
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 14px;
+  }
+
+  // ── ability modal ──
+  .ability-modal {
+    padding: 18px;
+  }
+}
+

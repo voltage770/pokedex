@@ -5,8 +5,10 @@ and Nintendo Life (RSS), normalizes them, and serves a single JSON endpoint
 with CORS enabled. The pokedex frontend calls this on every page load for
 live news without needing a site rebuild.
 
-Mirrors `scripts/news/fetch-news.js` — if you change parsing logic in one,
-change it in the other.
+Parsing pipeline lives in `scripts/news/news-core.mjs` — both this worker
+and the bundled-fallback generator (`scripts/news/fetch-news.mjs`) import
+from it, so they can't drift. This file is purely worker glue: CORS, edge
+cache, routing.
 
 ---
 
@@ -184,16 +186,17 @@ the effect visible immediately without waiting out the TTL.
 
 ---
 
-## when to update this vs the node script
+## where to make changes
 
-| scenario                                 | update                    |
-| ---------------------------------------- | ------------------------- |
-| adding a new source                      | both                      |
-| tweaking label derivation / topic list   | both                      |
-| fixing an upstream parser bug            | both                      |
-| seeding the bundled fallback in the repo | `scripts/news/fetch-news.js` only |
-| changing cache TTL / CORS / endpoints    | worker only               |
+| scenario                                 | update                          |
+| ---------------------------------------- | ------------------------------- |
+| adding a new source                      | `scripts/news/news-core.mjs`    |
+| tweaking label derivation / topic list   | `scripts/news/news-core.mjs`    |
+| fixing an upstream parser bug            | `scripts/news/news-core.mjs`    |
+| seeding the bundled fallback             | `scripts/news/fetch-news.mjs`   |
+| changing cache TTL / CORS / endpoints    | worker only (`src/index.js`)    |
 
-The node script still exists so you can regenerate `app/src/data/news.json`
-by hand — this file is bundled into the build as the fallback that renders
-when the worker is unreachable.
+`fetch-news.mjs` is a thin wrapper around the same `buildPayload` the worker
+uses — running it (`node news/fetch-news.mjs`) regenerates `app/src/data/news.json`,
+which is bundled into the build as the fallback that renders when the worker
+is unreachable.

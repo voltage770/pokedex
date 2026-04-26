@@ -1,0 +1,341 @@
+// ─── home layout ─────────────────────────────────────────────────────────────
+
+.home-layout {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  grid-template-rows: 1fr auto;
+  min-height: calc(100vh - 60px);
+}
+
+.home-main {
+  padding: 24px;
+  animation: fade-in .3s ease;
+}
+
+// ─── filter panel ────────────────────────────────────────────────────────────
+
+.filter-panel {
+  padding: 24px 18px;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: background-color .25s ease;
+  position: sticky;
+  top: 60px;
+  height: calc(100vh - 60px);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+
+  select, input[type='number'] {
+    width: 100%;
+    padding: 7px 10px;
+    font-family: inherit;
+    font-size: .82rem;
+    color: var(--text);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    outline: none;
+    transition: border-color .15s ease, box-shadow .15s ease;
+    appearance: none;
+
+    &:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(124, 111, 205, .15);
+    }
+  }
+
+  &__min-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+.filter-divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 4px 0;
+}
+
+.filter-toggles {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.filter-toggle-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 4px 0;
+
+  input[type='checkbox'] {
+    width: 14px;
+    height: 14px;
+    accent-color: var(--accent);
+    cursor: pointer;
+    margin: 0;
+  }
+
+  span {
+    font-size: .78rem;
+    color: var(--text-muted);
+  }
+}
+
+.sort-options-strip {
+  display: flex;
+  gap: 4px;
+
+  button {
+    flex: 1;
+    padding: 6px;
+    font-size: .78rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: color .15s ease, border-color .15s ease, box-shadow .15s ease;
+
+    &:hover { color: var(--text); }
+
+    &.active {
+      color: var(--accent);
+      border-color: var(--accent);
+      box-shadow: inset 0 -2px 0 var(--accent);
+      font-weight: 600;
+    }
+  }
+}
+
+.reset-btn {
+  margin-top: auto;
+  padding: 8px;
+  width: 100%;
+  font-size: .8rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  transition: background .15s ease, color .15s ease, border-color .15s ease, box-shadow .15s ease;
+
+  &:hover {
+    background: color-mix(in srgb, var(--accent) 8%, transparent);
+    color: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 60%, transparent);
+  }
+}
+
+.stat-input {
+  margin-top: 6px;
+}
+
+// ─── search bar ──────────────────────────────────────────────────────────────
+
+.search-bar {
+  position: sticky;
+  top: 60px;
+  z-index: 10;
+  background: var(--bg);
+  padding-top: 16px;
+  padding-bottom: 12px;
+  margin-bottom: 8px;
+  margin-top: -16px;
+  transition: background-color .25s ease;
+}
+
+.search-clear-btn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 3px 12px;
+  font-size: .75rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: color .15s ease, border-color .15s ease;
+
+  &:hover {
+    color: var(--text);
+    border-color: var(--text-subtle);
+  }
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px 72px 10px 16px;
+  font-family: inherit;
+  font-size: .95rem;
+  color: var(--text);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  outline: none;
+  box-shadow: var(--shadow-sm);
+  transition: border-color .15s ease, box-shadow .15s ease;
+
+  &::placeholder {
+    color: var(--text-subtle);
+  }
+
+  &:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(124, 111, 205, .15);
+  }
+}
+
+// ─── pokemon grid ─────────────────────────────────────────────────────────────
+
+.pokemon-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px;
+}
+
+// ─── pokemon card ─────────────────────────────────────────────────────────────
+
+.pokemon-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+  animation: fade-in .3s ease both;
+
+  // hover: thick accent "border" via outer box-shadow ring (1px border + 3px
+  // ring reads as ~4px accent edge without altering element size). sprite
+  // steps forward 6%. translateY lifts the whole card.
+  .pokemon-sprite { transition: transform .25s ease; }
+
+  &:hover {
+    transform: translateY(-6px);
+    border-color: var(--accent);
+    box-shadow: var(--shadow-lg), 0 0 0 3px var(--accent);
+
+    .pokemon-sprite { transform: scale(1.07); }
+  }
+}
+
+.card-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px 12px 12px;
+  gap: 8px;
+}
+
+.card-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pokemon-id {
+  font-size: .7rem;
+  font-weight: 600;
+  color: var(--text-subtle);
+  letter-spacing: .04em;
+}
+
+.pokemon-stat-badge {
+  font-size: .7rem;
+  font-weight: 600;
+  font-style: italic;
+  color: var(--text);
+  letter-spacing: .04em;
+}
+
+
+.pokemon-sprite {
+  width: 110px;
+  height: 110px;
+  object-fit: contain;
+  image-rendering: auto;
+}
+
+.pokemon-name {
+  font-size: .9rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  color: var(--text);
+  letter-spacing: -.01em;
+}
+
+.pokemon-types {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.compare-btn {
+  width: 100%;
+  padding: 7px;
+  font-size: .75rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border);
+  background: transparent;
+  transition: background .15s ease, color .15s ease;
+
+  &:hover {
+    background: var(--bg);
+    color: var(--text);
+  }
+
+  &.active {
+    background: var(--accent);
+    color: #fff;
+  }
+}
+
+// ─── status messages ──────────────────────────────────────────────────────────
+
+.loading, .empty {
+  color: var(--text-muted);
+  font-size: .9rem;
+  padding: 40px 0;
+  text-align: center;
+}
+
+.load-more-btn {
+  display: block;
+  margin: 24px auto 0;
+  padding: 10px 32px;
+  font-size: .85rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  cursor: pointer;
+  transition: background-color .15s ease, color .15s ease, border-color .15s ease, box-shadow .15s ease;
+
+  &:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 8%, transparent);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 60%, transparent);
+  }
+}
+
+.error {
+  color: var(--accent);
+  font-size: .9rem;
+}
+

@@ -24,5 +24,5 @@ node db/generate.js          # fetch pokeapi (~15–20 min)
 node db/patch-evolutions.js  # patch evo conditions pokeapi gets wrong
 node db/fetch-abilities.js   # rebuild ability descriptions
 node db/scrape-flavor.js     # scrape bulbapedia for form-specific flavor text
-node news/fetch-news.js      # regenerate bundled news.json fallback
+node news/fetch-news.mjs     # regenerate bundled news.json fallback
 ```

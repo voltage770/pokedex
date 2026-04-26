@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import { formatSlugLower } from '../utils/format-name';
 import moves from '../data/moves.json';
 
 const TYPES = [...new Set(moves.map(m => m.type).filter(Boolean))].sort();
@@ -13,14 +14,10 @@ const COLUMNS = [
   { key: 'pp',           label: 'pp',    type: 'number' },
 ];
 
-function formatName(slug) {
-  return slug?.replace(/-/g, ' ') || '';
-}
-
 function MoveRow({ move }) {
   return (
     <tr className="moves-row">
-      <td className="moves-name">{formatName(move.name)}</td>
+      <td className="moves-name">{formatSlugLower(move.name)}</td>
       <td>
         {move.type && <span className={`type-badge type-${move.type}`}>{move.type}</span>}
       </td>

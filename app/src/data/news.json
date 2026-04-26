@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-14T04:36:00.046Z",
+  "updated": "2026-04-25T10:34:14.019Z",
   "count": 50,
   "collapsed": 0,
   "sources": [
@@ -14,475 +14,50 @@
       "url": "https://www.serebii.net/"
     }
   ],
+  "failed": [],
   "entries": [
     {
-      "id": "pokebeach-2026-04-13-chaos-rising-preorders-finally-open-on-pokemon-center-the-la",
-      "source": "pokebeach",
-      "source_name": "pokebeach",
-      "label": "pokémon tcg",
-      "title": "“Chaos Rising” Preorders Finally Open on Pokemon Center, The Latest Ever for a Set",
-      "url": "https://www.pokebeach.com/2026/04/chaos-rising-preorders-finally-open-on-pokemon-center-the-latest-ever-for-a-set",
-      "published": "2026-04-13T13:24:00.000Z",
-      "excerpt": "",
-      "image": "https://www.pokebeach.com/news/2026/03/Chaos-Rising-Pokemon-Center-Elite-Trainer-Box-1920x1200.jpg",
-      "youtube_id": null,
-      "tags": [
-        "tcg"
-      ]
-    },
-    {
-      "id": "pokebeach-2026-04-13-chaos-rising-prerelease-promos-revealed",
-      "source": "pokebeach",
-      "source_name": "pokebeach",
-      "label": "pokémon tcg",
-      "title": "“Chaos Rising” Prerelease Promos Revealed!",
-      "url": "https://www.pokebeach.com/2026/04/chaos-rising-prerelease-promos-revealed-but-still-no-pokemon-center-preorders-yet",
-      "published": "2026-04-13T12:45:00.000Z",
-      "excerpt": "",
-      "image": "https://www.pokebeach.com/news/2026/04/Chaos-Rising-Prerelease-Promos.jpg",
-      "youtube_id": null,
-      "tags": [
-        "tcg"
-      ]
-    },
-    {
-      "id": "serebii-2026-04-13-it-is-day-5-of-our-pok-mon-champions-coverage-and-our-covera",
-      "source": "serebii",
-      "source_name": "serebii",
-      "label": "pokémon champions",
-      "title": "It is Day 5 of our Pokémon Champions coverage and our coverage is coming to a close",
-      "url": "https://www.serebii.net/pokemonchampions/",
-      "published": "2026-04-13T04:42:00.000Z",
-      "excerpt": "It is Day 5 of our Pokémon Champions coverage and our coverage is coming to a close. We have added full details already including our Pokémon Champions Pokédex being filled with all move data and more, our Champions…",
-      "image": "https://www.serebii.net/pokemonchampions/rankup2.jpg",
-      "youtube_id": null,
-      "tags": [
-        "In The Games Department",
-        "Pokémon Champions"
-      ]
-    },
-    {
-      "id": "serebii-2026-04-13-the-special-distribution-of-a-gardevoir-is-now-live-in-pok-m",
-      "source": "serebii",
-      "source_name": "serebii",
-      "label": "pokémon champions",
-      "title": "The special distribution of a Gardevoir is now live in Pokémon Champions",
-      "url": "https://www.serebii.net/pokemonchampions/giftpokemon.shtml",
-      "published": "2026-04-13T04:42:00.000Z",
-      "excerpt": "The special distribution of a Gardevoir is now live in Pokémon Champions. This distribution is available for all players who participated in 3 or more battles in the online competition, the Warm-Up Challenge this past…",
-      "image": "https://www.serebii.net/pokemonchampions/gardevoirevent.jpg",
-      "youtube_id": null,
-      "tags": [
-        "In The Games Department",
-        "Pokémon Champions"
-      ]
-    },
-    {
-      "id": "serebii-2026-04-13-pok-mon-night-out-has-been-officially-announced",
-      "source": "serebii",
-      "source_name": "serebii",
-      "label": "pokémon news",
-      "title": "Pokémon Night Out has been officially announced",
-      "url": "https://www.serebii.net/pokemon30",
-      "published": "2026-04-13T04:42:00.000Z",
-      "excerpt": "Pokémon Night Out has been officially announced. This event provides two in-person experiences in London and Los Angeles bringing EDM and Pokémon together staring Alison Wonderland as the supporting act and Marshmallo.…",
-      "image": "https://www.serebii.net/nightout2026.jpg",
-      "youtube_id": null,
-      "tags": [
-        "In The Pokémon Department",
-        "Pokémon Night Out"
-      ]
-    },
-    {
-      "id": "serebii-2026-04-13-pok-mon-day-out-has-also-been-revealed",
-      "source": "serebii",
-      "source_name": "serebii",
-      "label": "pokémon news",
-      "title": "Pokémon Day Out has also been revealed",
-      "url": "https://www.serebii.net/pokemon30",
-      "published": "2026-04-13T04:42:00.000Z",
-      "excerpt": "Pokémon Day Out has also been revealed. There will be some events taking place in the summer of 2026 that are interactive and kid friendly. This will take place in Boredeaux, New York City, Dresden and Mexico City. More…",
-      "image": "https://www.serebii.net/dayout2.jpg",
-      "youtube_id": null,
-      "tags": [
-        "In The Pokémon Department",
-        "Pokémon Day Out"
-      ]
-    },
-    {
-      "id": "serebii-2026-04-13-scopely-have-announced-the-next-pok-mon-go-community-day-on-",
+      "id": "serebii-2026-04-25-the-pok-mon-go-replay-go-bigger-max-battle-day-is-rolling-ou",
       "source": "serebii",
       "source_name": "serebii",
       "label": "pokémon go",
-      "title": "Scopely have announced the next Pokémon GO Community Day on May 9th 2026 will focus on Lechonk",
-      "url": "https://www.serebii.net/pokemongo/communityday/may2026.shtml",
-      "published": "2026-04-13T04:42:00.000Z",
-      "excerpt": "Scopely have announced the next Pokémon GO Community Day on May 9th 2026 will focus on Lechonk. Currently further details have yet to be revealed but we'll provide further details on moves as they are revealed The…",
-      "image": "https://www.serebii.net/pokemongo/community0526.jpg",
+      "title": "The Pokémon GO Replay: GO Bigger Max Battle Day is rolling out globally",
+      "url": "https://www.serebii.net/pokemongo/maxbattleday/replay:gobigger.shtml",
+      "published": "2026-04-25T00:00:00.000Z",
+      "excerpt": "The Pokémon GO Replay: GO Bigger Max Battle Day is rolling out globally. For three hours in each region, all Power Spots will contain a Gigantamax Venusaur, Charizard, Blastoise or Gengar Max Battle. It also features…",
+      "image": "https://www.serebii.net/pokemongo/replaygobigger.jpg",
       "youtube_id": null,
       "tags": [
         "In The Games Department",
-        "Pokémon GO"
+        "Pokémon GO - Max Battle Day"
       ]
     },
     {
-      "id": "serebii-2026-04-13-the-next-pok-mon-go-event-is-rolling-out-in-asia-pacific-reg",
-      "source": "serebii",
-      "source_name": "serebii",
-      "label": "pokémon go",
-      "title": "The next Pokémon GO event is rolling out in Asia Pacific regions",
-      "url": "https://www.serebii.net/pokemongo/events/sustainabilityweek2026.shtml",
-      "published": "2026-04-13T04:42:00.000Z",
-      "excerpt": "The next Pokémon GO event is rolling out in Asia Pacific regions. This event is the Sustainability Week event which runs from 10:00 local time on April 14th through 20:00 local time on April 20th and adds Silicobra into…",
-      "image": "https://www.serebii.net/pokemongo/sustainabilityweek2026.jpg",
-      "youtube_id": null,
-      "tags": [
-        "In The Games Department",
-        "Pokémon GO"
-      ]
-    },
-    {
-      "id": "serebii-2026-04-13-pok-mon-masters-ex-has-announced-the-next-event-this-event-i",
+      "id": "serebii-2026-04-25-the-monthly-special-event-has-begun-in-pok-mon-masters-ex",
       "source": "serebii",
       "source_name": "serebii",
       "label": "pokémon masters",
-      "title": "Pokémon Masters EX has announced the next event. This event is the Pasio Academy Fair - Prep event and adds…",
-      "url": "https://www.serebii.net/pokemonmasters/events.shtml",
-      "published": "2026-04-13T04:42:00.000Z",
-      "excerpt": "Pokémon Masters EX has announced the next event. This event is the Pasio Academy Fair - Prep event and adds Arven & Skwovet, Perrin & Noctowl and Sonia & Corviknight into the game. It runs from April 14th 2026 Footage",
-      "image": "https://www.serebii.net/pokemonmasters/exlink.jpg",
-      "youtube_id": "dpr79RKj_Cw",
+      "title": "The monthly special event has begun in Pokémon Masters EX",
+      "url": "https://www.serebii.net/pokemonmasters/events/pokemonmastersdayapril2026.shtml",
+      "published": "2026-04-25T00:00:00.000Z",
+      "excerpt": "The monthly special event has begun in Pokémon Masters EX. For one day only each month on the 25th, the Pokémon Masters Day event will be held. This event will give you a variety of rewards for completion. In addition…",
+      "image": "https://www.serebii.net/pokemonmasters/events/pokemonmastersdayapril2026.jpg",
+      "youtube_id": null,
       "tags": [
         "In The Games Department",
         "Pokémon Masters EX"
       ]
     },
     {
-      "id": "serebii-2026-04-13-the-pok-mon-sleep-latias-research-event-has-begun-its-second",
-      "source": "serebii",
-      "source_name": "serebii",
-      "label": "pokémon sleep",
-      "title": "The Pokémon Sleep Latias Research event has begun its second week",
-      "url": "https://www.serebii.net/pokemonsleep/events/latiasresearch.shtml",
-      "published": "2026-04-13T04:42:00.000Z",
-      "excerpt": "The Pokémon Sleep Latias Research event has begun its second week. With this, the Snorlax you start the week on is already at a higher Rank. New missions and item exchange options are also available We have all details…",
-      "image": "https://www.serebii.net/pokemonsleep/latiasresearch.jpg",
-      "youtube_id": null,
-      "tags": [
-        "In The Games Department",
-        "Pokémon Sleep"
-      ]
-    },
-    {
-      "id": "serebii-2026-04-13-the-latest-pok-mon-tcg-pocket-ranked-match-season-season-b2b",
-      "source": "serebii",
-      "source_name": "serebii",
-      "label": "pokémon tcg pocket",
-      "title": "The latest Pokémon TCG Pocket Ranked Match season, Season B2b is now live",
-      "url": "https://www.serebii.net/tcgpocket/rankedmatch.shtml",
-      "published": "2026-04-13T04:42:00.000Z",
-      "excerpt": "The latest Pokémon TCG Pocket Ranked Match season, Season B2b is now live. This is the eleventh Ranked Match season where you work up the ranks by winning in battles against random players online. After the season ends,…",
-      "image": "https://www.serebii.net/tcgpocket/rankedmatch/seasonb2.jpg",
-      "youtube_id": null,
-      "tags": [
-        "In The Games Department",
-        "Pokémon TCG Pocket"
-      ]
-    },
-    {
-      "id": "pokebeach-2026-04-13-pokemon-tcg-dream-painting-water-ecology-figurine-set-to-rel",
-      "source": "pokebeach",
-      "source_name": "pokebeach",
-      "label": "pokémon tcg",
-      "title": "Pokemon TCG “Dream Painting Water Ecology Figurine Set” to Release in April!",
-      "url": "https://www.pokebeach.com/2026/04/pokemon-tcg-dream-painting-water-ecology-figurine-set-to-release-in-april",
-      "published": "2026-04-13T02:54:00.000Z",
-      "excerpt": "",
-      "image": "https://www.pokebeach.com/news/2026/04/Illustration-Figure-Collection-Volume-2-2000x1200.jpg",
-      "youtube_id": null,
-      "tags": [
-        "tcg"
-      ]
-    },
-    {
-      "id": "pokebeach-2026-04-12-exclusive-lisia-s-appeal-to-release-in-chinese-starry-crysta",
-      "source": "pokebeach",
-      "source_name": "pokebeach",
-      "label": "pokémon tcg",
-      "title": "Exclusive Lisia’s Appeal to Release in Chinese “Starry Crystal” Set!",
-      "url": "https://www.pokebeach.com/2026/04/exclusive-lisias-appeal-to-release-in-chinese-starry-crystal-set",
-      "published": "2026-04-12T11:35:00.000Z",
-      "excerpt": "",
-      "image": "https://www.pokebeach.com/news/2026/04/Lisias-Appeal-Chinese-2000x1200.jpg",
-      "youtube_id": null,
-      "tags": [
-        "tcg"
-      ]
-    },
-    {
-      "id": "serebii-2026-04-12-it-is-day-5-of-our-pok-mon-champions-coverage-and-our-covera",
-      "source": "serebii",
-      "source_name": "serebii",
-      "label": "pokémon champions",
-      "title": "It is Day 5 of our Pokémon Champions coverage and our coverage is coming to a close",
-      "url": "https://www.serebii.net/pokemonchampions/",
-      "published": "2026-04-12T05:30:00.000Z",
-      "excerpt": "It is Day 5 of our Pokémon Champions coverage and our coverage is coming to a close. We have added full details already including our Pokémon Champions Pokédex being filled with all move data and more, our Champions…",
-      "image": "https://www.serebii.net/pokemonchampions/titles.jpg",
-      "youtube_id": null,
-      "tags": [
-        "In The Games Department",
-        "Pokémon Champions"
-      ]
-    },
-    {
-      "id": "serebii-2026-04-12-today-is-the-week-5-day-2-of-the-pok-mon-unite-regional-leag",
-      "source": "serebii",
-      "source_name": "serebii",
-      "label": "pokémon champions",
-      "title": "Today is the Week 5 Day 2 of the Pokémon UNITE Regional Leagues across North America, Europe and These…",
-      "url": "https://www.serebii.net/playpokemon/stream/unite.shtml",
-      "published": "2026-04-12T05:30:00.000Z",
-      "excerpt": "Today is the Week 5 Day 2 of the Pokémon UNITE Regional Leagues across North America, Europe and These streams will be running all day starting at 16:00 UTC. We have all the streams in our Play! Pokémon Stream Hub which…",
-      "image": "https://www.serebii.net/playpokemon/unitecs2026.jpg",
-      "youtube_id": null,
-      "tags": [
-        "In The Pokémon Championship Series Department",
-        "Pokémon UNITE Championships"
-      ]
-    },
-    {
-      "id": "serebii-2026-04-12-today-marks-the-one-hundred-and-seventy-fifth-entry-into-the",
-      "source": "serebii",
-      "source_name": "serebii",
-      "label": "pokémon news",
-      "title": "Today marks the one hundred and seventy-fifth entry into the Generation IX competitive field with a Johto…",
-      "url": "https://www.serebii.net/potw-champions/154.shtml",
-      "published": "2026-04-12T05:30:00.000Z",
-      "excerpt": "Today marks the one hundred and seventy-fifth entry into the Generation IX competitive field with a Johto Pokémon. These entries are created by the visitors for the visitors and then compiled by our writer Mestorn. To…",
-      "image": "https://www.serebii.net/potw-champions/154-i.jpg",
-      "youtube_id": null,
-      "tags": [
-        "In The Pokémon of the Week Department",
-        "Who's That Pokémon"
-      ]
-    },
-    {
-      "id": "serebii-2026-04-11-it-is-day-4-of-our-pok-mon-champions-coverage-and-our-covera",
-      "source": "serebii",
-      "source_name": "serebii",
-      "label": "pokémon champions",
-      "title": "It is Day 4 of our Pokémon Champions coverage and our coverage is winding down",
-      "url": "https://www.serebii.net/pokemonchampions/",
-      "published": "2026-04-11T00:00:00.000Z",
-      "excerpt": "It is Day 4 of our Pokémon Champions coverage and our coverage is winding down. We have added full details already including our Pokémon Champions Pokédex being filled with all move data and more, our Champions Move…",
-      "image": "https://www.serebii.net/pokemonchampions/customisation.jpg",
-      "youtube_id": null,
-      "tags": [
-        "In The Games Department",
-        "Pokémon Champions"
-      ]
-    },
-    {
-      "id": "serebii-2026-04-11-pok-mon-home-has-temporarily-disabled-friend-trades-for-all-",
-      "source": "serebii",
-      "source_name": "serebii",
-      "label": "pokémon home",
-      "title": "Pokémon HOME has temporarily disabled Friend Trades for all accounts due to an issue that was preventing the…",
-      "url": "https://www.serebii.net/pokemonhome",
-      "published": "2026-04-11T00:00:00.000Z",
-      "excerpt": "Pokémon HOME has temporarily disabled Friend Trades for all accounts due to an issue that was preventing the trades from working as intended. As such, until the cause is determined, all Friend Trades are now…",
-      "image": "https://www.serebii.net/pokemonhome/title.jpg",
-      "youtube_id": null,
-      "tags": [
-        "In The Games Department",
-        "Pokémon HOME"
-      ]
-    },
-    {
-      "id": "serebii-2026-04-11-the-pok-mon-go-community-day-is-rolling-out-globally",
-      "source": "serebii",
-      "source_name": "serebii",
-      "label": "pokémon go",
-      "title": "The Pokémon GO Community Day is rolling out globally",
-      "url": "https://www.serebii.net/pokemongo/communityday/april2026.shtml",
-      "published": "2026-04-11T00:00:00.000Z",
-      "excerpt": "The Pokémon GO Community Day is rolling out globally. For three hours in each region, Tinkatink will appear, en masse, in Pokémon GO adding its Shiny into the game. During this event, when you evolve into Tinkatuff, you…",
-      "image": "https://www.serebii.net/pokemongo/community0426.jpg",
-      "youtube_id": null,
-      "tags": [
-        "In The Games Department",
-        "Pokémon GO - Community Day"
-      ]
-    },
-    {
-      "id": "serebii-2026-04-11-pok-mon-caf-remix-has-begun-the-next-event-this-event-is-the",
+      "id": "serebii-2026-04-25-pok-mon-caf-remix-has-begun-a-brand-new-special-pass",
       "source": "serebii",
       "source_name": "serebii",
       "label": "pokémon cafe",
-      "title": "Pokémon Café ReMix has begun the next event. This event is the Munching with Greedent event and adds…",
-      "url": "https://www.serebii.net/cafemix/events/munchingwithgreedent.shtml",
-      "published": "2026-04-11T00:00:00.000Z",
-      "excerpt": "Pokémon Café ReMix has begun the next event. This event is the Munching with Greedent event and adds Greedentt's Commemorative Chef into the game. This event is a Full Belly Adventure event where you go through one…",
-      "image": "https://www.serebii.net/cafemix/munchingwithgreedent.jpg",
-      "youtube_id": null,
-      "tags": [
-        "In The Games Department",
-        "Pokémon Café ReMix"
-      ]
-    },
-    {
-      "id": "serebii-2026-04-11-today-is-the-week-5-day-1-of-the-pok-mon-unite-regional-leag",
-      "source": "serebii",
-      "source_name": "serebii",
-      "label": "pokémon champions",
-      "title": "Today is the Week 5 Day 1 of the Pokémon UNITE Regional Leagues across North America, Europe and These…",
-      "url": "https://www.serebii.net/playpokemon/stream/unite.shtml",
-      "published": "2026-04-11T00:00:00.000Z",
-      "excerpt": "Today is the Week 5 Day 1 of the Pokémon UNITE Regional Leagues across North America, Europe and These streams will be running all day starting at 16:00 UTC. We have all the streams in our Play! Pokémon Stream Hub which…",
-      "image": "https://www.serebii.net/playpokemon/unitecs2026.jpg",
-      "youtube_id": null,
-      "tags": [
-        "In The Pokémon Championship Series Department",
-        "Pokémon UNITE Championships"
-      ]
-    },
-    {
-      "id": "pokebeach-2026-04-10-okidogi-barbaracle-the-newest-non-ex-pokemon-deck",
-      "source": "pokebeach",
-      "source_name": "pokebeach",
-      "label": "pokémon tcg",
-      "title": "Okidogi / Barbaracle — The Newest Non-ex Pokemon Deck",
-      "url": "https://www.pokebeach.com/2026/04/okidogi-barbaracle-the-newest-non-ex-pokemon-deck",
-      "published": "2026-04-10T19:55:00.000Z",
-      "excerpt": "",
-      "image": "https://www.pokebeach.com/news/2026/04/me3_en_043_std-2000x1200.jpg",
-      "youtube_id": null,
-      "tags": [
-        "tcg"
-      ]
-    },
-    {
-      "id": "pokebeach-2026-04-10-pokemon-center-announces-early-access-program-for-preorderin",
-      "source": "pokebeach",
-      "source_name": "pokebeach",
-      "label": "pokémon tcg",
-      "title": "Pokemon Center Announces Early Access Program for Preordering!",
-      "url": "https://www.pokebeach.com/2026/04/pokemon-center-announces-early-access-program-for-preordering",
-      "published": "2026-04-10T16:28:00.000Z",
-      "excerpt": "",
-      "image": "https://www.pokebeach.com/news/2026/03/Chaos-Rising-Pokemon-Center-Elite-Trainer-Box-1920x1200.jpg",
-      "youtube_id": null,
-      "tags": [
-        "tcg"
-      ]
-    },
-    {
-      "id": "serebii-2026-04-10-it-is-day-3-of-our-pok-mon-champions-coverage-and-it-is-in-f",
-      "source": "serebii",
-      "source_name": "serebii",
-      "label": "pokémon champions",
-      "title": "It is Day 3 of our Pokémon Champions coverage and it is in full swing",
-      "url": "https://www.serebii.net/pokemonchampions/",
-      "published": "2026-04-10T00:00:00.000Z",
-      "excerpt": "It is Day 3 of our Pokémon Champions coverage and it is in full swing. We have added full details already including our Pokémon Champions Pokédex being filled with all move data and more, our Champions Move Database…",
-      "image": "https://www.serebii.net/pokemonchampions/pokemontitles.jpg",
-      "youtube_id": null,
-      "tags": [
-        "In The Games Department",
-        "Pokémon Champions"
-      ]
-    },
-    {
-      "id": "serebii-2026-04-10-battles-for-the-first-pok-mon-champions-online-competition-h",
-      "source": "serebii",
-      "source_name": "serebii",
-      "label": "pokémon champions",
-      "title": "Battles for the first Pokémon Champions Online Competition have begun",
-      "url": "https://www.serebii.net/pokemonchampions/onlinecompetitions/warm-upchallenge.shtml",
-      "published": "2026-04-10T00:00:00.000Z",
-      "excerpt": "Battles for the first Pokémon Champions Online Competition have begun. This is the Warm-Up Challenge which runs standard Regulation M-A rules using all Pokémon that are currently available in the game Battles run until…",
-      "image": "https://www.serebii.net/pokemonchampions/onlinecompetitions/warm-upchallenge.jpg",
-      "youtube_id": null,
-      "tags": [
-        "In The Games Department",
-        "Pokémon Champions"
-      ]
-    },
-    {
-      "id": "serebii-2026-04-10-the-latest-tera-raid-battle-event-is-now-live-in-pok-mon-sca",
-      "source": "serebii",
-      "source_name": "serebii",
-      "label": "scarlet & violet",
-      "title": "The latest Tera Raid Battle event is now live in Pokémon Scarlet & Violet",
-      "url": "https://www.serebii.net/scarletviolet/teraraidbattles/event-mightyemboar.shtml",
-      "published": "2026-04-10T00:00:00.000Z",
-      "excerpt": "The latest Tera Raid Battle event is now live in Pokémon Scarlet & Violet. This is the Mighty Emboar event and is the latest in the series of weekly Starter Pokémon Tera Raid Battle reruns. This event has Emboar…",
-      "image": "https://www.serebii.net/scarletviolet/emboarraids.jpg",
-      "youtube_id": null,
-      "tags": [
-        "In The Games Department",
-        "Pokémon Scarlet & Violet"
-      ]
-    },
-    {
-      "id": "serebii-2026-04-10-pok-mon-unite-has-received-a-update-which-adds-a-variety-of-",
-      "source": "serebii",
-      "source_name": "serebii",
-      "label": "pokémon unite",
-      "title": "Pokémon UNITE has received a update which adds a variety of things to the game",
-      "url": "https://www.serebii.net/pokemonunite/pokemon/articuno.shtml",
-      "published": "2026-04-10T00:00:00.000Z",
-      "excerpt": "Pokémon UNITE has received a update which adds a variety of things to the game. With this, the Pokémon Articuno is now available to obtain as a new unique Unite License. We're currently compiling full details for…",
-      "image": "https://www.serebii.net/pokemonunite/articuno.jpg",
-      "youtube_id": null,
-      "tags": [
-        "In The Games Department",
-        "Pokémon UNITE"
-      ]
-    },
-    {
-      "id": "serebii-2026-04-10-one-new-piece-of-holowear-has-been-released-for-pok-mon-unit",
-      "source": "serebii",
-      "source_name": "serebii",
-      "label": "pokémon unite",
-      "title": "One new piece of Holowear has been released for Pokémon UNITE",
-      "url": "https://www.serebii.net/pokemonunite/holowear.shtml",
-      "published": "2026-04-10T00:00:00.000Z",
-      "excerpt": "One new piece of Holowear has been released for Pokémon UNITE. This is the Dark Lord Style Holowear for Alolan Raichu which is obtained by through a spceial event Mini Pass.",
-      "image": "https://www.serebii.net/pokemonunite/darklordraichu.jpg",
-      "youtube_id": null,
-      "tags": [
-        "In The Games Department",
-        "Pokémon UNITE"
-      ]
-    },
-    {
-      "id": "serebii-2026-04-10-the-legendary-gauntlet-no-12-event-has-begun-its-first-run",
-      "source": "serebii",
-      "source_name": "serebii",
-      "label": "pokémon masters",
-      "title": "The Legendary Gauntlet No. 12 Event has begun its first run",
-      "url": "https://www.serebii.net/pokemonmasters/events/legendarygauntletno.12.shtml",
-      "published": "2026-04-10T00:00:00.000Z",
-      "excerpt": "The Legendary Gauntlet No. 12 Event has begun its first run. This has you face off against various Legendary Pokémon to build up a win streak. The higher the streak, the better the rewards. It runs until April 20th 2026…",
-      "image": "https://www.serebii.net/pokemonmasters/events/legendarygauntletno.12.jpg",
-      "youtube_id": null,
-      "tags": [
-        "In The Games Department",
-        "Pokémon Masters EX - Legendary Gauntlet Event"
-      ]
-    },
-    {
-      "id": "serebii-2026-04-10-pok-mon-caf-remix-has-announced-the-next-delivery-focus-star",
-      "source": "serebii",
-      "source_name": "serebii",
-      "label": "pokémon cafe",
-      "title": "Pokémon Café ReMix has announced the next delivery focus. Starting from tomorrow, April 11th 2026,…",
+      "title": "Pokémon Café ReMix has begun a brand new Special Pass",
       "url": "https://www.serebii.net/cafemix/events.shtml",
-      "published": "2026-04-10T00:00:00.000Z",
-      "excerpt": "Pokémon Café ReMix has announced the next delivery focus. Starting from tomorrow, April 11th 2026, Ceruledge's Commemorative Chef outfit will be added to the game through Delivery. It has the Mayo and Mousse gimmicks.…",
-      "image": "https://www.serebii.net/cafemix/ceruledgechef.jpg",
+      "published": "2026-04-25T00:00:00.000Z",
+      "excerpt": "Pokémon Café ReMix has begun a brand new Special Pass. This Pass can be purchased in the shop and allows for you to earn points to obtain various items including Tarts and Golden Acorns, as well as obtain Axew in its…",
+      "image": "https://www.serebii.net/cafemix/axewpass2026.jpg",
       "youtube_id": null,
       "tags": [
         "In The Games Department",
@@ -490,110 +65,125 @@
       ]
     },
     {
-      "id": "serebii-2026-04-09-it-is-day-2-of-our-pok-mon-champions-coverage-and-it-is-in-f",
+      "id": "serebii-2026-04-25-the-latest-bingo-panel-is-now-live-for-pok-mon-caf-remix-s-c",
       "source": "serebii",
       "source_name": "serebii",
-      "label": "pokémon champions",
-      "title": "It is Day 2 of our Pokémon Champions coverage and it is in full swing",
-      "url": "https://www.serebii.net/pokemonchampions/",
-      "published": "2026-04-09T04:00:00.000Z",
-      "excerpt": "It is Day 2 of our Pokémon Champions coverage and it is in full swing. We have added full details already including our Pokémon Champions Pokédex being filled with all move data and more, our Champions Move Database…",
-      "image": "https://www.serebii.net/pokemonchampions/menus.jpg",
+      "label": "pokémon cafe",
+      "title": "The latest bingo panel is now live for Pokémon Café ReMix's currently running event",
+      "url": "https://www.serebii.net/cafemix/events/gracefulmilotic2026.shtml",
+      "published": "2026-04-25T00:00:00.000Z",
+      "excerpt": "The latest bingo panel is now live for Pokémon Café ReMix's currently running event. This panel gives a number of tasks which, if completed, give you Piplup's Stylish roasted tea outfit. These need to be completed…",
+      "image": "https://www.serebii.net/cafemix/milotic2026bingo1.jpg",
       "youtube_id": null,
       "tags": [
         "In The Games Department",
-        "Pokémon Champions"
+        "Pokémon Café ReMix"
       ]
     },
     {
-      "id": "serebii-2026-04-09-pok-mon-champions-has-detailed-various-bugs-that-they-have-b",
+      "id": "serebii-2026-04-25-today-is-day-1-of-the-pok-mon-prague-regional-championships",
+      "source": "serebii",
+      "source_name": "serebii",
+      "label": "pokémon tcg",
+      "title": "Today is Day 1 of the Pokémon Prague Regional Championships",
+      "url": "https://www.serebii.net/playpokemon/2026.shtml",
+      "published": "2026-04-25T00:00:00.000Z",
+      "excerpt": "Today is Day 1 of the Pokémon Prague Regional Championships. Today features battles for three of the games in the current Play! Pokémon Circuit: TCG, GO and Pokémon Scarlet & Violet. All three games will be streamed in…",
+      "image": "https://www.serebii.net/regionals24.jpg",
+      "youtube_id": null,
+      "tags": [
+        "In The Pokémon Championship Series Department",
+        "Pokémon Regional Championships"
+      ]
+    },
+    {
+      "id": "pokebeach-2026-04-24-many-chaos-rising-english-cards-revealed-all-cut-and-added-c",
+      "source": "pokebeach",
+      "source_name": "pokebeach",
+      "label": "pokémon tcg",
+      "title": "Many “Chaos Rising” English Cards Revealed, All Cut and Added Cards Now Known!",
+      "url": "https://www.pokebeach.com/2026/04/many-chaos-rising-english-cards-revealed-all-cut-and-added-cards-now-known",
+      "published": "2026-04-24T14:00:00.000Z",
+      "excerpt": "",
+      "image": "https://www.pokebeach.com/news/2026/04/88-Froakie-2000x1200.jpg",
+      "youtube_id": null,
+      "tags": [
+        "tcg"
+      ]
+    },
+    {
+      "id": "serebii-2026-04-24-a-special-roster-is-now-live-for-pok-mon-champions-in-the-ra",
       "source": "serebii",
       "source_name": "serebii",
       "label": "pokémon champions",
-      "title": "Pokémon Champions has detailed various bugs that they have been made aware of which are to be fixed in a…",
-      "url": "https://www.serebii.net/pokemonchampions/",
-      "published": "2026-04-09T04:00:00.000Z",
-      "excerpt": "Pokémon Champions has detailed various bugs that they have been made aware of which are to be fixed in a future data update or maintenance First, Leech Seed is erroneously listed as taking damage up to 1/16 of maximum…",
-      "image": "https://www.serebii.net/pokemonchampions/title.jpg",
+      "title": "A special roster is now live for Pokémon Champions in the ranch",
+      "url": "https://www.serebii.net/pokemonchampions/recruit/globalchallenge2026specialroster.shtml",
+      "published": "2026-04-24T00:00:00.000Z",
+      "excerpt": "A special roster is now live for Pokémon Champions in the ranch. This roster features a condensed amount of Pokémon prime for the Regulation M-A official competitive circuit offering a better chance to get Pokémon to…",
+      "image": "https://www.serebii.net/pokemonchampions/recruit/globalchallenge2026specialroster.jpg",
       "youtube_id": null,
       "tags": [
         "In The Games Department",
-        "Pokémon Champions"
+        "Pokémon Champions - Special Roster"
       ]
     },
     {
-      "id": "serebii-2026-04-09-pok-mon-pokopia-has-received-a-new-bug-fix-patch",
+      "id": "serebii-2026-04-24-the-next-pok-mon-pokopia-event-has-been-announced-this-event",
       "source": "serebii",
       "source_name": "serebii",
       "label": "pokémon pokopia",
-      "title": "Pokémon Pokopia has received a new bug fix patch",
-      "url": "https://www.serebii.net/pokemonpokopia/patch.shtml",
-      "published": "2026-04-09T04:00:00.000Z",
-      "excerpt": "Pokémon Pokopia has received a new bug fix patch. This brings the game to Version 1.0.3 and needs updating in order to go online We have added full details of this patch into our Pokémon Pokopia patch section",
-      "image": "https://www.serebii.net/pokemonpokopia/title.jpg",
+      "title": "The next Pokémon Pokopia event has been announced. This event has Sableye appear at a Pokémon Center and ask…",
+      "url": "https://www.serebii.net/pokemonpokopia/events/sableye'sgemhunt.shtml",
+      "published": "2026-04-24T00:00:00.000Z",
+      "excerpt": "The next Pokémon Pokopia event has been announced. This event has Sableye appear at a Pokémon Center and ask for you to collect Red Crystal Fragments to exchange for a variety of items This event runs from 05:00 local…",
+      "image": "https://www.serebii.net/pokemonpokopia/sableye'sgemhunt.jpg",
       "youtube_id": null,
       "tags": [
         "In The Games Department",
-        "Pokémon Pokopia Patch"
+        "Pokémon Pokopia Event"
       ]
     },
     {
-      "id": "serebii-2026-04-09-a-new-set-of-pok-mon-home-medals-haves-been-announced",
+      "id": "serebii-2026-04-24-the-pok-mon-company-international-have-been-kind-enough-to-o",
       "source": "serebii",
       "source_name": "serebii",
-      "label": "pokémon home",
-      "title": "A new set of Pokémon HOME medals haves been announced",
-      "url": "https://www.serebii.net/pokemonhome/medals.shtml",
-      "published": "2026-04-09T04:00:00.000Z",
-      "excerpt": "A new set of Pokémon HOME medals haves been announced. These are medals that will be available at the Pokémon Master Ball League tournaments in Asia and feature designs of Mega Dragonite, Mega Charizard Y, Mega Zygarde,…",
-      "image": "https://www.serebii.net/pokemonhome/masterballmedal.jpg",
+      "label": "pokémon tcg",
+      "title": "The Pokémon Company International have been kind enough to offer us the exclusive official reveal of three of…",
+      "url": "https://www.serebii.net/card/chaosrising/",
+      "published": "2026-04-24T00:00:00.000Z",
+      "excerpt": "The Pokémon Company International have been kind enough to offer us the exclusive official reveal of three of the cards in the upcoming set, Mega Evolution: Chaos Rising. This set is due out on May 22nd 2026. This card…",
+      "image": "https://www.serebii.net/card/mega4.jpg",
       "youtube_id": null,
       "tags": [
-        "In The Games Department",
-        "Pokémon HOME"
+        "In The TCG Department",
+        "Pokémon Trading Card Game"
       ]
     },
     {
-      "id": "serebii-2026-04-09-the-next-pok-mon-tcg-pocket-event-is-now-live",
+      "id": "serebii-2026-04-24-new-details-have-been-released-for-the-coming-pok-mon-wonder",
       "source": "serebii",
       "source_name": "serebii",
-      "label": "pokémon tcg pocket",
-      "title": "The next Pokémon TCG Pocket event is now live",
-      "url": "https://www.serebii.net/tcgpocket/events/slowpokedropevent.shtml",
-      "published": "2026-04-09T04:00:00.000Z",
-      "excerpt": "The next Pokémon TCG Pocket event is now live. This event is the latest Drop Event which features special Solo Battles with various rewards and missions to complete. It adds numerous new Promos into the game including…",
-      "image": "https://www.serebii.net/tcgpocket/slowpokedropevent.jpg",
+      "label": "anime",
+      "title": "New details have been released for the coming Pokémon Wonder Voyage series of the anime",
+      "url": "https://www.serebii.net/anime/epiguide/pokemon2023/",
+      "published": "2026-04-24T00:00:00.000Z",
+      "excerpt": "New details have been released for the coming Pokémon Wonder Voyage series of the anime. The new character introduced in the key artwork last week is called Navi and is from Lumiose City. She meets up with Ditto who…",
+      "image": "https://www.serebii.net/anime2026i.jpg",
       "youtube_id": null,
       "tags": [
-        "In The Games Department",
-        "Pokémon TCG Pocket - Drop Event"
+        "In The Anime Department",
+        "Pokémon Wonder Voyage"
       ]
     },
     {
-      "id": "serebii-2026-04-09-the-next-pok-mon-go-raid-day-has-been-announced-it-will-run-",
-      "source": "serebii",
-      "source_name": "serebii",
-      "label": "pokémon go",
-      "title": "The next Pokémon GO Raid Day has been announced. It will run on May 2nd 2026 from 14:00 to 17:00 local time,…",
-      "url": "https://www.serebii.net/pokemongo/raidday.shtml",
-      "published": "2026-04-09T04:00:00.000Z",
-      "excerpt": "The next Pokémon GO Raid Day has been announced. It will run on May 2nd 2026 from 14:00 to 17:00 local time, focused on Shadow Entei Players will get up to 5 more additional Raid Passes from PokéStops and an Event…",
-      "image": "https://www.serebii.net/pokemongo/shadowenteiday.jpg",
-      "youtube_id": null,
-      "tags": [
-        "In The Games Department",
-        "Pokémon GO"
-      ]
-    },
-    {
-      "id": "serebii-2026-04-09-a-new-episode-pair-of-episode-titles-have-been-released-for-",
+      "id": "serebii-2026-04-24-a-new-episode-pair-of-episode-titles-have-been-released-for-",
       "source": "serebii",
       "source_name": "serebii",
       "label": "anime",
       "title": "A new episode pair of episode titles have been released for a coming episode of Pokémon Rising Again in Japan",
       "url": "https://www.serebii.net/anime/epiguide/pokemon2023/",
-      "published": "2026-04-09T04:00:00.000Z",
-      "excerpt": "A new episode pair of episode titles have been released for a coming episode of Pokémon Rising Again in Japan. These episodes are due to air on April 17th and April 24th respectively. Episode 134: The Ultimate Showdown!…",
+      "published": "2026-04-24T00:00:00.000Z",
+      "excerpt": "A new episode pair of episode titles have been released for a coming episode of Pokémon Rising Again in Japan. This episode is due to air next week on May 1st and conclude the Pokémon Rising Again chapter. Episode 136:…",
       "image": "https://www.serebii.net/anime2026.jpg",
       "youtube_id": null,
       "tags": [
@@ -602,95 +192,31 @@
       ]
     },
     {
-      "id": "serebii-2026-04-09-pok-mon-caf-remix-has-announced-some-big-changes-coming-to-t",
+      "id": "serebii-2026-04-24-the-latest-tera-raid-battle-event-is-now-live-in-pok-mon-sca",
       "source": "serebii",
       "source_name": "serebii",
-      "label": "pokémon cafe",
-      "title": "Pokémon Café ReMix has announced some big changes coming to the game to evolve it further and so the game is…",
-      "url": "https://www.serebii.net/cafemix",
-      "published": "2026-04-09T04:00:00.000Z",
-      "excerpt": "Pokémon Café ReMix has announced some big changes coming to the game to evolve it further and so the game is entering a major update prep period which will stop the run of new events This period begins on April 20th and…",
-      "image": "https://www.serebii.net/cafemix/update.jpg",
+      "label": "scarlet & violet",
+      "title": "The latest Tera Raid Battle event is now live in Pokémon Scarlet & Violet",
+      "url": "https://www.serebii.net/scarletviolet/teraraidbattles/event-mightychesnaught.shtml",
+      "published": "2026-04-24T00:00:00.000Z",
+      "excerpt": "The latest Tera Raid Battle event is now live in Pokémon Scarlet & Violet. This is the Mighty Chesnaught event and is the latest in the series of weekly Starter Pokémon Tera Raid Battle reruns. This event has Chesnaught…",
+      "image": "https://www.serebii.net/scarletviolet/chesnaughtraids.jpg",
       "youtube_id": null,
       "tags": [
         "In The Games Department",
-        "Pokémon Cafeé ReMix - Update"
+        "Pokémon Scarlet & Violet"
       ]
     },
     {
-      "id": "serebii-2026-04-09-pok-mon-caf-remix-has-announced-the-next-event-this-event-is",
-      "source": "serebii",
-      "source_name": "serebii",
-      "label": "pokémon cafe",
-      "title": "Pokémon Café ReMix has announced the next event. This event is Munching with Greedent event and adds…",
-      "url": "https://www.serebii.net/cafemix/events.shtml",
-      "published": "2026-04-09T04:00:00.000Z",
-      "excerpt": "Pokémon Café ReMix has announced the next event. This event is Munching with Greedent event and adds Greedent's Commemorative Chef outfit into the game. It is a Full-Belly Adventure. It will run from 06:00 UTC on April…",
-      "image": "https://www.serebii.net/cafemix/greedentevent.jpg",
-      "youtube_id": null,
-      "tags": [
-        "In The Games Department",
-        "Pokémon Café ReMix"
-      ]
-    },
-    {
-      "id": "serebii-2026-04-08-pok-mon-champions-is-now-live-on-the-nintendo-switch-eshop-a",
+      "id": "serebii-2026-04-24-the-next-pok-mon-champions-online-competition-has-opened-up-",
       "source": "serebii",
       "source_name": "serebii",
       "label": "pokémon champions",
-      "title": "Pokémon Champions is now live on the Nintendo Switch eShop and so our coverage is beginning",
-      "url": "https://www.serebii.net/pokemonchampions/",
-      "published": "2026-04-08T02:00:00.000Z",
-      "excerpt": "Pokémon Champions is now live on the Nintendo Switch eShop and so our coverage is beginning. Over the next few hours and day we'll be adding full details of the game including databases and more covering all aspects of…",
-      "image": "https://www.serebii.net/pokemonchampions/title2.jpg",
-      "youtube_id": null,
-      "tags": [
-        "In The Games Department",
-        "Pokémon Champions"
-      ]
-    },
-    {
-      "id": "serebii-2026-04-08-a-new-distribution-has-begun-in-pok-mon-champions",
-      "source": "serebii",
-      "source_name": "serebii",
-      "label": "pokémon champions",
-      "title": "A new distribution has begun in Pokémon Champions",
-      "url": "https://www.serebii.net/pokemonchampions/rankedbattle.shtml",
-      "published": "2026-04-08T02:00:00.000Z",
-      "excerpt": "A new distribution has begun in Pokémon Champions. Get a Machamp with the special code CHAMP10N, redeemable in the game's Mystery Gift feature. This Machamp comes in a Cherish Ball It runs until August 31st 2026",
-      "image": "https://www.serebii.net/pokemonchampions/machampevent.jpg",
-      "youtube_id": null,
-      "tags": [
-        "In The Games Department",
-        "Pokémon Champions - Distribution"
-      ]
-    },
-    {
-      "id": "serebii-2026-04-08-pok-mon-champions-regulation-m-a-and-ranked-battle-season-m-",
-      "source": "serebii",
-      "source_name": "serebii",
-      "label": "pokémon champions",
-      "title": "Pokémon Champions' Regulation M-A and Ranked Battle Season M-1 is now live",
-      "url": "https://www.serebii.net/pokemonchampions/rankedbattle.shtml",
-      "published": "2026-04-08T02:00:00.000Z",
-      "excerpt": "Pokémon Champions' Regulation M-A and Ranked Battle Season M-1 is now live. Season M-1 will run until May 13th at 01:59 UTC and Regulation M-A runs until June 17th 2026 at 01:59 UTC This season allows for use of the…",
-      "image": "https://www.serebii.net/pokemonchampions/rankedbattle/regulationm-a.jpg",
-      "youtube_id": null,
-      "tags": [
-        "In The Games Department",
-        "Pokémon Champions - Regulation M-A"
-      ]
-    },
-    {
-      "id": "serebii-2026-04-08-pok-mon-champions-has-announced-another-online-competition",
-      "source": "serebii",
-      "source_name": "serebii",
-      "label": "pokémon champions",
-      "title": "Pokémon Champions has announced another Online Competition",
-      "url": "https://www.serebii.net/pokemonchampions/onlinecompetitions.shtml",
-      "published": "2026-04-08T02:00:00.000Z",
-      "excerpt": "Pokémon Champions has announced another Online Competition. This is the Warm Up Challenge and runs standard Regulation M-A rules. This competition has registration open now and runs from April 10th at 02:00 UTC until…",
-      "image": "https://www.serebii.net/pokemonchampions/onlinecompetitions/warm-upchallenge.jpg",
+      "title": "The next Pokémon Champions Online Competition has opened up registration",
+      "url": "https://www.serebii.net/pokemonchampions/onlinecompetitions/globalchallenge2026i.shtml",
+      "published": "2026-04-24T00:00:00.000Z",
+      "excerpt": "The next Pokémon Champions Online Competition has opened up registration. This is the Global Challenge 2026 I and runs standard Regulation M-A rules. Players in Japan and South Korea will use this competition as a…",
+      "image": "https://www.serebii.net/pokemonchampions/onlinecompetitions/globalchallenge2026i.jpg",
       "youtube_id": null,
       "tags": [
         "In The Games Department",
@@ -698,15 +224,15 @@
       ]
     },
     {
-      "id": "serebii-2026-04-08-a-new-outfit-has-been-announced-for-a-pok-mon-for-pok-mon-go",
+      "id": "serebii-2026-04-24-the-pok-mon-go-pass-march-has-been-announced-this-will-run-f",
       "source": "serebii",
       "source_name": "serebii",
       "label": "pokémon go",
-      "title": "A new outfit has been announced for a Pokémon for Pokémon GO Fest this year",
-      "url": "https://www.serebii.net/pokemongo/events.shtml",
-      "published": "2026-04-08T02:00:00.000Z",
-      "excerpt": "A new outfit has been announced for a Pokémon for Pokémon GO Fest this year. Attendees who go to the live events and the global event will be able to get a special Caterpie in a Poké Ball Hat",
-      "image": "https://www.serebii.net/pokemongo/caterpiegofest.jpg",
+      "title": "The Pokémon GO Pass: March has been announced. This will run from May 5th 2026 through June 2nd 2026",
+      "url": "https://www.serebii.net/pokemongo/pass.shtml",
+      "published": "2026-04-24T00:00:00.000Z",
+      "excerpt": "The Pokémon GO Pass: March has been announced. This will run from May 5th 2026 through June 2nd 2026. As before, a free track is available for all players who gain access, or you can purchase to get even more rewards…",
+      "image": "https://www.serebii.net/pokemongo/gopassmay2026.jpg",
       "youtube_id": null,
       "tags": [
         "In The Games Department",
@@ -714,31 +240,332 @@
       ]
     },
     {
-      "id": "serebii-2026-04-08-the-latest-event-has-begun-in-pok-mon-masters-ex",
+      "id": "serebii-2026-04-24-pok-mon-champions-is-to-undergo-emergency-maintenance-for-on",
       "source": "serebii",
       "source_name": "serebii",
-      "label": "pokémon masters",
-      "title": "The latest event has begun in Pokémon Masters EX",
-      "url": "https://www.serebii.net/pokemonmasters/events/isledisciplesarenatycoon2026.shtml",
-      "published": "2026-04-08T02:00:00.000Z",
-      "excerpt": "The latest event has begun in Pokémon Masters EX. This event is a repeat of the Story event from 2024 which features the story of Avery, Klara and Greta deciding to take on the Battle Villa We have added full details to…",
-      "image": "https://www.serebii.net/pokemonmasters/events/isledisciplesarenatycoon2026.jpg",
+      "label": "pokémon champions",
+      "title": "Pokémon Champions is to undergo emergency maintenance for one hour today from 03:00 UTC to 04:00 UTC",
+      "url": "https://www.serebii.net/pokemonchampions/patch.shtml",
+      "published": "2026-04-24T00:00:00.000Z",
+      "excerpt": "Pokémon Champions is to undergo emergency maintenance for one hour today from 03:00 UTC to 04:00 UTC. This is to fix an issue where the Sitrus Berry will not activate during battle under certain conditions.",
+      "image": "https://www.serebii.net/pokemonchampions/title.jpg",
       "youtube_id": null,
       "tags": [
         "In The Games Department",
-        "Pokémon Masters EX - Story Event"
+        "Pokémon Champions Patch"
       ]
     },
     {
-      "id": "serebii-2026-04-08-the-third-and-final-bingo-reward-panel-is-now-live-for-the-d",
+      "id": "serebii-2026-04-24-pok-mon-unite-has-received-a-update-which-adds-a-variety-of-",
+      "source": "serebii",
+      "source_name": "serebii",
+      "label": "pokémon unite",
+      "title": "Pokémon UNITE has received a update which adds a variety of things to the game",
+      "url": "https://www.serebii.net/pokemonunite/pokemon/typhlosion.shtml",
+      "published": "2026-04-24T00:00:00.000Z",
+      "excerpt": "Pokémon UNITE has received a update which adds a variety of things to the game. With this, the Pokémon Typhlosion is now available to obtain as a new unique Unite License. We're currently compiling full details for…",
+      "image": "https://www.serebii.net/pokemonunite/typhlosion.jpg",
+      "youtube_id": null,
+      "tags": [
+        "In The Games Department",
+        "Pokémon UNITE"
+      ]
+    },
+    {
+      "id": "pokebeach-2026-04-23-the-king-stands-his-ground-n-s-zoroark-ex-is-going-nowhere",
+      "source": "pokebeach",
+      "source_name": "pokebeach",
+      "label": "pokémon tcg",
+      "title": "The King Stands His Ground – N’s Zoroark ex Is Going Nowhere",
+      "url": "https://www.pokebeach.com/2026/04/the-king-stands-his-ground-ns-zoroark-ex-is-going-nowhere",
+      "published": "2026-04-23T14:00:00.000Z",
+      "excerpt": "",
+      "image": "https://www.pokebeach.com/news/2026/01/286-Ns-Zoroark-ex-Ascended-Heroes-2000x1200.jpg",
+      "youtube_id": null,
+      "tags": [
+        "tcg"
+      ]
+    },
+    {
+      "id": "pokebeach-2026-04-23-pulsing-aura-set-revealed-for-pocket-featuring-mega-lucario-",
+      "source": "pokebeach",
+      "source_name": "pokebeach",
+      "label": "pokémon tcg",
+      "title": "“Pulsing Aura” Set Revealed for “Pocket” Featuring Mega Lucario ex!",
+      "url": "https://www.pokebeach.com/2026/04/pulsing-aura-set-revealed-for-pocket-featuring-mega-lucario",
+      "published": "2026-04-23T12:25:00.000Z",
+      "excerpt": "",
+      "image": "https://www.pokebeach.com/news/2026/04/Pokemon_TCG_Pocket_Pulsing_Aura_Mega_Lucario_ex-2000x1200.png",
+      "youtube_id": null,
+      "tags": [
+        "tcg"
+      ]
+    },
+    {
+      "id": "serebii-2026-04-23-the-latest-set-for-pok-mon-tcg-pocket-has-been-officially-re",
+      "source": "serebii",
+      "source_name": "serebii",
+      "label": "pokémon tcg pocket",
+      "title": "The latest set for Pokémon TCG Pocket has been officially revealed",
+      "url": "https://www.serebii.net/tcgpocket/pulsingaura/",
+      "published": "2026-04-23T04:44:00.000Z",
+      "excerpt": "The latest set for Pokémon TCG Pocket has been officially revealed. This set is called Pulsing Aura and will release on April 28th 2026 and focuses on Mega Lucario A myriad of events have also been officially announced…",
+      "image": "https://www.serebii.net/tcgpocket/b3.jpg",
+      "youtube_id": "GUhps8waX3o",
+      "tags": [
+        "In The Games Department",
+        "Pokémon TCG Pocket"
+      ]
+    },
+    {
+      "id": "serebii-2026-04-23-pok-mon-champions-has-received-a-new-bug-fix-patch",
+      "source": "serebii",
+      "source_name": "serebii",
+      "label": "pokémon champions",
+      "title": "Pokémon Champions has received a new bug fix patch",
+      "url": "https://www.serebii.net/pokemonchampions/patch.shtml",
+      "published": "2026-04-23T04:44:00.000Z",
+      "excerpt": "Pokémon Champions has received a new bug fix patch. This brings the game to Version 1.0.3 and needs updating in order to go online This patch fixes a variety of issues including the description of Leech Seed, the gender…",
+      "image": "https://www.serebii.net/pokemonchampions/title.jpg",
+      "youtube_id": null,
+      "tags": [
+        "In The Games Department",
+        "Pokémon Champions Patch"
+      ]
+    },
+    {
+      "id": "serebii-2026-04-23-pok-mon-pokopia-has-received-a-new-bug-fix-patch",
+      "source": "serebii",
+      "source_name": "serebii",
+      "label": "pokémon pokopia",
+      "title": "Pokémon Pokopia has received a new bug fix patch",
+      "url": "https://www.serebii.net/pokemonpokopia/patch.shtml",
+      "published": "2026-04-23T04:44:00.000Z",
+      "excerpt": "Pokémon Pokopia has received a new bug fix patch. This brings the game to Version 1.0.4 and needs updating in order to go online This patch allows for you to move Pokémon Centers while in-game events are happening It…",
+      "image": "https://www.serebii.net/pokemonpokopia/title.jpg",
+      "youtube_id": null,
+      "tags": [
+        "In The Games Department",
+        "Pokémon Pokopia Patch"
+      ]
+    },
+    {
+      "id": "serebii-2026-04-23-pok-mon-legends-z-a-s-ranked-battle-season-10-has-begun",
+      "source": "serebii",
+      "source_name": "serebii",
+      "label": "legends z-a",
+      "title": "Pokémon Legends: Z-A's Ranked Battle Season 10 has begun",
+      "url": "https://www.serebii.net/legendsz-a/rankedbattle/season10.shtml",
+      "published": "2026-04-23T04:44:00.000Z",
+      "excerpt": "Pokémon Legends: Z-A's Ranked Battle Season 10 has begun. This season is the eighth for the Z-A Battle Club and features battles to get rewards by earning points in the battle. This season runs a ruleset where no…",
+      "image": "https://www.serebii.net/legendsz-a/rankedbattle/season10.jpg",
+      "youtube_id": null,
+      "tags": [
+        "In The Games Department",
+        "Pokémon Legends: Z-A - Ranked Battle Season 10"
+      ]
+    },
+    {
+      "id": "serebii-2026-04-23-the-next-pok-mon-go-community-day-classic-on-may-16th-will-f",
+      "source": "serebii",
+      "source_name": "serebii",
+      "label": "pokémon go",
+      "title": "The next Pokémon GO Community Day Classic on May 16th will focus on Deino",
+      "url": "https://www.serebii.net/pokemongo/communityday.shtml",
+      "published": "2026-04-23T04:44:00.000Z",
+      "excerpt": "The next Pokémon GO Community Day Classic on May 16th will focus on Deino. This event will 3* Catch Experience as well as 3 hours Incense and Lure Modules. It will also give out the move Brutal Swing to Hydreigon. The…",
+      "image": "https://www.serebii.net/pokemongo/communityclassic0526.jpg",
+      "youtube_id": null,
+      "tags": [
+        "In The Games Department",
+        "Pokémon GO"
+      ]
+    },
+    {
+      "id": "serebii-2026-04-23-after-finding-an-issue-with-it-earlier-this-month-pok-mon-ho",
+      "source": "serebii",
+      "source_name": "serebii",
+      "label": "pokémon home",
+      "title": "After finding an issue with it earlier this month, Pokémon HOME has now resolved the issue that was happening…",
+      "url": "https://www.serebii.net/pokemonhome",
+      "published": "2026-04-23T04:44:00.000Z",
+      "excerpt": "After finding an issue with it earlier this month, Pokémon HOME has now resolved the issue that was happening with Friend Trades on the mobile version of the game. which ran from April 10th at 14:00 UTC through to April…",
+      "image": "https://www.serebii.net/pokemonhome/title.jpg",
+      "youtube_id": null,
+      "tags": [
+        "In The Games Department",
+        "Pokémon HOME"
+      ]
+    },
+    {
+      "id": "serebii-2026-04-23-pok-mon-sleep-has-had-a-small-update-which-has-contained-the",
+      "source": "serebii",
+      "source_name": "serebii",
+      "label": "pokémon sleep",
+      "title": "Pokémon Sleep has had a small update which has contained the new data for the next week",
+      "url": "https://www.serebii.net/pokemonsleep/",
+      "published": "2026-04-23T04:44:00.000Z",
+      "excerpt": "Pokémon Sleep has had a small update which has contained the new data for the next week. This includes the addition of Sandshrew into the game, as well as the brand new dish, the \"Scald\" Chunky Salad",
+      "image": "https://www.serebii.net/pokemonsleep/title2.jpg",
+      "youtube_id": null,
+      "tags": [
+        "In The Games Department",
+        "Pokémon Sleep"
+      ]
+    },
+    {
+      "id": "serebii-2026-04-23-pok-mon-unite-has-announced-the-next-battle-pass-this-battle",
+      "source": "serebii",
+      "source_name": "serebii",
+      "label": "pokémon unite",
+      "title": "Pokémon UNITE has announced the next Battle Pass This Battle Pass will go live on May 1st 2026 and will add…",
+      "url": "https://www.serebii.net/pokemonunite/",
+      "published": "2026-04-23T04:44:00.000Z",
+      "excerpt": "Pokémon UNITE has announced the next Battle Pass This Battle Pass will go live on May 1st 2026 and will add one new piece of Holowear: Elegant Style Espeon, alongside other items",
+      "image": "https://www.serebii.net/pokemonunite/battlepass/elegantstyleespeon.jpg",
+      "youtube_id": null,
+      "tags": [
+        "In The Games Department",
+        "Pokémon UNITE"
+      ]
+    },
+    {
+      "id": "serebii-2026-04-23-1-new-pok-lids-has-been-officially-revealed",
+      "source": "serebii",
+      "source_name": "serebii",
+      "label": "pokémon home",
+      "title": "1 new PokéLids has been officially revealed",
+      "url": "https://www.serebii.net/pokelids/",
+      "published": "2026-04-23T04:44:00.000Z",
+      "excerpt": "1 new PokéLids has been officially revealed. This PokéLid is in the Miyagi Prefecture at the special Lapras Park in Sendai. They are also available as a Pokémon HOME medal and are to be aded as part of the PokéLid Stamp…",
+      "image": "https://www.serebii.net/pokelids0426i.jpg",
+      "youtube_id": null,
+      "tags": [
+        "In The Pokémon Department",
+        "Poké Lids"
+      ]
+    },
+    {
+      "id": "pokebeach-2026-04-22-mega-excadrill-ex-from-abyss-eye-revealed",
+      "source": "pokebeach",
+      "source_name": "pokebeach",
+      "label": "pokémon tcg",
+      "title": "Mega Excadrill ex from “Abyss Eye” Revealed!",
+      "url": "https://www.pokebeach.com/2026/04/mega-excadrill-ex-from-abyss-eye-revealed",
+      "published": "2026-04-22T07:13:00.000Z",
+      "excerpt": "",
+      "image": "https://www.pokebeach.com/news/2026/04/M5-045081-Mega-Excadrill-ex-2000x1200.png",
+      "youtube_id": null,
+      "tags": [
+        "tcg"
+      ]
+    },
+    {
+      "id": "serebii-2026-04-22-the-first-part-of-the-special-commemorative-song-pok-mon-all",
+      "source": "serebii",
+      "source_name": "serebii",
+      "label": "pokémon news",
+      "title": "The first part of the special commemorative song, Pokémon All Stars 1025, by Masayoshi Oishi is due to…",
+      "url": "https://www.serebii.net/music/pokemonallstars1025",
+      "published": "2026-04-22T06:36:00.000Z",
+      "excerpt": "The first part of the special commemorative song, Pokémon All Stars 1025, by Masayoshi Oishi is due to release shortly at 13:25 UTC. This part features 213 of the 1,025 Pokémon and comes in a special commemorative…",
+      "image": "https://www.serebii.net/music/pokemonallstars1025.jpg",
+      "youtube_id": null,
+      "tags": [
+        "In The Music Department",
+        "Pokémon All Stars 2025"
+      ]
+    },
+    {
+      "id": "serebii-2026-04-22-the-pok-mon-go-community-day-dates-as-well-as-dates-for-othe",
+      "source": "serebii",
+      "source_name": "serebii",
+      "label": "pokémon go",
+      "title": "The Pokémon GO Community Day dates, as well as dates for other events, have been officially revealed",
+      "url": "https://www.serebii.net/pokemongo/communityday.shtml",
+      "published": "2026-04-22T06:36:00.000Z",
+      "excerpt": "The Pokémon GO Community Day dates, as well as dates for other events, have been officially revealed. The Community Day events will be held on: Saturday June 20, 2026 Saturday July 4, 2026 Saturday August 15, 2026 In…",
+      "image": "https://www.serebii.net/pokemongo/communityday.jpg",
+      "youtube_id": null,
+      "tags": [
+        "In The Games Department",
+        "Pokémon GO"
+      ]
+    },
+    {
+      "id": "serebii-2026-04-22-the-pok-mon-company-international-have-announced-a-special-s",
+      "source": "serebii",
+      "source_name": "serebii",
+      "label": "pokémon news",
+      "title": "The Pokémon Company International have announced a special showcase that will be at three different events…",
+      "url": "https://www.serebii.net/pokemon30",
+      "published": "2026-04-22T06:36:00.000Z",
+      "excerpt": "The Pokémon Company International have announced a special showcase that will be at three different events this year. This area has a special booth where you can receive a batch of stickers featuring different Pokémon…",
+      "image": "https://www.serebii.net/pokemon30/whatsyourfavorite.jpg",
+      "youtube_id": null,
+      "tags": [
+        "In The Pokémon Department",
+        "Pokémon 30"
+      ]
+    },
+    {
+      "id": "serebii-2026-04-22-pok-mon-masters-ex-has-received-an-update-for-the-coming-mon",
+      "source": "serebii",
+      "source_name": "serebii",
+      "label": "pokémon masters",
+      "title": "Pokémon Masters EX has received an update for the coming month's events",
+      "url": "https://www.serebii.net/pokemonmasters/events.shtml",
+      "published": "2026-04-22T06:36:00.000Z",
+      "excerpt": "Pokémon Masters EX has received an update for the coming month's events. This includes data for the Sync Pairs of Kieran, Drayton, Larry, Flannery, Rika, Poppy, Emmet & Hau",
+      "image": "https://www.serebii.net/pokemonmasters/exlink.jpg",
+      "youtube_id": null,
+      "tags": [
+        "In The Games Department",
+        "Pokémon Masters EX"
+      ]
+    },
+    {
+      "id": "serebii-2026-04-21-a-special-commemorative-song-has-been-announced-to-celebrate",
+      "source": "serebii",
+      "source_name": "serebii",
+      "label": "pokémon news",
+      "title": "A special commemorative song has been announced to celebrate Pokémon's 30th anniversary",
+      "url": "https://www.serebii.net/pokemon30",
+      "published": "2026-04-21T06:00:00.000Z",
+      "excerpt": "A special commemorative song has been announced to celebrate Pokémon's 30th anniversary. This song is called Pokémon All Stars 1025 and is by Masayoshi Oishi and features the names of all 1025 Pokémon. This song is to…",
+      "image": "https://www.serebii.net/music/pokemonallstars1025.jpg",
+      "youtube_id": null,
+      "tags": [
+        "In The Music Department",
+        "Pokémon All Stars 2025"
+      ]
+    },
+    {
+      "id": "serebii-2026-04-21-the-next-pok-mon-go-event-has-been-announced-this-is-the-spr",
+      "source": "serebii",
+      "source_name": "serebii",
+      "label": "pokémon go",
+      "title": "The next Pokémon GO event has been announced. This is the Spring Marathon event and is due to run May 12th at…",
+      "url": "https://www.serebii.net/pokemongo/events.shtml",
+      "published": "2026-04-21T06:00:00.000Z",
+      "excerpt": "The next Pokémon GO event has been announced. This is the Spring Marathon event and is due to run May 12th at 10:00 to March 18th at 20:00 local time and adds Flittle, Espathra and Marathon Visor Pikachu into the game…",
+      "image": "https://www.serebii.net/pokemongo/springmarathon.jpg",
+      "youtube_id": null,
+      "tags": [
+        "In The Games Department",
+        "Pokémon GO"
+      ]
+    },
+    {
+      "id": "serebii-2026-04-21-pok-mon-caf-remix-has-begun-the-next-event-this-event-is-the",
       "source": "serebii",
       "source_name": "serebii",
       "label": "pokémon cafe",
-      "title": "The third and final bingo reward panel is now live for the Drip and Sip with Meowstic event in Pokémon Café…",
-      "url": "https://www.serebii.net/cafemix/events/dripandsipwithmeowstic.shtml",
-      "published": "2026-04-08T02:00:00.000Z",
-      "excerpt": "The third and final bingo reward panel is now live for the Drip and Sip with Meowstic event in Pokémon Café ReMix. This panel gives a number of tasks which, if completed, give you a Express Delivery ticket. These need…",
-      "image": "https://www.serebii.net/cafemix/meowsticbingo2.jpg",
+      "title": "Pokémon Café ReMix has begun the next event. This event is the Graceful Milotic event and focuses on Milotic,…",
+      "url": "https://www.serebii.net/cafemix/events/gracefulmilotic2026.shtml",
+      "published": "2026-04-21T06:00:00.000Z",
+      "excerpt": "Pokémon Café ReMix has begun the next event. This event is the Graceful Milotic event and focuses on Milotic, offering another chance to get it in the game. This event is a Café Pop-Up event event where you go through…",
+      "image": "https://www.serebii.net/cafemix/gracefulmilotic2026.jpg",
       "youtube_id": null,
       "tags": [
         "In The Games Department",
@@ -746,13 +573,189 @@
       ]
     },
     {
-      "id": "serebii-2026-04-08-the-pok-mon-caf-remix-event-collect-with-gholdengo-has-made-",
+      "id": "serebii-2026-04-20-pok-mon-champions-is-to-undergo-maintenance-on-april-23rd",
+      "source": "serebii",
+      "source_name": "serebii",
+      "label": "pokémon champions",
+      "title": "Pokémon Champions is to undergo maintenance on April 23rd",
+      "url": "https://www.serebii.net/pokemonchampions/",
+      "published": "2026-04-20T05:11:00.000Z",
+      "excerpt": "It has been confirmed that Pokémon Champions is to undergo maintenance on April 23rd. This maintenance is to last three hours from 03:00 UTC through 06:00 UTC. Currently details on what will be adjusted haven't been…",
+      "image": "https://www.serebii.net/pokemonchampions/title.jpg",
+      "youtube_id": null,
+      "tags": [
+        "In The Games Department",
+        "Pokémon Champions"
+      ]
+    },
+    {
+      "id": "serebii-2026-04-20-the-next-pok-mon-go-events-for-may-2026-have-been-fully-deta",
+      "source": "serebii",
+      "source_name": "serebii",
+      "label": "pokémon go",
+      "title": "The next Pokémon GO events for May 2026 have been fully detailed",
+      "url": "https://www.serebii.net/pokemongo/",
+      "published": "2026-04-20T05:11:00.000Z",
+      "excerpt": "The next Pokémon GO events for May 2026 have been fully detailed. Cottonee will be in Max Battles from May 4th - May 10th, Growlithe from May 11th - May 17th, Registeel from May 18 - May 24th and Combee from May 25th -…",
+      "image": "https://www.serebii.net/pokemongo/memoriesinmotion2.jpg",
+      "youtube_id": null,
+      "tags": [
+        "In The Games Department",
+        "Pokémon GO"
+      ]
+    },
+    {
+      "id": "serebii-2026-04-20-pok-mon-sleep-is-to-hold-a-special-event-to-get-latios-in-ju",
+      "source": "serebii",
+      "source_name": "serebii",
+      "label": "pokémon sleep",
+      "title": "Pokémon Sleep is to hold a special event to get Latios in June 2026",
+      "url": "https://www.serebii.net/pokemonsleep/",
+      "published": "2026-04-20T05:11:00.000Z",
+      "excerpt": "It has been confirmed that Pokémon Sleep is to hold a special event to get Latios in June 2026. This follows on from the special event that has run the last two weeks to get Latias. We'll provide full details on the…",
+      "image": "https://www.serebii.net/pokemonsleep/title2.jpg",
+      "youtube_id": null,
+      "tags": [
+        "In The Games Department",
+        "Pokémon Sleep"
+      ]
+    },
+    {
+      "id": "serebii-2026-04-20-pok-mon-caf-remix-has-announced-the-next-delivery-focus-star",
+      "source": "serebii",
+      "source_name": "serebii",
+      "label": "pokémon cafe",
+      "title": "Pokémon Café ReMix has announced the next delivery focus. Starting from tomorrow, April 21st 2026, a triple…",
+      "url": "https://www.serebii.net/cafemix/events.shtml",
+      "published": "2026-04-20T05:11:00.000Z",
+      "excerpt": "Pokémon Café ReMix has announced the next delivery focus. Starting from tomorrow, April 21st 2026, a triple focus will be live which focuses on Pawmo's Retro Chef outfit, Umbreon's Halloween outfit and Polteageist,…",
+      "image": "https://www.serebii.net/cafemix/pawmoumbreonpolteageistdelivery.jpg",
+      "youtube_id": null,
+      "tags": [
+        "In The Games Department",
+        "Pokémon Café ReMix"
+      ]
+    },
+    {
+      "id": "serebii-2026-04-19-the-pok-mon-pokopia-bulbasaur-s-jump-rope-contest-event-is-r",
+      "source": "serebii",
+      "source_name": "serebii",
+      "label": "pokémon pokopia",
+      "title": "The Pokémon Pokopia Bulbasaur's Jump Rope Contest event is rolling out globally",
+      "url": "https://www.serebii.net/pokemonpokopia/events/bulbasaur'sjumpropecontest.shtml",
+      "published": "2026-04-19T06:00:00.000Z",
+      "excerpt": "The Pokémon Pokopia Bulbasaur's Jump Rope Contest event is rolling out globally. Runs from 05:00 local time today until 04:59 local time on April 26th. This event has Bulbasaur hold a contest for Jump Rope with a number…",
+      "image": "https://www.serebii.net/pokemonpokopia/bulbasaursjumprope.jpg",
+      "youtube_id": null,
+      "tags": [
+        "In The Games Department",
+        "Pokémon Pokopia Event"
+      ]
+    },
+    {
+      "id": "serebii-2026-04-19-pok-mon-caf-remix-has-announced-the-next-event-this-event-is",
+      "source": "serebii",
+      "source_name": "serebii",
+      "label": "pokémon cafe",
+      "title": "Pokémon Café ReMix has announced the next event. This event is Graceful Milotic event",
+      "url": "https://www.serebii.net/cafemix/events.shtml",
+      "published": "2026-04-19T06:00:00.000Z",
+      "excerpt": "Pokémon Café ReMix has announced the next event. This event is Graceful Milotic event. It is a Café Pop-up event which will run from 06:00 UTC on April 21st 2026. We'll provide full details of this event as the event…",
+      "image": "https://www.serebii.net/cafemix/gracefulmiloticannounce.jpg",
+      "youtube_id": null,
+      "tags": [
+        "In The Games Department",
+        "Pokémon Café ReMix"
+      ]
+    },
+    {
+      "id": "serebii-2026-04-19-today-marks-the-second-entry-into-the-champions-ix-competiti",
+      "source": "serebii",
+      "source_name": "serebii",
+      "label": "pokémon news",
+      "title": "Today marks the second entry into the Champions IX competitive field with a Lumiose Pokémon",
+      "url": "https://www.serebii.net/potw-champions/500.shtml",
+      "published": "2026-04-19T06:00:00.000Z",
+      "excerpt": "Today marks the second entry into the Champions IX competitive field with a Lumiose Pokémon. These entries are created by the visitors for the visitors and then compiled by our writer Mestorn. To get involved, Click…",
+      "image": "https://www.serebii.net/potw-champions/500-i.jpg",
+      "youtube_id": null,
+      "tags": [
+        "In The Pokémon of the Week Department",
+        "Who's That Pokémon"
+      ]
+    },
+    {
+      "id": "serebii-2026-04-18-a-new-event-is-rolling-out-in-pok-mon-pokopia",
+      "source": "serebii",
+      "source_name": "serebii",
+      "label": "pokémon pokopia",
+      "title": "A new event is rolling out in Pokémon Pokopia",
+      "url": "https://www.serebii.net/pokemonpokopia/events/bulbasaur'sjumpropecontest.shtml",
+      "published": "2026-04-18T00:00:00.000Z",
+      "excerpt": "A new event is rolling out in Pokémon Pokopia. This event runs on April 19th at 05:00 local time through April 26th at 04:59 local time and adds a special Jump Rope Contest held by Bulbasaur at Pokémon Centers that can…",
+      "image": "https://www.serebii.net/pokemonpokopia/bulbasaursjumprope.jpg",
+      "youtube_id": null,
+      "tags": [
+        "In The Games Department",
+        "Pokémon Pokopia Event"
+      ]
+    },
+    {
+      "id": "serebii-2026-04-18-the-pok-mon-go-riolu-hatch-day-is-rolling-out-globally",
+      "source": "serebii",
+      "source_name": "serebii",
+      "label": "pokémon go",
+      "title": "The Pokémon GO Riolu Hatch Day is rolling out globally",
+      "url": "https://www.serebii.net/pokemongo/hatchday/replay:rioluday.shtml",
+      "published": "2026-04-18T00:00:00.000Z",
+      "excerpt": "The Pokémon GO Riolu Hatch Day is rolling out globally. For three hours in each region, Riolu will appear more in 2km Eggs from Poké Stops, with a higher chance of it being Shiny. This runs at these times: It runs from…",
+      "image": "https://www.serebii.net/pokemongo/replayrioluday.jpg",
+      "youtube_id": null,
+      "tags": [
+        "In The Games Department",
+        "Pokémon GO - Hatch Day"
+      ]
+    },
+    {
+      "id": "serebii-2026-04-18-the-twentieth-pok-mon-masters-ex-ranked-damage-event-is-now-",
+      "source": "serebii",
+      "source_name": "serebii",
+      "label": "pokémon masters",
+      "title": "The twentieth Pokémon Masters EX Ranked Damage Event is now live",
+      "url": "https://www.serebii.net/pokemonmasters/events/takeonsupersparringwithacademysyncpairs.shtml",
+      "published": "2026-04-18T00:00:00.000Z",
+      "excerpt": "The twentieth Pokémon Masters EX Ranked Damage Event is now live. This event, Super Sparring, has you face off against one of three battles in order to earn points by inflicting high amounts of damage on the opponent.…",
+      "image": "https://www.serebii.net/pokemonmasters/events/takeonsupersparringwithacademysyncpairs.jpg",
+      "youtube_id": null,
+      "tags": [
+        "In The Games Department",
+        "Pokémon Masters EX - Ranked Damage Event"
+      ]
+    },
+    {
+      "id": "serebii-2026-04-18-the-third-and-final-bingo-reward-panel-is-now-live-for-the-m",
+      "source": "serebii",
+      "source_name": "serebii",
+      "label": "pokémon cafe",
+      "title": "The third and final bingo reward panel is now live for the Munching with Greedent event in Pokémon Café ReMix",
+      "url": "https://www.serebii.net/cafemix/events/munchingwithgreedent.shtml",
+      "published": "2026-04-18T00:00:00.000Z",
+      "excerpt": "The third and final bingo reward panel is now live for the Munching with Greedent event in Pokémon Café ReMix. This panel gives a number of tasks which, if completed, give you a Express Delivery ticket. These need to be…",
+      "image": "https://www.serebii.net/cafemix/greedentbingo2.jpg",
+      "youtube_id": null,
+      "tags": [
+        "In The Games Department",
+        "Pokémon Café ReMix"
+      ]
+    },
+    {
+      "id": "serebii-2026-04-18-the-pok-mon-caf-remix-event-collect-with-gholdengo-has-made-",
       "source": "serebii",
       "source_name": "serebii",
       "label": "pokémon cafe",
       "title": "The Pokémon Café ReMix event, Collect with Gholdengo, has made its repeated return",
       "url": "https://www.serebii.net/cafemix/events/collectwithgholdengo.shtml",
-      "published": "2026-04-08T02:00:00.000Z",
+      "published": "2026-04-18T00:00:00.000Z",
       "excerpt": "The Pokémon Café ReMix event, Collect with Gholdengo, has made its repeated return. This event has Gimmighoul appear as icons in Main & Master Café stages. If you collect them, you can earn rewards including Gholdengo.…",
       "image": "https://www.serebii.net/cafemix/collectwithgholdengo2.jpg",
       "youtube_id": null,
@@ -762,50 +765,48 @@
       ]
     },
     {
-      "id": "pokebeach-2026-04-07-2026-north-american-international-championships-prizing-and-",
+      "id": "pokebeach-2026-04-17-the-knowers-underrated-deck-garchomp-is-the-real-deal",
       "source": "pokebeach",
       "source_name": "pokebeach",
       "label": "pokémon tcg",
-      "title": "2026 North American International Championships Prizing and Registration Dates Revealed!",
-      "url": "https://www.pokebeach.com/2026/04/2026-north-american-international-championships-prizing-and-registration-dates-revealed",
-      "published": "2026-04-07T18:46:00.000Z",
+      "title": "The Knowers’ Underrated Deck: Garchomp Is the Real Deal",
+      "url": "https://www.pokebeach.com/2026/04/the-knowers-underrated-deck-garchomp-is-the-real-deal",
+      "published": "2026-04-17T14:00:00.000Z",
       "excerpt": "",
-      "image": "https://www.pokebeach.com/news/2026/04/2026naic_welcomekit-2048x1152-1-2000x1152.png",
+      "image": "https://www.pokebeach.com/news/2026/04/sv10_en_232_std-2000x1200.jpg",
       "youtube_id": null,
       "tags": [
         "tcg"
       ]
     },
     {
-      "id": "serebii-2026-04-07-on-pok-mon-day-it-was-announced-that-players-who-play-pok-mo",
-      "source": "serebii",
-      "source_name": "serebii",
-      "label": "pokémon champions",
-      "title": "On Pokémon Day, it was announced that players who play Pokémon Champions before August 31st will receive a…",
-      "url": "https://www.serebii.net/pokemonchampions/internetevents.shtml",
-      "published": "2026-04-07T05:00:00.000Z",
-      "excerpt": "On Pokémon Day, it was announced that players who play Pokémon Champions before August 31st will receive a special gift of a Dragonite. However, at some point in the past week, this notice was adjusted and has confirmed…",
-      "image": "https://www.serebii.net/pokemonchampions/dragoniteevent.jpg",
+      "id": "pokebeach-2026-04-17-abyss-eye-set-featuring-mega-darkrai-ex-officially-revealed-",
+      "source": "pokebeach",
+      "source_name": "pokebeach",
+      "label": "pokémon tcg",
+      "title": "“Abyss Eye” Set Featuring Mega Darkrai ex Officially Revealed for May!",
+      "url": "https://www.pokebeach.com/2026/04/abyss-eye-set-featuring-mega-darkrai-ex-officially-revealed-for-july",
+      "published": "2026-04-17T06:04:00.000Z",
+      "excerpt": "",
+      "image": "https://www.pokebeach.com/news/2026/04/m5-046h2n3b-2000x1200.png",
       "youtube_id": null,
       "tags": [
-        "In The Games Department",
-        "Pokémon Champions"
+        "tcg"
       ]
     },
     {
-      "id": "serebii-2026-04-07-in-a-post-on-social-media-the-pok-mon-company-in-japan-has-s",
-      "source": "serebii",
-      "source_name": "serebii",
-      "label": "pokémon champions",
-      "title": "In a post on social media, The Pokémon Company in Japan has stated that Pokémon Champions is to launch…",
-      "url": "https://www.serebii.net/pokemonchampions/",
-      "published": "2026-04-07T05:00:00.000Z",
-      "excerpt": "In a post on social media, The Pokémon Company in Japan has stated that Pokémon Champions is to launch tomorrow, April 8th, at 12:00 JST. That is at 03:00 UTC, 04:00 BST, 05:00 CEST on April 8th, and 23:00 EDT on April…",
-      "image": "https://www.serebii.net/pokemonchampions/title.jpg",
+      "id": "pokebeach-2026-04-17-mega-delphox-ex-grisham-seel-and-other-gym-promos-revealed-f",
+      "source": "pokebeach",
+      "source_name": "pokebeach",
+      "label": "pokémon tcg",
+      "title": "Mega Delphox ex, Grisham, Seel, and Other Gym Promos Revealed for May!",
+      "url": "https://www.pokebeach.com/2026/04/mega-delphox-ex-grishman-seel-and-other-gym-promos-revealed-for-may",
+      "published": "2026-04-17T02:11:00.000Z",
+      "excerpt": "",
+      "image": "https://www.pokebeach.com/news/2026/04/05463_3-2000x1200.png",
       "youtube_id": null,
       "tags": [
-        "In The Games Department",
-        "Pokémon Champions"
+        "tcg"
       ]
     }
   ]

@@ -1,0 +1,334 @@
+// ─── header ──────────────────────────────────────────────────────────────────
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  height: 60px;
+  background: var(--bg-header);
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  transition: background-color .25s ease;
+
+  // ensure interactive children sit above the decorative sprite strip.
+  // note: we do NOT set overflow:hidden on the header itself because the
+  // settings / features dropdowns render as descendants and would be clipped.
+  // the sprite strip clips itself via its own overflow:hidden instead.
+  > .site-logo,
+  > .header-left,
+  > .header-right {
+    position: relative;
+    z-index: 1;
+  }
+
+  > .header-right {
+    margin-left: auto;
+  }
+}
+
+// decorative scrolling sprite strip sitting behind header content. two-element
+// structure: an outer clip box (.header-sprites-clip) pinned to the header
+// with overflow: hidden + the edge fade mask, and an inner strip
+// (.header-sprites) with width: max-content that actually animates. keeping
+// them separate is what lets the -50% keyframe translate by the content
+// width rather than the header width.
+.header-sprites-clip {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 80px, #000 calc(100% - 80px), transparent 100%);
+          mask-image: linear-gradient(90deg, transparent 0, #000 80px, #000 calc(100% - 80px), transparent 100%);
+}
+
+// inner strip: width:max-content means the element is as wide as its content
+// (both copies of the shuffled sprite list combined). the actual
+// translateX(0 → -50%) animation is managed by the Web Animations API in
+// app.jsx (not CSS) so that toggling a11y can retime the animation in place
+// instead of restarting it; see HeaderSprites in app.jsx for the rationale.
+// each sprite uses margin-right (not flex gap) so every sprite occupies an
+// identical stride, which keeps the -50% landing on a whole-sprite boundary.
+.header-sprites {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: max-content;
+  opacity: .9;
+
+  img {
+    flex: 0 0 auto;
+    width: 52px;
+    height: 52px;
+    margin-right: 24px;
+    image-rendering: pixelated;
+  }
+}
+
+// per-theme tuning — opacity only, no color filters. sprites render at full
+// saturation across every theme. dark gets a slightly lower opacity because
+// bright sprites on a near-black bg visually pop more than the same opacity
+// on light backgrounds.
+[data-theme='dark']    .header-sprites { opacity: .78; }
+[data-theme='retro']   .header-sprites { opacity: .9;  }
+[data-theme='ereader'] .header-sprites { opacity: .85; }
+
+// a11y mode: the sprite strip keeps drifting (WAAPI animation in app.jsx
+// retimes itself without restarting — toggling a11y won't reset sprite
+// positions). the CSS overrides below only handle the visual side:
+//   - .header-sprites img opacity reset, so the universal
+//     `[data-a11y='true'] img { opacity: .85 }` rule doesn't compound with
+//     the strip's own .9 parent opacity and dim the sprites further.
+//   - solid .site-logo / .settings-btn backgrounds, so the scrolling sprites
+//     don't bleed through the control surfaces and focus targets stay
+//     high-contrast.
+[data-a11y='true'] .header-sprites img {
+  opacity: 1;
+}
+[data-a11y='true'] .site-logo,
+[data-a11y='true'] .settings-btn {
+  background: var(--bg-header);
+}
+
+.site-logo {
+  font-size: .75rem;
+  font-weight: 600;
+  letter-spacing: .06em;
+  color: var(--accent);
+  padding: 3px 9px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  transition: color .15s ease, border-color .15s ease;
+
+  &:hover {
+    border-color: var(--accent);
+  }
+
+  [data-theme='retro'] & {
+    color: var(--text);
+  }
+}
+
+// settings button + modal anchor
+.settings-anchor {
+  position: relative;
+}
+
+.settings-btn {
+  padding: 5px 12px;
+  font-size: .75rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  // color-mix against --text so boundaries stay visible in every theme —
+  // the raw --border token collapses against --bg-header in nitro (identical
+  // yellow) and dark (near-identical charcoal).
+  background: color-mix(in srgb, var(--text) 6%, transparent);
+  border: 1px solid color-mix(in srgb, var(--text) 30%, transparent);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: color .15s ease, border-color .15s ease, background-color .15s ease, box-shadow .15s ease;
+
+  &:hover {
+    color: var(--text);
+    background: color-mix(in srgb, var(--accent) 22%, var(--bg-card));
+    border-color: var(--accent);
+    box-shadow: 0 0 0 1px var(--accent);
+  }
+
+  &.settings-cog,
+  &.settings-burger {
+    padding: 6px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+// dropdown modal
+.settings-modal {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  width: 240px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  z-index: 200;
+  animation: modal-pop .25s cubic-bezier(.34, 1.56, .64, 1);
+
+  &.closing { animation: modal-pop-out .25s ease-in forwards; }
+}
+
+.settings-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.settings-label {
+  font-size: .65rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+}
+
+.settings-sublabel {
+  font-size: .6rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+  opacity: .7;
+}
+
+.settings-checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: .82rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  user-select: none;
+  touch-action: none;
+
+  input[type='checkbox'] {
+    accent-color: var(--accent);
+    width: 13px;
+    height: 13px;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  &.is-dragging {
+    opacity: .5;
+    outline: 1px dashed var(--accent);
+    border-radius: var(--radius-sm);
+  }
+}
+
+.drag-handle {
+  font-size: .85rem;
+  color: var(--text-subtle);
+  cursor: grab;
+  line-height: 1;
+
+  &:active { cursor: grabbing; }
+}
+
+.settings-hint {
+  font-size: .72rem;
+  color: var(--text-subtle);
+  line-height: 1.5;
+}
+
+
+// colorblind toggle row
+.toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  font-size: .85rem;
+  color: var(--text);
+}
+
+// pill toggle switch
+.toggle-switch {
+  width: 36px;
+  height: 20px;
+  border-radius: 999px;
+  background: var(--border);
+  position: relative;
+  transition: background .2s ease;
+  flex-shrink: 0;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #fff;
+    transition: transform .2s ease;
+  }
+
+  &.on {
+    background: var(--accent);
+    &::after { transform: translateX(16px); }
+  }
+}
+
+// theme dropdown select
+.theme-select {
+  width: 100%;
+  padding: 5px 8px;
+  font-size: .8rem;
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+
+// ─── header right cluster ────────────────────────────────────────────────────
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+// ─── features dropdown ───────────────────────────────────────────────────────
+
+.features-modal {
+  padding: 6px;
+  min-width: 140px;
+  gap: 0;
+  right: auto;
+  left: 0;
+}
+
+.dropdown-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 4px 10px;
+  opacity: .6;
+}
+
+.nav-section-label {
+  font-size: .65rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+  padding: 6px 12px 2px;
+}
+
+.feature-link {
+  display: block;
+  padding: 7px 12px;
+  font-size: .8rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  border-radius: var(--radius-sm);
+  transition: background .15s ease, color .15s ease;
+
+  &:hover {
+    background: var(--bg);
+    color: var(--text);
+  }
+}

@@ -1,5 +1,7 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { useModalAnimation } from '../hooks/use-modal-animation';
+import { useModalCycleNav } from '../hooks/use-modal-cycle-nav';
+import { formatSlugLower } from '../utils/format-name';
 import berries from '../data/berries.json';
 
 const FLAVOR_ORDER = ['spicy', 'dry', 'sweet', 'bitter', 'sour'];
@@ -19,22 +21,8 @@ const SECTIONED_BERRIES = SECTIONS.map(s => ({
   items: berries.filter(s.match).sort((a, b) => a.id - b.id),
 })).filter(s => s.items.length);
 
-function formatName(slug) {
-  return slug.replace(/-/g, ' ');
-}
-
-function BerryModal({ berry, onPrev, onNext, onClose, closing, bump }) {
+function BerryModal({ berry, onClose, closing, bump }) {
   const modalRef = useRef(null);
-
-  useEffect(() => {
-    const handleKey = (e) => {
-      if (e.key === 'Escape') onClose();
-      else if (e.key === 'ArrowLeft') { e.preventDefault(); onPrev(); }
-      else if (e.key === 'ArrowRight') { e.preventDefault(); onNext(); }
-    };
-    window.addEventListener('keydown', handleKey);
-    return () => window.removeEventListener('keydown', handleKey);
-  }, [onPrev, onNext, onClose]);
 
   // cycle pulse driven imperatively via WAAPI. skip on initial mount (bump.n === 0) so the
   // opening `modal-pop` animation plays cleanly, then pulse on each subsequent arrow press.
@@ -58,7 +46,7 @@ function BerryModal({ berry, onPrev, onNext, onClose, closing, bump }) {
       <div ref={modalRef} className="ball-modal ball-modal--berry" onClick={e => e.stopPropagation()}>
         <div className="ball-modal__header">
           {berry.sprite && <img src={berry.sprite} alt={berry.name} />}
-          <h2>{formatName(berry.name)} berry</h2>
+          <h2>{formatSlugLower(berry.name)} berry</h2>
           <button className="ability-modal-close" onClick={onClose}>✕</button>
         </div>
         {berry.effect && <p className="ball-modal__effect">{berry.effect}</p>}
@@ -110,7 +98,7 @@ function BerryModal({ berry, onPrev, onNext, onClose, closing, bump }) {
           {berry.firmness && (
             <div className="info-cell">
               <span className="info-cell__label">firmness</span>
-              <span className="info-cell__value">{berry.firmness.replace(/-/g, ' ')}</span>
+              <span className="info-cell__value">{formatSlugLower(berry.firmness)}</span>
             </div>
           )}
         </div>
@@ -120,24 +108,7 @@ function BerryModal({ berry, onPrev, onNext, onClose, closing, bump }) {
 }
 
 export default function BerriesPage() {
-  const [selected, setSelected] = useState(null); // { sectionIdx, index }
-  const [bump, setBump] = useState({ n: 0, dir: 0 }); // cycle bump: increments on each arrow press, dir +1/-1
-
-  const close = useCallback(() => setSelected(null), []);
-  const cycle = useCallback((delta) => {
-    setSelected(s => {
-      if (!s) return s;
-      const n = SECTIONED_BERRIES[s.sectionIdx].items.length;
-      return { ...s, index: ((s.index + delta) % n + n) % n };
-    });
-    setBump(b => ({ n: b.n + 1, dir: delta }));
-  }, []);
-  const prev = useCallback(() => cycle(-1), [cycle]);
-  const next = useCallback(() => cycle(1), [cycle]);
-
-  const currentBerry = selected
-    ? SECTIONED_BERRIES[selected.sectionIdx].items[selected.index]
-    : null;
+  const { current: currentBerry, bump, open, close } = useModalCycleNav(SECTIONED_BERRIES);
   const { displayed: shownBerry, isClosing } = useModalAnimation(currentBerry);
 
   return (
@@ -151,9 +122,9 @@ export default function BerriesPage() {
           <div className="ball-grid">
             {section.items.map((b, index) => (
               <button key={b.id} className="ball-thumb"
-                      onClick={() => setSelected({ sectionIdx, index })}>
+                      onClick={() => open(sectionIdx, index)}>
                 {b.sprite && <img src={b.sprite} alt={b.name} />}
-                <span>{formatName(b.name)}</span>
+                <span>{formatSlugLower(b.name)}</span>
               </button>
             ))}
           </div>
@@ -161,7 +132,7 @@ export default function BerriesPage() {
       ))}
 
       {shownBerry && (
-        <BerryModal berry={shownBerry} onPrev={prev} onNext={next} onClose={close} closing={isClosing} bump={bump} />
+        <BerryModal berry={shownBerry} onClose={close} closing={isClosing} bump={bump} />
       )}
     </div>
   );

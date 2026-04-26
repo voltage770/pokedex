@@ -1,5 +1,7 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { useModalAnimation } from '../hooks/use-modal-animation';
+import { useModalCycleNav } from '../hooks/use-modal-cycle-nav';
+import { formatSlugLower } from '../utils/format-name';
 import balls from '../data/pokeballs.json';
 
 const STANDARD_ORDER = ['poke-ball', 'great-ball', 'ultra-ball', 'master-ball', 'safari-ball', 'sport-ball'];
@@ -18,22 +20,8 @@ const SECTIONED_BALLS = SECTIONS.map(s => ({
   items: balls.filter(b => b.category === s.key).sort(s.sort),
 })).filter(s => s.items.length);
 
-function formatBallName(slug) {
-  return slug.replace(/-/g, ' ');
-}
-
-function BallModal({ ball, onPrev, onNext, onClose, closing, bump }) {
+function BallModal({ ball, onClose, closing, bump }) {
   const modalRef = useRef(null);
-
-  useEffect(() => {
-    const handleKey = (e) => {
-      if (e.key === 'Escape') onClose();
-      else if (e.key === 'ArrowLeft') { e.preventDefault(); onPrev(); }
-      else if (e.key === 'ArrowRight') { e.preventDefault(); onNext(); }
-    };
-    window.addEventListener('keydown', handleKey);
-    return () => window.removeEventListener('keydown', handleKey);
-  }, [onPrev, onNext, onClose]);
 
   // cycle pulse driven imperatively via WAAPI. skip on initial mount (bump.n === 0) so the
   // opening `modal-pop` animation plays cleanly, then pulse on each subsequent arrow press.
@@ -55,7 +43,7 @@ function BallModal({ ball, onPrev, onNext, onClose, closing, bump }) {
       <div ref={modalRef} className="ball-modal" onClick={e => e.stopPropagation()}>
         <div className="ball-modal__header">
           {ball.sprite && <img src={ball.sprite} alt={ball.name} />}
-          <h2>{formatBallName(ball.name)}</h2>
+          <h2>{formatSlugLower(ball.name)}</h2>
           <button className="ability-modal-close" onClick={onClose}>✕</button>
         </div>
         {ball.effect && <p className="ball-modal__effect">{ball.effect}</p>}
@@ -82,24 +70,7 @@ function BallModal({ ball, onPrev, onNext, onClose, closing, bump }) {
 }
 
 export default function PokeballsPage() {
-  const [selected, setSelected] = useState(null); // { sectionIdx, index }
-  const [bump, setBump] = useState({ n: 0, dir: 0 }); // cycle bump: increments on each arrow press, dir +1/-1
-
-  const close = useCallback(() => setSelected(null), []);
-  const cycle = useCallback((delta) => {
-    setSelected(s => {
-      if (!s) return s;
-      const n = SECTIONED_BALLS[s.sectionIdx].items.length;
-      return { ...s, index: ((s.index + delta) % n + n) % n };
-    });
-    setBump(b => ({ n: b.n + 1, dir: delta }));
-  }, []);
-  const prev = useCallback(() => cycle(-1), [cycle]);
-  const next = useCallback(() => cycle(1), [cycle]);
-
-  const currentBall = selected
-    ? SECTIONED_BALLS[selected.sectionIdx].items[selected.index]
-    : null;
+  const { current: currentBall, bump, open, close } = useModalCycleNav(SECTIONED_BALLS);
   const { displayed: shownBall, isClosing } = useModalAnimation(currentBall);
 
   return (
@@ -113,9 +84,9 @@ export default function PokeballsPage() {
           <div className="ball-grid">
             {section.items.map((b, index) => (
               <button key={b.id} className="ball-thumb"
-                      onClick={() => setSelected({ sectionIdx, index })}>
+                      onClick={() => open(sectionIdx, index)}>
                 {b.sprite && <img src={b.sprite} alt={b.name} />}
-                <span>{formatBallName(b.name)}</span>
+                <span>{formatSlugLower(b.name)}</span>
               </button>
             ))}
           </div>
@@ -123,7 +94,7 @@ export default function PokeballsPage() {
       ))}
 
       {shownBall && (
-        <BallModal ball={shownBall} onPrev={prev} onNext={next} onClose={close} closing={isClosing} bump={bump} />
+        <BallModal ball={shownBall} onClose={close} closing={isClosing} bump={bump} />
       )}
     </div>
   );

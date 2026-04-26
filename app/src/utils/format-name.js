@@ -40,6 +40,22 @@ function titleCase(word) {
   return word.charAt(0).toUpperCase() + word.slice(1);
 }
 
+// generic slug → readable text for arbitrary slugs (item names, move names,
+// location names, etc.) — these aren't pokemon, so no overrides apply. two
+// variants because the consuming UI is sometimes title-cased and sometimes
+// fully lowercase.
+//   formatSlug:      "thunder-stone"  → "Thunder Stone"
+//   formatSlugLower: "cheri-berry"    → "cheri berry"
+export function formatSlug(slug) {
+  if (!slug) return '';
+  return slug.split('-').map(titleCase).join(' ');
+}
+
+export function formatSlugLower(slug) {
+  if (!slug) return '';
+  return slug.replace(/-/g, ' ');
+}
+
 // species name only — strips form suffix (e.g. "basculin-red-striped" → "Basculin")
 export function formatName(slug) {
   if (!slug) return '';

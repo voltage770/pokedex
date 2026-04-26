@@ -1,6 +1,7 @@
 import { useState, useCallback, useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { usePokemonList } from '../hooks/use-pokemon';
+import { STORAGE_KEYS, getBool, setBool, getString, setString } from '../utils/storage';
 import PokemonCard from '../components/pokemon-card';
 import SearchBar from '../components/search-bar';
 import FilterPanel from '../components/filter-panel';
@@ -11,15 +12,14 @@ const FILTER_KEYS = ['search', 'type', 'generation', 'cls', 'stat', 'minStat', '
 export default function HomePage({ enabledFilters = {}, filterOrder = [], toggleFilter }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const [visible, setVisible]           = useState(PAGE_SIZE);
-  const [shiny, setShiny]               = useState(() => localStorage.getItem('shinySprites') === 'true');
+  const [shiny, setShiny]               = useState(() => getBool(STORAGE_KEYS.SHINY_SPRITES, false));
   // inlineForms: '' (base only) | 'regional' | 'all'. view preference, persists per user.
-  const [inlineForms, setInlineForms]   = useState(() => localStorage.getItem('inlineForms') || '');
+  const [inlineForms, setInlineForms]   = useState(() => getString(STORAGE_KEYS.INLINE_FORMS, ''));
   const navigate                        = useNavigate();
 
   const updateInlineForms = useCallback((mode) => {
     setInlineForms(mode);
-    if (mode) localStorage.setItem('inlineForms', mode);
-    else localStorage.removeItem('inlineForms');
+    setString(STORAGE_KEYS.INLINE_FORMS, mode);
   }, []);
 
   // derive filters object from URL params
@@ -61,7 +61,7 @@ export default function HomePage({ enabledFilters = {}, filterOrder = [], toggle
         filterOrder={filterOrder}
         toggleFilter={toggleFilter}
         shiny={shiny}
-        onShinyToggle={() => setShiny(s => { localStorage.setItem('shinySprites', !s); return !s; })}
+        onShinyToggle={() => setShiny(s => { setBool(STORAGE_KEYS.SHINY_SPRITES, !s); return !s; })}
         inlineForms={inlineForms}
         onInlineFormsChange={updateInlineForms}
       />

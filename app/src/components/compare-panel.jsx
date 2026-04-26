@@ -1,14 +1,6 @@
 import { useCompare } from '../hooks/use-pokemon';
 import { Link } from 'react-router-dom';
-
-const STAT_LABELS = {
-  hp:               'HP',
-  attack:           'Atk',
-  defense:          'Def',
-  'special-attack': 'SpA',
-  'special-defense':'SpD',
-  speed:            'Spd',
-};
+import { STAT_LABELS_SHORT as STAT_LABELS } from '../utils/stats';
 
 // side-by-side stat comparison panel, shown when pokemon are selected for compare
 export default function ComparePanel({ selectedIds, onRemove }) {

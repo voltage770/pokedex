@@ -1,0 +1,102 @@
+// ─── a11y mode ───────────────────────────────────────────────────────────────
+// combines ease + colorblind effects: reduced motion, larger text, patterns on stat bars
+
+[data-a11y='true'] {
+
+  // larger base font, heavier weight, looser leading
+  html { font-size: 18px; }
+  body {
+    line-height: 1.8;
+    font-weight: 500;
+  }
+
+  // flatten cards — shadows are visually noisy
+  .pokemon-card,
+  .detail-card,
+  .ability-modal { box-shadow: none !important; }
+
+  // slightly dim images so artwork doesn't blast the eyes
+  img { opacity: .85; }
+
+  // bigger, bolder card names
+  .pokemon-name {
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0;
+  }
+
+  // bigger id label on cards
+  .pokemon-id { font-size: .78rem; }
+
+  // larger type badges
+  .type-badge {
+    font-size: .75rem;
+    padding: 3px 11px;
+  }
+
+  // search bar — bigger text and taller input
+  .search-input {
+    font-size: 1.05rem;
+    padding: 13px 72px 13px 18px;
+  }
+
+  .filter-panel {
+    select,
+    input[type='number'] { font-size: .95rem; padding: 9px 12px; }
+  }
+
+  // stat section: bolder labels, taller bars, bigger values
+  .stat-label { font-size: .85rem; font-weight: 600; }
+  .stat-value { font-size: .9rem;  font-weight: 700; }
+  .stat-track { height: 11px; }
+
+  // ability pills — more padding, easier to tap
+  .abilities-list li { font-size: .9rem; }
+
+  // detail page headings and text
+  .detail-right h1  { font-size: 2rem; }
+  .detail-genus     { font-size: .95rem; }
+  .detail-flavor    { font-size: .95rem; line-height: 1.8; }
+  .meta-label       { font-size: .72rem; }
+  .meta-value       { font-size: 1rem; font-weight: 600; }
+
+  // form chip tabs — bigger tap targets
+  .form-chip { padding: 6px 14px; font-size: .8rem; }
+
+  // evo chain — bigger node labels and arrow text
+  .evo-pokemon span { font-size: .88rem; font-weight: 700; }
+  .evo-arrow        { font-size: .85rem; }
+
+  // section headings inside detail
+  .detail-stats h2,
+  .abilities-list h2 { font-size: .78rem; }
+
+  // stat bars: no width transition (already killed above)
+  .stat-fill { transition: none !important; }
+
+  // stat bars use diagonal stripes for non-color distinction
+  .stat-fill {
+    background-image: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 3px,
+      rgba(0, 0, 0, .15) 3px,
+      rgba(0, 0, 0, .15) 6px
+    );
+
+    &.high { background-color: #5cb85c; }
+    &.mid  { background-color: #e8c030; }
+    &.low  { background-color: var(--accent); }
+  }
+
+  // boost text contrast
+  --text-muted:  var(--text);
+  --text-subtle: var(--text-muted);
+
+  // borders mixed from --text so they scale across every theme. stronger than
+  // the per-theme moderate border bump so a11y reads as deliberately high-contrast.
+  --border: color-mix(in srgb, var(--text) 55%, var(--bg));
+
+  // card borders more visible
+  .pokemon-card { border-width: 2px; }
+}

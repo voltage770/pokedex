@@ -1,0 +1,42 @@
+@use 'sass:list';
+
+// ─── type badge colors ────────────────────────────────────────────────────────
+
+$type-colors: (
+  'normal':   (#aaa,    #fff),
+  'fire':     (#e8603c, #fff),
+  'water':    (#5080e8, #fff),
+  'electric': (#e8c030, #2a1f14),
+  'grass':    (#5cb85c, #fff),
+  'ice':      (#78c8c8, #fff),
+  'fighting': (#b03020, #fff),
+  'poison':   (#9040a0, #fff),
+  'ground':   (#c8a850, #fff),
+  'flying':   (#9878e8, #fff),
+  'psychic':  (#e83878, #fff),
+  'bug':      (#90a010, #fff),
+  'rock':     (#b8a028, #fff),
+  'ghost':    (#685898, #fff),
+  'dragon':   (#6830e8, #fff),
+  'dark':     (#584838, #fff),
+  'steel':    (#9898c0, #fff),
+  'fairy':    (#e898b8, #fff),
+);
+
+.type-badge {
+  font-size: .65rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  padding: 2px 9px;
+  border-radius: 999px;
+  letter-spacing: .03em;
+  color: #fff;
+}
+
+// generate a class for each type
+@each $type, $values in $type-colors {
+  .type-#{$type} {
+    background-color: list.nth($values, 1);
+    color: list.nth($values, 2);
+  }
+}

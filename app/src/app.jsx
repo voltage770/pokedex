@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useMemo, Fragment } from 'react';
 import { BrowserRouter, Routes, Route, Link, useLocation, useNavigationType, useSearchParams } from 'react-router-dom';
 import { useModalAnimation } from './hooks/use-modal-animation';
+import { STORAGE_KEYS, getString, setString, getBool, setBool, getJSON, setJSON } from './utils/storage';
 import HomePage from './pages/home-page';
 import PokemonPage from './pages/pokemon-page';
 import ComparePage from './pages/compare-page';
@@ -297,16 +298,16 @@ function AppHeader({ theme, setTheme, a11y, setA11y, enabledFilters, toggleFilte
 // without a reload. selecting any explicit theme overrides the OS preference.
 function useVisualSettings() {
   const [theme, setTheme] = useState(() => {
-    const saved = localStorage.getItem('theme');
+    const saved = getString(STORAGE_KEYS.THEME, '');
     // migrate old 'warm'/'cream' values to 'light'
     if (saved === 'warm' || saved === 'cream') return 'light';
     // new/unset users default to 'auto' so first visit matches their system.
     return saved || 'auto';
   });
-  const [a11y, setA11y] = useState(() => localStorage.getItem('a11y') === 'true');
+  const [a11y, setA11y] = useState(() => getBool(STORAGE_KEYS.A11Y, false));
 
   useEffect(() => {
-    localStorage.setItem('theme', theme);
+    setString(STORAGE_KEYS.THEME, theme);
     if (theme !== 'auto') {
       document.documentElement.setAttribute('data-theme', theme);
       return;
@@ -323,7 +324,7 @@ function useVisualSettings() {
 
   useEffect(() => {
     document.documentElement.setAttribute('data-a11y', a11y);
-    localStorage.setItem('a11y', a11y);
+    setBool(STORAGE_KEYS.A11Y, a11y);
   }, [a11y]);
 
   return { theme, setTheme, a11y, setA11y };
@@ -331,34 +332,32 @@ function useVisualSettings() {
 
 export default function App() {
   const { theme, setTheme, a11y, setA11y } = useVisualSettings();
-  const [enabledFilters, setEnabledFilters] = useState(() => {
-    try { return { ...DEFAULT_FILTERS, ...JSON.parse(localStorage.getItem('enabledFilters')) }; }
-    catch { return DEFAULT_FILTERS; }
-  });
+  const [enabledFilters, setEnabledFilters] = useState(() => ({
+    ...DEFAULT_FILTERS,
+    ...(getJSON(STORAGE_KEYS.ENABLED_FILTERS, {}) || {}),
+  }));
 
   const [filterOrder, setFilterOrder] = useState(() => {
-    try {
-      const saved = JSON.parse(localStorage.getItem('filterOrder'));
-      // ensure any new keys are appended if missing
-      if (Array.isArray(saved)) {
-        const missing = DEFAULT_FILTER_ORDER.filter(k => !saved.includes(k));
-        return [...saved, ...missing];
-      }
-    } catch {}
+    const saved = getJSON(STORAGE_KEYS.FILTER_ORDER, null);
+    if (Array.isArray(saved)) {
+      // append any new default keys that aren't in the saved order
+      const missing = DEFAULT_FILTER_ORDER.filter(k => !saved.includes(k));
+      return [...saved, ...missing];
+    }
     return DEFAULT_FILTER_ORDER;
   });
 
   const toggleFilter = (key) => {
     setEnabledFilters(prev => {
       const next = { ...prev, [key]: !prev[key] };
-      localStorage.setItem('enabledFilters', JSON.stringify(next));
+      setJSON(STORAGE_KEYS.ENABLED_FILTERS, next);
       return next;
     });
   };
 
   const reorderFilters = (newOrder) => {
     setFilterOrder(newOrder);
-    localStorage.setItem('filterOrder', JSON.stringify(newOrder));
+    setJSON(STORAGE_KEYS.FILTER_ORDER, newOrder);
   };
 
   return (

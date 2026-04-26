@@ -4,16 +4,8 @@ import { useCompare } from '../hooks/use-pokemon';
 import { useModalAnimation } from '../hooks/use-modal-animation';
 import { searchWithForms } from '../utils/api';
 import { formatName, formatFormName } from '../utils/format-name';
+import { STAT_LABELS_SHORT as STAT_LABELS } from '../utils/stats';
 import AbilityModal from '../components/ability-modal';
-
-const STAT_LABELS = {
-  hp:               'HP',
-  attack:           'Atk',
-  defense:          'Def',
-  'special-attack': 'SpA',
-  'special-defense':'SpD',
-  speed:            'Spd',
-};
 
 export default function ComparePage() {
   const [entries, setEntries]   = useState([]);

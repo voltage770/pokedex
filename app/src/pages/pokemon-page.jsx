@@ -1,29 +1,11 @@
 import React, { useState, useRef, useLayoutEffect } from 'react';
 import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
-import { formatName, formatFormName } from '../utils/format-name';
+import { formatName, formatFormName, formatSlug } from '../utils/format-name';
 import { usePokemonDetail } from '../hooks/use-pokemon';
 import { useModalAnimation } from '../hooks/use-modal-animation';
 import { NAME_TO_ID, FORM_DATA, FORM_TO_BASE_ID, EXCLUDED_FORMS, getBaseFormLabel, FORM_SUFFIX_SPECIES } from '../utils/api';
+import { STAT_LABELS_FULL as STAT_LABELS, EV_STAT_LABELS } from '../utils/stats';
 import AbilityModal from '../components/ability-modal';
-
-const STAT_LABELS = {
-  hp:               'HP',
-  attack:           'Attack',
-  defense:          'Defense',
-  'special-attack': 'Sp. Atk',
-  'special-defense':'Sp. Def',
-  speed:            'Speed',
-};
-
-// abbreviated labels used in the compact ev yield line
-const EV_STAT_LABELS = {
-  hp:               'HP',
-  attack:           'Atk',
-  defense:          'Def',
-  'special-attack': 'Sp. Atk',
-  'special-defense':'Sp. Def',
-  speed:            'Speed',
-};
 
 // returns a tier class for stat bar color
 function statTier(val) {
@@ -73,11 +55,6 @@ function buildAdj(steps) {
 function findRoots(steps) {
   const toSet = new Set(steps.map(s => s.to));
   return [...new Set(steps.map(s => s.from))].filter(n => !toSet.has(n));
-}
-
-function formatSlug(slug) {
-  if (!slug) return '';
-  return slug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
 }
 
 function EvoArrow({ step }) {

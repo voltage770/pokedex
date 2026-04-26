@@ -1,0 +1,87 @@
+// ─── tokens ───────────────────────────────────────────────────────────────────
+// :root values are the fallback — light theme is the default
+
+:root,
+[data-theme='light'] {
+  --bg:           #f5ede0;
+  --bg-card:      #fdf8f0;
+  --bg-sidebar:   #ede3d5;
+  --bg-header:    #fdf8f0;
+  --text:         #2a1f14;
+  --text-muted:   #7a6555;
+  --text-subtle:  #b09a88;
+  --border:       #c2aa8c;
+  --accent:       #7c6fcd;
+  --accent-hover: #6a5fbf;
+  --shadow-sm:    0 1px 3px rgba(80, 55, 30, .08);
+  --shadow-md:    0 4px 16px rgba(80, 55, 30, .12);
+  --shadow-lg:    0 8px 28px rgba(80, 55, 30, .18);
+  // rounded + friendly default, applied across every theme.
+  --radius:       22px;
+  --radius-sm:    14px;
+}
+
+[data-theme='dark'] {
+  --bg:           #141210;
+  --bg-card:      #1d1b18;
+  --bg-sidebar:   #191714;
+  --bg-header:    #1d1b18;
+  --text:         #f0e8dc;
+  --text-muted:   #9a8a78;
+  --text-subtle:  #5a5048;
+  --border:       #3e382f;
+  --accent:       #9b8fe0;
+  --accent-hover: #8878d0;
+  --shadow-sm:    0 1px 3px rgba(0, 0, 0, .3);
+  --shadow-md:    0 4px 16px rgba(0, 0, 0, .45);
+  --shadow-lg:    0 8px 28px rgba(0, 0, 0, .6);
+}
+
+[data-theme='retro'] {
+  --bg:           #f8dcff;
+  --bg-card:      #fdeeff;
+  --bg-sidebar:   #f0c8ff;
+  --bg-header:    #fdeeff;
+  --text:         #280038;
+  --text-muted:   #7030a0;
+  --text-subtle:  #b868d0;
+  --border:       #c878dc;
+  --accent:       #c058d4;
+  --accent-hover: #a840bc;
+  --shadow-sm:    0 1px 3px rgba(120, 0, 160, .13);
+  --shadow-md:    0 4px 16px rgba(120, 0, 160, .2);
+  --shadow-lg:    0 8px 28px rgba(120, 0, 160, .28);
+}
+
+[data-theme='ereader'] {
+  --bg:           #f0eeea;
+  --bg-card:      #faf9f7;
+  --bg-sidebar:   #e4e2dd;
+  --bg-header:    #faf9f7;
+  --text:         #0a0a0a;
+  --text-muted:   #3a3a3a;
+  --text-subtle:  #6a6a6a;
+  --border:       #888888;
+  --accent:       #111111;
+  --accent-hover: #333333;
+  --shadow-sm:    none;
+  --shadow-md:    none;
+  --shadow-lg:    none;
+}
+
+[data-theme='nitro'] {
+  --bg:           #ffffff;
+  --bg-card:      #fff8e0;
+  --bg-sidebar:   #f5f0e8;
+  --bg-header:    #ffcc00;
+  --text:         #111111;
+  --text-muted:   #333333;
+  --text-subtle:  #666666;
+  --border:       #ffcc00;
+  --accent:       #55ccff;
+  --accent-hover: #33aadd;
+  --shadow-sm:    0 1px 3px rgba(255, 136, 0, .2);
+  --shadow-md:    0 4px 12px rgba(255, 136, 0, .15);
+  --shadow-lg:    0 8px 24px rgba(255, 136, 0, .1);
+}
+

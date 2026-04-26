@@ -211,7 +211,7 @@ export default function NewsPage() {
         </div>
       ) : entries.length === 0 ? (
         <p className="news-page__empty">
-          no entries yet — run <code>node news/fetch-news.js</code> from <code>scripts/</code>.
+          no entries yet — run <code>node news/fetch-news.mjs</code> from <code>scripts/</code>.
         </p>
       ) : (
         <>
