@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>icon mockups — final with outline</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 32px 24px 64px;
+      background: #f5ede0;
+      color: #2a1f14;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 1.4rem; margin-bottom: 8px; }
+    p.subtitle {
+      color: #7a6555;
+      font-size: .85rem;
+      margin: 0 0 32px;
+    }
+    .icon-card {
+      margin-bottom: 36px;
+      padding: 20px;
+      background: #fff;
+      border: 1px solid #c2aa8c;
+      border-radius: 16px;
+    }
+    .icon-card h2 {
+      font-size: 1rem;
+      margin: 0 0 4px;
+    }
+    .icon-card .desc {
+      font-size: .8rem;
+      color: #7a6555;
+      margin: 0 0 16px;
+    }
+    .sizes {
+      display: flex;
+      align-items: flex-end;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .sizes figure {
+      margin: 0;
+      text-align: center;
+    }
+    .sizes figcaption {
+      font-size: .68rem;
+      color: #7a6555;
+      margin-top: 6px;
+      letter-spacing: .04em;
+    }
+    .ios-icon {
+      border-radius: 22.37%;
+      box-shadow: 0 2px 8px rgba(0,0,0,.18);
+      display: block;
+    }
+    .raw-icon {
+      display: block;
+    }
+    /* Checkerboard backdrop simulates "any background" — for transparent variants */
+    .checker {
+      background-color: #fff;
+      background-image:
+        linear-gradient(45deg, #ddd 25%, transparent 25%),
+        linear-gradient(-45deg, #ddd 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #ddd 75%),
+        linear-gradient(-45deg, transparent 75%, #ddd 75%);
+      background-size: 16px 16px;
+      background-position: 0 0, 0 8px, 8px -8px, -8px 0;
+      padding: 4px;
+    }
+    .bg-light { background: #fff; padding: 4px; }
+    .bg-dark { background: #141210; padding: 4px; }
+
+    @media (prefers-color-scheme: dark) {
+      body { background: #141210; color: #f0e8dc; }
+      .icon-card { background: #1d1b18; border-color: #3e382f; }
+      .icon-card .desc, .sizes figcaption, p.subtitle { color: #9a8a78; }
+    }
+  </style>
+</head>
+<body>
+  <h1>final icons — outlined for any background</h1>
+  <p class="subtitle">black outline on the X means transparent variants stay legible on light, dark, or any browser tab. solid-bg variants are for ios app icons.</p>
+
+  <div class="icon-card">
+    <h2>prod · solid bg (ios app icon)</h2>
+    <p class="desc">yellow X on dark bg — full-bleed for the apple-touch-icon. converts to PNG at 180/192/512.</p>
+    <div class="sizes">
+      <figure><img src="prod-lightning-star.svg" width="32" height="32" class="raw-icon"><figcaption>32</figcaption></figure>
+      <figure><img src="prod-lightning-star.svg" width="64" height="64" class="raw-icon"><figcaption>64</figcaption></figure>
+      <figure><img src="prod-lightning-star.svg" width="120" height="120" class="raw-icon"><figcaption>120</figcaption></figure>
+      <figure><img src="prod-lightning-star.svg" width="180" height="180" class="ios-icon"><figcaption>ios home</figcaption></figure>
+    </div>
+  </div>
+
+  <div class="icon-card">
+    <h2>prod · transparent bg (browser favicon) — shown on light, dark, and checkered</h2>
+    <p class="desc">same yellow X with black outline, no bg fill. legible on any browser tab theme.</p>
+    <div class="sizes">
+      <figure><div class="bg-light"><img src="prod-lightning-star-transparent.svg" width="32" height="32" class="raw-icon"></div><figcaption>32 · light</figcaption></figure>
+      <figure><div class="bg-dark"><img src="prod-lightning-star-transparent.svg" width="32" height="32" class="raw-icon"></div><figcaption>32 · dark</figcaption></figure>
+      <figure><div class="checker"><img src="prod-lightning-star-transparent.svg" width="64" height="64" class="raw-icon"></div><figcaption>64 · checker</figcaption></figure>
+      <figure><div class="checker"><img src="prod-lightning-star-transparent.svg" width="120" height="120" class="raw-icon"></div><figcaption>120 · checker</figcaption></figure>
+    </div>
+  </div>
+
+  <div class="icon-card">
+    <h2>dev · solid bg (ios app icon)</h2>
+    <p class="desc">white X on dark bg — distinct enough to instantly know "this is the local build" on the home screen.</p>
+    <div class="sizes">
+      <figure><img src="dev-lightning-star.svg" width="32" height="32" class="raw-icon"><figcaption>32</figcaption></figure>
+      <figure><img src="dev-lightning-star.svg" width="64" height="64" class="raw-icon"><figcaption>64</figcaption></figure>
+      <figure><img src="dev-lightning-star.svg" width="120" height="120" class="raw-icon"><figcaption>120</figcaption></figure>
+      <figure><img src="dev-lightning-star.svg" width="180" height="180" class="ios-icon"><figcaption>ios home</figcaption></figure>
+    </div>
+  </div>
+
+  <div class="icon-card">
+    <h2>dev · transparent bg (browser favicon)</h2>
+    <p class="desc">white X with black outline. the outline carries it on light bgs where the white would otherwise vanish.</p>
+    <div class="sizes">
+      <figure><div class="bg-light"><img src="dev-lightning-star-transparent.svg" width="32" height="32" class="raw-icon"></div><figcaption>32 · light</figcaption></figure>
+      <figure><div class="bg-dark"><img src="dev-lightning-star-transparent.svg" width="32" height="32" class="raw-icon"></div><figcaption>32 · dark</figcaption></figure>
+      <figure><div class="checker"><img src="dev-lightning-star-transparent.svg" width="64" height="64" class="raw-icon"></div><figcaption>64 · checker</figcaption></figure>
+      <figure><div class="checker"><img src="dev-lightning-star-transparent.svg" width="120" height="120" class="raw-icon"></div><figcaption>120 · checker</figcaption></figure>
+    </div>
+  </div>
+
+  <div class="icon-card">
+    <h2>prod · solid white bg</h2>
+    <p class="desc">yellow X with black outline on white. cleaner, brighter feel — works for light contexts.</p>
+    <div class="sizes">
+      <figure><img src="prod-lightning-star-white-bg.svg" width="32" height="32" class="raw-icon"><figcaption>32</figcaption></figure>
+      <figure><img src="prod-lightning-star-white-bg.svg" width="64" height="64" class="raw-icon"><figcaption>64</figcaption></figure>
+      <figure><img src="prod-lightning-star-white-bg.svg" width="120" height="120" class="raw-icon"><figcaption>120</figcaption></figure>
+      <figure><img src="prod-lightning-star-white-bg.svg" width="180" height="180" class="ios-icon"><figcaption>ios home</figcaption></figure>
+    </div>
+  </div>
+
+  <div class="icon-card">
+    <h2>dev · solid white bg</h2>
+    <p class="desc">white X on white bg means only the black outline shows — outline-only / line-art aesthetic. unique look but visually weaker than dark-bg variant.</p>
+    <div class="sizes">
+      <figure><img src="dev-lightning-star-white-bg.svg" width="32" height="32" class="raw-icon"><figcaption>32</figcaption></figure>
+      <figure><img src="dev-lightning-star-white-bg.svg" width="64" height="64" class="raw-icon"><figcaption>64</figcaption></figure>
+      <figure><img src="dev-lightning-star-white-bg.svg" width="120" height="120" class="raw-icon"><figcaption>120</figcaption></figure>
+      <figure><img src="dev-lightning-star-white-bg.svg" width="180" height="180" class="ios-icon"><figcaption>ios home</figcaption></figure>
+    </div>
+  </div>
+</body>
+</html>

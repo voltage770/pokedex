@@ -3,6 +3,57 @@
   max-width: 720px;
   margin: 0 auto;
   padding: 48px 24px 64px;
+
+  // page title sits outside the card, matching the structure of /badges,
+  // /pokeballs, /berries (.items-page > h1).
+  > h1 {
+    font-size: 1.6rem;
+    font-weight: var(--fw-bold);
+    letter-spacing: .04em;
+    margin: 0 0 16px;
+  }
+}
+
+// twitch live embed inside the about card. only renders when useTwitchLive()
+// reports isLive — the card itself stays compact when offline.
+.twitch-embed {
+  margin-top: 24px;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+    font-size: .85rem;
+    font-weight: var(--fw-semibold);
+    color: var(--text);
+  }
+
+  &__pulse {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #e91916;
+    animation: live-pulse 1.5s ease-in-out infinite;
+  }
+
+  &__frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+
+    iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+  }
 }
 
 // ─── compare page ────────────────────────────────────────────────────────────
@@ -522,7 +573,7 @@
     border-color: var(--accent);
     box-shadow: var(--shadow-sm), 0 0 0 3px var(--accent);
 
-    img { transform: scale(1.07); }
+    img { transform: scale(1.1); }
   }
 
   img {
@@ -673,7 +724,7 @@
     border-color: var(--accent);
     box-shadow: 0 0 0 3px var(--accent);
 
-    .item-card__sprite { transform: scale(1.07); }
+    .item-card__sprite { transform: scale(1.1); }
   }
 
   &__sprite {

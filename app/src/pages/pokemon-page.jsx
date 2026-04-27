@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useLayoutEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import { formatName, formatFormName, formatSlug } from '../utils/format-name';
 import { usePokemonDetail } from '../hooks/use-pokemon';
@@ -221,8 +221,14 @@ function EvoNode({ name, currentName, adj }) {
           className={`evo-pokemon${name === currentName ? ' evo-current' : ''}`}
           // preventDefault on mousedown blocks the browser's focus-on-click, which would otherwise scroll .evo-chain (an overflow-x container) to bring the clicked card "into view". keyboard tab focus still works.
           onMouseDown={e => e.preventDefault()}
-          onClick={() => navigate(linkTo, { replace: true, state: { noScroll: true } })}
-          onKeyDown={e => e.key === 'Enter' && navigate(linkTo, { replace: true, state: { noScroll: true } })}
+          // `state.scrollTop` flags this as a "go-to-top on land" navigation —
+          // ScrollManager honors it even when only search params change (e.g.
+          // mega evo cards keep the same pathname but flip ?form=). without
+          // this flag, ScrollManager only scrolls on pathname change, so
+          // clicking a mega card kept the user at their previous scroll
+          // position, which felt broken.
+          onClick={() => navigate(linkTo, { replace: true, state: { scrollTop: true } })}
+          onKeyDown={e => e.key === 'Enter' && navigate(linkTo, { replace: true, state: { scrollTop: true } })}
           style={{ cursor: 'pointer' }}
         >
           {nodeContent}
@@ -340,13 +346,6 @@ export default function PokemonPage() {
   const [selectedAbility, setSelectedAbility] = useState(null);
   const { displayed: abilityShown, isClosing: abilityClosing } = useModalAnimation(selectedAbility);
 
-  // scroll-anchor the evo chain across evo-card navigations so changes in hero/flavor-text height
-  // don't make the chain jump up or down in the viewport. onClickCapture records the container top
-  // before navigate fires, useLayoutEffect measures the new top after the new pokemon or form
-  // renders and corrects window scrollY by the delta so the chain stays pinned in place. a rAF
-  // retry catches residual shift from late-arriving layout (font swap, image decode, etc.) before
-  // paint. form changes (e.g. exeggutor ↔ exeggutor-alola) keep the same pokemon id but swap
-  // flavor text / types / stats, so the form param is part of the dep.
   const formParam = searchParams.get('form');
 
   // keyboard navigation between pokemon: ← / → mirror the visible prev/next
@@ -367,40 +366,58 @@ export default function PokemonPage() {
     return () => window.removeEventListener('keydown', handler);
   }, [pokemon, abilityShown, navigate]);
 
-  // pulse the detail card on pokemon/form change — same visual cue the
-  // cycling modals fire on arrow-key cycle, so prev/next here feels
-  // consistent with the berry/ball/badge experience. skips first render so
-  // the page doesn't pulse on direct visit.
-  const detailCardRef = useRef(null);
+  // visual cue when the detail content updates — same scale pulse used by
+  // the cycling modals (berry / pokeball / badge). consistent feel across
+  // the app, and avoids the white-flash artifact we hit with an opacity
+  // fade specifically on alt→alt form transitions. fires for both pokemon
+  // id changes (prev/next nav) and form changes (form chip click); content
+  // swap is instant in both cases.
+  const detailCardRef       = useRef(null);
   const detailFirstMountRef = useRef(true);
+
   useEffect(() => {
-    if (detailFirstMountRef.current) { detailFirstMountRef.current = false; return; }
-    const anim = pulseElement(detailCardRef.current);
+    if (detailFirstMountRef.current) {
+      detailFirstMountRef.current = false;
+      return;
+    }
+    // bigger and slower than the cycling modals' default — the detail card
+    // is large enough that a stronger pulse + longer duration reads as a
+    // smooth "settling" of new content rather than a quick snap.
+    const anim = pulseElement(detailCardRef.current, { scale: 1.02, duration: 400 });
     return () => anim?.cancel();
   }, [pokemon?.id, formParam]);
 
+  // preload + pre-decode every form's artwork as soon as the pokemon loads.
+  // network-only preloading (just setting img.src) caches the bytes but the
+  // browser still has to decode the image when an actual <img> element
+  // displays it — that decode happens on the main thread and can flash
+  // mid-render on src change. img.decode() returns a promise that resolves
+  // once the image is fully decoded into a paintable bitmap, after which
+  // the actual <img> render is instant.
+  useEffect(() => {
+    if (!pokemon?.form_data) return;
+    const urls = [];
+    for (const form of Object.values(pokemon.form_data)) {
+      if (!form) continue;
+      if (form.artwork_url)   urls.push(form.artwork_url);
+      if (form.artwork_shiny) urls.push(form.artwork_shiny);
+      if (form.sprite_url)    urls.push(form.sprite_url);
+      if (form.sprite_shiny)  urls.push(form.sprite_shiny);
+    }
+    urls.forEach(u => {
+      const img = new Image();
+      img.src = u;
+      img.decode?.().catch(() => {});
+    });
+  }, [pokemon?.id]);
+
   const evoRef = useRef(null);
-  const anchorTopRef = useRef(null);
-  useLayoutEffect(() => {
-    if (anchorTopRef.current === null || !evoRef.current) return;
-    const target = anchorTopRef.current;
-    const apply  = () => {
-      if (!evoRef.current) return;
-      const delta = evoRef.current.getBoundingClientRect().top - target;
-      if (delta) window.scrollBy(0, delta);
-    };
-    apply();
-    const raf = requestAnimationFrame(apply);
-    anchorTopRef.current = null;
-    return () => cancelAnimationFrame(raf);
-  }, [pokemon?.id, formParam]);
 
   if (loading) return <div className="page-center">loading...</div>;
   if (error)   return <div className="page-center error">error: {error}</div>;
   if (!pokemon) return null;
 
-  const selectedForm   = searchParams.get('form');
-  const activeFormData = selectedForm && pokemon.form_data?.[selectedForm] ? pokemon.form_data[selectedForm] : null;
+  const activeFormData = formParam && pokemon.form_data?.[formParam] ? pokemon.form_data[formParam] : null;
   const selectForm     = f => f ? setSearchParams({ form: f }, { replace: true }) : setSearchParams({}, { replace: true });
 
   const padId     = String(pokemon.id).padStart(3, '0');
@@ -446,6 +463,7 @@ export default function PokemonPage() {
         </div>
       </div>
 
+      <div className="detail-card-wrap">
       <div ref={detailCardRef} className="detail-card">
         {/* left column: artwork + sprites */}
         <div className="detail-left">
@@ -487,7 +505,7 @@ export default function PokemonPage() {
             ))}
           </div>
 
-          <FormChips pokemon={pokemon} activeForm={selectedForm} onSelect={selectForm} />
+          <FormChips pokemon={pokemon} activeForm={formParam} onSelect={selectForm} />
 
           {(activeFormData?.flavor_text || pokemon.flavor_text) && (
             <p className="detail-flavor">{activeFormData?.flavor_text || pokemon.flavor_text}</p>
@@ -554,25 +572,17 @@ export default function PokemonPage() {
           </div>
         </div>
       </div>
+      </div>
 
-      {/* evolution chain */}
-      <div
-        className="detail-evolutions"
-        ref={evoRef}
-        // capture phase runs before child onClick handlers, so we can record the chain's top
-        // before navigate() triggers the re-render. only fire for actual clickable cards.
-        onClickCapture={e => {
-          if (e.target.closest('.evo-pokemon:not(.evo-pokemon--form)') && evoRef.current) {
-            anchorTopRef.current = evoRef.current.getBoundingClientRect().top;
-          }
-        }}
-      >
+      {/* evolution chain — clicking a card navigates and ScrollManager
+          smooth-scrolls back to the top of the page. */}
+      <div className="detail-evolutions" ref={evoRef}>
         <h2>evolution chain</h2>
         {(() => {
           // when a form is selected, pass it as currentName so only an exact matching evo node
           // gets highlighted. if no node matches (e.g. megas, gmaxes), nothing is highlighted.
           // when no form is selected, highlight the base pokemon as usual.
-          const currentEvoName = selectedForm ?? pokemon.name;
+          const currentEvoName = formParam ?? pokemon.name;
           return <>
             <EvoChain evolutions={mergedEvolutions} currentName={currentEvoName} />
             <RegionalEvoChains regionalEvolutions={separateRegionalEvos} currentName={currentEvoName} />

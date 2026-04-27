@@ -1,8 +1,13 @@
 // ─── header ──────────────────────────────────────────────────────────────────
 
 .site-header {
-  position: sticky;
-  top: 0;
+  // flex item 1 inside #root (#root is `display: flex; flex-direction: column`).
+  // sits naturally at the top of the viewport without sticky/fixed positioning
+  // because the .app-scroll container that holds page content is the next
+  // flex item below it. flex-shrink: 0 keeps the height locked at 60px even
+  // when content underneath would push for vertical space.
+  flex-shrink: 0;
+  position: relative;     // for stacking context + dropdown anchors
   z-index: 100;
   display: flex;
   align-items: center;
@@ -290,6 +295,82 @@
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+// red "live" pill shown only while the twitch stream is live (mounted by
+// AppHeader behind a useTwitchLive() check). three reinforcing cues:
+//   - twitch glitch icon (platform context for first-time visitors)
+//   - pulsing dot (universal "broadcast live" cue)
+//   - "live" text (explicit confirmation)
+.twitch-live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  font-size: .68rem;
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: #fff;
+  background: #e91916;
+  border-radius: 999px;
+  text-decoration: none;
+  line-height: 1;
+  transition: transform .15s ease, box-shadow .15s ease;
+
+  &:hover, &:focus-visible {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 10px color-mix(in srgb, #e91916 55%, transparent);
+  }
+
+  &__glitch {
+    width: 11px;
+    height: 11px;
+    flex-shrink: 0;
+  }
+
+  &__dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #fff;
+    animation: live-pulse 1.5s ease-in-out infinite;
+  }
+}
+
+// inline pip on the burger-menu "about" item — mirrors the header chip's
+// dot + "live" + glitch order at smaller scale for visual consistency
+// across both surfaces where the live state appears.
+.feature-link__live-pip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 8px;
+  padding: 1px 6px;
+  font-size: .55rem;
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: #fff;
+  background: #e91916;
+  border-radius: 999px;
+  line-height: 1;
+  vertical-align: middle;
+}
+
+.feature-link__live-pip-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #fff;
+  animation: live-pulse 1.5s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+.feature-link__live-pip-glitch {
+  width: 9px;
+  height: 9px;
+  flex-shrink: 0;
 }
 
 // ─── features dropdown ───────────────────────────────────────────────────────

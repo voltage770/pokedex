@@ -1,0 +1,14 @@
+{
+  "name": "pokédex (dev)",
+  "short_name": "pokédex dev",
+  "description": "local dev build of the pokédex",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "background_color": "#f5ede0",
+  "theme_color": "#1a1a1f",
+  "icons": [
+    { "src": "icon-dev-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-dev-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}

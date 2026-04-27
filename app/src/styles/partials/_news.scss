@@ -1,25 +1,35 @@
 // ─── pull-to-refresh indicator ───────────────────────────────────────────────
-// fixed-position circular spinner that rides down with the user's finger
-// during a pull, rotates and changes color past the threshold to signal
-// "release to refresh", then spins while the refresh is in flight. component
-// itself only renders in standalone (home-screen webapp) mode.
+// just the spinner icon — fixed-positioned at top of viewport, sitting at
+// z-index 0 (BEHIND #root which is z-index 1). the colored fill behind the
+// page comes from body bg in standalone mode (see _base.scss) — when #root
+// translates down during a pull, body's --bg-header peeks through naturally.
+// component itself only renders in standalone (home-screen webapp) mode.
+//
+// opacity is written from JS during touchmove to fade the icon in as the
+// pull progresses. icon position is fixed (doesn't track the page) — like
+// ios mail, the indicator stays put while the page slides over it.
 .ptr {
   position: fixed;
-  top: -44px;                      // hidden above the viewport at rest
+  top: 0;
   left: 50%;
-  margin-left: -22px;
-  width: 44px;
-  height: 44px;
+  margin-left: -16px;
+  width: 32px;
+  height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 50%;
-  box-shadow: var(--shadow-md);
-  z-index: 1000;
-  font-size: 1.4rem;
+  // sit a comfortable distance below the safe-area / dynamic-island so the
+  // icon doesn't crowd the notch on devices that have one. tuned to land
+  // roughly mid-strip when the page is held at HOLD_OFFSET (130px) during
+  // the refreshing tread. max() with a 22px floor handles ipad standalone
+  // (where env() reports ~0 but a ~24px system status bar still paints
+  // over the page).
+  margin-top: calc(max(env(safe-area-inset-top, 0px), 22px) + 50px);
+  z-index: 0;
+  pointer-events: none;
+  font-size: 1.5rem;
   color: var(--text-muted);
+  opacity: 0;                     // JS sets the live value during the drag
 
   &__icon {
     display: inline-block;
@@ -29,6 +39,10 @@
   &--ready &__icon {
     transform: rotate(180deg);
     color: var(--accent);
+  }
+
+  &--refreshing {
+    opacity: 1 !important;        // override the inline opacity from drag
   }
 
   &--refreshing &__icon {

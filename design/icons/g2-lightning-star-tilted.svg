@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <rect width="1024" height="1024" fill="#1a1a1f"/>
+  <!-- Same 4-point star, rotated 45° so points read as an X (NW/NE/SW/SE) -->
+  <g transform="rotate(45 512 512)">
+    <polygon points="512,80 590,434 944,512 590,590 512,944 434,590 80,512 434,434" fill="#f5d042"/>
+  </g>
+</svg>

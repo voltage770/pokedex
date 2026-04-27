@@ -14,14 +14,106 @@ html {
   background-color: var(--bg-header);
 }
 
+// SCROLL ARCHITECTURE
+//
+// body / html don't scroll. the page scrolls inside `.app-scroll` (rendered
+// in app.jsx wrapping <Routes>). this is what makes the bounce-on-scroll-edge
+// land "below the header" — when ios rubber-band fires, it bounces the
+// .app-scroll container's content rather than translating the entire body
+// (including header) like the default body-scroll setup does. the header
+// stays pinned to the viewport because it sits ABOVE .app-scroll in the
+// flex layout, outside the scroll container entirely.
+//
+// the y-axis overscroll-behavior on .app-scroll is `contain` — allows the
+// bounce, blocks the chain that would otherwise trigger safari's pull-to-
+// refresh + reload. x-axis is `none` to kill ipad-landscape sideways pan.
+html, body {
+  height: 100%;
+  overflow: hidden;
+  overscroll-behavior-x: none;
+}
+
+#root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-scroll {
+  flex: 1 1 0;
+  width: 100%;                       // belt-and-suspenders against flex/cross-axis quirks
+  min-height: 0;                     // allow flex item to shrink below content size
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  -webkit-overflow-scrolling: touch; // momentum scroll on older ios
+}
+
 body {
   font-family: 'Baloo 2 Variable', system-ui, sans-serif;
   font-weight: var(--fw-regular);
-  background-color: var(--bg);
+  // bg-header (not --bg) so the strip revealed when pull-to-refresh translates
+  // #root downward color-matches the dynamic-island / safe-area region above.
+  // body bg only shows in that revealed gap since #root has its own --bg fill
+  // covering the visible page.
+  background-color: var(--bg-header);
   color: var(--text);
   line-height: 1.5;
   transition: background-color .25s ease, color .25s ease;
   -webkit-font-smoothing: antialiased;
+}
+
+// standalone (home-screen webapp) overrides — keyed off `html[data-standalone]`
+// (set by App.jsx on mount) instead of `@media (display-mode: standalone)`
+// because ios safari's match for that media query is inconsistent across
+// versions / launch contexts. JS-set attribute is deterministic.
+//
+// 1. kill native pull-to-refresh + rubber-band overscroll: our custom
+//    <PullToRefresh> owns the gesture. JS preventDefault races with the
+//    iOS scroll engine when scrollY crosses 0 mid-drag; this css-level
+//    rule is deterministic.
+// 2. body bg flips to --bg-header so when #root translates down during a
+//    pull the gap automatically paints the same color as the
+//    dynamic-island region above it (html bg = also --bg-header). no
+//    separate .ptr bg-strip needed. #root has its own --bg background
+//    so the page itself looks identical to a normal browser session.
+html[data-standalone] {
+  // status-bar clearance. iphone with dynamic-island / notch reports
+  // env(safe-area-inset-top) ~50px (covers the island). ipad with no notch
+  // reports ~0 even though ios still paints a ~24px system status bar over
+  // the page in standalone — without this fallback, header content gets
+  // overlapped by the time / wifi / battery indicators. max() picks the
+  // larger of the two; iphone sees no change, ipad gets a 22px floor.
+  --inset-top: max(env(safe-area-inset-top, 0px), 22px);
+
+  .site-header {
+    padding-top: var(--inset-top);
+    height:      calc(60px + var(--inset-top));
+
+    // sprite strip is `position: absolute; inset: 0` — push its top down
+    // by the inset so sprites stay in the original 60px content row and
+    // the inset area shows clean bg-header behind the system indicators.
+    .header-sprites-clip { top: var(--inset-top); }
+  }
+}
+
+// #root sits above the .ptr strip (rendered as a body-sibling portal) so the
+// pull-to-refresh area is invisible at rest and only shows up when JS
+// translates #root downward during a pull. background MUST be opaque —
+// without it, transparent regions inside the page would let body bg /
+// the ptr strip bleed through above the actual fold during drag.
+//
+// `will-change: transform` is NOT set here permanently — it would establish a
+// new containing block, which breaks `position: fixed` for every modal
+// descendant (they'd anchor to #root instead of the viewport, appearing
+// wherever #root happens to be in the scroll). PullToRefresh.jsx sets
+// will-change dynamically on touchstart and clears it on touchend so the
+// compositor benefit only applies during an active pull gesture.
+//
+// height + flex layout is set in the SCROLL ARCHITECTURE block above.
+#root {
+  position: relative;
+  z-index: 1;
+  background: var(--bg);
 }
 
 a {
@@ -89,4 +181,10 @@ a:focus-visible,
 
 @keyframes stat-fill {
   from { width: 0; }
+}
+
+// shared by twitch-live-badge dot + about-page embed pulse marker.
+@keyframes live-pulse {
+  0%, 100% { opacity: 1;   transform: scale(1);   }
+  50%      { opacity: .55; transform: scale(.85); }
 }

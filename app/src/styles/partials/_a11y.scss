@@ -17,7 +17,7 @@
 
   // flatten cards — shadows are visually noisy
   .pokemon-card,
-  .detail-card,
+  .detail-card-wrap,
   .ability-modal { box-shadow: none !important; }
 
   // slightly dim images so artwork doesn't blast the eyes

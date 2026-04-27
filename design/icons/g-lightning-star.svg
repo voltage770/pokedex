@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <rect width="1024" height="1024" fill="#1a1a1f"/>
+  <!-- 4-point sharp star with concave waist — symmetric on H/V axes + 90° rotation -->
+  <polygon points="512,80 590,434 944,512 590,590 512,944 434,590 80,512 434,434" fill="#f5d042"/>
+</svg>

@@ -179,7 +179,7 @@ function matchesClass(p, cls) {
 
 // filtered, sorted, paginated list
 export function getPokemon(filters = {}) {
-  const { search, type, generation, cls, stat, minStat, inlineForms, sort = 'id', sortDir = 'asc', limit = 20, offset = 0 } = filters;
+  const { search, type, generation, cls, inlineForms, sort = 'id', sortDir = 'asc', limit = 20, offset = 0 } = filters;
 
   let results = ALL;
 
@@ -187,10 +187,6 @@ export function getPokemon(filters = {}) {
   if (type)       results = results.filter(p => p.types.includes(type));
   if (generation) results = results.filter(p => p.generation === Number(generation));
   if (cls)        results = results.filter(p => matchesClass(p, cls));
-  if (stat && minStat) {
-    const min = Number(minStat);
-    results = results.filter(p => getStat(p, stat) >= min);
-  }
 
   // sort
   results = [...results].sort((a, b) => {

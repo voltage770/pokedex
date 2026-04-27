@@ -1,9 +1,8 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { useModalAnimation } from '../hooks/use-modal-animation';
 import { useModalCycleNav } from '../hooks/use-modal-cycle-nav';
 import { formatSlugLower } from '../utils/format-name';
 import { pulseElement } from '../utils/pulse';
-import ModalCycleArrows from '../components/modal-cycle-arrows';
 import berries from '../data/berries.json';
 
 const FLAVOR_ORDER = ['spicy', 'dry', 'sweet', 'bitter', 'sour'];
@@ -23,22 +22,21 @@ const SECTIONED_BERRIES = SECTIONS.map(s => ({
   items: berries.filter(s.match).sort((a, b) => a.id - b.id),
 })).filter(s => s.items.length);
 
-function BerryModal({ berry, onClose, onPrev, onNext, closing, bump }) {
-  const modalRef = useRef(null);
-
+function BerryModal({ berry, modalRef, onClose, closing, bump }) {
   // cycle pulse via WAAPI. skip on initial mount (bump.n === 0) so the
   // opening `modal-pop` animation plays cleanly, then pulse on each cycle.
+  // swipe-driven cycles set silent=true so bump doesn't increment — the
+  // slide animation already provides the visual feedback there.
   useEffect(() => {
     if (bump.n === 0) return;
     const anim = pulseElement(modalRef.current);
     return () => anim?.cancel();
-  }, [bump.n]);
+  }, [bump.n, modalRef]);
 
   const hasFlavors = FLAVOR_ORDER.some(f => berry.flavors[f]);
 
   return (
     <div className={`ability-modal-overlay${closing ? ' closing' : ''}`} onClick={onClose}>
-      <ModalCycleArrows onPrev={onPrev} onNext={onNext} />
       <div ref={modalRef} className="ball-modal ball-modal--berry" onClick={e => e.stopPropagation()}>
         <div className="ball-modal__header">
           {berry.sprite && <img src={berry.sprite} alt={berry.name} />}
@@ -104,7 +102,7 @@ function BerryModal({ berry, onClose, onPrev, onNext, closing, bump }) {
 }
 
 export default function BerriesPage() {
-  const { current: currentBerry, bump, open, close, prev, next } = useModalCycleNav(SECTIONED_BERRIES);
+  const { current: currentBerry, bump, modalRef, open, close } = useModalCycleNav(SECTIONED_BERRIES);
   const { displayed: shownBerry, isClosing } = useModalAnimation(currentBerry);
 
   return (
@@ -128,7 +126,7 @@ export default function BerriesPage() {
       ))}
 
       {shownBerry && (
-        <BerryModal berry={shownBerry} onClose={close} onPrev={prev} onNext={next} closing={isClosing} bump={bump} />
+        <BerryModal berry={shownBerry} modalRef={modalRef} onClose={close} closing={isClosing} bump={bump} />
       )}
     </div>
   );

@@ -2,17 +2,59 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>pokédex</title>
-    <script>
-  const redirect = sessionStorage.getItem('redirect');
-  if (redirect) {
-    sessionStorage.removeItem('redirect');
-    window.history.replaceState(null, '', redirect);
-  }
-</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <!-- ios PWA: required for the home-screen icon to launch in true standalone
+         mode (matches `display-mode: standalone`). black-translucent puts page
+         content behind the status bar / dynamic island so our html bg shows
+         through there instead of a white system bar. -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="mobile-web-app-capable" content="yes" />
 
+    <!-- icons: prod variants by default. an inline script below swaps them to
+         the -dev variants when running on localhost / LAN IPs / *.local so the
+         dev build is visually distinct on the home screen and browser tabs.
+         apple-touch-icon includes light + dark mode variants — ios reads the
+         `media` attribute and picks the matching icon for the user's system
+         theme. the no-media fallback is the dark-bg variant (used by older
+         iOS that ignores the media attribute, and by anything that doesn't
+         match either media query). -->
+    <link rel="icon" type="image/svg+xml" href="/favicon-prod.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-prod-32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-prod.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-prod-light.png" media="(prefers-color-scheme: light)" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-prod.png" media="(prefers-color-scheme: dark)" />
+    <link rel="manifest" href="/manifest-prod.webmanifest" />
+    <meta name="theme-color" content="#1a1a1f" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#fdf8f0" media="(prefers-color-scheme: light)" />
+
+    <title>pokédex</title>
+
+    <script>
+      // dev/prod icon swap. ios reads the link tags when "Add to Home Screen"
+      // is invoked, so this needs to run before the user adds the page —
+      // synchronous inline script in <head> guarantees that.
+      (function () {
+        var h = location.hostname;
+        var isDev = h === 'localhost'
+          || h === '127.0.0.1'
+          || /^\d+\.\d+\.\d+\.\d+$/.test(h)
+          || h.endsWith('.local');
+        if (!isDev) return;
+        document.querySelectorAll('link[rel="icon"], link[rel="apple-touch-icon"], link[rel="manifest"]').forEach(function (el) {
+          var href = el.getAttribute('href');
+          if (href) el.setAttribute('href', href.replace(/-prod\./, '-dev.'));
+        });
+      })();
+
+      // ghpages SPA redirect — if the 404.html bounced us here with a saved
+      // redirect target, replace history with that target so deep links work.
+      var redirect = sessionStorage.getItem('redirect');
+      if (redirect) {
+        sessionStorage.removeItem('redirect');
+        window.history.replaceState(null, '', redirect);
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

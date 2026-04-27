@@ -4,12 +4,10 @@
 // wrappers around JSON.parse. one renamed key used to mean a hunt across files.
 
 export const STORAGE_KEYS = {
-  THEME:           'theme',
-  A11Y:            'a11y',
-  ENABLED_FILTERS: 'enabledFilters',
-  FILTER_ORDER:    'filterOrder',
-  SHINY_SPRITES:   'shinySprites',
-  INLINE_FORMS:    'inlineForms',
+  THEME:         'theme',
+  A11Y:          'a11y',
+  SHINY_SPRITES: 'shinySprites',
+  INLINE_FORMS:  'inlineForms',
 };
 
 // -- string ------------------------------------------------------------------

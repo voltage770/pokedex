@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <rect width="1024" height="1024" fill="#1a1a1f"/>
+  <!-- Center dot -->
+  <circle cx="512" cy="512" r="80" fill="#f5d042"/>
+  <!-- 8 spokes radiating in compass directions, all equal length -->
+  <g stroke="#f5d042" stroke-width="50" stroke-linecap="round">
+    <line x1="512" y1="200" x2="512" y2="320"/>
+    <line x1="512" y1="704" x2="512" y2="824"/>
+    <line x1="200" y1="512" x2="320" y2="512"/>
+    <line x1="704" y1="512" x2="824" y2="512"/>
+    <line x1="290" y1="290" x2="380" y2="380"/>
+    <line x1="734" y1="290" x2="644" y2="380"/>
+    <line x1="290" y1="734" x2="380" y2="644"/>
+    <line x1="734" y1="734" x2="644" y2="644"/>
+  </g>
+</svg>

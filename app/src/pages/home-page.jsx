@@ -2,14 +2,15 @@ import { useState, useCallback, useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { usePokemonList } from '../hooks/use-pokemon';
 import { STORAGE_KEYS, getBool, setBool, getString, setString } from '../utils/storage';
+import { appScrollTo } from '../utils/app-scroll';
 import PokemonCard from '../components/pokemon-card';
 import SearchBar from '../components/search-bar';
 import FilterPanel from '../components/filter-panel';
 
 const PAGE_SIZE = 60;
-const FILTER_KEYS = ['search', 'type', 'generation', 'cls', 'stat', 'minStat', 'sort', 'sortDir'];
+const FILTER_KEYS = ['search', 'type', 'generation', 'cls', 'sort', 'sortDir'];
 
-export default function HomePage({ enabledFilters = {}, filterOrder = [], toggleFilter }) {
+export default function HomePage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [visible, setVisible]           = useState(PAGE_SIZE);
   const [shiny, setShiny]               = useState(() => getBool(STORAGE_KEYS.SHINY_SPRITES, false));
@@ -40,10 +41,10 @@ export default function HomePage({ enabledFilters = {}, filterOrder = [], toggle
   // reset visible count and scroll position whenever filters change
   useEffect(() => {
     setVisible(PAGE_SIZE);
-    window.scrollTo({ top: 0, behavior: 'instant' });
+    appScrollTo(0, 'instant');
   }, [searchParams.toString(), inlineForms]);
 
-  const CONTENT_KEYS  = ['search', 'type', 'generation', 'cls', 'stat', 'minStat'];
+  const CONTENT_KEYS  = ['search', 'type', 'generation', 'cls'];
   const hasFilters    = CONTENT_KEYS.some(k => filters[k]);
   const displayed     = hasFilters ? pokemon : pokemon.slice(0, visible);
   const hasMore       = !hasFilters && visible < pokemon.length;
@@ -57,9 +58,6 @@ export default function HomePage({ enabledFilters = {}, filterOrder = [], toggle
       <FilterPanel
         filters={filters}
         onChange={setFilters}
-        enabledFilters={enabledFilters}
-        filterOrder={filterOrder}
-        toggleFilter={toggleFilter}
         shiny={shiny}
         onShinyToggle={() => setShiny(s => { setBool(STORAGE_KEYS.SHINY_SPRITES, !s); return !s; })}
         inlineForms={inlineForms}

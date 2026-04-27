@@ -127,10 +127,19 @@ function NewsEntry({ entry }) {
 // fetches the live feed from the cloudflare worker with a short timeout. on
 // any failure (network error, non-ok response, bad json, empty entries) the
 // caller falls back to the bundled copy — the page always renders something.
-async function fetchLiveNews(signal) {
-  const res = await fetch(NEWS_API_URL, {
+// `bypassCache` appends ?refresh=1 which the worker honors to skip its 30-min
+// edge cache — used by user-initiated pull-to-refresh so the gesture actually
+// returns fresh data instead of the same cached payload.
+async function fetchLiveNews(signal, bypassCache = false) {
+  const url = bypassCache ? `${NEWS_API_URL}?refresh=1` : NEWS_API_URL;
+  const res = await fetch(url, {
     signal,
     headers: { accept: 'application/json' },
+    // worker responds with `cache-control: max-age=1800` so the browser caches
+    // the response too. on a user-initiated pull we explicitly bypass that
+    // — otherwise the second pull within 30 min returns the same browser-cached
+    // payload and the page's "last updated" timestamp never moves.
+    cache: bypassCache ? 'no-store' : 'default',
   });
   if (!res.ok) throw new Error(`worker ${res.status}`);
   const data = await res.json();
@@ -150,11 +159,13 @@ export default function NewsPage() {
   // pull-to-refresh in standalone webapp mode. AbortController gives us
   // a 6-second timeout. on success the live payload replaces whatever
   // we're showing; on failure we fall back to the bundled copy.
-  const refresh = useCallback(async () => {
+  // `bypassCache=true` (passed by pull-to-refresh) skips the worker's edge
+  // cache so the user sees fresh data, not the same 30-min-cached response.
+  const refresh = useCallback(async (bypassCache = false) => {
     const controller = new AbortController();
     const timeout    = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
     try {
-      const live = await fetchLiveNews(controller.signal);
+      const live = await fetchLiveNews(controller.signal, bypassCache);
       setData(live);
       setStatus('live');
     } catch (err) {
@@ -167,6 +178,7 @@ export default function NewsPage() {
   }, []);
 
   useEffect(() => { refresh(); }, [refresh]);
+  const refreshFresh = useCallback(() => refresh(true), [refresh]);
 
   const { entries = [], updated, sources = [] } = data || {};
   const updatedText = updated
@@ -175,7 +187,7 @@ export default function NewsPage() {
 
   return (
     <div className="news-page">
-      <PullToRefresh onRefresh={refresh} />
+      <PullToRefresh onRefresh={refreshFresh} />
       <header className="news-page__header">
         <h1>news</h1>
         <p className="news-page__meta">
@@ -185,7 +197,7 @@ export default function NewsPage() {
             <>
               {updatedText && <>updated {updatedText}</>}
               {sources.length > 0 && (
-                <>{updatedText && ' · '}sources: {sources.map(s => s.name).join(', ')}</>
+                <>{updatedText && ' || '}sources: {sources.map(s => s.name).join(', ')}</>
               )}
               {status === 'fallback' && <> · <span className="news-page__tag news-page__tag--warn">using cached copy</span></>}
             </>

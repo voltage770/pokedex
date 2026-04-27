@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <rect width="1024" height="1024" fill="#1a1a1f"/>
+  <!-- Base platform -->
+  <rect x="370" y="850" width="284" height="60" rx="8" fill="#f5d042"/>
+  <!-- Tower stem -->
+  <rect x="492" y="320" width="40" height="540" fill="#f5d042"/>
+  <!-- Stacked coil rings (widest at base, narrowing upward) -->
+  <rect x="358" y="780" width="308" height="22" rx="11" fill="#f5d042"/>
+  <rect x="378" y="700" width="268" height="22" rx="11" fill="#f5d042"/>
+  <rect x="398" y="620" width="228" height="22" rx="11" fill="#f5d042"/>
+  <rect x="418" y="540" width="188" height="22" rx="11" fill="#f5d042"/>
+  <rect x="438" y="460" width="148" height="22" rx="11" fill="#f5d042"/>
+  <rect x="458" y="380" width="108" height="22" rx="11" fill="#f5d042"/>
+  <!-- Top sphere (terminal capacitor) -->
+  <circle cx="512" cy="280" r="60" fill="#f5d042"/>
+  <!-- Spark above the terminal -->
+  <line x1="512" y1="220" x2="512" y2="180" stroke="#f5d042" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="512" cy="150" r="22" fill="#f5d042"/>
+</svg>

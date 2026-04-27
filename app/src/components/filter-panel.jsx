@@ -1,7 +1,6 @@
 import { useTypes } from '../hooks/use-pokemon';
 
 const GENERATIONS = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-const STATS = ['hp', 'attack', 'defense', 'special-attack', 'special-defense', 'speed'];
 const CLASSES = [
   { value: 'legendary',        label: 'legendary' },
   { value: 'mythical',         label: 'mythical' },
@@ -30,53 +29,12 @@ const SORT_OPTIONS = [
   { value: 'speed',            label: 'sort: speed' },
 ];
 
-const OPTIONAL_FILTER_RENDERERS = {
-  type: ({ filters, update, types }) => (
-    <select key="type" value={filters.type || ''} onChange={e => update('type', e.target.value)}>
-      <option value="">all types</option>
-      {types.map(t => <option key={t} value={t}>{t}</option>)}
-    </select>
-  ),
-  class: ({ filters, update }) => (
-    <select key="class" value={filters.cls || ''} onChange={e => update('cls', e.target.value)}>
-      <option value="">all categories</option>
-      {CLASSES.map(c => <option key={c.value} value={c.value}>{c.label}</option>)}
-    </select>
-  ),
-  minStat: ({ filters, update }) => (
-    <div key="minStat" className="filter-panel__min-stat">
-      <select value={filters.stat || ''} onChange={e => update('stat', e.target.value)}>
-        <option value="">min stat…</option>
-        {STATS.map(s => <option key={s} value={s}>{s}</option>)}
-      </select>
-      {filters.stat && (
-        <input
-          type="number"
-          min={0}
-          max={255}
-          placeholder="≥"
-          value={filters.minStat || ''}
-          onChange={e => update('minStat', e.target.value)}
-          className="stat-input"
-        />
-      )}
-    </div>
-  ),
-};
-
-const FILTER_OPTIONS = [
-  { key: 'type',    label: 'type' },
-  { key: 'class',   label: 'category' },
-  { key: 'minStat', label: 'min stat' },
-];
-
-export default function FilterPanel({ filters, onChange, enabledFilters = {}, filterOrder = ['type', 'class', 'minStat'], toggleFilter, shiny, onShinyToggle, inlineForms = '', onInlineFormsChange }) {
+export default function FilterPanel({ filters, onChange, shiny, onShinyToggle, inlineForms = '', onInlineFormsChange }) {
   const types = useTypes();
 
   const update = (key, value) => onChange({ ...filters, [key]: value || undefined });
   const sort    = filters.sort    || 'id';
   const sortDir = filters.sortDir || 'asc';
-  const ctx     = { filters, update, types };
 
   return (
     <aside className="filter-panel">
@@ -85,11 +43,25 @@ export default function FilterPanel({ filters, onChange, enabledFilters = {}, fi
         {GENERATIONS.map(g => <option key={g} value={g}>gen {g}</option>)}
       </select>
 
-      {filterOrder.map(key => enabledFilters[key] && OPTIONAL_FILTER_RENDERERS[key]?.(ctx))}
+      <select value={filters.type || ''} onChange={e => update('type', e.target.value)}>
+        <option value="">all types</option>
+        {types.map(t => <option key={t} value={t}>{t}</option>)}
+      </select>
+
+      <select value={filters.cls || ''} onChange={e => update('cls', e.target.value)}>
+        <option value="">all categories</option>
+        {CLASSES.map(c => <option key={c.value} value={c.value}>{c.label}</option>)}
+      </select>
 
       <select value={sort} onChange={e => onChange({ ...filters, sort: e.target.value })}>
         {SORT_OPTIONS.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
       </select>
+
+      {/* zero-height row break — only renders on mobile (CSS) where the
+          filter-panel is a flex-wrap row. forces sort-strip + reset onto
+          their own line so the action buttons always have proper space
+          regardless of how the selects above wrapped. */}
+      <span className="filter-panel__break" aria-hidden="true" />
 
       <div className="sort-options-strip">
         <button
@@ -112,6 +84,12 @@ export default function FilterPanel({ filters, onChange, enabledFilters = {}, fi
         </button>
       </div>
 
+      <button className="reset-btn" onClick={() => {
+        onChange({});
+        if (shiny) onShinyToggle();
+        if (inlineForms && onInlineFormsChange) onInlineFormsChange('');
+      }}>reset</button>
+
       {onInlineFormsChange && (
         <div className="filter-toggles">
           <label className="filter-toggle-row">
@@ -132,45 +110,6 @@ export default function FilterPanel({ filters, onChange, enabledFilters = {}, fi
           </label>
         </div>
       )}
-
-      {toggleFilter && (
-        <>
-          <hr className="filter-divider" />
-          <div className="filter-toggles">
-            {FILTER_OPTIONS.map(f => (
-              <label key={f.key} className="filter-toggle-row">
-                <input
-                  type="checkbox"
-                  checked={!!enabledFilters[f.key]}
-                  onChange={() => {
-                    if (enabledFilters[f.key]) {
-                      const clear = { ...filters };
-                      if (f.key === 'type') delete clear.type;
-                      if (f.key === 'class') delete clear.cls;
-                      if (f.key === 'minStat') { delete clear.stat; delete clear.minStat; }
-                      onChange(clear);
-                    }
-                    toggleFilter(f.key);
-                  }}
-                />
-                <span>{f.label}</span>
-              </label>
-            ))}
-          </div>
-        </>
-      )}
-
-      <hr className="filter-divider" />
-      <button className="reset-btn" onClick={() => {
-        onChange({});
-        if (toggleFilter) {
-          FILTER_OPTIONS.forEach(f => {
-            if (enabledFilters[f.key]) toggleFilter(f.key);
-          });
-        }
-        if (shiny) onShinyToggle();
-        if (inlineForms && onInlineFormsChange) onInlineFormsChange('');
-      }}>reset</button>
     </aside>
   );
 }

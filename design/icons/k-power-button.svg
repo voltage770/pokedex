@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <rect width="1024" height="1024" fill="#1a1a1f"/>
+  <!-- ISO power symbol: arc (open at top) + vertical line through the gap -->
+  <g stroke="#f5d042" stroke-width="80" fill="none" stroke-linecap="round">
+    <path d="M 470 290 A 280 280 0 1 1 554 290"/>
+    <line x1="512" y1="180" x2="512" y2="540"/>
+  </g>
+</svg>

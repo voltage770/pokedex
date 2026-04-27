@@ -75,59 +75,100 @@
     min-height: calc(100vh - 52px);
   }
 
-  // filter panel becomes a sticky horizontal scrolling strip
+  // filter panel on mobile: flex-wrap row that grows vertically as needed
+  // instead of horizontal scrolling. previous design hid options off-screen
+  // and required side-scrolling to reach them — visible-by-default reads
+  // better at small widths even though it costs vertical space.
+  //
+  // sticky to the top of .app-scroll (top:0). previously top:52px to clear
+  // the body-level sticky header, but in the new scroll-container architecture
+  // the header lives outside .app-scroll, so there's nothing to offset for.
   .filter-panel {
     position: sticky;
-    top: 52px;
+    top: 0;
     z-index: 20;
     height: auto;
-    overflow-y: visible;
+    overflow: visible;
     flex-direction: row;
-    overflow-x: auto;
-    padding: 10px 16px;
-    gap: 12px;
+    flex-wrap: wrap;
+    padding: 10px 14px;
+    gap: 8px 10px;
     border-right: none;
     border-bottom: 1px solid var(--border);
-    align-items: flex-end;
-    // hide scrollbar but keep scroll
-    scrollbar-width: none;
-    &::-webkit-scrollbar { display: none; }
+    align-items: stretch;
+
+    // zero-height row break inserted in the JSX between the sort select
+    // and the action buttons. flex-basis 100% forces a wrap, pinning the
+    // sort-options-strip + reset-btn to their own dedicated row regardless
+    // of how the selects above wrapped. invisible on desktop (display: none
+    // by default below) so the column-flex layout there is unaffected.
+    .filter-panel__break {
+      display: block;
+      flex-basis: 100%;
+      width: 100%;
+      height: 0;
+      margin: 0;
+    }
+
+    // .filter-toggles is `flex-direction: column` by default (vertical stack
+    // of checkbox rows). when it lands in the same flex-wrap row as a select,
+    // its taller height gets propagated via `align-items: stretch`, making
+    // the selects look unnecessarily tall. forcing it onto its own full-
+    // width row keeps select rows compact.
+    .filter-toggles {
+      flex-direction: row;
+      flex-wrap: wrap;
+      flex-basis: 100%;
+      width: 100%;
+      gap: 4px 16px;
+    }
 
     select,
     input[type='number'] {
       width: auto;
-      min-width: 100px;
-      font-size: .8rem;
-      padding: 6px 8px;
-      flex-shrink: 0;
+      min-width: 110px;
+      font-size: .82rem;
+      padding: 5px 10px;       // shorter than before — selects were unnecessarily tall
+      flex: 1 1 auto;
     }
 
     .filter-divider {
-      width: 1px;
-      height: 44px;
-      border: none;
-      border-left: 1px solid var(--border);
-      margin: 0;
-      align-self: flex-end;
-      flex-shrink: 0;
+      display: none; // dividers don't make sense in a wrapping multi-row layout
     }
 
     .sort-options-strip {
       width: auto;
+      gap: 6px;
 
-      button { padding: 5px 4px; font-size: .72rem; }
+      // wider tap targets for the sort direction buttons + match the
+      // visual height of the sibling selects.
+      button { padding: 6px 14px; font-size: .82rem; }
     }
 
+    // reset on mobile gets accent-color distinction so it's findable next
+    // to the shiny toggle (which is itself prominent when active).
     .reset-btn {
       margin-top: 0;
-      align-self: flex-end;
       width: auto;
       padding: 6px 14px;
+      font-size: .78rem;
+      font-weight: var(--fw-semibold);
       flex-shrink: 0;
       white-space: nowrap;
+      color: var(--accent);
+      background: color-mix(in srgb, var(--accent) 10%, transparent);
+      border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
+      border-radius: var(--radius-sm);
+      transition: background-color .15s ease, color .15s ease, border-color .15s ease;
+
+      &:hover, &:focus-visible {
+        color: #fff;
+        background: var(--accent);
+        border-color: var(--accent);
+      }
     }
 
-    .stat-input { margin-top: 3px; }
+    .stat-input { margin-top: 0; }
   }
 
   // ── main content ──

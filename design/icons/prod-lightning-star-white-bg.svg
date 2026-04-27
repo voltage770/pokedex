@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <rect width="1024" height="1024" fill="#fff"/>
+  <!-- Yellow X with black outline on white bg -->
+  <g transform="rotate(45 512 512)">
+    <polygon points="512,80 590,434 944,512 590,590 512,944 434,590 80,512 434,434"
+             fill="#f5d042"
+             stroke="#000"
+             stroke-width="32"
+             stroke-linejoin="miter"
+             stroke-miterlimit="6"/>
+  </g>
+</svg>

@@ -1,32 +1,46 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { useBodyScrollLock } from './use-body-scroll-lock';
 
-// shared modal navigation behavior for the berry + pokeball pages (and any future
-// item-grid page with a paginated modal). bundles three concerns that were
-// duplicated verbatim across both pages:
+// shared modal navigation behavior for the berry / pokeball / badge pages (and
+// any future item-grid page with a paginated modal). bundles four concerns:
 //
 //   1. arrow-key bindings on window for Esc / ←  / →
 //   2. modulo cycling inside a sectioned list (sectionIdx + index)
-//   3. a `bump` counter + direction for the WAAPI pulse animation
+//   3. a `bump` counter + direction for the WAAPI pulse animation that fires
+//      on keyboard / arrow-button cycles (NOT swipes — see #4)
+//   4. drag-to-swipe gesture: the modal box translates with the user's finger
+//      horizontally, then on release either slides out → in to the next item
+//      (commit) or springs back to center (cancel). swipes set `bump` silently
+//      so the pulse animation doesn't double-up on the slide animation.
 //
 // usage from the page component:
 //
-//   const sections = SECTIONED_ITEMS;
-//   const { selected, current, bump, open, close, prev, next } =
-//     useModalCycleNav(sections);
+//   const { current, bump, modalRef, open, close, prev, next } =
+//     useModalCycleNav(SECTIONED_ITEMS);
 //
-//   <button onClick={() => open(sectionIdx, index)} />
-//   {current && <Modal item={current} onPrev={prev} onNext={next} onClose={close} bump={bump} />}
+//   // pass modalRef down to the Modal component which attaches it to the
+//   // outer box element. the hook reads modalRef.current to apply transforms
+//   // directly via DOM manipulation (bypasses React state for 60fps tracking).
+//   <Modal modalRef={modalRef} item={current} bump={bump} ... />
 //
-// `selected` is the raw {sectionIdx, index} or null. `current` is the resolved
-// item (sections[selected.sectionIdx].items[selected.index]) or null. consumers
-// typically pass `current` through useModalAnimation to also get close-anim latch.
+// modalRef is owned by the hook so swipe + pulse share the same element ref.
+// the Modal component just spreads it onto its outer container.
+
+const SWIPE_THRESHOLD   = 50;   // px of dx required to commit the cycle
+const HORIZONTAL_BIAS   = 1.4;  // |dx| must exceed |dy| × this to count as horizontal
+const COMMIT_OUT_MS     = 180;  // slide-out duration on commit
+const COMMIT_IN_MS      = 220;  // slide-in duration on commit
+const SPRING_BACK_MS    = 200;  // spring-back duration on cancel
+const DIRECTION_LOCK_PX = 8;    // |dx| before we lock in horizontal vs vertical
+
 export function useModalCycleNav(sections) {
   const [selected, setSelected] = useState(null); // { sectionIdx, index } | null
   const [bump, setBump] = useState({ n: 0, dir: 0 });
 
-  // keep section list reference fresh without re-binding handlers on every render
   const sectionsRef = useRef(sections);
   sectionsRef.current = sections;
+
+  const modalRef = useRef(null);
 
   const open = useCallback((sectionIdx, index) => {
     setSelected({ sectionIdx, index });
@@ -39,13 +53,15 @@ export function useModalCycleNav(sections) {
 
   const close = useCallback(() => setSelected(null), []);
 
-  const cycle = useCallback((delta) => {
+  // `silent` skips the bump increment so swipe-driven cycles don't also fire
+  // the pulse animation (the slide animation is the visual feedback there).
+  const cycle = useCallback((delta, { silent = false } = {}) => {
     setSelected(s => {
       if (!s) return s;
       const len = sectionsRef.current[s.sectionIdx].items.length;
       return { ...s, index: ((s.index + delta) % len + len) % len };
     });
-    setBump(b => ({ n: b.n + 1, dir: delta }));
+    if (!silent) setBump(b => ({ n: b.n + 1, dir: delta }));
   }, []);
 
   const prev = useCallback(() => cycle(-1), [cycle]);
@@ -64,48 +80,172 @@ export function useModalCycleNav(sections) {
     return () => window.removeEventListener('keydown', handler);
   }, [selected, close, prev, next]);
 
-  // touch-swipe cycling (mobile / ipad). swipe left → next, swipe right → prev,
-  // matching the ios photo-viewer convention. only bind while the modal is
-  // open so we don't intercept page scrolls elsewhere. requires the swipe to
-  // be horizontally-dominant (dx > dy * 1.4) so vertical scrolls inside a
-  // long modal aren't misread as cycle gestures, and a 50px threshold so
-  // accidental small drags don't trigger.
+  // body scroll lock while any modal is open. without this, an attempted
+  // horizontal swipe on mobile that has even a few px of vertical drift
+  // scrolls the page underneath the modal, which feels like the modal is
+  // wobbling up/down. cycling between items keeps the lock — only flips
+  // off when the modal closes entirely.
+  useBodyScrollLock(!!selected);
+
+  // touch drag-to-swipe — modal follows the finger horizontally, release
+  // commits or springs back. listeners live at the document level so the
+  // gesture is forgiving (start outside the modal box still counts), but
+  // the visual transform applies to the modal element via modalRef.
+  //
+  // bound on every viewport size. mouse / keyboard users on desktop get
+  // the keyboard ←/→ handler above; touch users on phone or tablet get
+  // this swipe gesture. the touch listeners only fire on actual touch
+  // events, so non-touch devices are unaffected by their presence.
+  //
+  // dep array uses `!!selected` instead of `selected` so this effect only
+  // re-binds on open/close, not on every cycle (selected.index changes).
+  // re-binding mid-animation could drop in-flight WAAPI handlers.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (!selected) return;
 
-    let startX = 0, startY = 0, tracking = false;
-    const SWIPE_THRESHOLD = 50;
-    const HORIZONTAL_BIAS = 1.4;
+    let startX = 0, startY = 0;
+    let tracking = false;
+    let dragging = false;
+    let committing = false;  // lock during slide-out → slide-in window
+    let raf = null;
+
+    const writeX = (px, instant = true) => {
+      const el = modalRef.current;
+      if (!el) return;
+      el.style.transition = instant ? 'none' : '';
+      el.style.transform = `translateX(${px}px)`;
+    };
+
+    const clearTransform = () => {
+      const el = modalRef.current;
+      if (!el) return;
+      el.style.transform = '';
+      el.style.transition = '';
+    };
 
     const onStart = (e) => {
-      if (e.touches.length !== 1) { tracking = false; return; }
+      if (committing || e.touches.length !== 1) { tracking = false; return; }
       tracking = true;
+      dragging = false;
       startX = e.touches[0].clientX;
       startY = e.touches[0].clientY;
     };
-    const onEnd = (e) => {
-      if (!tracking) return;
-      tracking = false;
-      const t = e.changedTouches[0];
+
+    const onMove = (e) => {
+      if (!tracking || committing) return;
+      const t = e.touches[0];
       const dx = t.clientX - startX;
       const dy = t.clientY - startY;
-      if (Math.abs(dx) < SWIPE_THRESHOLD)            return;
-      if (Math.abs(dx) < Math.abs(dy) * HORIZONTAL_BIAS) return;
-      if (dx < 0) next();
-      else        prev();
+
+      // wait until movement crosses the lock threshold, then decide whether
+      // this is a horizontal swipe (we own it) or vertical (let it scroll).
+      if (!dragging) {
+        if (Math.abs(dx) < DIRECTION_LOCK_PX && Math.abs(dy) < DIRECTION_LOCK_PX) return;
+        if (Math.abs(dx) < Math.abs(dy) * HORIZONTAL_BIAS) {
+          tracking = false;  // vertical-dominant — abandon
+          return;
+        }
+        dragging = true;
+      }
+
+      // resistance past 50% of viewport width — drags farther than that feel
+      // increasingly heavy so the modal can't be flung clean off the screen.
+      const screenW = window.innerWidth;
+      const half = screenW * 0.5;
+      const damped = Math.abs(dx) > half
+        ? Math.sign(dx) * (half + (Math.abs(dx) - half) * 0.3)
+        : dx;
+
+      if (raf == null) {
+        raf = requestAnimationFrame(() => {
+          raf = null;
+          writeX(damped);
+        });
+      }
     };
 
-    window.addEventListener('touchstart', onStart, { passive: true });
-    window.addEventListener('touchend',   onEnd,   { passive: true });
-    return () => {
-      window.removeEventListener('touchstart', onStart);
-      window.removeEventListener('touchend',   onEnd);
+    const onEnd = (e) => {
+      if (raf != null) { cancelAnimationFrame(raf); raf = null; }
+      if (!tracking) return;
+      tracking = false;
+      const wasDragging = dragging;
+      dragging = false;
+      if (!wasDragging) return;
+
+      const t = e.changedTouches[0];
+      const dx = t.clientX - startX;
+      const el = modalRef.current;
+      if (!el) return;
+
+      const screenW = window.innerWidth;
+      const passed = Math.abs(dx) >= SWIPE_THRESHOLD;
+
+      if (passed) {
+        committing = true;
+        const sign = dx > 0 ? 1 : -1;
+
+        // slide-out: from current position to off-screen in swipe direction
+        const out = el.animate(
+          [{ transform: `translateX(${dx}px)` },
+           { transform: `translateX(${sign * screenW}px)` }],
+          { duration: COMMIT_OUT_MS, easing: 'ease-in', fill: 'forwards' }
+        );
+
+        out.onfinish = () => {
+          // switch to next/prev item silently — slide handles the visual,
+          // we don't want the pulse to also fire.
+          cycle(sign > 0 ? -1 : 1, { silent: true });
+
+          // wait for React to commit the new content, then jump the box to
+          // the opposite edge and animate it back to center.
+          requestAnimationFrame(() => {
+            const el2 = modalRef.current;
+            if (!el2) { committing = false; return; }
+            el2.style.transition = 'none';
+            el2.style.transform  = `translateX(${-sign * screenW}px)`;
+
+            requestAnimationFrame(() => {
+              const inAnim = el2.animate(
+                [{ transform: `translateX(${-sign * screenW}px)` },
+                 { transform: 'translateX(0)' }],
+                { duration: COMMIT_IN_MS, easing: 'ease-out', fill: 'forwards' }
+              );
+              inAnim.onfinish = () => {
+                clearTransform();
+                committing = false;
+              };
+            });
+          });
+        };
+      } else {
+        // spring back to center
+        const back = el.animate(
+          [{ transform: `translateX(${dx}px)` },
+           { transform: 'translateX(0)' }],
+          { duration: SPRING_BACK_MS, easing: 'ease-out', fill: 'forwards' }
+        );
+        back.onfinish = clearTransform;
+      }
     };
-  }, [selected, prev, next]);
+
+    document.addEventListener('touchstart',  onStart, { passive: true });
+    document.addEventListener('touchmove',   onMove,  { passive: true });
+    document.addEventListener('touchend',    onEnd,   { passive: true });
+    document.addEventListener('touchcancel', onEnd,   { passive: true });
+    return () => {
+      document.removeEventListener('touchstart',  onStart);
+      document.removeEventListener('touchmove',   onMove);
+      document.removeEventListener('touchend',    onEnd);
+      document.removeEventListener('touchcancel', onEnd);
+      if (raf != null) cancelAnimationFrame(raf);
+      clearTransform();
+    };
+  }, [!!selected, cycle]);
 
   const current = selected
     ? sections[selected.sectionIdx].items[selected.index]
     : null;
 
-  return { selected, current, bump, open, close, prev, next };
+  return { selected, current, bump, modalRef, open, close, prev, next };
 }

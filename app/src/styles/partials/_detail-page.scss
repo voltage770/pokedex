@@ -32,16 +32,27 @@
   }
 }
 
-.detail-card {
-  display: grid;
-  grid-template-columns: 280px 1fr;
-  gap: 36px;
+// the visual "card" surface — bg, border, radius, shadow — lives on the
+// outer wrap so it stays opaque even when the inner .detail-card fades for
+// the form-switch transition. without this split, the inner card's opacity
+// dropped its bg too, and #root's --bg flashed through (especially on
+// themes where --bg contrasts with --bg-card, e.g. nitro's white-vs-yellow).
+.detail-card-wrap {
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   box-shadow: var(--shadow-md);
-  padding: 36px;
   margin-bottom: 20px;
+  // border-radius needs overflow:hidden to clip the inner card's grid items
+  // visually at the corners.
+  overflow: hidden;
+}
+
+.detail-card {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 36px;
+  padding: 36px;
 }
 
 .detail-left {
@@ -461,51 +472,6 @@
   &:hover {
     color: var(--text);
     background: color-mix(in srgb, var(--text) 8%, transparent);
-  }
-}
-
-// chevron buttons rendered inside cycling-modal overlays (berries, pokeballs,
-// badges). anchored to the viewport edges via position: fixed so they sit
-// clear of the modal box on every breakpoint. low default opacity keeps them
-// from competing with the modal content; hover/focus brightens them so the
-// affordance is clear when the user reaches for one.
-.modal-cycle-arrow {
-  all: unset;
-  position: fixed;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 44px;
-  height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  font-size: 1.8rem;
-  line-height: 1;
-  color: rgba(255, 255, 255, .65);
-  background: rgba(0, 0, 0, .35);
-  cursor: pointer;
-  user-select: none;
-  z-index: 600; // above the .ability-modal-overlay (500)
-  transition: color .15s ease, background-color .15s ease, transform .15s ease;
-
-  &:hover, &:focus-visible {
-    color: rgba(255, 255, 255, .95);
-    background: rgba(0, 0, 0, .55);
-  }
-
-  &--prev { left: 12px;  padding-right: 3px; } // optical-center the chevron
-  &--next { right: 12px; padding-left:  3px; }
-}
-
-@media (max-width: 480px) {
-  // tighter on phones — less viewport real estate to spare
-  .modal-cycle-arrow {
-    width: 36px;
-    height: 36px;
-    font-size: 1.4rem;
-    &--prev { left: 6px;  }
-    &--next { right: 6px; }
   }
 }
 

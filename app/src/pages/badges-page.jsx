@@ -1,8 +1,7 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { useModalAnimation } from '../hooks/use-modal-animation';
 import { useModalCycleNav } from '../hooks/use-modal-cycle-nav';
 import { pulseElement } from '../utils/pulse';
-import ModalCycleArrows from '../components/modal-cycle-arrows';
 import badges from '../data/badges.json';
 
 // region order matches the games' release sequence — kanto first, paldea last.
@@ -67,22 +66,19 @@ function splitTypes(t) {
   return (t || '').split(',').map(s => s.trim()).filter(Boolean);
 }
 
-function BadgeModal({ badge, onClose, onPrev, onNext, closing, bump }) {
-  const modalRef = useRef(null);
-
-  // cycle pulse via WAAPI. skip on initial mount (bump.n === 0) so the
-  // opening modal-pop animation plays cleanly, then pulse on each cycle.
+function BadgeModal({ badge, modalRef, onClose, closing, bump }) {
+  // cycle pulse via WAAPI for keyboard / arrow-button cycles only — swipe
+  // cycles use the silent path so the slide animation isn't double-stamped.
   useEffect(() => {
     if (bump.n === 0) return;
     const anim = pulseElement(modalRef.current);
     return () => anim?.cancel();
-  }, [bump.n]);
+  }, [bump.n, modalRef]);
 
   const types = splitTypes(badge.type);
 
   return (
     <div className={`ability-modal-overlay${closing ? ' closing' : ''}`} onClick={onClose}>
-      <ModalCycleArrows onPrev={onPrev} onNext={onNext} />
       <div ref={modalRef} className="ball-modal ball-modal--badge" onClick={e => e.stopPropagation()}>
         <div className="ball-modal__header">
           {badge.sprite && <img src={badge.sprite} alt={badge.name} referrerPolicy="no-referrer" />}
@@ -128,7 +124,7 @@ function BadgeModal({ badge, onClose, onPrev, onNext, closing, bump }) {
 }
 
 export default function BadgesPage() {
-  const { current: currentBadge, bump, open, close, prev, next } = useModalCycleNav(SECTIONED_BADGES);
+  const { current: currentBadge, bump, modalRef, open, close } = useModalCycleNav(SECTIONED_BADGES);
   const { displayed: shownBadge, isClosing } = useModalAnimation(currentBadge);
 
   return (
@@ -152,7 +148,7 @@ export default function BadgesPage() {
       ))}
 
       {shownBadge && (
-        <BadgeModal badge={shownBadge} onClose={close} onPrev={prev} onNext={next} closing={isClosing} bump={bump} />
+        <BadgeModal badge={shownBadge} modalRef={modalRef} onClose={close} closing={isClosing} bump={bump} />
       )}
     </div>
   );

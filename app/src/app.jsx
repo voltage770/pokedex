@@ -1,7 +1,9 @@
 import { useState, useEffect, useRef, useMemo, Fragment } from 'react';
 import { BrowserRouter, Routes, Route, Link, useLocation, useNavigationType, useSearchParams } from 'react-router-dom';
 import { useModalAnimation } from './hooks/use-modal-animation';
-import { STORAGE_KEYS, getString, setString, getBool, setBool, getJSON, setJSON } from './utils/storage';
+import { useBodyScrollLock } from './hooks/use-body-scroll-lock';
+import { getAppScroller } from './utils/app-scroll';
+import { STORAGE_KEYS, getString, setString, getBool, setBool } from './utils/storage';
 import HomePage from './pages/home-page';
 import PokemonPage from './pages/pokemon-page';
 import ComparePage from './pages/compare-page';
@@ -14,6 +16,9 @@ import BerriesPage from './pages/berries-page';
 import MovesPage from './pages/moves-page';
 import BadgesPage from './pages/badges-page';
 import AboutPage from './pages/about-page';
+import TwitchLiveBadge from './components/twitch-live-badge';
+import TwitchGlitch from './components/twitch-glitch';
+import { useTwitchLive } from './hooks/use-twitch-live';
 
 // section flags:
 //   `divider: true` draws a hairline above the section (used to separate
@@ -47,7 +52,7 @@ const NAV_SECTIONS = [
     ],
   },
   {
-    label: 'lore',
+    label: 'world',
     items: [
       { to: '/lore', label: 'lore & legends' },
     ],
@@ -182,9 +187,6 @@ function HeaderSprites({ a11y }) {
 }
 
 
-const DEFAULT_FILTERS      = { type: true, class: false, minStat: false };
-const DEFAULT_FILTER_ORDER = ['type', 'class', 'minStat'];
-
 // saves scroll positions per location key and restores them on back navigation
 // only scrolls to top when the pathname actually changes — search param changes (e.g. form switching) are ignored
 function ScrollManager() {
@@ -194,16 +196,38 @@ function ScrollManager() {
   const prevPath   = useRef(location.pathname);
 
   useEffect(() => {
-    const save = () => { positions.current[location.key] = window.scrollY; };
-    window.addEventListener('scroll', save, { passive: true });
-    return () => window.removeEventListener('scroll', save);
+    const scroller = getAppScroller();
+    if (!scroller) return;
+    const save = () => { positions.current[location.key] = scroller.scrollTop; };
+    scroller.addEventListener('scroll', save, { passive: true });
+    return () => scroller.removeEventListener('scroll', save);
   }, [location.key]);
 
   useEffect(() => {
+    const scroller = getAppScroller();
+    if (!scroller) return;
     if (navType === 'POP') {
-      window.scrollTo(0, positions.current[location.key] ?? 0);
-    } else if (location.pathname !== prevPath.current && !location.state?.noScroll) {
-      window.scrollTo(0, 0);
+      // back/forward → restore saved scroll instantly so the user lands
+      // exactly where they left off.
+      scroller.scrollTo(0, positions.current[location.key] ?? 0);
+    } else {
+      // forward navigation → smooth scroll to top when (a) pathname changed
+      // or (b) the navigation explicitly opted in via state.scrollTop.
+      // (b) covers mega-evo card clicks where only ?form= changes — same
+      // pathname but the user expects to land at the top of the new view.
+      const pathChanged = location.pathname !== prevPath.current;
+      const explicitTop = location.state?.scrollTop === true;
+      const optedOut    = location.state?.noScroll === true;
+      if (!optedOut && (pathChanged || explicitTop)) {
+        // defer one frame so the new page component has time to render its
+        // content. firing scrollTo({behavior:'smooth'}) before the content
+        // settles can race with mid-render scrollHeight changes (e.g. brief
+        // loading placeholder → full detail) and either cancel the animation
+        // or land somewhere other than the top.
+        requestAnimationFrame(() => {
+          scroller.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      }
     }
     prevPath.current = location.pathname;
   }, [location.key, navType, location.pathname]);
@@ -212,9 +236,16 @@ function ScrollManager() {
 }
 
 // header lives inside BrowserRouter so it can use useSearchParams
-function AppHeader({ theme, setTheme, a11y, setA11y, enabledFilters, toggleFilter, filterOrder, reorderFilters }) {
+function AppHeader({ theme, setTheme, a11y, setA11y }) {
   const [visualsOpen,  setVisualsOpen]  = useState(false);
   const [featuresOpen, setFeaturesOpen] = useState(false);
+  const { isLive } = useTwitchLive();
+
+  // lock body scroll while either dropdown is open. without this, dragging
+  // on the dropdown surface (especially on ipad / iphone) chains the touch
+  // through to the page beneath, which scrolls under the open menu — feels
+  // broken. flips off the moment both dropdowns close.
+  useBodyScrollLock(visualsOpen || featuresOpen);
   const { displayed: visualsShown,  isClosing: visualsClosing }  = useModalAnimation(visualsOpen);
   const { displayed: featuresShown, isClosing: featuresClosing } = useModalAnimation(featuresOpen);
   const visualsRef    = useRef(null);
@@ -301,6 +332,13 @@ function AppHeader({ theme, setTheme, a11y, setA11y, enabledFilters, toggleFilte
                       onClick={() => setFeaturesOpen(false)}
                     >
                       {f.label}
+                      {f.to === '/about' && isLive && (
+                        <span className="feature-link__live-pip" aria-label="streaming live now">
+                          <span className="feature-link__live-pip-dot" />
+                          live
+                          <TwitchGlitch className="feature-link__live-pip-glitch" />
+                        </span>
+                      )}
                     </Link>
                   ))}
                 </Fragment>
@@ -311,6 +349,7 @@ function AppHeader({ theme, setTheme, a11y, setA11y, enabledFilters, toggleFilte
       </div>
 
       <div className="header-right">
+        {isLive && <TwitchLiveBadge />}
         <div className="settings-anchor" ref={visualsRef}>
           <button className="settings-btn settings-cog" onClick={() => setVisualsOpen(o => !o)} aria-label="settings">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
@@ -403,33 +442,22 @@ function useVisualSettings() {
 
 export default function App() {
   const { theme, setTheme, a11y, setA11y } = useVisualSettings();
-  const [enabledFilters, setEnabledFilters] = useState(() => ({
-    ...DEFAULT_FILTERS,
-    ...(getJSON(STORAGE_KEYS.ENABLED_FILTERS, {}) || {}),
-  }));
 
-  const [filterOrder, setFilterOrder] = useState(() => {
-    const saved = getJSON(STORAGE_KEYS.FILTER_ORDER, null);
-    if (Array.isArray(saved)) {
-      // append any new default keys that aren't in the saved order
-      const missing = DEFAULT_FILTER_ORDER.filter(k => !saved.includes(k));
-      return [...saved, ...missing];
-    }
-    return DEFAULT_FILTER_ORDER;
-  });
-
-  const toggleFilter = (key) => {
-    setEnabledFilters(prev => {
-      const next = { ...prev, [key]: !prev[key] };
-      setJSON(STORAGE_KEYS.ENABLED_FILTERS, next);
-      return next;
-    });
-  };
-
-  const reorderFilters = (newOrder) => {
-    setFilterOrder(newOrder);
-    setJSON(STORAGE_KEYS.FILTER_ORDER, newOrder);
-  };
+  // tag <html data-standalone> when launched from the ios home-screen icon.
+  // we deliberately don't rely solely on `@media (display-mode: standalone)` —
+  // ios safari's match for that query is inconsistent across versions, and
+  // some standalone-launched sessions don't match it at all. JS detection
+  // covers both modern (`display-mode`) and legacy (`navigator.standalone`).
+  // CSS rules in _base.scss are keyed off `html[data-standalone]` so the
+  // body bg / overscroll overrides apply deterministically.
+  useEffect(() => {
+    const standalone =
+      window.matchMedia?.('(display-mode: standalone)').matches
+      || window.navigator?.standalone === true;
+    if (!standalone) return;
+    document.documentElement.setAttribute('data-standalone', '');
+    return () => document.documentElement.removeAttribute('data-standalone');
+  }, []);
 
   return (
     <BrowserRouter basename={import.meta.env.BASE_URL}>
@@ -437,23 +465,23 @@ export default function App() {
       <AppHeader
         theme={theme} setTheme={setTheme}
         a11y={a11y} setA11y={setA11y}
-        enabledFilters={enabledFilters} toggleFilter={toggleFilter}
-        filterOrder={filterOrder} reorderFilters={reorderFilters}
       />
-      <Routes>
-        <Route path="/"            element={<NewsPage />} />
-        <Route path="/pokedex"     element={<HomePage enabledFilters={enabledFilters} filterOrder={filterOrder} toggleFilter={toggleFilter} />} />
-        <Route path="/pokemon/:id" element={<PokemonPage />} />
-        <Route path="/compare"     element={<ComparePage />} />
-        <Route path="/types"       element={<TypesPage />} />
-        <Route path="/moves"       element={<MovesPage />} />
-        <Route path="/pokeballs"   element={<PokeballsPage />} />
-        <Route path="/berries"     element={<BerriesPage />} />
-        <Route path="/badges"      element={<BadgesPage />} />
-        <Route path="/team"        element={<TeamPage />} />
-        <Route path="/lore"        element={<LorePage />} />
-        <Route path="/about"       element={<AboutPage />} />
-      </Routes>
+      <main className="app-scroll">
+        <Routes>
+          <Route path="/"            element={<NewsPage />} />
+          <Route path="/pokedex"     element={<HomePage />} />
+          <Route path="/pokemon/:id" element={<PokemonPage />} />
+          <Route path="/compare"     element={<ComparePage />} />
+          <Route path="/types"       element={<TypesPage />} />
+          <Route path="/moves"       element={<MovesPage />} />
+          <Route path="/pokeballs"   element={<PokeballsPage />} />
+          <Route path="/berries"     element={<BerriesPage />} />
+          <Route path="/badges"      element={<BadgesPage />} />
+          <Route path="/team"        element={<TeamPage />} />
+          <Route path="/lore"        element={<LorePage />} />
+          <Route path="/about"       element={<AboutPage />} />
+        </Routes>
+      </main>
     </BrowserRouter>
   );
 }

@@ -22,8 +22,12 @@
   flex-direction: column;
   gap: 8px;
   transition: background-color .25s ease;
+  // sticky inside the .app-scroll container — the header is OUTSIDE that
+  // container now, so we no longer need to offset 60px to clear it. top: 0
+  // pins to the top of the visible scroll area which is already below the
+  // header. height fills the scroll viewport.
   position: sticky;
-  top: 60px;
+  top: 0;
   height: calc(100vh - 60px);
   overflow-y: auto;
   scrollbar-width: thin;
@@ -48,17 +52,20 @@
     }
   }
 
-  &__min-stat {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
 }
 
 .filter-divider {
   border: none;
   border-top: 1px solid var(--border);
   margin: 4px 0;
+}
+
+// row-break helper used only in the mobile filter strip — display:none
+// on desktop where the filter is a column-flex layout and explicit row
+// breaks aren't meaningful. mobile responsive overrides this to display:
+// block + flex-basis: 100% to force a wrap.
+.filter-panel__break {
+  display: none;
 }
 
 .filter-toggles {
@@ -135,15 +142,15 @@
   }
 }
 
-.stat-input {
-  margin-top: 6px;
-}
-
 // ─── search bar ──────────────────────────────────────────────────────────────
 
 .search-bar {
+  // sticky inside .app-scroll — top:0 pins it to the top of the scroll
+  // viewport (which is already just below the header). previously top:60px
+  // to clear the body-level sticky header; the header is outside the scroll
+  // container in the new architecture so the offset isn't needed.
   position: sticky;
-  top: 60px;
+  top: 0;
   z-index: 10;
   background: var(--bg);
   padding-top: 16px;
@@ -226,7 +233,7 @@
     border-color: var(--accent);
     box-shadow: var(--shadow-lg), 0 0 0 3px var(--accent);
 
-    .pokemon-sprite { transform: scale(1.07); }
+    .pokemon-sprite { transform: scale(1.1); }
   }
 }
 
