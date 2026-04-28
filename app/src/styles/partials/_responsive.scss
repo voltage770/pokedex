@@ -47,9 +47,14 @@
 
 @media (max-width: 640px) {
   // ── header ──
+  // bumped from 52px → 60px so the larger settings-cog / settings-burger
+  // tap targets (~44×44 in the rule below) sit with breathing room above
+  // and below instead of crowding the header edges. nav-section-label /
+  // feature-link rows in the dropdown were also bigger after the
+  // a11y bump, and a 52px header read as too tight against them.
   .site-header {
     padding: 0 16px;
-    height: 52px;
+    height: 60px;
   }
 
   // scale sprites down for the shorter mobile header so they don't crowd the
@@ -67,12 +72,49 @@
     font-size: 1.05rem;
   }
 
+  // ── header buttons + dropdown nav ──
+  // bump the burger / cog tap targets up to ~44×44 so they meet a11y
+  // tap-target guidelines on phones. desktop default of 28×28 was too
+  // small to hit reliably with a thumb. SVG icons scale up too so the
+  // visual mass matches the larger button frame.
+  .settings-btn.settings-cog,
+  .settings-btn.settings-burger {
+    padding: 11px 13px;
+
+    svg { width: 22px; height: 22px; }
+  }
+
+  // dropdown nav items (open burger or settings menu): bigger font + more
+  // padding so each row is a comfortable tap target. nested rows still
+  // read as a sub-tier (smaller and lighter than top-level rows) but
+  // they're now ≥40px tall instead of ~22px.
+  .nav-section-label {
+    padding: 11px 16px;
+    font-size: 1rem;
+  }
+
+  .feature-link {
+    padding: 12px 16px;
+    font-size: 1rem;
+
+    &--nested {
+      padding: 10px 16px 10px 28px;
+      font-size: .95rem;
+    }
+  }
+
+  // dropdown panel itself — give the items a little more breathing room
+  // since each row is taller now.
+  .settings-modal {
+    padding: 8px;
+  }
+
   // ── home layout ──
   // single column: filter strip on top, main below, compare at bottom
   .home-layout {
     grid-template-columns: 1fr;
     grid-template-rows: auto 1fr auto;
-    min-height: calc(100vh - 52px);
+    min-height: calc(100vh - 60px);
   }
 
   // filter panel on mobile: flex-wrap row that grows vertically as needed
@@ -124,12 +166,34 @@
     }
 
     select,
-    input[type='number'] {
+    input[type='number'],
+    .sort-control {
       width: auto;
-      min-width: 110px;
+      // flex-shrink: 0 — siblings on the same wrap-row can't squeeze the
+      // sort-control narrower than 50% - 5px (gap-half). flex-grow: 1
+      // still allows growing if extra space appears. flex-basis pins the
+      // 2x2 grid to exact halves.
+      flex: 1 0 calc(50% - 5px);
+      min-width: 0;
       font-size: .82rem;
-      padding: 5px 10px;       // shorter than before — selects were unnecessarily tall
-      flex: 1 1 auto;
+    }
+
+    select,
+    input[type='number'] {
+      padding: 5px 10px;
+    }
+
+    // inner select of .sort-control: takes flex: 1 1 0 from the wrapper's
+    // own flex layout (set in _home.scss), so width is automatic. only
+    // padding needs the mobile-specific tightening to match siblings.
+    .sort-control select {
+      padding: 5px 32px 5px 10px;
+    }
+    .sort-control__direction {
+      right: 6px;
+      width: 22px;
+      height: 22px;
+      font-size: 1.1rem;
     }
 
     .filter-divider {

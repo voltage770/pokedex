@@ -53,9 +53,25 @@ export default function FilterPanel({ filters, onChange, shiny, onShinyToggle, i
         {CLASSES.map(c => <option key={c.value} value={c.value}>{c.label}</option>)}
       </select>
 
-      <select value={sort} onChange={e => onChange({ ...filters, sort: e.target.value })}>
-        {SORT_OPTIONS.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
-      </select>
+      {/* sort select + direction toggle merged into one box. select native
+          dropdown chrome is suppressed via CSS (appearance: none) and the
+          direction button is absolutely positioned on the right where the
+          native caret used to live. tap the button → flip asc/desc; tap
+          anywhere else on the select → open the sort dropdown. saves a
+          row of chrome compared to having separate ↑/↓ buttons below. */}
+      <div className="sort-control">
+        <select value={sort} onChange={e => onChange({ ...filters, sort: e.target.value })}>
+          {SORT_OPTIONS.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
+        </select>
+        <button
+          type="button"
+          className="sort-control__direction"
+          onClick={() => onChange({ ...filters, sortDir: sortDir === 'asc' ? 'desc' : 'asc' })}
+          aria-label={`sort ${sortDir === 'asc' ? 'ascending — tap to switch to descending' : 'descending — tap to switch to ascending'}`}
+        >
+          {sortDir === 'asc' ? '↑' : '↓'}
+        </button>
+      </div>
 
       {/* zero-height row break — only renders on mobile (CSS) where the
           filter-panel is a flex-wrap row. forces sort-strip + reset onto
@@ -64,18 +80,6 @@ export default function FilterPanel({ filters, onChange, shiny, onShinyToggle, i
       <span className="filter-panel__break" aria-hidden="true" />
 
       <div className="sort-options-strip">
-        <button
-          className={sortDir === 'asc' ? 'active' : ''}
-          onClick={() => onChange({ ...filters, sortDir: 'asc' })}
-        >
-          ↑
-        </button>
-        <button
-          className={sortDir === 'desc' ? 'active' : ''}
-          onClick={() => onChange({ ...filters, sortDir: 'desc' })}
-        >
-          ↓
-        </button>
         <button
           className={shiny ? 'active' : ''}
           onClick={onShinyToggle}

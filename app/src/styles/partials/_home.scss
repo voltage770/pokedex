@@ -60,6 +60,62 @@
   margin: 4px 0;
 }
 
+// sort select + direction toggle merged into one box. wrapper is
+// position: relative so the arrow icon can sit absolutely against the
+// select's right edge. the select inside fills the wrapper width so
+// .sort-control's flex sizing carries through to the visible select.
+.sort-control {
+  // wrapper is itself a flex container — that way the inner select takes
+  // `flex: 1 1 0; min-width: 0` and ALWAYS fills the wrapper regardless
+  // of cascading width rules from the parent .filter-panel. earlier
+  // attempts that relied on `width: 100%` on the inner select kept
+  // losing to the mobile `select { width: auto }` cascade, leaving the
+  // select shrunk to content width inside a half-empty wrapper.
+  position: relative;
+  display: flex;
+  width: 100%;
+
+  select {
+    flex: 1 1 0;
+    min-width: 0;
+    padding-right: 36px;
+  }
+
+  // bare clickable arrow — no border, no bg, no chrome. just a glyph
+  // sitting in the right padding the select cleared for it. tap = flip
+  // direction; tap anywhere else on the select = open dropdown.
+  &__direction {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: color .15s ease, transform .15s ease;
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        color: var(--accent);
+      }
+    }
+
+    &:active {
+      transform: translateY(-50%) scale(.85);
+      color: var(--accent);
+    }
+  }
+}
+
 // row-break helper used only in the mobile filter strip — display:none
 // on desktop where the filter is a column-flex layout and explicit row
 // breaks aren't meaningful. mobile responsive overrides this to display:

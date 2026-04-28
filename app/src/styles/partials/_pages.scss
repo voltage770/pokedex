@@ -564,15 +564,55 @@
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   cursor: pointer;
-  transition: border-color .15s ease, box-shadow .18s ease;
+  // position: relative anchors the ::after pseudo used for the hover bump
+  transition: border-color .15s ease;
   font-family: inherit;
+  position: relative;
 
   img { transition: transform .2s ease; }
 
-  &:hover {
-    border-color: var(--accent);
-    box-shadow: var(--shadow-sm), 0 0 0 3px var(--accent);
+  // border thickens visually on hover via a fading pseudo overlay rather
+  // than a real border-width / padding change. the layout-property route
+  // looked janky because border-width and padding are integer-pixel only:
+  // each one snaps at its own moment during a 150ms transition, so the
+  // bump arrived in two visible frames instead of one smooth ramp. this
+  // ::after sits at inset: 0 (covers the padding-box, just inside the
+  // regular 1px border) with its own 1px solid accent border, fading from
+  // opacity 0 → 1 over the same 150ms. paired with the existing border's
+  // color transition to accent, the two 1px rings — outer (regular border)
+  // and inner (pseudo) — read as a single 2px accent edge, but the only
+  // animated property is opacity, which is gpu-accelerated and sub-pixel
+  // smooth.
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 1px solid var(--accent);
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity .15s ease;
+    pointer-events: none;
+  }
 
+  // hover is gated to true pointer devices via `(hover: hover)` — touch
+  // devices report `(hover: none)` and would otherwise leave the highlight
+  // stuck after a tap. desktop mouse hovering still works as before.
+  // :focus-visible matches keyboard nav only (tab / arrow keys); outline
+  // is suppressed so the pseudo + border-color combo is the sole cue.
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      border-color: var(--accent);
+
+      &::after { opacity: 1; }
+      img { transform: scale(1.1); }
+    }
+  }
+
+  &:focus-visible {
+    outline: none;
+    border-color: var(--accent);
+
+    &::after { opacity: 1; }
     img { transform: scale(1.1); }
   }
 
@@ -614,28 +654,55 @@
   animation: modal-pop .25s cubic-bezier(.34, 1.56, .64, 1);
 
   &--berry { height: 400px; }
-  &--badge { height: 380px; }
+  // badge modal needs more vertical room than the 420px tried earlier:
+  // 6 horizontal info rows + 120px hero + header pushes the content past
+  // 420px, and the user reported fields cropping with no scroll. 480px
+  // fits all current badges without scroll on phone-class viewports;
+  // the base `overflow-y: auto` on .ball-modal still kicks in if any
+  // future badge ever exceeds it.
+  &--badge { height: 480px; }
 
   &__header {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
     margin-bottom: 12px;
+  }
+
+  // title group inside the header: sits between the prev / next arrows
+  // and groups the sprite (when present) immediately in front of the
+  // name as a single centered unit. earlier layout had the sprite as a
+  // sibling of the arrows, which split the visual title group across
+  // the row. wrapping keeps sprite + h2 adjacent regardless of the
+  // surrounding chrome.
+  &__title {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-width: 0;  // allow long titles to shrink before pushing arrows
 
     img {
-      width: 40px;
-      height: 40px;
+      width: 36px;
+      height: 36px;
       object-fit: contain;
       image-rendering: pixelated;
+      flex-shrink: 0;
     }
 
     h2 {
-      flex: 1;
       font-size: 1rem;
       font-weight: var(--fw-semibold);
       text-transform: capitalize;
       color: var(--text);
       margin: 0;
+      text-align: center;
+      // truncate exceptionally long titles instead of wrapping or
+      // pushing the next-arrow off the edge.
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
   }
 
@@ -652,6 +719,24 @@
     color: var(--text-muted);
     margin: 0 0 12px;
     line-height: 1.5;
+  }
+
+  // hero sprite block — used by the badge modal to feature the badge image
+  // at a meaningful size (a badge IS the visual subject; small header
+  // thumb didn't earn its keep). centered, generous margin, image rendered
+  // pixel-perfect since the source sprites are low-res.
+  &__hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 4px 0 16px;
+
+    img {
+      width: 120px;
+      height: 120px;
+      object-fit: contain;
+      image-rendering: pixelated;
+    }
   }
 
   // horizontal info grid — auto-fit packs 2 or 3 cells per row depending on
@@ -706,6 +791,54 @@
     display: inline-flex;
     flex-wrap: wrap;
     gap: 4px;
+  }
+
+  // emphasis variant — used for proper nouns we want to stand out (e.g. the
+  // gym leader's name in the badge modal's "earned by defeating" cell).
+  // capitalize so leader names render Title Case despite the global
+  // text-transform: lowercase on info-cell values.
+  &__value--strong {
+    font-weight: var(--fw-bold);
+    text-transform: capitalize;
+  }
+}
+
+// badge modal scopes the info-cell layout to a horizontal "definition list":
+// label left, value right, one row per cell, single column overall. the
+// vertical default (label stacked over value, multi-column auto-fit grid)
+// stacked too tall on the badge modal — six cells × ~50px each + 120px hero
+// + header was clipping content vertically (e.g. blaine's volcano badge).
+// horizontal rows are ~30px each, packing six cells into ~180px and keeping
+// the modal comfortably under the 420px cap. all values bold + capitalized
+// since the badge modal's data is dominated by proper nouns (leader names,
+// city names) that read better as title case than lowercase utility text.
+.ball-modal--badge {
+  .ball-modal__meta {
+    grid-template-columns: 1fr;
+  }
+
+  .info-cell {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 7px 12px;
+    gap: 12px;
+
+    &__label {
+      flex-shrink: 0;
+    }
+
+    &__value {
+      font-weight: var(--fw-bold);
+      text-transform: capitalize;
+      text-align: right;
+    }
+
+    // multi-type rotating gym (e.g. striaton trio): allow chips to wrap
+    // onto a second row right-aligned rather than overflowing the cell.
+    &__value--types {
+      justify-content: flex-end;
+    }
   }
 }
 

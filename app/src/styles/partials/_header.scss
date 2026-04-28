@@ -138,11 +138,28 @@
   cursor: pointer;
   transition: color .15s ease, border-color .15s ease, background-color .15s ease, box-shadow .15s ease;
 
-  &:hover {
-    color: var(--text);
-    background: color-mix(in srgb, var(--accent) 22%, var(--bg-card));
+  // hover gated to pointer devices (no ios sticky-hover). the border +
+  // shadow accent ring is the affordance — earlier rule also tinted the
+  // bg with `color-mix(accent 22%, bg-card)` which read as too heavy a
+  // darkening relative to the rest of the site's hover treatments.
+  // dropping the bg swap leaves text + border + ring carrying the
+  // emphasis, consistent with the lighter feature-link hover.
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px var(--accent);
+    }
+  }
+
+  // touch + mouse press feedback. fires during the active press only;
+  // the existing transition timing fades it back out smoothly on
+  // release. replaces ios's harsh -webkit-tap-highlight-color (killed
+  // globally in _base.scss) with a softer, on-brand press affordance.
+  &:active {
+    transform: scale(.95);
     border-color: var(--accent);
-    box-shadow: 0 0 0 1px var(--accent);
+    color: var(--accent);
   }
 
   &.settings-cog,
@@ -154,7 +171,10 @@
   }
 }
 
-// dropdown modal
+// dropdown modal — single element with overflow-y: auto + max-height for
+// internal scroll. the scrollbar is custom-styled (webkit pseudos) to
+// inset its visible thumb past the rounded corners; see comment block
+// at the bottom of this rule.
 .settings-modal {
   position: absolute;
   top: calc(100% + 10px);
@@ -169,9 +189,46 @@
   flex-direction: column;
   gap: 16px;
   z-index: 200;
+  // cap to viewport minus the header band + breathing room and scroll
+  // internally if entries exceed it. fixes mobile cases where many nav
+  // items extended below the screen edge with no way to reach them.
+  max-height: calc(100vh - 80px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
   animation: modal-pop .25s cubic-bezier(.34, 1.56, .64, 1);
 
   &.closing { animation: modal-pop-out .25s ease-in forwards; }
+
+  // thin scrollbar at the default right-edge position. earlier attempt
+  // used a wide reserved track + transparent right border on the thumb
+  // to inset the visible bar past the rounded corners, but that ate
+  // content width AND the resulting border-radius math curved the wrong
+  // side of the thumb. simple narrow bar with a small thumb radius is
+  // cleaner — the slight overlap with the rounded corner at the very
+  // top + bottom of the bar is acceptable and the bar doesn't visually
+  // dominate. clip-path on the parent forces the bar to render inside
+  // the rounded shape so it doesn't stick out past the corners.
+  clip-path: inset(0 round var(--radius));
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  // thumb fades away when not interacting — transparent by default, only
+  // paints when the dropdown is being hovered or actively scrolled. mirrors
+  // macOS's overlay-scrollbar auto-fade behavior so the bar doesn't sit
+  // there as a persistent visual element when the user isn't using it.
+  &::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 3px;
+    transition: background-color .25s ease;
+  }
+  &:hover::-webkit-scrollbar-thumb,
+  &:active::-webkit-scrollbar-thumb {
+    background: color-mix(in srgb, var(--text) 28%, transparent);
+  }
 }
 
 .settings-section {
@@ -384,22 +441,110 @@
 }
 
 .dropdown-divider {
-  height: 1px;
+  // a visible 1px hairline. earlier 60% opacity + 4px top/bottom margin
+  // collapsed visually inside the flex parent's 16px gap. explicit
+  // flex sizing (`flex: 0 0 1px`) forces 1px height even when the flex
+  // parent's auto sizing would otherwise round it to 0 in some
+  // browsers, and align-self stretches it horizontally regardless of
+  // the parent's align-items default.
+  flex: 0 0 1px;
+  align-self: stretch;
   background: var(--border);
-  margin: 4px 10px;
-  opacity: .6;
+  margin: 0 6px;
+  opacity: 1;
 }
 
 // top-level menu rows — news, browse, tools, lore, about all share this look.
-// labels (browse/tools/lore) just inherit it via the same styling rules but
-// are non-interactive since they only group their child items.
+// labels (browse/tools/lore) inherit the same look but render as click-to-
+// expand buttons via the --toggle modifier — collapsed by default for a
+// concise menu, expand reveals the section's nested items underneath.
 .nav-section-label {
   display: block;
   padding: 7px 12px;
   font-size: .82rem;
   font-weight: var(--fw-bold);
   color: var(--text);
-  pointer-events: none; // labels aren't clickable
+
+  // when used as a toggle (every labeled section), the label becomes a
+  // real button — full-width flex row with the label on the left and a
+  // chevron on the right that rotates when the section is expanded.
+  // pointer-events explicitly enabled to override any inherited disable
+  // and to keep the button clickable on touch.
+  &--toggle {
+    pointer-events: auto;
+    cursor: pointer;
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+    font-family: inherit;
+    font-size: inherit;
+    // re-assert bold — without this, the user-agent button stylesheet
+    // (or `font: inherit` resetting weight to body's 400) wipes out the
+    // .nav-section-label's `font-weight: var(--fw-bold)` and the labels
+    // render at regular weight.
+    font-weight: var(--fw-bold);
+    color: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: var(--radius-sm);
+    transition: background .15s ease, color .15s ease;
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        background: color-mix(in srgb, var(--text) 5%, transparent);
+        color: var(--accent);
+      }
+    }
+
+    // press feedback — same softer tap affordance as .feature-link
+    // since the toggle is rendered alongside the nav links.
+    &:active {
+      background: color-mix(in srgb, var(--accent) 14%, transparent);
+      color: var(--accent);
+    }
+  }
+
+  &__chevron {
+    color: var(--text-subtle);
+    transition: transform .2s ease;
+    font-size: 1rem;
+    line-height: 1;
+  }
+
+  &--toggle.is-expanded &__chevron {
+    transform: rotate(90deg);
+  }
+}
+
+// collapsible container for a labeled section's nested items. uses the
+// `grid-template-rows: 0fr → 1fr` trick to animate from height 0 to its
+// natural content height — `auto` heights aren't transitionable, but a
+// grid track ratio is, so this is the cleanest CSS-only approach.
+// inner has overflow:hidden to clip while collapsing/expanding.
+//
+// caveat: requires Chrome 117+ / Safari 17.4+ for grid-track interpolation.
+// older browsers fall back to instant show/hide (still functional).
+.nav-section-items {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows .22s ease;
+
+  &.is-expanded {
+    grid-template-rows: 1fr;
+  }
+
+  &__inner {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    // tighter than the parent .settings-modal's 16px gap — sub-items
+    // are conceptually one grouped category, so they read better as a
+    // packed list than as separate-feeling rows. matching the parent
+    // gap left a chunky band of whitespace between every nested entry.
+    gap: 4px;
+  }
 }
 
 .feature-link {
@@ -411,18 +556,130 @@
   border-radius: var(--radius-sm);
   transition: background .15s ease, color .15s ease;
 
-  &:hover {
-    background: var(--bg);
-    color: var(--text);
+  // hover gated to pointer devices (no ios sticky-hover). the dropdown
+  // already has a visible border + chrome around the items, so the
+  // hover affordance just shifts the text color and adds a subtle bg
+  // tint instead of the heavier `var(--bg)` swap. color-mix at 5%
+  // gives a barely-there row highlight that still marks the active
+  // hover row without darkening the menu.
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background: color-mix(in srgb, var(--text) 5%, transparent);
+      color: var(--accent);
+    }
+  }
+
+  // touch + mouse press feedback — only paints during the active
+  // press, fades back via the existing transition. softer than ios's
+  // killed default tap-highlight but still clearly registers the tap.
+  &:active {
+    background: color-mix(in srgb, var(--accent) 14%, transparent);
+    color: var(--accent);
   }
 
   // nested items (under a label) read as supporting children: indented,
   // smaller, less weighty, muted color. the contrast against the bolder
-  // top-level rows above is what makes the hierarchy obvious.
+  // top-level rows above is what makes the hierarchy obvious. a `›`
+  // chevron prefix marks each sub-item visually so the label / nested
+  // distinction is unambiguous even at a glance — chevron is in the
+  // text-subtle color so it sits as a hint rather than competing with
+  // the label text.
   &--nested {
     padding: 5px 12px 5px 22px;
     font-size: .78rem;
     font-weight: var(--fw-medium);
     color: var(--text-muted);
+
+    &::before {
+      content: '› ';
+      color: var(--text-subtle);
+      margin-right: 2px;
+    }
   }
+}
+
+// ─── footer chrome strip ─────────────────────────────────────────────────────
+// rendered as a body-portal sibling of #root (see app.jsx) and pinned with
+// position: fixed at the visual viewport bottom. the portal placement is
+// what keeps the strip stationary during pull-to-refresh: ptr translates
+// #root, and a body-sibling escapes that transform entirely. mirrors the
+// site-header's chrome (bg-header + border) so the page reads as
+// sandwiched between matching top + bottom bands.
+//
+// desktop / browser: 44px tall, carries github + twitch links (same set
+// as the about page). in iOS PWA standalone the height collapses to
+// env(safe-area-inset-bottom) and the inner content is clipped via
+// overflow:hidden — what remains is just a thin chrome band claiming the
+// home-indicator zone as intentional UI rather than encroaching system
+// chrome covering content. .app-scroll adds matching padding-bottom so
+// content never tucks behind the fixed footer.
+.site-footer-strip {
+  // hidden by default — the desktop footer concept is on hold; only
+  // standalone needs the chrome strip (claims iOS's home-indicator zone
+  // as deliberate UI). standalone re-enables this with `display: flex`.
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  // z-index: 2 — same band as .ptr (which is also a body-portal). sits
+  // above #root (z:1) so it stays painted, but well below modals (z:500)
+  // so overlays still cover it correctly. site-header's z:100 doesn't
+  // overlap (top vs bottom of viewport), but its dropdowns extending down
+  // sit above us via the header's stacking context.
+  z-index: 2;
+  // height comes from --footer-content-h (defined in _tokens.scss). when
+  // the footer is brought back on desktop, the .app-scroll bottom-reserve
+  // reads the same var to keep content + footer aligned.
+  height: var(--footer-content-h);
+  background: var(--bg-header);
+  align-items: center;
+  justify-content: center;
+  // 18px gap on each side of the `||` separator (so the visible spacing
+  // between "github" and "twitch" totals ~36px + sep width). 12px felt
+  // cramped on narrow mobile widths where the footer's centered content
+  // band is short and the items read as touching the divider.
+  gap: 18px;
+  padding: 0 16px;
+  font-size: .70rem;
+  color: var(--text-muted);
+  transition: background-color .25s ease, border-color .25s ease;
+
+  &__link {
+    color: var(--text-muted);
+    font-weight: var(--fw-medium);
+    transition: color .15s ease;
+
+    // hover gated to pointer devices to avoid ios sticky-hover-after-tap.
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        color: var(--accent);
+      }
+    }
+  }
+
+  &__sep {
+    color: var(--text-subtle);
+    // letter-spacing splits the two pipe glyphs slightly so "||" reads as a
+    // distinct divider rather than smushed double-pipe.
+    letter-spacing: .15em;
+  }
+}
+
+// in standalone, the footer collapses to a thin bg-header strip — much
+// smaller than env(safe-area-inset-bottom) on iphone (~34px reads as
+// chunky chrome). content row hidden. the border-top on this rule (only
+// shown in standalone, not desktop) demarcates the chrome strip from
+// the page content above so the band reads as a deliberate edge rather
+// than a stray bg-header band. iOS still draws the home-indicator pill
+// in its native zone, which sits below where this 8px strip ends; the
+// page bg fills the gap between them.
+html[data-standalone] .site-footer-strip {
+  // re-enables visibility (default rule above sets `display: none`).
+  // standalone is currently the only context that shows the footer.
+  display: flex;
+  height: 8px;
+  padding: 0;
+  border-top: 1px solid var(--border);
+  > * { display: none; }
 }

@@ -66,9 +66,8 @@ function splitTypes(t) {
   return (t || '').split(',').map(s => s.trim()).filter(Boolean);
 }
 
-function BadgeModal({ badge, modalRef, onClose, closing, bump }) {
-  // cycle pulse via WAAPI for keyboard / arrow-button cycles only — swipe
-  // cycles use the silent path so the slide animation isn't double-stamped.
+function BadgeModal({ badge, modalRef, onClose, onPrev, onNext, closing, bump }) {
+  // cycle pulse via WAAPI on every keyboard / tap-arrow cycle.
   useEffect(() => {
     if (bump.n === 0) return;
     const anim = pulseElement(modalRef.current);
@@ -81,24 +80,30 @@ function BadgeModal({ badge, modalRef, onClose, closing, bump }) {
     <div className={`ability-modal-overlay${closing ? ' closing' : ''}`} onClick={onClose}>
       <div ref={modalRef} className="ball-modal ball-modal--badge" onClick={e => e.stopPropagation()}>
         <div className="ball-modal__header">
-          {badge.sprite && <img src={badge.sprite} alt={badge.name} referrerPolicy="no-referrer" />}
-          <h2>{badge.name}</h2>
-          <button className="ability-modal-close" onClick={onClose}>✕</button>
+          <button className="modal-cycle-arrow modal-cycle-arrow--prev" onClick={onPrev} aria-label="previous">‹</button>
+          <div className="ball-modal__title">
+            <h2>{badge.name}</h2>
+          </div>
+          <button className="modal-cycle-arrow modal-cycle-arrow--next" onClick={onNext} aria-label="next">›</button>
         </div>
 
-        {badge.design && <p className="ball-modal__flavor">{badge.design}</p>}
+        {badge.sprite && (
+          <div className="ball-modal__hero">
+            <img src={badge.sprite} alt={badge.name} referrerPolicy="no-referrer" />
+          </div>
+        )}
 
         <div className="ball-modal__meta">
           <div className="info-cell">
-            <span className="info-cell__label">leader</span>
+            <span className="info-cell__label">earned by defeating</span>
             <span className="info-cell__value">{badge.leader || '—'}</span>
           </div>
           <div className="info-cell">
-            <span className="info-cell__label">city</span>
+            <span className="info-cell__label">location</span>
             <span className="info-cell__value">{badge.city || '—'}</span>
           </div>
           <div className="info-cell">
-            <span className="info-cell__label">type</span>
+            <span className="info-cell__label">gym type</span>
             <span className="info-cell__value info-cell__value--types">
               {types.length
                 ? types.map(t => <span key={t} className={`type-badge type-${t}`}>{t}</span>)
@@ -124,7 +129,7 @@ function BadgeModal({ badge, modalRef, onClose, closing, bump }) {
 }
 
 export default function BadgesPage() {
-  const { current: currentBadge, bump, modalRef, open, close } = useModalCycleNav(SECTIONED_BADGES);
+  const { current: currentBadge, bump, modalRef, open, close, prev, next } = useModalCycleNav(SECTIONED_BADGES);
   const { displayed: shownBadge, isClosing } = useModalAnimation(currentBadge);
 
   return (
@@ -138,7 +143,18 @@ export default function BadgesPage() {
           <div className="ball-grid">
             {section.items.map((b, index) => (
               <button key={b.id} className="ball-thumb"
-                      onClick={() => open(sectionIdx, index)}>
+                      onClick={(e) => {
+                        // capture the target before the async open() — once the
+                        // modal mounts, react may pool / nullify the synthetic
+                        // event's currentTarget by the time the timeout fires.
+                        const t = e.currentTarget;
+                        // pulse is sized + timed to peak before the modal's
+                        // backdrop fades in (otherwise the dim overlay buries
+                        // the animation). 70ms delay lets the peak land while
+                        // the thumb is still fully visible.
+                        pulseElement(t, { scale: 1.07, duration: 220, offset: 0.3 });
+                        setTimeout(() => open(sectionIdx, index), 70);
+                      }}>
                 {b.sprite && <img src={b.sprite} alt={b.name} loading="lazy" referrerPolicy="no-referrer" />}
                 <span>{b.name}</span>
               </button>
@@ -148,7 +164,15 @@ export default function BadgesPage() {
       ))}
 
       {shownBadge && (
-        <BadgeModal badge={shownBadge} modalRef={modalRef} onClose={close} closing={isClosing} bump={bump} />
+        <BadgeModal
+          badge={shownBadge}
+          modalRef={modalRef}
+          onClose={close}
+          onPrev={prev}
+          onNext={next}
+          closing={isClosing}
+          bump={bump}
+        />
       )}
     </div>
   );

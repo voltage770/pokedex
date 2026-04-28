@@ -44,13 +44,13 @@ export default function AboutPage() {
         <ul className="news-about__links">
           <li>
             <a href="https://github.com/voltage770" target="_blank" rel="noopener noreferrer">
-              github / voltage770
+              github
             </a>
           </li>
           {channel && (
             <li>
               <a href={`https://www.twitch.tv/${channel}`} target="_blank" rel="noopener noreferrer">
-                twitch / {channel}
+                twitch
               </a>
             </li>
           )}

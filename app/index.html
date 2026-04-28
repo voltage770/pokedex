@@ -14,15 +14,18 @@
     <!-- icons: prod variants by default. an inline script below swaps them to
          the -dev variants when running on localhost / LAN IPs / *.local so the
          dev build is visually distinct on the home screen and browser tabs.
-         apple-touch-icon includes light + dark mode variants — ios reads the
-         `media` attribute and picks the matching icon for the user's system
-         theme. the no-media fallback is the dark-bg variant (used by older
-         iOS that ignores the media attribute, and by anything that doesn't
-         match either media query). -->
-    <link rel="icon" type="image/svg+xml" href="/favicon-prod.svg" />
+         apple-touch-icon order matters — ios's support for the `media`
+         attribute on apple-touch-icon is inconsistent across versions: many
+         builds just pick the first or last entry regardless. the no-media
+         entry is the LIGHT variant (most users are on light-mode phones, and
+         this is what builds without media-query support fall back to). the
+         dark variant is gated behind `(prefers-color-scheme: dark)` so it
+         only wins on dark-mode devices that honor the attribute. note:
+         already-installed home-screen icons stay cached on ios — re-add the
+         site to the home screen to pick up changes here. -->
+    <link rel="icon" type="image/svg+xml" href="/favicon-prod.svg" sizes="any" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-prod-32.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-prod.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-prod-light.png" media="(prefers-color-scheme: light)" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-prod-light.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-prod.png" media="(prefers-color-scheme: dark)" />
     <link rel="manifest" href="/manifest-prod.webmanifest" />
     <meta name="theme-color" content="#1a1a1f" media="(prefers-color-scheme: dark)" />
@@ -34,6 +37,14 @@
       // dev/prod icon swap. ios reads the link tags when "Add to Home Screen"
       // is invoked, so this needs to run before the user adds the page —
       // synchronous inline script in <head> guarantees that.
+      //
+      // regex: `-prod` followed by either `-` or `.` (lookahead). earlier
+      // version used `/-prod\./` (literal dot) which only matched filenames
+      // like `manifest-prod.webmanifest` and `apple-touch-icon-prod.png`,
+      // missing `apple-touch-icon-prod-light.png` and `favicon-prod-32.png`
+      // — those have a dash after `prod`, not a dot. result was the dev
+      // build kept showing the prod yellow icons for the light apple-touch
+      // and the 32px favicon.
       (function () {
         var h = location.hostname;
         var isDev = h === 'localhost'
@@ -43,7 +54,7 @@
         if (!isDev) return;
         document.querySelectorAll('link[rel="icon"], link[rel="apple-touch-icon"], link[rel="manifest"]').forEach(function (el) {
           var href = el.getAttribute('href');
-          if (href) el.setAttribute('href', href.replace(/-prod\./, '-dev.'));
+          if (href) el.setAttribute('href', href.replace(/-prod(?=[-.])/, '-dev'));
         });
       })();
 

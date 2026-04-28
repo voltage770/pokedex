@@ -10,6 +10,12 @@
   --fw-medium:   500;  // labels, meta values, secondary emphasis
   --fw-semibold: 600;  // subheadings, links, chips, buttons
   --fw-bold:     700;  // headings, names, primary emphasis
+
+  // footer content row height. .site-footer-strip and .app-scroll's
+  // bottom-reserve both read this so they stay in sync. standalone adds
+  // env(safe-area-inset-bottom) on top via calc() so the home-indicator
+  // zone shows below the row.
+  --footer-content-h: 15px;
 }
 
 :root,

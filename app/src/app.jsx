@@ -1,9 +1,10 @@
 import { useState, useEffect, useRef, useMemo, Fragment } from 'react';
+import { createPortal } from 'react-dom';
 import { BrowserRouter, Routes, Route, Link, useLocation, useNavigationType, useSearchParams } from 'react-router-dom';
 import { useModalAnimation } from './hooks/use-modal-animation';
 import { useBodyScrollLock } from './hooks/use-body-scroll-lock';
 import { getAppScroller } from './utils/app-scroll';
-import { STORAGE_KEYS, getString, setString, getBool, setBool } from './utils/storage';
+import { STORAGE_KEYS, getString, setString, getBool, setBool, getJSON, setJSON } from './utils/storage';
 import HomePage from './pages/home-page';
 import PokemonPage from './pages/pokemon-page';
 import ComparePage from './pages/compare-page';
@@ -21,8 +22,10 @@ import TwitchGlitch from './components/twitch-glitch';
 import { useTwitchLive } from './hooks/use-twitch-live';
 
 // section flags:
-//   `divider: true` draws a hairline above the section (used to separate
-//                   news → resources and resources → about)
+//   `divider: true` draws a hairline above the section. dividers go above
+//                   every labeled category (browse/tools/world) and above
+//                   the trailing `about` link so each header category
+//                   reads as a distinct group.
 //   `label`         renders a small uppercase subheading above the section
 //                   so the eye can lock onto a category in one scan rather
 //                   than reading 9 sibling links
@@ -34,24 +37,26 @@ const NAV_SECTIONS = [
   },
   {
     divider: true,
-    label:   'browse',
+    label:   'gallery',
     items: [
       { to: '/badges',    label: 'badges' },
       { to: '/berries',   label: 'berries' },
-      { to: '/moves',     label: 'moves' },
       { to: '/pokeballs', label: 'pokéballs' },
-      { to: '/pokedex',   label: 'pokédex' },
-      { to: '/types',     label: 'type chart' },
+      { to: '/pokedex',   label: 'pokemon' },
     ],
   },
   {
+    divider: true,
     label: 'tools',
     items: [
       { to: '/compare', label: 'compare' },
       { to: '/team',    label: 'team builder' },
+      { to: '/types',   label: 'type chart' },
+      { to: '/moves',   label: 'moves' },
     ],
   },
   {
+    divider: true,
     label: 'world',
     items: [
       { to: '/lore', label: 'lore & legends' },
@@ -241,6 +246,19 @@ function AppHeader({ theme, setTheme, a11y, setA11y }) {
   const [featuresOpen, setFeaturesOpen] = useState(false);
   const { isLive } = useTwitchLive();
 
+  // expanded state for collapsible nav categories (browse / tools / world).
+  // map keyed by section label → bool. defaults to all collapsed for a
+  // concise initial menu; persisted to localStorage so a user who keeps
+  // browse open between sessions doesn't have to re-expand it every visit.
+  const [navExpanded, setNavExpanded] = useState(() => getJSON(STORAGE_KEYS.NAV_EXPANDED, {}));
+  const toggleNavSection = (label) => {
+    setNavExpanded(prev => {
+      const next = { ...prev, [label]: !prev[label] };
+      setJSON(STORAGE_KEYS.NAV_EXPANDED, next);
+      return next;
+    });
+  };
+
   // lock body scroll while either dropdown is open. without this, dragging
   // on the dropdown surface (especially on ipad / iphone) chains the touch
   // through to the page beneath, which scrolls under the open menu — feels
@@ -320,29 +338,61 @@ function AppHeader({ theme, setTheme, a11y, setA11y }) {
           </button>
           {featuresShown && (
             <div className={`settings-modal features-modal${featuresClosing ? ' closing' : ''}`}>
-              {NAV_SECTIONS.map((section, si) => (
-                <Fragment key={si}>
-                  {section.divider && <div className="dropdown-divider" />}
-                  {section.label && <div className="nav-section-label">{section.label}</div>}
-                  {section.items.map(f => (
-                    <Link
-                      key={f.to}
-                      to={f.to}
-                      className={`feature-link${section.label ? ' feature-link--nested' : ''}`}
-                      onClick={() => setFeaturesOpen(false)}
-                    >
-                      {f.label}
-                      {f.to === '/about' && isLive && (
-                        <span className="feature-link__live-pip" aria-label="streaming live now">
-                          <span className="feature-link__live-pip-dot" />
-                          live
-                          <TwitchGlitch className="feature-link__live-pip-glitch" />
-                        </span>
-                      )}
-                    </Link>
-                  ))}
-                </Fragment>
-              ))}
+              {NAV_SECTIONS.map((section, si) => {
+                // labeled sections collapse by default. unlabeled sections
+                // (news, about) always render their items inline (no
+                // collapsible wrapper needed).
+                const isExpanded = section.label ? !!navExpanded[section.label] : true;
+                const renderItem = (f) => (
+                  <Link
+                    key={f.to}
+                    to={f.to}
+                    className={`feature-link${section.label ? ' feature-link--nested' : ''}`}
+                    onClick={() => setFeaturesOpen(false)}
+                  >
+                    {f.label}
+                    {f.to === '/about' && isLive && (
+                      <span className="feature-link__live-pip" aria-label="streaming live now">
+                        <span className="feature-link__live-pip-dot" />
+                        live
+                        <TwitchGlitch className="feature-link__live-pip-glitch" />
+                      </span>
+                    )}
+                  </Link>
+                );
+                return (
+                  <Fragment key={si}>
+                    {section.divider && <div className="dropdown-divider" />}
+                    {section.label ? (
+                      <>
+                        <button
+                          type="button"
+                          className={`nav-section-label nav-section-label--toggle${isExpanded ? ' is-expanded' : ''}`}
+                          onClick={() => toggleNavSection(section.label)}
+                          aria-expanded={isExpanded}
+                        >
+                          <span>{section.label}</span>
+                          <span className="nav-section-label__chevron" aria-hidden="true">›</span>
+                        </button>
+                        {/* always-mounted collapsible wrapper — items stay
+                            in the DOM so the grid-track animation can
+                            smoothly expand/collapse height instead of
+                            popping in/out. */}
+                        <div
+                          className={`nav-section-items${isExpanded ? ' is-expanded' : ''}`}
+                          aria-hidden={!isExpanded}
+                        >
+                          <div className="nav-section-items__inner">
+                            {section.items.map(renderItem)}
+                          </div>
+                        </div>
+                      </>
+                    ) : (
+                      section.items.map(renderItem)
+                    )}
+                  </Fragment>
+                );
+              })}
             </div>
           )}
         </div>
@@ -442,6 +492,11 @@ function useVisualSettings() {
 
 export default function App() {
   const { theme, setTheme, a11y, setA11y } = useVisualSettings();
+  // channel comes from the cloudflare worker via use-twitch-live (single
+  // source of truth — same hook the about page reads). twitch link is
+  // hidden until channel resolves so we never render a broken
+  // `/twitch/undefined` link.
+  const { channel } = useTwitchLive();
 
   // tag <html data-standalone> when launched from the ios home-screen icon.
   // we deliberately don't rely solely on `@media (display-mode: standalone)` —
@@ -482,6 +537,42 @@ export default function App() {
           <Route path="/about"       element={<AboutPage />} />
         </Routes>
       </main>
+      {/* footer chrome strip — rendered as a body-portal sibling of #root so
+          pull-to-refresh's transform on #root doesn't translate it (ptr only
+          owns #root; if the footer were a flex child of #root, it'd slide
+          down with the rest of the page during a pull). position: fixed
+          anchors it to the visual viewport; .app-scroll has padding-bottom
+          equal to the footer's height so content doesn't tuck behind it.
+          desktop shows the same external links as the about page (github +
+          twitch). in iOS PWA standalone, height collapses to
+          env(safe-area-inset-bottom) and content is clipped via overflow,
+          so the band claims the home-indicator zone as intentional UI. */}
+      {typeof document !== 'undefined' && createPortal(
+        <footer className="site-footer-strip">
+          <a
+            href="https://github.com/voltage770"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="site-footer-strip__link"
+          >
+            github
+          </a>
+          {channel && (
+            <>
+              <span className="site-footer-strip__sep" aria-hidden="true">||</span>
+              <a
+                href={`https://www.twitch.tv/${channel}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="site-footer-strip__link"
+              >
+                twitch
+              </a>
+            </>
+          )}
+        </footer>,
+        document.body,
+      )}
     </BrowserRouter>
   );
 }

@@ -46,6 +46,12 @@ html, body {
   overflow-y: auto;
   overscroll-behavior-y: contain;
   -webkit-overflow-scrolling: touch; // momentum scroll on older ios
+  // no bottom reserve by default — desktop footer is hidden right now
+  // (see .site-footer-strip in _header.scss). standalone still needs the
+  // home-indicator zone reserved, handled in the html[data-standalone]
+  // block below. when the desktop footer comes back, swap this back to
+  // `var(--footer-content-h)` so content stops above the footer chrome.
+  padding-bottom: 0;
 }
 
 body {
@@ -94,6 +100,41 @@ html[data-standalone] {
     // the inset area shows clean bg-header behind the system indicators.
     .header-sprites-clip { top: var(--inset-top); }
   }
+
+  // extend the html / body / #root stack to the visual viewport so iOS
+  // pwa with viewport-fit=cover doesn't leave a strip at the bottom where
+  // body/html bg shows through. all three at 100dvh keeps the flex layout
+  // (header → app-scroll → footer-strip) sized correctly so the
+  // footer-strip lands at the visual viewport bottom.
+  height: 100dvh;
+  body  { height: 100dvh; }
+  #root { height: 100dvh; }
+
+  // body / html bg stays at the default bg-header — the .site-footer-strip
+  // also paints bg-header at the home-indicator zone, so any leak-through
+  // (from layout-viewport vs visual-viewport quirks) is the same color
+  // as the deliberate footer chrome and reads as one coherent band
+  // rather than two competing surfaces.
+
+  // .app-scroll's padding-bottom mirrors the standalone footer height,
+  // which collapses to just env(safe-area-inset-bottom) (no content row).
+  // ignores --footer-content-h because the content row is hidden in
+  // standalone — only the home-indicator chrome strip remains.
+  .app-scroll {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  // zero the page wrappers' 80px bottom margin in standalone — the
+  // .site-footer-strip below now claims the home-indicator zone as a
+  // deliberate chrome band, so the bottom of content should land right
+  // against the footer's top border (mirroring how the top of content
+  // lands right against the site-header's bottom border).
+  .news-page,
+  .items-page,
+  .types-page,
+  .moves-page {
+    margin-bottom: 0;
+  }
 }
 
 // #root sits above the .ptr strip (rendered as a body-sibling portal) so the
@@ -126,6 +167,20 @@ button {
   border: none;
   background: none;
   font-family: inherit;
+}
+
+// iOS Safari paints a translucent dark overlay on every interactive
+// element when tapped (`-webkit-tap-highlight-color`, defaults to
+// `rgba(0,0,0,.4)`). that flash reads as jarring on top of our own
+// hover / active styles, especially in the nav dropdown where rows
+// briefly darken before navigation happens. setting to transparent
+// removes the system overlay; CSS :active and the actual page
+// transition provide enough feedback that the tap registered.
+button,
+a,
+[role='button'],
+[tabindex] {
+  -webkit-tap-highlight-color: transparent;
 }
 
 img {

@@ -1,9 +1,19 @@
 // ─── pull-to-refresh indicator ───────────────────────────────────────────────
-// just the spinner icon — fixed-positioned at top of viewport, sitting at
-// z-index 0 (BEHIND #root which is z-index 1). the colored fill behind the
-// page comes from body bg in standalone mode (see _base.scss) — when #root
+// just the spinner icon — fixed-positioned at top of viewport, painting ABOVE
+// #root (z-index 2 vs #root's z-index 1). the colored fill behind the page
+// comes from body bg in standalone mode (see _base.scss) — when #root
 // translates down during a pull, body's --bg-header peeks through naturally.
 // component itself only renders in standalone (home-screen webapp) mode.
+//
+// z-index above #root is what makes the icon visible during the pull. with
+// z:0 (below #root) the icon was painted UNDER #root's --bg fill — visible
+// only in the narrow band where #root had translated past the icon. on ios
+// pwa with a notch, the icon's margin-top (inset-top + 50px) put its top at
+// ~100px while the dampened pull at threshold only translates #root ~76px,
+// so the icon stayed entirely hidden behind #root throughout the gesture.
+// painting above #root mirrors how ios native ptr behaves — the icon stays
+// pinned at the top while page content slides UNDER it. safe to keep above
+// #root permanently because opacity is 0 + pointer-events: none at rest.
 //
 // opacity is written from JS during touchmove to fade the icon in as the
 // pull progresses. icon position is fixed (doesn't track the page) — like
@@ -25,7 +35,7 @@
   // (where env() reports ~0 but a ~24px system status bar still paints
   // over the page).
   margin-top: calc(max(env(safe-area-inset-top, 0px), 22px) + 50px);
-  z-index: 0;
+  z-index: 2;
   pointer-events: none;
   font-size: 1.5rem;
   color: var(--text-muted);

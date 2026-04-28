@@ -8,6 +8,7 @@ export const STORAGE_KEYS = {
   A11Y:          'a11y',
   SHINY_SPRITES: 'shinySprites',
   INLINE_FORMS:  'inlineForms',
+  NAV_EXPANDED:  'navExpanded',  // {[label]: boolean} per labeled nav section
 };
 
 // -- string ------------------------------------------------------------------
