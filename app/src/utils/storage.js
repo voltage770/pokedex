@@ -9,6 +9,7 @@ export const STORAGE_KEYS = {
   SHINY_SPRITES: 'shinySprites',
   INLINE_FORMS:  'inlineForms',
   NAV_EXPANDED:  'navExpanded',  // {[label]: boolean} per labeled nav section
+  XFADE_MODE:    'xfadeMode',    // cross-modal nav transition: 'snap' | 'view' | 'dip' | 'curtain' — mockup only
 };
 
 // -- string ------------------------------------------------------------------

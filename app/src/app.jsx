@@ -16,7 +16,9 @@ import PokeballsPage from './pages/pokeballs-page';
 import BerriesPage from './pages/berries-page';
 import MovesPage from './pages/moves-page';
 import BadgesPage from './pages/badges-page';
+import GymLeadersPage from './pages/gym-leaders-page';
 import AboutPage from './pages/about-page';
+import TransitionVeil from './components/transition-veil';
 import TwitchLiveBadge from './components/twitch-live-badge';
 import TwitchGlitch from './components/twitch-glitch';
 import { useTwitchLive } from './hooks/use-twitch-live';
@@ -59,7 +61,8 @@ const NAV_SECTIONS = [
     divider: true,
     label: 'world',
     items: [
-      { to: '/lore', label: 'lore & legends' },
+      { to: '/leaders', label: 'gym leaders'    },
+      { to: '/lore',    label: 'lore & legends' },
     ],
   },
   {
@@ -241,19 +244,22 @@ function ScrollManager() {
 }
 
 // header lives inside BrowserRouter so it can use useSearchParams
-function AppHeader({ theme, setTheme, a11y, setA11y }) {
+function AppHeader({ theme, setTheme, a11y, setA11y, xfadeMode, setXfadeMode }) {
   const [visualsOpen,  setVisualsOpen]  = useState(false);
   const [featuresOpen, setFeaturesOpen] = useState(false);
   const { isLive } = useTwitchLive();
 
   // expanded state for collapsible nav categories (browse / tools / world).
-  // map keyed by section label → bool. defaults to all collapsed for a
-  // concise initial menu; persisted to localStorage so a user who keeps
-  // browse open between sessions doesn't have to re-expand it every visit.
+  // accordion behavior — only one section open at a time. opening a new
+  // section collapses any others; clicking the same section toggles it
+  // off. cuts the dropdown height roughly in half on mobile when nav
+  // groups stack and removes the scroll-to-find-the-header friction
+  // when multiple sections were left open from a prior session. state
+  // persists as `{[label]: true}` for the open section only (or `{}`).
   const [navExpanded, setNavExpanded] = useState(() => getJSON(STORAGE_KEYS.NAV_EXPANDED, {}));
   const toggleNavSection = (label) => {
     setNavExpanded(prev => {
-      const next = { ...prev, [label]: !prev[label] };
+      const next = prev[label] ? {} : { [label]: true };
       setJSON(STORAGE_KEYS.NAV_EXPANDED, next);
       return next;
     });
@@ -348,7 +354,16 @@ function AppHeader({ theme, setTheme, a11y, setA11y }) {
                     key={f.to}
                     to={f.to}
                     className={`feature-link${section.label ? ' feature-link--nested' : ''}`}
-                    onClick={() => setFeaturesOpen(false)}
+                    onClick={() => {
+                      setFeaturesOpen(false);
+                      // collapse all nav sections on any navigation. simpler
+                      // than treating top-level vs nested items differently;
+                      // every fresh menu-open starts from a clean state
+                      // instead of carrying expanded sections from prior
+                      // sessions.
+                      setNavExpanded({});
+                      setJSON(STORAGE_KEYS.NAV_EXPANDED, {});
+                    }}
                   >
                     {f.label}
                     {f.to === '/about' && isLive && (
@@ -444,6 +459,26 @@ function AppHeader({ theme, setTheme, a11y, setA11y }) {
                 <p className="settings-hint">adds patterns to stat bars, removes animations, increases font size and spacing, boosts contrast</p>
               </div>
 
+              <div className="dropdown-divider" />
+
+              {/* MOCKUP — cross-modal transition picker. delete this section
+                  along with the xfadeMode plumbing when one mode wins. */}
+              <div className="settings-section">
+                <span className="settings-sublabel">cross-modal transition</span>
+                <div className="xfade-pills">
+                  {['snap', 'view', 'dip', 'curtain'].map(m => (
+                    <button
+                      key={m}
+                      className={`xfade-pill${xfadeMode === m ? ' is-active' : ''}`}
+                      onClick={() => setXfadeMode(m)}
+                    >
+                      {m}
+                    </button>
+                  ))}
+                </div>
+                <p className="settings-hint">try each on a leader↔badge link. snap = current. view = browser-native crossfade with shared box morph. dip = brief dim flash. curtain = held dim cover.</p>
+              </div>
+
             </div>
           )}
         </div>
@@ -490,8 +525,23 @@ function useVisualSettings() {
   return { theme, setTheme, a11y, setA11y };
 }
 
+// MOCKUP — cross-modal transition mode. lives in the visuals dropdown so
+// the user can flip between styles and feel each one. drop this hook + the
+// settings UI when one wins.
+const XFADE_MODES = ['snap', 'view', 'dip', 'curtain'];
+
+function useXfadeMode() {
+  const [mode, setMode] = useState(() => {
+    const saved = getString(STORAGE_KEYS.XFADE_MODE, 'snap');
+    return XFADE_MODES.includes(saved) ? saved : 'snap';
+  });
+  useEffect(() => { setString(STORAGE_KEYS.XFADE_MODE, mode); }, [mode]);
+  return [mode, setMode];
+}
+
 export default function App() {
   const { theme, setTheme, a11y, setA11y } = useVisualSettings();
+  const [xfadeMode, setXfadeMode] = useXfadeMode();
   // channel comes from the cloudflare worker via use-twitch-live (single
   // source of truth — same hook the about page reads). twitch link is
   // hidden until channel resolves so we never render a broken
@@ -520,7 +570,9 @@ export default function App() {
       <AppHeader
         theme={theme} setTheme={setTheme}
         a11y={a11y} setA11y={setA11y}
+        xfadeMode={xfadeMode} setXfadeMode={setXfadeMode}
       />
+      <TransitionVeil />
       <main className="app-scroll">
         <Routes>
           <Route path="/"            element={<NewsPage />} />
@@ -532,6 +584,7 @@ export default function App() {
           <Route path="/pokeballs"   element={<PokeballsPage />} />
           <Route path="/berries"     element={<BerriesPage />} />
           <Route path="/badges"      element={<BadgesPage />} />
+          <Route path="/leaders"     element={<GymLeadersPage />} />
           <Route path="/team"        element={<TeamPage />} />
           <Route path="/lore"        element={<LorePage />} />
           <Route path="/about"       element={<AboutPage />} />

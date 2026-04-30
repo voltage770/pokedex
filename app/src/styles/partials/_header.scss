@@ -345,6 +345,38 @@
   cursor: pointer;
 }
 
+// MOCKUP — cross-modal transition picker. delete with the rest of the
+// xfade plumbing once one mode wins.
+.xfade-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.xfade-pill {
+  flex: 1 1 0;
+  min-width: 56px;
+  padding: 5px 0;
+  font-size: .72rem;
+  font-weight: var(--fw-semibold);
+  font-family: inherit;
+  background: var(--bg);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  text-transform: lowercase;
+  transition: color .12s ease, border-color .12s ease, background .12s ease;
+
+  &:hover { color: var(--text); border-color: var(--accent); }
+
+  &.is-active {
+    color: var(--text);
+    border-color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 12%, transparent);
+  }
+}
+
 
 // ─── header right cluster ────────────────────────────────────────────────────
 

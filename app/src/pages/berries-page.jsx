@@ -40,7 +40,14 @@ function BerryModal({ berry, modalRef, onClose, onPrev, onNext, closing, bump })
           <button className="modal-cycle-arrow modal-cycle-arrow--prev" onClick={onPrev} aria-label="previous">‹</button>
           <div className="ball-modal__title">
             {berry.sprite && <img src={berry.sprite} alt={berry.name} />}
-            <h2>{formatSlugLower(berry.name)} berry</h2>
+            <div className="ball-modal__title-text">
+              <h2>{formatSlugLower(berry.name)} berry</h2>
+              {berry.name_jp && (
+                <small className="jp-subtitle">
+                  {berry.name_jp}{berry.romaji ? ` · ${berry.romaji}` : ''}
+                </small>
+              )}
+            </div>
           </div>
           <button className="modal-cycle-arrow modal-cycle-arrow--next" onClick={onNext} aria-label="next">›</button>
         </div>

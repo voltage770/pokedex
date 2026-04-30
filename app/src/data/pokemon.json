@@ -107,7 +107,9 @@
         "stat_name": "special-attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "フシギダネ",
+    "romaji": "Fushigidane"
   },
   {
     "id": 2,
@@ -221,7 +223,9 @@
         "stat_name": "special-defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "フシギソウ",
+    "romaji": "Fushigisou"
   },
   {
     "id": 3,
@@ -454,7 +458,9 @@
         "stat_name": "special-defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "フシギバナ",
+    "romaji": "Fushigibana"
   },
   {
     "id": 4,
@@ -563,7 +569,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ヒトカゲ",
+    "romaji": "Hitokage"
   },
   {
     "id": 5,
@@ -676,7 +684,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "リザード",
+    "romaji": "Lizardo"
   },
   {
     "id": 6,
@@ -949,7 +959,9 @@
         "stat_name": "special-attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "リザードン",
+    "romaji": "Lizardon"
   },
   {
     "id": 7,
@@ -1058,7 +1070,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ゼニガメ",
+    "romaji": "Zenigame"
   },
   {
     "id": 8,
@@ -1171,7 +1185,9 @@
         "stat_name": "special-defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "カメール",
+    "romaji": "Kameil"
   },
   {
     "id": 9,
@@ -1389,7 +1405,9 @@
         "stat_name": "special-defense",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "カメックス",
+    "romaji": "Kamex"
   },
   {
     "id": 10,
@@ -1497,7 +1515,9 @@
         "stat_name": "hp",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "キャタピー",
+    "romaji": "Caterpie"
   },
   {
     "id": 11,
@@ -1601,7 +1621,9 @@
         "stat_name": "defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "トランセル",
+    "romaji": "Trancell"
   },
   {
     "id": 12,
@@ -1776,7 +1798,9 @@
         "stat_name": "special-defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "バタフリー",
+    "romaji": "Butterfree"
   },
   {
     "id": 13,
@@ -1885,7 +1909,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ビードル",
+    "romaji": "Beedle"
   },
   {
     "id": 14,
@@ -1990,7 +2016,9 @@
         "stat_name": "defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "コクーン",
+    "romaji": "Cocoon"
   },
   {
     "id": 15,
@@ -2161,7 +2189,9 @@
         "stat_name": "special-defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "スピアー",
+    "romaji": "Spear"
   },
   {
     "id": 16,
@@ -2274,7 +2304,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ポッポ",
+    "romaji": "Poppo"
   },
   {
     "id": 17,
@@ -2387,7 +2419,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ピジョン",
+    "romaji": "Pigeon"
   },
   {
     "id": 18,
@@ -2554,7 +2588,9 @@
         "stat_name": "speed",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ピジョット",
+    "romaji": "Pigeot"
   },
   {
     "id": 19,
@@ -2713,7 +2749,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "コラッタ",
+    "romaji": "Koratta"
   },
   {
     "id": 20,
@@ -2872,7 +2910,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ラッタ",
+    "romaji": "Ratta"
   },
   {
     "id": 21,
@@ -2966,7 +3006,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "オニスズメ",
+    "romaji": "Onisuzume"
   },
   {
     "id": 22,
@@ -3060,7 +3102,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "オニドリル",
+    "romaji": "Onidrill"
   },
   {
     "id": 23,
@@ -3158,7 +3202,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "アーボ",
+    "romaji": "Arbo"
   },
   {
     "id": 24,
@@ -3256,7 +3302,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "アーボック",
+    "romaji": "Arbok"
   },
   {
     "id": 25,
@@ -3491,7 +3539,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ピカチュウ",
+    "romaji": "Pikachu"
   },
   {
     "id": 26,
@@ -3737,7 +3787,9 @@
         "stat_name": "speed",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ライチュウ",
+    "romaji": "Raichu"
   },
   {
     "id": 27,
@@ -3888,7 +3940,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "サンド",
+    "romaji": "Sand"
   },
   {
     "id": 28,
@@ -4039,7 +4093,9 @@
         "stat_name": "defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "サンドパン",
+    "romaji": "Sandpan"
   },
   {
     "id": 29,
@@ -4152,7 +4208,9 @@
         "stat_name": "hp",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ニドラン♀",
+    "romaji": "Nidoran♀"
   },
   {
     "id": 30,
@@ -4264,7 +4322,9 @@
         "stat_name": "hp",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ニドリーナ",
+    "romaji": "Nidorina"
   },
   {
     "id": 31,
@@ -4377,7 +4437,9 @@
         "stat_name": "hp",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ニドクイン",
+    "romaji": "Nidoqueen"
   },
   {
     "id": 32,
@@ -4490,7 +4552,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ニドラン♂",
+    "romaji": "Nidoran♂"
   },
   {
     "id": 33,
@@ -4603,7 +4667,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ニドリーノ",
+    "romaji": "Nidorino"
   },
   {
     "id": 34,
@@ -4717,7 +4783,9 @@
         "stat_name": "attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ニドキング",
+    "romaji": "Nidoking"
   },
   {
     "id": 35,
@@ -4829,7 +4897,9 @@
         "stat_name": "hp",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ピッピ",
+    "romaji": "Pippi"
   },
   {
     "id": 36,
@@ -4990,7 +5060,9 @@
         "stat_name": "hp",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ピクシー",
+    "romaji": "Pixy"
   },
   {
     "id": 37,
@@ -5140,7 +5212,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ロコン",
+    "romaji": "Rokon"
   },
   {
     "id": 38,
@@ -5295,7 +5369,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "キュウコン",
+    "romaji": "Kyukon"
   },
   {
     "id": 39,
@@ -5408,7 +5484,9 @@
         "stat_name": "hp",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "プリン",
+    "romaji": "Purin"
   },
   {
     "id": 40,
@@ -5521,7 +5599,9 @@
         "stat_name": "hp",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "プクリン",
+    "romaji": "Pukurin"
   },
   {
     "id": 41,
@@ -5630,7 +5710,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ズバット",
+    "romaji": "Zubat"
   },
   {
     "id": 42,
@@ -5739,7 +5821,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ゴルバット",
+    "romaji": "Golbat"
   },
   {
     "id": 43,
@@ -5863,7 +5947,9 @@
         "stat_name": "special-attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ナゾノクサ",
+    "romaji": "Nazonokusa"
   },
   {
     "id": 44,
@@ -5987,7 +6073,9 @@
         "stat_name": "special-attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "クサイハナ",
+    "romaji": "Kusaihana"
   },
   {
     "id": 45,
@@ -6111,7 +6199,9 @@
         "stat_name": "special-attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ラフレシア",
+    "romaji": "Ruffresia"
   },
   {
     "id": 46,
@@ -6210,7 +6300,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "パラス",
+    "romaji": "Paras"
   },
   {
     "id": 47,
@@ -6313,7 +6405,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "パラセクト",
+    "romaji": "Parasect"
   },
   {
     "id": 48,
@@ -6411,7 +6505,9 @@
         "stat_name": "special-defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "コンパン",
+    "romaji": "Kongpang"
   },
   {
     "id": 49,
@@ -6513,7 +6609,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "モルフォン",
+    "romaji": "Morphon"
   },
   {
     "id": 50,
@@ -6672,7 +6770,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ディグダ",
+    "romaji": "Digda"
   },
   {
     "id": 51,
@@ -6831,7 +6931,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ダグトリオ",
+    "romaji": "Dugtrio"
   },
   {
     "id": 52,
@@ -7123,7 +7225,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ニャース",
+    "romaji": "Nyarth"
   },
   {
     "id": 53,
@@ -7296,7 +7400,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ペルシアン",
+    "romaji": "Persian"
   },
   {
     "id": 54,
@@ -7394,7 +7500,9 @@
         "stat_name": "special-attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "コダック",
+    "romaji": "Koduck"
   },
   {
     "id": 55,
@@ -7492,7 +7600,9 @@
         "stat_name": "special-attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ゴルダック",
+    "romaji": "Golduck"
   },
   {
     "id": 56,
@@ -7604,7 +7714,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "マンキー",
+    "romaji": "Mankey"
   },
   {
     "id": 57,
@@ -7716,7 +7828,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "オコリザル",
+    "romaji": "Okorizaru"
   },
   {
     "id": 58,
@@ -7875,7 +7989,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ガーディ",
+    "romaji": "Gardie"
   },
   {
     "id": 59,
@@ -8034,7 +8150,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ウインディ",
+    "romaji": "Windie"
   },
   {
     "id": 60,
@@ -8161,7 +8279,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ニョロモ",
+    "romaji": "Nyoromo"
   },
   {
     "id": 61,
@@ -8288,7 +8408,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ニョロゾ",
+    "romaji": "Nyorozo"
   },
   {
     "id": 62,
@@ -8416,7 +8538,9 @@
         "stat_name": "defense",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ニョロボン",
+    "romaji": "Nyorobon"
   },
   {
     "id": 63,
@@ -8528,7 +8652,9 @@
         "stat_name": "special-attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ケーシィ",
+    "romaji": "Casey"
   },
   {
     "id": 64,
@@ -8640,7 +8766,9 @@
         "stat_name": "special-attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ユンゲラー",
+    "romaji": "Yungerer"
   },
   {
     "id": 65,
@@ -8805,7 +8933,9 @@
         "stat_name": "special-attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "フーディン",
+    "romaji": "Foodin"
   },
   {
     "id": 66,
@@ -8917,7 +9047,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ワンリキー",
+    "romaji": "Wanriky"
   },
   {
     "id": 67,
@@ -9029,7 +9161,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ゴーリキー",
+    "romaji": "Goriky"
   },
   {
     "id": 68,
@@ -9202,7 +9336,9 @@
         "stat_name": "attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "カイリキー",
+    "romaji": "Kairiky"
   },
   {
     "id": 69,
@@ -9311,7 +9447,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "マダツボミ",
+    "romaji": "Madatsubomi"
   },
   {
     "id": 70,
@@ -9420,7 +9558,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ウツドン",
+    "romaji": "Utsudon"
   },
   {
     "id": 71,
@@ -9578,7 +9718,9 @@
         "stat_name": "attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ウツボット",
+    "romaji": "Utsubot"
   },
   {
     "id": 72,
@@ -9676,7 +9818,9 @@
         "stat_name": "special-defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "メノクラゲ",
+    "romaji": "Menokurage"
   },
   {
     "id": 73,
@@ -9774,7 +9918,9 @@
         "stat_name": "special-defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ドククラゲ",
+    "romaji": "Dokukurage"
   },
   {
     "id": 74,
@@ -9949,7 +10095,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "イシツブテ",
+    "romaji": "Isitsubute"
   },
   {
     "id": 75,
@@ -10124,7 +10272,9 @@
         "stat_name": "defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ゴローン",
+    "romaji": "Golone"
   },
   {
     "id": 76,
@@ -10299,7 +10449,9 @@
         "stat_name": "defense",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ゴローニャ",
+    "romaji": "Golonya"
   },
   {
     "id": 77,
@@ -10457,7 +10609,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ポニータ",
+    "romaji": "Ponyta"
   },
   {
     "id": 78,
@@ -10616,7 +10770,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ギャロップ",
+    "romaji": "Gallop"
   },
   {
     "id": 79,
@@ -10791,7 +10947,9 @@
         "stat_name": "hp",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ヤドン",
+    "romaji": "Yadon"
   },
   {
     "id": 80,
@@ -11020,7 +11178,9 @@
         "stat_name": "defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ヤドラン",
+    "romaji": "Yadoran"
   },
   {
     "id": 81,
@@ -11133,7 +11293,9 @@
         "stat_name": "special-attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "コイル",
+    "romaji": "Coil"
   },
   {
     "id": 82,
@@ -11246,7 +11408,9 @@
         "stat_name": "special-attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "レアコイル",
+    "romaji": "Rarecoil"
   },
   {
     "id": 83,
@@ -11402,7 +11566,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "カモネギ",
+    "romaji": "Kamonegi"
   },
   {
     "id": 84,
@@ -11500,7 +11666,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ドードー",
+    "romaji": "Dodo"
   },
   {
     "id": 85,
@@ -11598,7 +11766,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ドードリオ",
+    "romaji": "Dodorio"
   },
   {
     "id": 86,
@@ -11696,7 +11866,9 @@
         "stat_name": "special-defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "パウワウ",
+    "romaji": "Pawou"
   },
   {
     "id": 87,
@@ -11795,7 +11967,9 @@
         "stat_name": "special-defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ジュゴン",
+    "romaji": "Jugon"
   },
   {
     "id": 88,
@@ -11954,7 +12128,9 @@
         "stat_name": "hp",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ベトベター",
+    "romaji": "Betbeter"
   },
   {
     "id": 89,
@@ -12121,7 +12297,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ベトベトン",
+    "romaji": "Betbeton"
   },
   {
     "id": 90,
@@ -12218,7 +12396,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "シェルダー",
+    "romaji": "Shellder"
   },
   {
     "id": 91,
@@ -12316,7 +12496,9 @@
         "stat_name": "defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "パルシェン",
+    "romaji": "Parshen"
   },
   {
     "id": 92,
@@ -12421,7 +12603,9 @@
         "stat_name": "special-attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ゴース",
+    "romaji": "Ghos"
   },
   {
     "id": 93,
@@ -12526,7 +12710,9 @@
         "stat_name": "special-attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ゴースト",
+    "romaji": "Ghost"
   },
   {
     "id": 94,
@@ -12738,7 +12924,9 @@
         "stat_name": "special-attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ゲンガー",
+    "romaji": "Gangar"
   },
   {
     "id": 95,
@@ -12836,7 +13024,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "イワーク",
+    "romaji": "Iwark"
   },
   {
     "id": 96,
@@ -12933,7 +13123,9 @@
         "stat_name": "special-defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "スリープ",
+    "romaji": "Sleep"
   },
   {
     "id": 97,
@@ -13030,7 +13222,9 @@
         "stat_name": "special-defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "スリーパー",
+    "romaji": "Sleeper"
   },
   {
     "id": 98,
@@ -13127,7 +13321,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "クラブ",
+    "romaji": "Crab"
   },
   {
     "id": 99,
@@ -13285,7 +13481,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "キングラー",
+    "romaji": "Kingler"
   },
   {
     "id": 100,
@@ -13444,7 +13642,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ビリリダマ",
+    "romaji": "Biriridama"
   },
   {
     "id": 101,
@@ -13603,7 +13803,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "マルマイン",
+    "romaji": "Marumine"
   },
   {
     "id": 102,
@@ -13697,7 +13899,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "タマタマ",
+    "romaji": "Tamatama"
   },
   {
     "id": 103,
@@ -13849,7 +14053,9 @@
         "stat_name": "special-attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ナッシー",
+    "romaji": "Nassy"
   },
   {
     "id": 104,
@@ -13946,7 +14152,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "カラカラ",
+    "romaji": "Karakara"
   },
   {
     "id": 105,
@@ -14105,7 +14313,9 @@
         "stat_name": "defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ガラガラ",
+    "romaji": "Garagara"
   },
   {
     "id": 106,
@@ -14232,7 +14442,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "サワムラー",
+    "romaji": "Sawamular"
   },
   {
     "id": 107,
@@ -14359,7 +14571,9 @@
         "stat_name": "special-defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "エビワラー",
+    "romaji": "Ebiwalar"
   },
   {
     "id": 108,
@@ -14456,7 +14670,9 @@
         "stat_name": "hp",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ベロリンガ",
+    "romaji": "Beroringa"
   },
   {
     "id": 109,
@@ -14553,7 +14769,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ドガース",
+    "romaji": "Dogars"
   },
   {
     "id": 110,
@@ -14712,7 +14930,9 @@
         "stat_name": "defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "マタドガス",
+    "romaji": "Matadogas"
   },
   {
     "id": 111,
@@ -14826,7 +15046,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "サイホーン",
+    "romaji": "Sihorn"
   },
   {
     "id": 112,
@@ -14940,7 +15162,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "サイドン",
+    "romaji": "Sidon"
   },
   {
     "id": 113,
@@ -15052,7 +15276,9 @@
         "stat_name": "hp",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ラッキー",
+    "romaji": "Lucky"
   },
   {
     "id": 114,
@@ -15149,7 +15375,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "モンジャラ",
+    "romaji": "Monjara"
   },
   {
     "id": 115,
@@ -15283,7 +15511,9 @@
         "stat_name": "hp",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ガルーラ",
+    "romaji": "Garura"
   },
   {
     "id": 116,
@@ -15396,7 +15626,9 @@
         "stat_name": "special-attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "タッツー",
+    "romaji": "Tattu"
   },
   {
     "id": 117,
@@ -15513,7 +15745,9 @@
         "stat_name": "special-attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "シードラ",
+    "romaji": "Seadra"
   },
   {
     "id": 118,
@@ -15610,7 +15844,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "トサキント",
+    "romaji": "Tosakinto"
   },
   {
     "id": 119,
@@ -15707,7 +15943,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "アズマオウ",
+    "romaji": "Azumao"
   },
   {
     "id": 120,
@@ -15804,7 +16042,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ヒトデマン",
+    "romaji": "Hitodeman"
   },
   {
     "id": 121,
@@ -15951,7 +16191,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "スターミー",
+    "romaji": "Starmie"
   },
   {
     "id": 122,
@@ -16126,7 +16368,9 @@
         "stat_name": "special-defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "バリヤード",
+    "romaji": "Barrierd"
   },
   {
     "id": 123,
@@ -16239,7 +16483,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ストライク",
+    "romaji": "Strike"
   },
   {
     "id": 124,
@@ -16337,7 +16583,9 @@
         "stat_name": "special-attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ルージュラ",
+    "romaji": "Rougela"
   },
   {
     "id": 125,
@@ -16445,7 +16693,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "エレブー",
+    "romaji": "Eleboo"
   },
   {
     "id": 126,
@@ -16553,7 +16803,9 @@
         "stat_name": "special-attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ブーバー",
+    "romaji": "Boober"
   },
   {
     "id": 127,
@@ -16688,7 +16940,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "カイロス",
+    "romaji": "Kailios"
   },
   {
     "id": 128,
@@ -16954,7 +17208,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ケンタロス",
+    "romaji": "Kentauros"
   },
   {
     "id": 129,
@@ -17048,7 +17304,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "コイキング",
+    "romaji": "Koiking"
   },
   {
     "id": 130,
@@ -17197,7 +17455,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ギャラドス",
+    "romaji": "Gyarados"
   },
   {
     "id": 131,
@@ -17342,7 +17602,9 @@
         "stat_name": "hp",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ラプラス",
+    "romaji": "Laplace"
   },
   {
     "id": 132,
@@ -17419,7 +17681,9 @@
         "stat_name": "hp",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "メタモン",
+    "romaji": "Metamon"
   },
   {
     "id": 133,
@@ -17741,7 +18005,9 @@
         "stat_name": "special-defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "イーブイ",
+    "romaji": "Eievui"
   },
   {
     "id": 134,
@@ -17939,7 +18205,9 @@
         "stat_name": "hp",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "シャワーズ",
+    "romaji": "Showers"
   },
   {
     "id": 135,
@@ -18137,7 +18405,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "サンダース",
+    "romaji": "Thunders"
   },
   {
     "id": 136,
@@ -18335,7 +18605,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ブースター",
+    "romaji": "Booster"
   },
   {
     "id": 137,
@@ -18447,7 +18719,9 @@
         "stat_name": "special-attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ポリゴン",
+    "romaji": "Porygon"
   },
   {
     "id": 138,
@@ -18546,7 +18820,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "オムナイト",
+    "romaji": "Omnite"
   },
   {
     "id": 139,
@@ -18645,7 +18921,9 @@
         "stat_name": "defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "オムスター",
+    "romaji": "Omstar"
   },
   {
     "id": 140,
@@ -18744,7 +19022,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "カブト",
+    "romaji": "Kabuto"
   },
   {
     "id": 141,
@@ -18843,7 +19123,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "カブトプス",
+    "romaji": "Kabutops"
   },
   {
     "id": 142,
@@ -18979,7 +19261,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "プテラ",
+    "romaji": "Ptera"
   },
   {
     "id": 143,
@@ -19137,7 +19421,9 @@
         "stat_name": "hp",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "カビゴン",
+    "romaji": "Kabigon"
   },
   {
     "id": 144,
@@ -19269,7 +19555,9 @@
         "stat_name": "special-defense",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "フリーザー",
+    "romaji": "Freezer"
   },
   {
     "id": 145,
@@ -19401,7 +19689,9 @@
         "stat_name": "special-attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "サンダー",
+    "romaji": "Thunder"
   },
   {
     "id": 146,
@@ -19533,7 +19823,9 @@
         "stat_name": "special-attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ファイヤー",
+    "romaji": "Fire"
   },
   {
     "id": 147,
@@ -19642,7 +19934,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ミニリュウ",
+    "romaji": "Miniryu"
   },
   {
     "id": 148,
@@ -19751,7 +20045,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ハクリュー",
+    "romaji": "Hakuryu"
   },
   {
     "id": 149,
@@ -19910,7 +20206,9 @@
         "stat_name": "attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "カイリュー",
+    "romaji": "Kairyu"
   },
   {
     "id": 150,
@@ -20092,7 +20390,9 @@
         "stat_name": "special-attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ミュウツー",
+    "romaji": "Mewtwo"
   },
   {
     "id": 151,
@@ -20165,7 +20465,9 @@
         "stat_name": "hp",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ミュウ",
+    "romaji": "Mew"
   },
   {
     "id": 152,
@@ -20274,7 +20576,9 @@
         "stat_name": "special-defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "チコリータ",
+    "romaji": "Chicorita"
   },
   {
     "id": 153,
@@ -20387,7 +20691,9 @@
         "stat_name": "special-defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ベイリーフ",
+    "romaji": "Bayleaf"
   },
   {
     "id": 154,
@@ -20549,7 +20855,9 @@
         "stat_name": "special-defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "メガニウム",
+    "romaji": "Meganium"
   },
   {
     "id": 155,
@@ -20657,7 +20965,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ヒノアラシ",
+    "romaji": "Hinoarashi"
   },
   {
     "id": 156,
@@ -20769,7 +21079,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "マグマラシ",
+    "romaji": "Magmarashi"
   },
   {
     "id": 157,
@@ -20935,7 +21247,9 @@
         "stat_name": "special-attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "バクフーン",
+    "romaji": "Bakphoon"
   },
   {
     "id": 158,
@@ -21044,7 +21358,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ワニノコ",
+    "romaji": "Waninoko"
   },
   {
     "id": 159,
@@ -21157,7 +21473,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "アリゲイツ",
+    "romaji": "Alligates"
   },
   {
     "id": 160,
@@ -21319,7 +21637,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "オーダイル",
+    "romaji": "Ordile"
   },
   {
     "id": 161,
@@ -21416,7 +21736,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "オタチ",
+    "romaji": "Otachi"
   },
   {
     "id": 162,
@@ -21513,7 +21835,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "オオタチ",
+    "romaji": "Ootachi"
   },
   {
     "id": 163,
@@ -21611,7 +21935,9 @@
         "stat_name": "hp",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ホーホー",
+    "romaji": "Hoho"
   },
   {
     "id": 164,
@@ -21709,7 +22035,9 @@
         "stat_name": "hp",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ヨルノズク",
+    "romaji": "Yorunozuku"
   },
   {
     "id": 165,
@@ -21807,7 +22135,9 @@
         "stat_name": "special-defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "レディバ",
+    "romaji": "Rediba"
   },
   {
     "id": 166,
@@ -21905,7 +22235,9 @@
         "stat_name": "special-defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "レディアン",
+    "romaji": "Redian"
   },
   {
     "id": 167,
@@ -22003,7 +22335,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "イトマル",
+    "romaji": "Itomaru"
   },
   {
     "id": 168,
@@ -22101,7 +22435,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "アリアドス",
+    "romaji": "Ariados"
   },
   {
     "id": 169,
@@ -22210,7 +22546,9 @@
         "stat_name": "speed",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "クロバット",
+    "romaji": "Crobat"
   },
   {
     "id": 170,
@@ -22308,7 +22646,9 @@
         "stat_name": "hp",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "チョンチー",
+    "romaji": "Chonchie"
   },
   {
     "id": 171,
@@ -22406,7 +22746,9 @@
         "stat_name": "hp",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ランターン",
+    "romaji": "Lantern"
   },
   {
     "id": 172,
@@ -22514,7 +22856,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ピチュー",
+    "romaji": "Pichu"
   },
   {
     "id": 173,
@@ -22626,7 +22970,9 @@
         "stat_name": "special-defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ピィ",
+    "romaji": "Py"
   },
   {
     "id": 174,
@@ -22739,7 +23085,9 @@
         "stat_name": "hp",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ププリン",
+    "romaji": "Pupurin"
   },
   {
     "id": 175,
@@ -22851,7 +23199,9 @@
         "stat_name": "special-defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "トゲピー",
+    "romaji": "Togepy"
   },
   {
     "id": 176,
@@ -22965,7 +23315,9 @@
         "stat_name": "special-defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "トゲチック",
+    "romaji": "Togechick"
   },
   {
     "id": 177,
@@ -23063,7 +23415,9 @@
         "stat_name": "special-attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ネイティ",
+    "romaji": "Naty"
   },
   {
     "id": 178,
@@ -23165,7 +23519,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ネイティオ",
+    "romaji": "Natio"
   },
   {
     "id": 179,
@@ -23274,7 +23630,9 @@
         "stat_name": "special-attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "メリープ",
+    "romaji": "Merriep"
   },
   {
     "id": 180,
@@ -23383,7 +23741,9 @@
         "stat_name": "special-attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "モココ",
+    "romaji": "Mokoko"
   },
   {
     "id": 181,
@@ -23546,7 +23906,9 @@
         "stat_name": "special-attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "デンリュウ",
+    "romaji": "Denryu"
   },
   {
     "id": 182,
@@ -23669,7 +24031,9 @@
         "stat_name": "special-defense",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "キレイハナ",
+    "romaji": "Kireihana"
   },
   {
     "id": 183,
@@ -23783,7 +24147,9 @@
         "stat_name": "hp",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "マリル",
+    "romaji": "Maril"
   },
   {
     "id": 184,
@@ -23897,7 +24263,9 @@
         "stat_name": "hp",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "マリルリ",
+    "romaji": "Marilli"
   },
   {
     "id": 185,
@@ -23994,7 +24362,9 @@
         "stat_name": "defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ウソッキー",
+    "romaji": "Usokkie"
   },
   {
     "id": 186,
@@ -24121,7 +24491,9 @@
         "stat_name": "special-defense",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ニョロトノ",
+    "romaji": "Nyorotono"
   },
   {
     "id": 187,
@@ -24235,7 +24607,9 @@
         "stat_name": "special-defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ハネッコ",
+    "romaji": "Hanecco"
   },
   {
     "id": 188,
@@ -24349,7 +24723,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ポポッコ",
+    "romaji": "Popocco"
   },
   {
     "id": 189,
@@ -24463,7 +24839,9 @@
         "stat_name": "speed",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ワタッコ",
+    "romaji": "Watacco"
   },
   {
     "id": 190,
@@ -24560,7 +24938,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "エイパム",
+    "romaji": "Eipam"
   },
   {
     "id": 191,
@@ -24657,7 +25037,9 @@
         "stat_name": "special-attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ヒマナッツ",
+    "romaji": "Himanuts"
   },
   {
     "id": 192,
@@ -24754,7 +25136,9 @@
         "stat_name": "special-attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "キマワリ",
+    "romaji": "Kimawari"
   },
   {
     "id": 193,
@@ -24852,7 +25236,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ヤンヤンマ",
+    "romaji": "Yanyanma"
   },
   {
     "id": 194,
@@ -25028,7 +25414,9 @@
         "stat_name": "hp",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ウパー",
+    "romaji": "Upah"
   },
   {
     "id": 195,
@@ -25142,7 +25530,9 @@
         "stat_name": "hp",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ヌオー",
+    "romaji": "Nuoh"
   },
   {
     "id": 196,
@@ -25340,7 +25730,9 @@
         "stat_name": "special-attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "エーフィ",
+    "romaji": "Eifie"
   },
   {
     "id": 197,
@@ -25538,7 +25930,9 @@
         "stat_name": "special-defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ブラッキー",
+    "romaji": "Blacky"
   },
   {
     "id": 198,
@@ -25636,7 +26030,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ヤミカラス",
+    "romaji": "Yamikarasu"
   },
   {
     "id": 199,
@@ -25812,7 +26208,9 @@
         "stat_name": "special-defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ヤドキング",
+    "romaji": "Yadoking"
   },
   {
     "id": 200,
@@ -25901,7 +26299,9 @@
         "stat_name": "special-defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ムウマ",
+    "romaji": "Muma"
   },
   {
     "id": 201,
@@ -25978,7 +26378,9 @@
         "stat_name": "special-attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "アンノーン",
+    "romaji": "Unknown"
   },
   {
     "id": 202,
@@ -26071,7 +26473,9 @@
         "stat_name": "hp",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ソーナンス",
+    "romaji": "Sonans"
   },
   {
     "id": 203,
@@ -26169,7 +26573,9 @@
         "stat_name": "special-attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "キリンリキ",
+    "romaji": "Kirinriki"
   },
   {
     "id": 204,
@@ -26262,7 +26668,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "クヌギダマ",
+    "romaji": "Kunugidama"
   },
   {
     "id": 205,
@@ -26356,7 +26764,9 @@
         "stat_name": "defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "フォレトス",
+    "romaji": "Foretos"
   },
   {
     "id": 206,
@@ -26453,7 +26863,9 @@
         "stat_name": "hp",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ノコッチ",
+    "romaji": "Nokocchi"
   },
   {
     "id": 207,
@@ -26551,7 +26963,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "グライガー",
+    "romaji": "Gliger"
   },
   {
     "id": 208,
@@ -26703,7 +27117,9 @@
         "stat_name": "defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ハガネール",
+    "romaji": "Haganeil"
   },
   {
     "id": 209,
@@ -26801,7 +27217,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ブルー",
+    "romaji": "Bulu"
   },
   {
     "id": 210,
@@ -26899,7 +27317,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "グランブル",
+    "romaji": "Granbulu"
   },
   {
     "id": 211,
@@ -27059,7 +27479,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ハリーセン",
+    "romaji": "Harysen"
   },
   {
     "id": 212,
@@ -27226,7 +27648,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ハッサム",
+    "romaji": "Hassam"
   },
   {
     "id": 213,
@@ -27312,7 +27736,9 @@
         "stat_name": "special-defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ツボツボ",
+    "romaji": "Tsubotsubo"
   },
   {
     "id": 214,
@@ -27448,7 +27874,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ヘラクロス",
+    "romaji": "Heracros"
   },
   {
     "id": 215,
@@ -27623,7 +28051,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ニューラ",
+    "romaji": "Nyula"
   },
   {
     "id": 216,
@@ -27735,7 +28165,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ヒメグマ",
+    "romaji": "Himeguma"
   },
   {
     "id": 217,
@@ -27847,7 +28279,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "リングマ",
+    "romaji": "Ringuma"
   },
   {
     "id": 218,
@@ -27944,7 +28378,9 @@
         "stat_name": "special-attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "マグマッグ",
+    "romaji": "Magmag"
   },
   {
     "id": 219,
@@ -28042,7 +28478,9 @@
         "stat_name": "defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "マグカルゴ",
+    "romaji": "Magcargot"
   },
   {
     "id": 220,
@@ -28155,7 +28593,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ウリムー",
+    "romaji": "Urimoo"
   },
   {
     "id": 221,
@@ -28272,7 +28712,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "イノムー",
+    "romaji": "Inomoo"
   },
   {
     "id": 222,
@@ -28432,7 +28874,9 @@
         "stat_name": "special-defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "サニーゴ",
+    "romaji": "Sunnygo"
   },
   {
     "id": 223,
@@ -28530,7 +28974,9 @@
         "stat_name": "special-attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "テッポウオ",
+    "romaji": "Teppouo"
   },
   {
     "id": 224,
@@ -28632,7 +29078,9 @@
         "stat_name": "special-attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "オクタン",
+    "romaji": "Okutank"
   },
   {
     "id": 225,
@@ -28715,7 +29163,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "デリバード",
+    "romaji": "Delibird"
   },
   {
     "id": 226,
@@ -28813,7 +29263,9 @@
         "stat_name": "special-defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "マンタイン",
+    "romaji": "Mantain"
   },
   {
     "id": 227,
@@ -28944,7 +29396,9 @@
         "stat_name": "defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "エアームド",
+    "romaji": "Airmd"
   },
   {
     "id": 228,
@@ -29042,7 +29496,9 @@
         "stat_name": "special-attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "デルビル",
+    "romaji": "Delvil"
   },
   {
     "id": 229,
@@ -29194,7 +29650,9 @@
         "stat_name": "special-attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ヘルガー",
+    "romaji": "Hellgar"
   },
   {
     "id": 230,
@@ -29316,7 +29774,9 @@
         "stat_name": "special-defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "キングドラ",
+    "romaji": "Kingdra"
   },
   {
     "id": 231,
@@ -29409,7 +29869,9 @@
         "stat_name": "hp",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ゴマゾウ",
+    "romaji": "Gomazou"
   },
   {
     "id": 232,
@@ -29506,7 +29968,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ドンファン",
+    "romaji": "Donfan"
   },
   {
     "id": 233,
@@ -29618,7 +30082,9 @@
         "stat_name": "special-attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ポリゴン２",
+    "romaji": "Porygon2"
   },
   {
     "id": 234,
@@ -29715,7 +30181,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "オドシシ",
+    "romaji": "Odoshishi"
   },
   {
     "id": 235,
@@ -29796,7 +30264,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ドーブル",
+    "romaji": "Doble"
   },
   {
     "id": 236,
@@ -29923,7 +30393,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "バルキー",
+    "romaji": "Balkie"
   },
   {
     "id": 237,
@@ -30050,7 +30522,9 @@
         "stat_name": "special-defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "カポエラー",
+    "romaji": "Kapoerer"
   },
   {
     "id": 238,
@@ -30148,7 +30622,9 @@
         "stat_name": "special-attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ムチュール",
+    "romaji": "Muchul"
   },
   {
     "id": 239,
@@ -30256,7 +30732,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "エレキッド",
+    "romaji": "Elekid"
   },
   {
     "id": 240,
@@ -30364,7 +30842,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ブビィ",
+    "romaji": "Buby"
   },
   {
     "id": 241,
@@ -30445,7 +30925,9 @@
         "stat_name": "defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ミルタンク",
+    "romaji": "Miltank"
   },
   {
     "id": 242,
@@ -30557,7 +31039,9 @@
         "stat_name": "hp",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ハピナス",
+    "romaji": "Happinas"
   },
   {
     "id": 243,
@@ -30638,7 +31122,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ライコウ",
+    "romaji": "Raikou"
   },
   {
     "id": 244,
@@ -30719,7 +31205,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "エンテイ",
+    "romaji": "Entei"
   },
   {
     "id": 245,
@@ -30800,7 +31288,9 @@
         "stat_name": "special-defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "スイクン",
+    "romaji": "Suikun"
   },
   {
     "id": 246,
@@ -30909,7 +31399,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ヨーギラス",
+    "romaji": "Yogiras"
   },
   {
     "id": 247,
@@ -31014,7 +31506,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "サナギラス",
+    "romaji": "Sanagiras"
   },
   {
     "id": 248,
@@ -31177,7 +31671,9 @@
         "stat_name": "attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "バンギラス",
+    "romaji": "Bangiras"
   },
   {
     "id": 249,
@@ -31255,7 +31751,9 @@
         "stat_name": "special-defense",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ルギア",
+    "romaji": "Lugia"
   },
   {
     "id": 250,
@@ -31333,7 +31831,9 @@
         "stat_name": "special-defense",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ホウオウ",
+    "romaji": "Houou"
   },
   {
     "id": 251,
@@ -31407,7 +31907,9 @@
         "stat_name": "hp",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "セレビィ",
+    "romaji": "Celebi"
   },
   {
     "id": 252,
@@ -31516,7 +32018,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "キモリ",
+    "romaji": "Kimori"
   },
   {
     "id": 253,
@@ -31625,7 +32129,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ジュプトル",
+    "romaji": "Juptile"
   },
   {
     "id": 254,
@@ -31788,7 +32294,9 @@
         "stat_name": "speed",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ジュカイン",
+    "romaji": "Jukain"
   },
   {
     "id": 255,
@@ -31896,7 +32404,9 @@
         "stat_name": "special-attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "アチャモ",
+    "romaji": "Achamo"
   },
   {
     "id": 256,
@@ -32009,7 +32519,9 @@
         "stat_name": "special-attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ワカシャモ",
+    "romaji": "Wakasyamo"
   },
   {
     "id": 257,
@@ -32172,7 +32684,9 @@
         "stat_name": "attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "バシャーモ",
+    "romaji": "Bursyamo"
   },
   {
     "id": 258,
@@ -32281,7 +32795,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ミズゴロウ",
+    "romaji": "Mizugorou"
   },
   {
     "id": 259,
@@ -32391,7 +32907,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ヌマクロー",
+    "romaji": "Numacraw"
   },
   {
     "id": 260,
@@ -32555,7 +33073,9 @@
         "stat_name": "attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ラグラージ",
+    "romaji": "Laglarge"
   },
   {
     "id": 261,
@@ -32652,7 +33172,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ポチエナ",
+    "romaji": "Pochiena"
   },
   {
     "id": 262,
@@ -32749,7 +33271,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "グラエナ",
+    "romaji": "Guraena"
   },
   {
     "id": 263,
@@ -32923,7 +33447,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ジグザグマ",
+    "romaji": "Ziguzaguma"
   },
   {
     "id": 264,
@@ -33097,7 +33623,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "マッスグマ",
+    "romaji": "Massuguma"
   },
   {
     "id": 265,
@@ -33235,7 +33763,9 @@
         "stat_name": "hp",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ケムッソ",
+    "romaji": "Kemusso"
   },
   {
     "id": 266,
@@ -33369,7 +33899,9 @@
         "stat_name": "defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "カラサリス",
+    "romaji": "Karasalis"
   },
   {
     "id": 267,
@@ -33508,7 +34040,9 @@
         "stat_name": "special-attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "アゲハント",
+    "romaji": "Agehunt"
   },
   {
     "id": 268,
@@ -33642,7 +34176,9 @@
         "stat_name": "defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "マユルド",
+    "romaji": "Mayuld"
   },
   {
     "id": 269,
@@ -33781,7 +34317,9 @@
         "stat_name": "special-defense",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ドクケイル",
+    "romaji": "Dokucale"
   },
   {
     "id": 270,
@@ -33895,7 +34433,9 @@
         "stat_name": "special-defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ハスボー",
+    "romaji": "Hassboh"
   },
   {
     "id": 271,
@@ -34009,7 +34549,9 @@
         "stat_name": "special-defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ハスブレロ",
+    "romaji": "Hasubrero"
   },
   {
     "id": 272,
@@ -34123,7 +34665,9 @@
         "stat_name": "special-defense",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ルンパッパ",
+    "romaji": "Runpappa"
   },
   {
     "id": 273,
@@ -34236,7 +34780,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "タネボー",
+    "romaji": "Taneboh"
   },
   {
     "id": 274,
@@ -34350,7 +34896,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "コノハナ",
+    "romaji": "Konohana"
   },
   {
     "id": 275,
@@ -34464,7 +35012,9 @@
         "stat_name": "attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ダーテング",
+    "romaji": "Dirteng"
   },
   {
     "id": 276,
@@ -34558,7 +35108,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "スバメ",
+    "romaji": "Subame"
   },
   {
     "id": 277,
@@ -34652,7 +35204,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "オオスバメ",
+    "romaji": "Ohsubame"
   },
   {
     "id": 278,
@@ -34751,7 +35305,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "キャモメ",
+    "romaji": "Camome"
   },
   {
     "id": 279,
@@ -34850,7 +35406,9 @@
         "stat_name": "defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ペリッパー",
+    "romaji": "Pelipper"
   },
   {
     "id": 280,
@@ -34979,7 +35537,9 @@
         "stat_name": "special-attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ラルトス",
+    "romaji": "Ralts"
   },
   {
     "id": 281,
@@ -35108,7 +35668,9 @@
         "stat_name": "special-attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "キルリア",
+    "romaji": "Kirlia"
   },
   {
     "id": 282,
@@ -35291,7 +35853,9 @@
         "stat_name": "special-attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "サーナイト",
+    "romaji": "Sirnight"
   },
   {
     "id": 283,
@@ -35386,7 +35950,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "アメタマ",
+    "romaji": "Ametama"
   },
   {
     "id": 284,
@@ -35485,7 +36051,9 @@
         "stat_name": "special-defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "アメモース",
+    "romaji": "Amemoth"
   },
   {
     "id": 285,
@@ -35583,7 +36151,9 @@
         "stat_name": "hp",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "キノココ",
+    "romaji": "Kinococo"
   },
   {
     "id": 286,
@@ -35682,7 +36252,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "キノガッサ",
+    "romaji": "Kinogassa"
   },
   {
     "id": 287,
@@ -35786,7 +36358,9 @@
         "stat_name": "hp",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ナマケロ",
+    "romaji": "Namakero"
   },
   {
     "id": 288,
@@ -35890,7 +36464,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ヤルキモノ",
+    "romaji": "Yarukimono"
   },
   {
     "id": 289,
@@ -35994,7 +36570,9 @@
         "stat_name": "hp",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ケッキング",
+    "romaji": "Kekking"
   },
   {
     "id": 290,
@@ -36103,7 +36681,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ツチニン",
+    "romaji": "Tutinin"
   },
   {
     "id": 291,
@@ -36212,7 +36792,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "テッカニン",
+    "romaji": "Tekkanin"
   },
   {
     "id": 292,
@@ -36317,7 +36899,9 @@
         "stat_name": "hp",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ヌケニン",
+    "romaji": "Nukenin"
   },
   {
     "id": 293,
@@ -36426,7 +37010,9 @@
         "stat_name": "hp",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ゴニョニョ",
+    "romaji": "Gonyonyo"
   },
   {
     "id": 294,
@@ -36535,7 +37121,9 @@
         "stat_name": "hp",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ドゴーム",
+    "romaji": "Dogohmb"
   },
   {
     "id": 295,
@@ -36644,7 +37232,9 @@
         "stat_name": "hp",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "バクオング",
+    "romaji": "Bakuong"
   },
   {
     "id": 296,
@@ -36741,7 +37331,9 @@
         "stat_name": "hp",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "マクノシタ",
+    "romaji": "Makunoshita"
   },
   {
     "id": 297,
@@ -36838,7 +37430,9 @@
         "stat_name": "hp",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ハリテヤマ",
+    "romaji": "Hariteyama"
   },
   {
     "id": 298,
@@ -36951,7 +37545,9 @@
         "stat_name": "hp",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ルリリ",
+    "romaji": "Ruriri"
   },
   {
     "id": 299,
@@ -37048,7 +37644,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ノズパス",
+    "romaji": "Nosepass"
   },
   {
     "id": 300,
@@ -37146,7 +37744,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "エネコ",
+    "romaji": "Eneco"
   },
   {
     "id": 301,
@@ -37248,7 +37848,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "エネコロロ",
+    "romaji": "Enekororo"
   },
   {
     "id": 302,
@@ -37392,7 +37994,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ヤミラミ",
+    "romaji": "Yamirami"
   },
   {
     "id": 303,
@@ -37537,7 +38141,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "クチート",
+    "romaji": "Kucheat"
   },
   {
     "id": 304,
@@ -37650,7 +38256,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ココドラ",
+    "romaji": "Cokodora"
   },
   {
     "id": 305,
@@ -37763,7 +38371,9 @@
         "stat_name": "defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "コドラ",
+    "romaji": "Kodora"
   },
   {
     "id": 306,
@@ -37929,7 +38539,9 @@
         "stat_name": "defense",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ボスゴドラ",
+    "romaji": "Bossgodora"
   },
   {
     "id": 307,
@@ -38023,7 +38635,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "アサナン",
+    "romaji": "Asanan"
   },
   {
     "id": 308,
@@ -38171,7 +38785,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "チャーレム",
+    "romaji": "Charem"
   },
   {
     "id": 309,
@@ -38268,7 +38884,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ラクライ",
+    "romaji": "Rakurai"
   },
   {
     "id": 310,
@@ -38418,7 +39036,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ライボルト",
+    "romaji": "Livolt"
   },
   {
     "id": 311,
@@ -38495,7 +39115,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "プラスル",
+    "romaji": "Prasle"
   },
   {
     "id": 312,
@@ -38572,7 +39194,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "マイナン",
+    "romaji": "Minun"
   },
   {
     "id": 313,
@@ -38654,7 +39278,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "バルビート",
+    "romaji": "Barubeat"
   },
   {
     "id": 314,
@@ -38736,7 +39362,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "イルミーゼ",
+    "romaji": "Illumise"
   },
   {
     "id": 315,
@@ -38850,7 +39478,9 @@
         "stat_name": "special-attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ロゼリア",
+    "romaji": "Roselia"
   },
   {
     "id": 316,
@@ -38947,7 +39577,9 @@
         "stat_name": "hp",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ゴクリン",
+    "romaji": "Gokulin"
   },
   {
     "id": 317,
@@ -39044,7 +39676,9 @@
         "stat_name": "hp",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "マルノーム",
+    "romaji": "Marunoom"
   },
   {
     "id": 318,
@@ -39138,7 +39772,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "キバニア",
+    "romaji": "Kibanha"
   },
   {
     "id": 319,
@@ -39286,7 +39922,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "サメハダー",
+    "romaji": "Samehader"
   },
   {
     "id": 320,
@@ -39384,7 +40022,9 @@
         "stat_name": "hp",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ホエルコ",
+    "romaji": "Whalko"
   },
   {
     "id": 321,
@@ -39482,7 +40122,9 @@
         "stat_name": "hp",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ホエルオー",
+    "romaji": "Whaloh"
   },
   {
     "id": 322,
@@ -39580,7 +40222,9 @@
         "stat_name": "special-attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ドンメル",
+    "romaji": "Donmel"
   },
   {
     "id": 323,
@@ -39740,7 +40384,9 @@
         "stat_name": "special-attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "バクーダ",
+    "romaji": "Bakuuda"
   },
   {
     "id": 324,
@@ -39821,7 +40467,9 @@
         "stat_name": "defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "コータス",
+    "romaji": "Cotoise"
   },
   {
     "id": 325,
@@ -39918,7 +40566,9 @@
         "stat_name": "special-defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "バネブー",
+    "romaji": "Baneboo"
   },
   {
     "id": 326,
@@ -40015,7 +40665,9 @@
         "stat_name": "special-defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ブーピッグ",
+    "romaji": "Boopig"
   },
   {
     "id": 327,
@@ -40097,7 +40749,9 @@
         "stat_name": "special-attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "パッチール",
+    "romaji": "Patcheel"
   },
   {
     "id": 328,
@@ -40210,7 +40864,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ナックラー",
+    "romaji": "Nuckrar"
   },
   {
     "id": 329,
@@ -40320,7 +40976,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ビブラーバ",
+    "romaji": "Vibrava"
   },
   {
     "id": 330,
@@ -40430,7 +41088,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "フライゴン",
+    "romaji": "Frygon"
   },
   {
     "id": 331,
@@ -40524,7 +41184,9 @@
         "stat_name": "special-attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "サボネア",
+    "romaji": "Sabonea"
   },
   {
     "id": 332,
@@ -40623,7 +41285,9 @@
         "stat_name": "special-attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ノクタス",
+    "romaji": "Noctus"
   },
   {
     "id": 333,
@@ -40718,7 +41382,9 @@
         "stat_name": "special-defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "チルット",
+    "romaji": "Tyltto"
   },
   {
     "id": 334,
@@ -40867,7 +41533,9 @@
         "stat_name": "special-defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "チルタリス",
+    "romaji": "Tyltalis"
   },
   {
     "id": 335,
@@ -40944,7 +41612,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ザングース",
+    "romaji": "Zangoose"
   },
   {
     "id": 336,
@@ -41026,7 +41696,9 @@
         "stat_name": "special-attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ハブネーク",
+    "romaji": "Habunake"
   },
   {
     "id": 337,
@@ -41100,7 +41772,9 @@
         "stat_name": "special-attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ルナトーン",
+    "romaji": "Lunatone"
   },
   {
     "id": 338,
@@ -41174,7 +41848,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ソルロック",
+    "romaji": "Solrock"
   },
   {
     "id": 339,
@@ -41272,7 +41948,9 @@
         "stat_name": "hp",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ドジョッチ",
+    "romaji": "Dojoach"
   },
   {
     "id": 340,
@@ -41370,7 +42048,9 @@
         "stat_name": "hp",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ナマズン",
+    "romaji": "Namazun"
   },
   {
     "id": 341,
@@ -41468,7 +42148,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ヘイガニ",
+    "romaji": "Heigani"
   },
   {
     "id": 342,
@@ -41567,7 +42249,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "シザリガー",
+    "romaji": "Shizariger"
   },
   {
     "id": 343,
@@ -41657,7 +42341,9 @@
         "stat_name": "special-defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ヤジロン",
+    "romaji": "Yajilon"
   },
   {
     "id": 344,
@@ -41747,7 +42433,9 @@
         "stat_name": "special-defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ネンドール",
+    "romaji": "Nendoll"
   },
   {
     "id": 345,
@@ -41841,7 +42529,9 @@
         "stat_name": "special-defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "リリーラ",
+    "romaji": "Lilyla"
   },
   {
     "id": 346,
@@ -41935,7 +42625,9 @@
         "stat_name": "special-defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ユレイドル",
+    "romaji": "Yuradle"
   },
   {
     "id": 347,
@@ -42029,7 +42721,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "アノプス",
+    "romaji": "Anopth"
   },
   {
     "id": 348,
@@ -42123,7 +42817,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "アーマルド",
+    "romaji": "Armaldo"
   },
   {
     "id": 349,
@@ -42221,7 +42917,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ヒンバス",
+    "romaji": "Hinbass"
   },
   {
     "id": 350,
@@ -42319,7 +43017,9 @@
         "stat_name": "special-defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ミロカロス",
+    "romaji": "Milokaross"
   },
   {
     "id": 351,
@@ -42548,7 +43248,9 @@
         "stat_name": "hp",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ポワルン",
+    "romaji": "Powalen"
   },
   {
     "id": 352,
@@ -42625,7 +43327,9 @@
         "stat_name": "special-defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "カクレオン",
+    "romaji": "Kakureon"
   },
   {
     "id": 353,
@@ -42722,7 +43426,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "カゲボウズ",
+    "romaji": "Kagebouzu"
   },
   {
     "id": 354,
@@ -42872,7 +43578,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ジュペッタ",
+    "romaji": "Juppeta"
   },
   {
     "id": 355,
@@ -42980,7 +43688,9 @@
         "stat_name": "special-defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ヨマワル",
+    "romaji": "Yomawaru"
   },
   {
     "id": 356,
@@ -43092,7 +43802,9 @@
         "stat_name": "special-defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "サマヨール",
+    "romaji": "Samayouru"
   },
   {
     "id": 357,
@@ -43175,7 +43887,9 @@
         "stat_name": "hp",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "トロピウス",
+    "romaji": "Tropius"
   },
   {
     "id": 358,
@@ -43317,7 +44031,9 @@
         "stat_name": "special-defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "チリーン",
+    "romaji": "Chirean"
   },
   {
     "id": 359,
@@ -43493,7 +44209,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "アブソル",
+    "romaji": "Absol"
   },
   {
     "id": 360,
@@ -43586,7 +44304,9 @@
         "stat_name": "hp",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ソーナノ",
+    "romaji": "Sohnano"
   },
   {
     "id": 361,
@@ -43699,7 +44419,9 @@
         "stat_name": "hp",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ユキワラシ",
+    "romaji": "Yukiwarashi"
   },
   {
     "id": 362,
@@ -43865,7 +44587,9 @@
         "stat_name": "hp",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "オニゴーリ",
+    "romaji": "Onigohri"
   },
   {
     "id": 363,
@@ -43979,7 +44703,9 @@
         "stat_name": "hp",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "タマザラシ",
+    "romaji": "Tamazarashi"
   },
   {
     "id": 364,
@@ -44093,7 +44819,9 @@
         "stat_name": "hp",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "トドグラー",
+    "romaji": "Todoggler"
   },
   {
     "id": 365,
@@ -44207,7 +44935,9 @@
         "stat_name": "hp",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "トドゼルガ",
+    "romaji": "Todoseruga"
   },
   {
     "id": 366,
@@ -44315,7 +45045,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "パールル",
+    "romaji": "Pearlulu"
   },
   {
     "id": 367,
@@ -44427,7 +45159,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ハンテール",
+    "romaji": "Huntail"
   },
   {
     "id": 368,
@@ -44535,7 +45269,9 @@
         "stat_name": "special-attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "サクラビス",
+    "romaji": "Sakurabyss"
   },
   {
     "id": 369,
@@ -44622,7 +45358,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ジーランス",
+    "romaji": "Glanth"
   },
   {
     "id": 370,
@@ -44699,7 +45437,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ラブカス",
+    "romaji": "Lovecus"
   },
   {
     "id": 371,
@@ -44807,7 +45547,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "タツベイ",
+    "romaji": "Tatsubay"
   },
   {
     "id": 372,
@@ -44915,7 +45657,9 @@
         "stat_name": "defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "コモルー",
+    "romaji": "Komoruu"
   },
   {
     "id": 373,
@@ -45078,7 +45822,9 @@
         "stat_name": "attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ボーマンダ",
+    "romaji": "Bohmander"
   },
   {
     "id": 374,
@@ -45187,7 +45933,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ダンバル",
+    "romaji": "Dumbber"
   },
   {
     "id": 375,
@@ -45296,7 +46044,9 @@
         "stat_name": "defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "メタング",
+    "romaji": "Metang"
   },
   {
     "id": 376,
@@ -45459,7 +46209,9 @@
         "stat_name": "defense",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "メタグロス",
+    "romaji": "Metagross"
   },
   {
     "id": 377,
@@ -45536,7 +46288,9 @@
         "stat_name": "defense",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "レジロック",
+    "romaji": "Regirock"
   },
   {
     "id": 378,
@@ -45613,7 +46367,9 @@
         "stat_name": "special-defense",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "レジアイス",
+    "romaji": "Regice"
   },
   {
     "id": 379,
@@ -45694,7 +46450,9 @@
         "stat_name": "special-defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "レジスチル",
+    "romaji": "Registeel"
   },
   {
     "id": 380,
@@ -45822,7 +46580,9 @@
         "stat_name": "special-defense",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ラティアス",
+    "romaji": "Latias"
   },
   {
     "id": 381,
@@ -45950,7 +46710,9 @@
         "stat_name": "special-attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ラティオス",
+    "romaji": "Latios"
   },
   {
     "id": 382,
@@ -46076,7 +46838,9 @@
         "stat_name": "special-attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "カイオーガ",
+    "romaji": "Kyogre"
   },
   {
     "id": 383,
@@ -46203,7 +46967,9 @@
         "stat_name": "attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "グラードン",
+    "romaji": "Groudon"
   },
   {
     "id": 384,
@@ -46339,7 +47105,9 @@
         "stat_name": "special-attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "レックウザ",
+    "romaji": "Rayquaza"
   },
   {
     "id": 385,
@@ -46413,7 +47181,9 @@
         "stat_name": "hp",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ジラーチ",
+    "romaji": "Jirachi"
   },
   {
     "id": 386,
@@ -46657,7 +47427,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "デオキシス",
+    "romaji": "Deoxys"
   },
   {
     "id": 387,
@@ -46766,7 +47538,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ナエトル",
+    "romaji": "Naetle"
   },
   {
     "id": 388,
@@ -46879,7 +47653,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ハヤシガメ",
+    "romaji": "Hayashigame"
   },
   {
     "id": 389,
@@ -46993,7 +47769,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ドダイトス",
+    "romaji": "Dodaitose"
   },
   {
     "id": 390,
@@ -47102,7 +47880,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ヒコザル",
+    "romaji": "Hikozaru"
   },
   {
     "id": 391,
@@ -47216,7 +47996,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "モウカザル",
+    "romaji": "Mōkazaru"
   },
   {
     "id": 392,
@@ -47334,7 +48116,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ゴウカザル",
+    "romaji": "Gōkazaru"
   },
   {
     "id": 393,
@@ -47443,7 +48227,9 @@
         "stat_name": "special-attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ポッチャマ",
+    "romaji": "Pochama"
   },
   {
     "id": 394,
@@ -47552,7 +48338,9 @@
         "stat_name": "special-attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ポッタイシ",
+    "romaji": "Pottaishi"
   },
   {
     "id": 395,
@@ -47662,7 +48450,9 @@
         "stat_name": "special-attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "エンペルト",
+    "romaji": "Emperte"
   },
   {
     "id": 396,
@@ -47771,7 +48561,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ムックル",
+    "romaji": "Mukkuru"
   },
   {
     "id": 397,
@@ -47880,7 +48672,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ムクバード",
+    "romaji": "Mukubird"
   },
   {
     "id": 398,
@@ -48033,7 +48827,9 @@
         "stat_name": "attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ムクホーク",
+    "romaji": "Mukuhawk"
   },
   {
     "id": 399,
@@ -48131,7 +48927,9 @@
         "stat_name": "hp",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ビッパ",
+    "romaji": "Bipper"
   },
   {
     "id": 400,
@@ -48230,7 +49028,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ビーダル",
+    "romaji": "Beadull"
   },
   {
     "id": 401,
@@ -48323,7 +49123,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "コロボーシ",
+    "romaji": "Korobohshi"
   },
   {
     "id": 402,
@@ -48416,7 +49218,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "コロトック",
+    "romaji": "Korotok"
   },
   {
     "id": 403,
@@ -48528,7 +49332,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "コリンク",
+    "romaji": "Kolink"
   },
   {
     "id": 404,
@@ -48640,7 +49446,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ルクシオ",
+    "romaji": "Luxio"
   },
   {
     "id": 405,
@@ -48752,7 +49560,9 @@
         "stat_name": "attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "レントラー",
+    "romaji": "Rentorar"
   },
   {
     "id": 406,
@@ -48865,7 +49675,9 @@
         "stat_name": "special-attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "スボミー",
+    "romaji": "Subomie"
   },
   {
     "id": 407,
@@ -48979,7 +49791,9 @@
         "stat_name": "special-attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ロズレイド",
+    "romaji": "Roserade"
   },
   {
     "id": 408,
@@ -49072,7 +49886,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ズガイドス",
+    "romaji": "Zugaidos"
   },
   {
     "id": 409,
@@ -49165,7 +49981,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ラムパルド",
+    "romaji": "Rampard"
   },
   {
     "id": 410,
@@ -49259,7 +50077,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "タテトプス",
+    "romaji": "Tatetops"
   },
   {
     "id": 411,
@@ -49353,7 +50173,9 @@
         "stat_name": "defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "トリデプス",
+    "romaji": "Trideps"
   },
   {
     "id": 412,
@@ -49461,7 +50283,9 @@
         "stat_name": "special-defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ミノムッチ",
+    "romaji": "Minomucchi"
   },
   {
     "id": 413,
@@ -49688,7 +50512,9 @@
         "stat_name": "special-defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ミノマダム",
+    "romaji": "Minomadam"
   },
   {
     "id": 414,
@@ -49801,7 +50627,9 @@
         "stat_name": "special-attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ガーメイル",
+    "romaji": "Garmeil"
   },
   {
     "id": 415,
@@ -49895,7 +50723,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ミツハニー",
+    "romaji": "Mitsuhoney"
   },
   {
     "id": 416,
@@ -49993,7 +50823,9 @@
         "stat_name": "special-defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ビークイン",
+    "romaji": "Beequeen"
   },
   {
     "id": 417,
@@ -50075,7 +50907,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "パチリス",
+    "romaji": "Pachirisu"
   },
   {
     "id": 418,
@@ -50169,7 +51003,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ブイゼル",
+    "romaji": "Buoysel"
   },
   {
     "id": 419,
@@ -50263,7 +51099,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "フローゼル",
+    "romaji": "Flowsel"
   },
   {
     "id": 420,
@@ -50353,7 +51191,9 @@
         "stat_name": "special-attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "チェリンボ",
+    "romaji": "Cherinbo"
   },
   {
     "id": 421,
@@ -50443,7 +51283,9 @@
         "stat_name": "special-attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "チェリム",
+    "romaji": "Cherrim"
   },
   {
     "id": 422,
@@ -50541,7 +51383,9 @@
         "stat_name": "hp",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "カラナクシ",
+    "romaji": "Karanakushi"
   },
   {
     "id": 423,
@@ -50640,7 +51484,9 @@
         "stat_name": "hp",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "トリトドン",
+    "romaji": "Toritodon"
   },
   {
     "id": 424,
@@ -50737,7 +51583,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "エテボース",
+    "romaji": "Eteboth"
   },
   {
     "id": 425,
@@ -50835,7 +51683,9 @@
         "stat_name": "hp",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "フワンテ",
+    "romaji": "Fuwante"
   },
   {
     "id": 426,
@@ -50933,7 +51783,9 @@
         "stat_name": "hp",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "フワライド",
+    "romaji": "Fuwaride"
   },
   {
     "id": 427,
@@ -51031,7 +51883,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ミミロル",
+    "romaji": "Mimirol"
   },
   {
     "id": 428,
@@ -51183,7 +52037,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ミミロップ",
+    "romaji": "Mimilop"
   },
   {
     "id": 429,
@@ -51276,7 +52132,9 @@
         "stat_name": "special-defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ムウマージ",
+    "romaji": "Mumage"
   },
   {
     "id": 430,
@@ -51374,7 +52232,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ドンカラス",
+    "romaji": "Donkarasu"
   },
   {
     "id": 431,
@@ -51471,7 +52331,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ニャルマー",
+    "romaji": "Nyarmar"
   },
   {
     "id": 432,
@@ -51568,7 +52430,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ブニャット",
+    "romaji": "Bunyat"
   },
   {
     "id": 433,
@@ -51657,7 +52521,9 @@
         "stat_name": "special-attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "リーシャン",
+    "romaji": "Lisyan"
   },
   {
     "id": 434,
@@ -51755,7 +52621,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "スカンプー",
+    "romaji": "Skunpoo"
   },
   {
     "id": 435,
@@ -51853,7 +52721,9 @@
         "stat_name": "hp",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "スカタンク",
+    "romaji": "Skutank"
   },
   {
     "id": 436,
@@ -51951,7 +52821,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ドーミラー",
+    "romaji": "Domirror"
   },
   {
     "id": 437,
@@ -52053,7 +52925,9 @@
         "stat_name": "special-defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ドータクン",
+    "romaji": "Dotakun"
   },
   {
     "id": 438,
@@ -52150,7 +53024,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ウソハチ",
+    "romaji": "Usohachi"
   },
   {
     "id": 439,
@@ -52263,7 +53139,9 @@
         "stat_name": "special-defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "マネネ",
+    "romaji": "Manene"
   },
   {
     "id": 440,
@@ -52375,7 +53253,9 @@
         "stat_name": "hp",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ピンプク",
+    "romaji": "Pinpuku"
   },
   {
     "id": 441,
@@ -52457,7 +53337,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ペラップ",
+    "romaji": "Perap"
   },
   {
     "id": 442,
@@ -52539,7 +53421,9 @@
         "stat_name": "special-defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ミカルゲ",
+    "romaji": "Mikaruge"
   },
   {
     "id": 443,
@@ -52649,7 +53533,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "フカマル",
+    "romaji": "Fukamaru"
   },
   {
     "id": 444,
@@ -52759,7 +53645,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ガバイト",
+    "romaji": "Gabite"
   },
   {
     "id": 445,
@@ -52964,7 +53852,9 @@
         "stat_name": "attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ガブリアス",
+    "romaji": "Gablias"
   },
   {
     "id": 446,
@@ -53061,7 +53951,9 @@
         "stat_name": "hp",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ゴンベ",
+    "romaji": "Gonbe"
   },
   {
     "id": 447,
@@ -53158,7 +54050,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "リオル",
+    "romaji": "Riolu"
   },
   {
     "id": 448,
@@ -53361,7 +54255,9 @@
         "stat_name": "special-attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ルカリオ",
+    "romaji": "Lucario"
   },
   {
     "id": 449,
@@ -53454,7 +54350,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ヒポポタス",
+    "romaji": "Hipopotas"
   },
   {
     "id": 450,
@@ -53547,7 +54445,9 @@
         "stat_name": "defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "カバルドン",
+    "romaji": "Kabarudon"
   },
   {
     "id": 451,
@@ -53646,7 +54546,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "スコルピ",
+    "romaji": "Scorpi"
   },
   {
     "id": 452,
@@ -53745,7 +54647,9 @@
         "stat_name": "defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ドラピオン",
+    "romaji": "Dorapion"
   },
   {
     "id": 453,
@@ -53843,7 +54747,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "グレッグル",
+    "romaji": "Gureggru"
   },
   {
     "id": 454,
@@ -53941,7 +54847,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ドクロッグ",
+    "romaji": "Dokurog"
   },
   {
     "id": 455,
@@ -54014,7 +54922,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "マスキッパ",
+    "romaji": "Muskippa"
   },
   {
     "id": 456,
@@ -54111,7 +55021,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ケイコウオ",
+    "romaji": "Keikouo"
   },
   {
     "id": 457,
@@ -54208,7 +55120,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ネオラント",
+    "romaji": "Neolant"
   },
   {
     "id": 458,
@@ -54306,7 +55220,9 @@
         "stat_name": "special-defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "タマンタ",
+    "romaji": "Tamanta"
   },
   {
     "id": 459,
@@ -54401,7 +55317,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ユキカブリ",
+    "romaji": "Yukikaburi"
   },
   {
     "id": 460,
@@ -54558,7 +55476,9 @@
         "stat_name": "special-attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ユキノオー",
+    "romaji": "Yukinooh"
   },
   {
     "id": 461,
@@ -54671,7 +55591,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "マニューラ",
+    "romaji": "Manyula"
   },
   {
     "id": 462,
@@ -54784,7 +55706,9 @@
         "stat_name": "special-attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ジバコイル",
+    "romaji": "Jibacoil"
   },
   {
     "id": 463,
@@ -54881,7 +55805,9 @@
         "stat_name": "hp",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ベロベルト",
+    "romaji": "Beroberto"
   },
   {
     "id": 464,
@@ -54995,7 +55921,9 @@
         "stat_name": "attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ドサイドン",
+    "romaji": "Dosydon"
   },
   {
     "id": 465,
@@ -55092,7 +56020,9 @@
         "stat_name": "defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "モジャンボ",
+    "romaji": "Mojumbo"
   },
   {
     "id": 466,
@@ -55200,7 +56130,9 @@
         "stat_name": "attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "エレキブル",
+    "romaji": "Elekible"
   },
   {
     "id": 467,
@@ -55308,7 +56240,9 @@
         "stat_name": "special-attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ブーバーン",
+    "romaji": "Booburn"
   },
   {
     "id": 468,
@@ -55426,7 +56360,9 @@
         "stat_name": "special-defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "トゲキッス",
+    "romaji": "Togekiss"
   },
   {
     "id": 469,
@@ -55524,7 +56460,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "メガヤンマ",
+    "romaji": "Megayanma"
   },
   {
     "id": 470,
@@ -55722,7 +56660,9 @@
         "stat_name": "defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "リーフィア",
+    "romaji": "Leafia"
   },
   {
     "id": 471,
@@ -55920,7 +56860,9 @@
         "stat_name": "special-attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "グレイシア",
+    "romaji": "Glacia"
   },
   {
     "id": 472,
@@ -56018,7 +56960,9 @@
         "stat_name": "defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "グライオン",
+    "romaji": "Glion"
   },
   {
     "id": 473,
@@ -56131,7 +57075,9 @@
         "stat_name": "attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "マンムー",
+    "romaji": "Mammoo"
   },
   {
     "id": 474,
@@ -56243,7 +57189,9 @@
         "stat_name": "special-attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ポリゴンＺ",
+    "romaji": "PorygonZ"
   },
   {
     "id": 475,
@@ -56426,7 +57374,9 @@
         "stat_name": "attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "エルレイド",
+    "romaji": "Erlade"
   },
   {
     "id": 476,
@@ -56528,7 +57478,9 @@
         "stat_name": "special-defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ダイノーズ",
+    "romaji": "Dainose"
   },
   {
     "id": 477,
@@ -56640,7 +57592,9 @@
         "stat_name": "special-defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ヨノワール",
+    "romaji": "Yonoir"
   },
   {
     "id": 478,
@@ -56799,7 +57753,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ユキメノコ",
+    "romaji": "Yukimenoko"
   },
   {
     "id": 479,
@@ -57159,7 +58115,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ロトム",
+    "romaji": "Rotom"
   },
   {
     "id": 480,
@@ -57236,7 +58194,9 @@
         "stat_name": "special-defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ユクシー",
+    "romaji": "Yuxie"
   },
   {
     "id": 481,
@@ -57317,7 +58277,9 @@
         "stat_name": "special-defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "エムリット",
+    "romaji": "Emrit"
   },
   {
     "id": 482,
@@ -57394,7 +58356,9 @@
         "stat_name": "special-attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "アグノム",
+    "romaji": "Agnome"
   },
   {
     "id": 483,
@@ -57530,7 +58494,9 @@
         "stat_name": "special-attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ディアルガ",
+    "romaji": "Dialga"
   },
   {
     "id": 484,
@@ -57666,7 +58632,9 @@
         "stat_name": "special-attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "パルキア",
+    "romaji": "Palkia"
   },
   {
     "id": 485,
@@ -57788,7 +58756,9 @@
         "stat_name": "special-attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ヒードラン",
+    "romaji": "Heatran"
   },
   {
     "id": 486,
@@ -57861,7 +58831,9 @@
         "stat_name": "attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "レジギガス",
+    "romaji": "Regigigas"
   },
   {
     "id": 487,
@@ -57993,7 +58965,9 @@
         "stat_name": "hp",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ギラティナ",
+    "romaji": "Giratina"
   },
   {
     "id": 488,
@@ -58066,7 +59040,9 @@
         "stat_name": "special-defense",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "クレセリア",
+    "romaji": "Crecelia"
   },
   {
     "id": 489,
@@ -58140,7 +59116,9 @@
         "stat_name": "hp",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "フィオネ",
+    "romaji": "Phione"
   },
   {
     "id": 490,
@@ -58214,7 +59192,9 @@
         "stat_name": "hp",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "マナフィ",
+    "romaji": "Manaphy"
   },
   {
     "id": 491,
@@ -58334,7 +59314,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ダークライ",
+    "romaji": "Darkrai"
   },
   {
     "id": 492,
@@ -58461,7 +59443,9 @@
         "stat_name": "hp",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "シェイミ",
+    "romaji": "Shaymin"
   },
   {
     "id": 493,
@@ -58534,7 +59518,9 @@
         "stat_name": "hp",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "アルセウス",
+    "romaji": "Arceus"
   },
   {
     "id": 494,
@@ -58608,7 +59594,9 @@
         "stat_name": "hp",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ビクティニ",
+    "romaji": "Victini"
   },
   {
     "id": 495,
@@ -58717,7 +59705,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ツタージャ",
+    "romaji": "Tsutarja"
   },
   {
     "id": 496,
@@ -58826,7 +59816,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ジャノビー",
+    "romaji": "Janovy"
   },
   {
     "id": 497,
@@ -58935,7 +59927,9 @@
         "stat_name": "speed",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ジャローダ",
+    "romaji": "Jalorda"
   },
   {
     "id": 498,
@@ -59043,7 +60037,9 @@
         "stat_name": "hp",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ポカブ",
+    "romaji": "Pokabu"
   },
   {
     "id": 499,
@@ -59152,7 +60148,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "チャオブー",
+    "romaji": "Chaoboo"
   },
   {
     "id": 500,
@@ -59310,7 +60308,9 @@
         "stat_name": "attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "エンブオー",
+    "romaji": "Enbuoh"
   },
   {
     "id": 501,
@@ -59418,7 +60418,9 @@
         "stat_name": "special-attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ミジュマル",
+    "romaji": "Mijumaru"
   },
   {
     "id": 502,
@@ -59526,7 +60528,9 @@
         "stat_name": "special-attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "フタチマル",
+    "romaji": "Futachimaru"
   },
   {
     "id": 503,
@@ -59692,7 +60696,9 @@
         "stat_name": "special-attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ダイケンキ",
+    "romaji": "Daikenki"
   },
   {
     "id": 504,
@@ -59789,7 +60795,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ミネズミ",
+    "romaji": "Minezumi"
   },
   {
     "id": 505,
@@ -59886,7 +60894,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ミルホッグ",
+    "romaji": "Miruhog"
   },
   {
     "id": 506,
@@ -59998,7 +61008,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ヨーテリー",
+    "romaji": "Yorterrie"
   },
   {
     "id": 507,
@@ -60110,7 +61122,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ハーデリア",
+    "romaji": "Herderrie"
   },
   {
     "id": 508,
@@ -60222,7 +61236,9 @@
         "stat_name": "attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ムーランド",
+    "romaji": "Mooland"
   },
   {
     "id": 509,
@@ -60319,7 +61335,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "チョロネコ",
+    "romaji": "Choroneko"
   },
   {
     "id": 510,
@@ -60416,7 +61434,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "レパルダス",
+    "romaji": "Lepardas"
   },
   {
     "id": 511,
@@ -60509,7 +61529,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ヤナップ",
+    "romaji": "Yanappu"
   },
   {
     "id": 512,
@@ -60602,7 +61624,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ヤナッキー",
+    "romaji": "Yanakkie"
   },
   {
     "id": 513,
@@ -60695,7 +61719,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "バオップ",
+    "romaji": "Baoppu"
   },
   {
     "id": 514,
@@ -60788,7 +61814,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "バオッキー",
+    "romaji": "Baokkie"
   },
   {
     "id": 515,
@@ -60881,7 +61909,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ヒヤップ",
+    "romaji": "Hiyappu"
   },
   {
     "id": 516,
@@ -60974,7 +62004,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ヒヤッキー",
+    "romaji": "Hiyakkie"
   },
   {
     "id": 517,
@@ -61071,7 +62103,9 @@
         "stat_name": "hp",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ムンナ",
+    "romaji": "Munna"
   },
   {
     "id": 518,
@@ -61168,7 +62202,9 @@
         "stat_name": "hp",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ムシャーナ",
+    "romaji": "Musharna"
   },
   {
     "id": 519,
@@ -61281,7 +62317,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "マメパト",
+    "romaji": "Mamepato"
   },
   {
     "id": 520,
@@ -61394,7 +62432,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ハトーボー",
+    "romaji": "Hatoboh"
   },
   {
     "id": 521,
@@ -61507,7 +62547,9 @@
         "stat_name": "attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ケンホロウ",
+    "romaji": "Kenhallow"
   },
   {
     "id": 522,
@@ -61604,7 +62646,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "シママ",
+    "romaji": "Shimama"
   },
   {
     "id": 523,
@@ -61701,7 +62745,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ゼブライカ",
+    "romaji": "Zebraika"
   },
   {
     "id": 524,
@@ -61813,7 +62859,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ダンゴロ",
+    "romaji": "Dangoro"
   },
   {
     "id": 525,
@@ -61929,7 +62977,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ガントル",
+    "romaji": "Gantle"
   },
   {
     "id": 526,
@@ -62041,7 +63091,9 @@
         "stat_name": "attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ギガイアス",
+    "romaji": "Gigaiath"
   },
   {
     "id": 527,
@@ -62140,7 +63192,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "コロモリ",
+    "romaji": "Koromori"
   },
   {
     "id": 528,
@@ -62239,7 +63293,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ココロモリ",
+    "romaji": "Kokoromori"
   },
   {
     "id": 529,
@@ -62336,7 +63392,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "モグリュー",
+    "romaji": "Mogurew"
   },
   {
     "id": 530,
@@ -62483,7 +63541,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ドリュウズ",
+    "romaji": "Doryuzu"
   },
   {
     "id": 531,
@@ -62618,7 +63678,9 @@
         "stat_name": "hp",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "タブンネ",
+    "romaji": "Tabunne"
   },
   {
     "id": 532,
@@ -62730,7 +63792,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ドッコラー",
+    "romaji": "Dokkorer"
   },
   {
     "id": 533,
@@ -62842,7 +63906,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ドテッコツ",
+    "romaji": "Dotekkotsu"
   },
   {
     "id": 534,
@@ -62954,7 +64020,9 @@
         "stat_name": "attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ローブシン",
+    "romaji": "Roubushin"
   },
   {
     "id": 535,
@@ -63066,7 +64134,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "オタマロ",
+    "romaji": "Otamaro"
   },
   {
     "id": 536,
@@ -63179,7 +64249,9 @@
         "stat_name": "hp",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ガマガル",
+    "romaji": "Gamagaru"
   },
   {
     "id": 537,
@@ -63292,7 +64364,9 @@
         "stat_name": "hp",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ガマゲロゲ",
+    "romaji": "Gamageroge"
   },
   {
     "id": 538,
@@ -63373,7 +64447,9 @@
         "stat_name": "hp",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ナゲキ",
+    "romaji": "Nageki"
   },
   {
     "id": 539,
@@ -63454,7 +64530,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ダゲキ",
+    "romaji": "Dageki"
   },
   {
     "id": 540,
@@ -63567,7 +64645,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "クルミル",
+    "romaji": "Kurumiru"
   },
   {
     "id": 541,
@@ -63680,7 +64760,9 @@
         "stat_name": "defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "クルマユ",
+    "romaji": "Kurumayu"
   },
   {
     "id": 542,
@@ -63793,7 +64875,9 @@
         "stat_name": "attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ハハコモリ",
+    "romaji": "Hahakomori"
   },
   {
     "id": 543,
@@ -63906,7 +64990,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "フシデ",
+    "romaji": "Fushide"
   },
   {
     "id": 544,
@@ -64019,7 +65105,9 @@
         "stat_name": "defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ホイーガ",
+    "romaji": "Wheega"
   },
   {
     "id": 545,
@@ -64176,7 +65264,9 @@
         "stat_name": "speed",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ペンドラー",
+    "romaji": "Pendror"
   },
   {
     "id": 546,
@@ -64275,7 +65365,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "モンメン",
+    "romaji": "Monmen"
   },
   {
     "id": 547,
@@ -64374,7 +65466,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "エルフーン",
+    "romaji": "Elfuun"
   },
   {
     "id": 548,
@@ -64471,7 +65565,9 @@
         "stat_name": "special-attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "チュリネ",
+    "romaji": "Churine"
   },
   {
     "id": 549,
@@ -64630,7 +65726,9 @@
         "stat_name": "special-attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ドレディア",
+    "romaji": "Dredear"
   },
   {
     "id": 550,
@@ -64847,7 +65945,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "バスラオ",
+    "romaji": "Bassrao"
   },
   {
     "id": 551,
@@ -64960,7 +66060,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "メグロコ",
+    "romaji": "Meguroco"
   },
   {
     "id": 552,
@@ -65073,7 +66175,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ワルビル",
+    "romaji": "Waruvile"
   },
   {
     "id": 553,
@@ -65186,7 +66290,9 @@
         "stat_name": "attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ワルビアル",
+    "romaji": "Waruvial"
   },
   {
     "id": 554,
@@ -65336,7 +66442,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ダルマッカ",
+    "romaji": "Darumakka"
   },
   {
     "id": 555,
@@ -65599,7 +66707,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ヒヒダルマ",
+    "romaji": "Hihidaruma"
   },
   {
     "id": 556,
@@ -65680,7 +66790,9 @@
         "stat_name": "special-attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "マラカッチ",
+    "romaji": "Maracacchi"
   },
   {
     "id": 557,
@@ -65779,7 +66891,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "イシズマイ",
+    "romaji": "Ishizumai"
   },
   {
     "id": 558,
@@ -65878,7 +66992,9 @@
         "stat_name": "defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "イワパレス",
+    "romaji": "Iwapalace"
   },
   {
     "id": 559,
@@ -65977,7 +67093,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ズルッグ",
+    "romaji": "Zuruggu"
   },
   {
     "id": 560,
@@ -66124,7 +67242,9 @@
         "stat_name": "special-defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ズルズキン",
+    "romaji": "Zuruzukin"
   },
   {
     "id": 561,
@@ -66206,7 +67326,9 @@
         "stat_name": "special-attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "シンボラー",
+    "romaji": "Symboler"
   },
   {
     "id": 562,
@@ -66365,7 +67487,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "デスマス",
+    "romaji": "Desumasu"
   },
   {
     "id": 563,
@@ -66470,7 +67594,9 @@
         "stat_name": "defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "デスカーン",
+    "romaji": "Desukarn"
   },
   {
     "id": 564,
@@ -66569,7 +67695,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "プロトーガ",
+    "romaji": "Protoga"
   },
   {
     "id": 565,
@@ -66668,7 +67796,9 @@
         "stat_name": "defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "アバゴーラ",
+    "romaji": "Abagoura"
   },
   {
     "id": 566,
@@ -66759,7 +67889,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "アーケン",
+    "romaji": "Archen"
   },
   {
     "id": 567,
@@ -66850,7 +67982,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "アーケオス",
+    "romaji": "Archeos"
   },
   {
     "id": 568,
@@ -66947,7 +68081,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ヤブクロン",
+    "romaji": "Yabukuron"
   },
   {
     "id": 569,
@@ -67105,7 +68241,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ダストダス",
+    "romaji": "Dustdas"
   },
   {
     "id": 570,
@@ -67248,7 +68386,9 @@
         "stat_name": "special-attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ゾロア",
+    "romaji": "Zorua"
   },
   {
     "id": 571,
@@ -67391,7 +68531,9 @@
         "stat_name": "special-attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ゾロアーク",
+    "romaji": "Zoroark"
   },
   {
     "id": 572,
@@ -67488,7 +68630,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "チラーミィ",
+    "romaji": "Chillarmy"
   },
   {
     "id": 573,
@@ -67585,7 +68729,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "チラチーノ",
+    "romaji": "Chillaccino"
   },
   {
     "id": 574,
@@ -67697,7 +68843,9 @@
         "stat_name": "special-defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ゴチム",
+    "romaji": "Gothimu"
   },
   {
     "id": 575,
@@ -67809,7 +68957,9 @@
         "stat_name": "special-defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ゴチミル",
+    "romaji": "Gothimiru"
   },
   {
     "id": 576,
@@ -67921,7 +69071,9 @@
         "stat_name": "special-defense",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ゴチルゼル",
+    "romaji": "Gothiruselle"
   },
   {
     "id": 577,
@@ -68033,7 +69185,9 @@
         "stat_name": "special-attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ユニラン",
+    "romaji": "Uniran"
   },
   {
     "id": 578,
@@ -68145,7 +69299,9 @@
         "stat_name": "special-attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ダブラン",
+    "romaji": "Doublan"
   },
   {
     "id": 579,
@@ -68257,7 +69413,9 @@
         "stat_name": "special-attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ランクルス",
+    "romaji": "Lanculus"
   },
   {
     "id": 580,
@@ -68356,7 +69514,9 @@
         "stat_name": "hp",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "コアルヒー",
+    "romaji": "Koaruhie"
   },
   {
     "id": 581,
@@ -68455,7 +69615,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "スワンナ",
+    "romaji": "Swanna"
   },
   {
     "id": 582,
@@ -68567,7 +69729,9 @@
         "stat_name": "special-attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "バニプッチ",
+    "romaji": "Vanipeti"
   },
   {
     "id": 583,
@@ -68679,7 +69843,9 @@
         "stat_name": "special-attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "バニリッチ",
+    "romaji": "Vanirich"
   },
   {
     "id": 584,
@@ -68791,7 +69957,9 @@
         "stat_name": "special-attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "バイバニラ",
+    "romaji": "Baivanilla"
   },
   {
     "id": 585,
@@ -68889,7 +70057,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "シキジカ",
+    "romaji": "Shikijika"
   },
   {
     "id": 586,
@@ -68987,7 +70157,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "メブキジカ",
+    "romaji": "Mebukijika"
   },
   {
     "id": 587,
@@ -69065,7 +70237,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "エモンガ",
+    "romaji": "Emonga"
   },
   {
     "id": 588,
@@ -69162,7 +70336,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "カブルモ",
+    "romaji": "Kaburumo"
   },
   {
     "id": 589,
@@ -69260,7 +70436,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "シュバルゴ",
+    "romaji": "Chevargo"
   },
   {
     "id": 590,
@@ -69354,7 +70532,9 @@
         "stat_name": "hp",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "タマゲタケ",
+    "romaji": "Tamagetake"
   },
   {
     "id": 591,
@@ -69448,7 +70628,9 @@
         "stat_name": "hp",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "モロバレル",
+    "romaji": "Morobareru"
   },
   {
     "id": 592,
@@ -69546,7 +70728,9 @@
         "stat_name": "special-defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "プルリル",
+    "romaji": "Pururill"
   },
   {
     "id": 593,
@@ -69644,7 +70828,9 @@
         "stat_name": "special-defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ブルンゲル",
+    "romaji": "Burungel"
   },
   {
     "id": 594,
@@ -69726,7 +70912,9 @@
         "stat_name": "hp",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ママンボウ",
+    "romaji": "Mamanbou"
   },
   {
     "id": 595,
@@ -69824,7 +71012,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "バチュル",
+    "romaji": "Bachuru"
   },
   {
     "id": 596,
@@ -69922,7 +71112,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "デンチュラ",
+    "romaji": "Dentula"
   },
   {
     "id": 597,
@@ -70013,7 +71205,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "テッシード",
+    "romaji": "Tesseed"
   },
   {
     "id": 598,
@@ -70108,7 +71302,9 @@
         "stat_name": "defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ナットレイ",
+    "romaji": "Nutrey"
   },
   {
     "id": 599,
@@ -70220,7 +71416,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ギアル",
+    "romaji": "Giaru"
   },
   {
     "id": 600,
@@ -70332,7 +71530,9 @@
         "stat_name": "defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ギギアル",
+    "romaji": "Gigiaru"
   },
   {
     "id": 601,
@@ -70444,7 +71644,9 @@
         "stat_name": "defense",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ギギギアル",
+    "romaji": "Gigigiaru"
   },
   {
     "id": 602,
@@ -70548,7 +71750,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "シビシラス",
+    "romaji": "Shibishirasu"
   },
   {
     "id": 603,
@@ -70652,7 +71856,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "シビビール",
+    "romaji": "Shibibeel"
   },
   {
     "id": 604,
@@ -70799,7 +72005,9 @@
         "stat_name": "attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "シビルドン",
+    "romaji": "Shibirudon"
   },
   {
     "id": 605,
@@ -70896,7 +72104,9 @@
         "stat_name": "special-attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "リグレー",
+    "romaji": "Ligray"
   },
   {
     "id": 606,
@@ -70993,7 +72203,9 @@
         "stat_name": "special-attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "オーベム",
+    "romaji": "Ohbem"
   },
   {
     "id": 607,
@@ -71106,7 +72318,9 @@
         "stat_name": "special-attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ヒトモシ",
+    "romaji": "Hitomoshi"
   },
   {
     "id": 608,
@@ -71219,7 +72433,9 @@
         "stat_name": "special-attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ランプラー",
+    "romaji": "Lampler"
   },
   {
     "id": 609,
@@ -71381,7 +72597,9 @@
         "stat_name": "special-attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "シャンデラ",
+    "romaji": "Chandela"
   },
   {
     "id": 610,
@@ -71494,7 +72712,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "キバゴ",
+    "romaji": "Kibago"
   },
   {
     "id": 611,
@@ -71607,7 +72827,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "オノンド",
+    "romaji": "Onondo"
   },
   {
     "id": 612,
@@ -71720,7 +72942,9 @@
         "stat_name": "attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "オノノクス",
+    "romaji": "Ononokus"
   },
   {
     "id": 613,
@@ -71817,7 +73041,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "クマシュン",
+    "romaji": "Kumasyun"
   },
   {
     "id": 614,
@@ -71914,7 +73140,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ツンベアー",
+    "romaji": "Tunbear"
   },
   {
     "id": 615,
@@ -71987,7 +73215,9 @@
         "stat_name": "special-defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "フリージオ",
+    "romaji": "Freegeo"
   },
   {
     "id": 616,
@@ -72084,7 +73314,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "チョボマキ",
+    "romaji": "Chobomaki"
   },
   {
     "id": 617,
@@ -72181,7 +73413,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "アギルダー",
+    "romaji": "Agilder"
   },
   {
     "id": 618,
@@ -72318,7 +73552,9 @@
         "stat_name": "hp",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "マッギョ",
+    "romaji": "Maggyo"
   },
   {
     "id": 619,
@@ -72416,7 +73652,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "コジョフー",
+    "romaji": "Kojofu"
   },
   {
     "id": 620,
@@ -72514,7 +73752,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "コジョンド",
+    "romaji": "Kojondo"
   },
   {
     "id": 621,
@@ -72596,7 +73836,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "クリムガン",
+    "romaji": "Crimgan"
   },
   {
     "id": 622,
@@ -72694,7 +73936,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ゴビット",
+    "romaji": "Gobit"
   },
   {
     "id": 623,
@@ -72841,7 +74085,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ゴルーグ",
+    "romaji": "Goloog"
   },
   {
     "id": 624,
@@ -72954,7 +74200,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "コマタナ",
+    "romaji": "Komatana"
   },
   {
     "id": 625,
@@ -73067,7 +74315,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "キリキザン",
+    "romaji": "Kirikizan"
   },
   {
     "id": 626,
@@ -73148,7 +74398,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "バッフロン",
+    "romaji": "Buffron"
   },
   {
     "id": 627,
@@ -73246,7 +74498,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ワシボン",
+    "romaji": "Washibon"
   },
   {
     "id": 628,
@@ -73406,7 +74660,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ウォーグル",
+    "romaji": "Warrgle"
   },
   {
     "id": 629,
@@ -73504,7 +74760,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "バルチャイ",
+    "romaji": "Valchai"
   },
   {
     "id": 630,
@@ -73602,7 +74860,9 @@
         "stat_name": "special-attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "バルジーナ",
+    "romaji": "Vulgina"
   },
   {
     "id": 631,
@@ -73683,7 +74943,9 @@
         "stat_name": "special-attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "クイタラン",
+    "romaji": "Kuitaran"
   },
   {
     "id": 632,
@@ -73765,7 +75027,9 @@
         "stat_name": "defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "アイアント",
+    "romaji": "Aiant"
   },
   {
     "id": 633,
@@ -73870,7 +75134,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "モノズ",
+    "romaji": "Monozu"
   },
   {
     "id": 634,
@@ -73975,7 +75241,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ジヘッド",
+    "romaji": "Dihead"
   },
   {
     "id": 635,
@@ -74080,7 +75348,9 @@
         "stat_name": "special-attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "サザンドラ",
+    "romaji": "Sazandora"
   },
   {
     "id": 636,
@@ -74174,7 +75444,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "メラルバ",
+    "romaji": "Merlarva"
   },
   {
     "id": 637,
@@ -74268,7 +75540,9 @@
         "stat_name": "special-attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ウルガモス",
+    "romaji": "Ulgamoth"
   },
   {
     "id": 638,
@@ -74342,7 +75616,9 @@
         "stat_name": "defense",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "コバルオン",
+    "romaji": "Cobalon"
   },
   {
     "id": 639,
@@ -74416,7 +75692,9 @@
         "stat_name": "attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "テラキオン",
+    "romaji": "Terrakion"
   },
   {
     "id": 640,
@@ -74490,7 +75768,9 @@
         "stat_name": "special-defense",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ビリジオン",
+    "romaji": "Virizion"
   },
   {
     "id": 641,
@@ -74620,7 +75900,9 @@
         "stat_name": "attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "トルネロス",
+    "romaji": "Tornelos"
   },
   {
     "id": 642,
@@ -74752,7 +76034,9 @@
         "stat_name": "attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ボルトロス",
+    "romaji": "Voltolos"
   },
   {
     "id": 643,
@@ -74826,7 +76110,9 @@
         "stat_name": "special-attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "レシラム",
+    "romaji": "Reshiram"
   },
   {
     "id": 644,
@@ -74900,7 +76186,9 @@
         "stat_name": "attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ゼクロム",
+    "romaji": "Zekrom"
   },
   {
     "id": 645,
@@ -75032,7 +76320,9 @@
         "stat_name": "special-attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ランドロス",
+    "romaji": "Landlos"
   },
   {
     "id": 646,
@@ -75220,7 +76510,9 @@
         "stat_name": "special-attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "キュレム",
+    "romaji": "Kyurem"
   },
   {
     "id": 647,
@@ -75348,7 +76640,9 @@
         "stat_name": "special-attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ケルディオ",
+    "romaji": "Keldeo"
   },
   {
     "id": 648,
@@ -75492,7 +76786,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "メロエッタ",
+    "romaji": "Meloetta"
   },
   {
     "id": 649,
@@ -75574,7 +76870,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ゲノセクト",
+    "romaji": "Genesect"
   },
   {
     "id": 650,
@@ -75682,7 +76980,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ハリマロン",
+    "romaji": "Harimaron"
   },
   {
     "id": 651,
@@ -75790,7 +77090,9 @@
         "stat_name": "defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ハリボーグ",
+    "romaji": "Hariborg"
   },
   {
     "id": 652,
@@ -75948,7 +77250,9 @@
         "stat_name": "defense",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ブリガロン",
+    "romaji": "Brigarron"
   },
   {
     "id": 653,
@@ -76056,7 +77360,9 @@
         "stat_name": "special-attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "フォッコ",
+    "romaji": "Fokko"
   },
   {
     "id": 654,
@@ -76164,7 +77470,9 @@
         "stat_name": "special-attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "テールナー",
+    "romaji": "Tairenar"
   },
   {
     "id": 655,
@@ -76322,7 +77630,9 @@
         "stat_name": "special-attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "マフォクシー",
+    "romaji": "Mahoxy"
   },
   {
     "id": 656,
@@ -76430,7 +77740,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ケロマツ",
+    "romaji": "Keromatsu"
   },
   {
     "id": 657,
@@ -76538,7 +77850,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ゲコガシラ",
+    "romaji": "Gekogashira"
   },
   {
     "id": 658,
@@ -76748,7 +78062,9 @@
         "stat_name": "speed",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ゲッコウガ",
+    "romaji": "Gekkouga"
   },
   {
     "id": 659,
@@ -76845,7 +78161,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ホルビー",
+    "romaji": "Horubee"
   },
   {
     "id": 660,
@@ -76943,7 +78261,9 @@
         "stat_name": "hp",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ホルード",
+    "romaji": "Horudo"
   },
   {
     "id": 661,
@@ -77052,7 +78372,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ヤヤコマ",
+    "romaji": "Yayakoma"
   },
   {
     "id": 662,
@@ -77161,7 +78483,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ヒノヤコマ",
+    "romaji": "Hinoyakoma"
   },
   {
     "id": 663,
@@ -77270,7 +78594,9 @@
         "stat_name": "speed",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ファイアロー",
+    "romaji": "Fiarrow"
   },
   {
     "id": 664,
@@ -77382,7 +78708,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "コフキムシ",
+    "romaji": "Kofukimushi"
   },
   {
     "id": 665,
@@ -77490,7 +78818,9 @@
         "stat_name": "defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "コフーライ",
+    "romaji": "Kofuurai"
   },
   {
     "id": 666,
@@ -77611,7 +78941,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ビビヨン",
+    "romaji": "Viviyon"
   },
   {
     "id": 667,
@@ -77709,7 +79041,9 @@
         "stat_name": "special-attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "シシコ",
+    "romaji": "Shishiko"
   },
   {
     "id": 668,
@@ -77851,7 +79185,9 @@
         "stat_name": "special-attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "カエンジシ",
+    "romaji": "Kaenjishi"
   },
   {
     "id": 669,
@@ -77959,7 +79295,9 @@
         "stat_name": "special-defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "フラベベ",
+    "romaji": "Flabebe"
   },
   {
     "id": 670,
@@ -78170,7 +79508,9 @@
         "stat_name": "special-defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "フラエッテ",
+    "romaji": "Floette"
   },
   {
     "id": 671,
@@ -78278,7 +79618,9 @@
         "stat_name": "special-defense",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "フラージェス",
+    "romaji": "Florges"
   },
   {
     "id": 672,
@@ -78371,7 +79713,9 @@
         "stat_name": "hp",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "メェークル",
+    "romaji": "Meecle"
   },
   {
     "id": 673,
@@ -78464,7 +79808,9 @@
         "stat_name": "hp",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ゴーゴート",
+    "romaji": "Gogoat"
   },
   {
     "id": 674,
@@ -78562,7 +79908,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ヤンチャム",
+    "romaji": "Yancham"
   },
   {
     "id": 675,
@@ -78661,7 +80009,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ゴロンダ",
+    "romaji": "Goronda"
   },
   {
     "id": 676,
@@ -78734,7 +80084,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "トリミアン",
+    "romaji": "Trimmien"
   },
   {
     "id": 677,
@@ -78831,7 +80183,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ニャスパー",
+    "romaji": "Nyasper"
   },
   {
     "id": 678,
@@ -79036,7 +80390,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ニャオニクス",
+    "romaji": "Nyaonix"
   },
   {
     "id": 679,
@@ -79141,7 +80497,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ヒトツキ",
+    "romaji": "Hitotsuki"
   },
   {
     "id": 680,
@@ -79246,7 +80604,9 @@
         "stat_name": "defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ニダンギル",
+    "romaji": "Nidangill"
   },
   {
     "id": 681,
@@ -79413,7 +80773,9 @@
         "stat_name": "special-defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ギルガルド",
+    "romaji": "Gillgard"
   },
   {
     "id": 682,
@@ -79506,7 +80868,9 @@
         "stat_name": "hp",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "シュシュプ",
+    "romaji": "Shushupu"
   },
   {
     "id": 683,
@@ -79599,7 +80963,9 @@
         "stat_name": "hp",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "フレフワン",
+    "romaji": "Frefuwan"
   },
   {
     "id": 684,
@@ -79692,7 +81058,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ペロッパフ",
+    "romaji": "Peroppafu"
   },
   {
     "id": 685,
@@ -79785,7 +81153,9 @@
         "stat_name": "defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ペロリーム",
+    "romaji": "Peroream"
   },
   {
     "id": 686,
@@ -79884,7 +81254,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "マーイーカ",
+    "romaji": "Maaiika"
   },
   {
     "id": 687,
@@ -80027,7 +81399,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "カラマネロ",
+    "romaji": "Calamanero"
   },
   {
     "id": 688,
@@ -80125,7 +81499,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "カメテテ",
+    "romaji": "Kametete"
   },
   {
     "id": 689,
@@ -80267,7 +81643,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ガメノデス",
+    "romaji": "Gamenodes"
   },
   {
     "id": 690,
@@ -80366,7 +81744,9 @@
         "stat_name": "special-defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "クズモー",
+    "romaji": "Kuzumo"
   },
   {
     "id": 691,
@@ -80509,7 +81889,9 @@
         "stat_name": "special-defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ドラミドロ",
+    "romaji": "Dramidoro"
   },
   {
     "id": 692,
@@ -80599,7 +81981,9 @@
         "stat_name": "special-attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ウデッポウ",
+    "romaji": "Udeppou"
   },
   {
     "id": 693,
@@ -80689,7 +82073,9 @@
         "stat_name": "special-attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ブロスター",
+    "romaji": "Bloster"
   },
   {
     "id": 694,
@@ -80788,7 +82174,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "エリキテル",
+    "romaji": "Erikiteru"
   },
   {
     "id": 695,
@@ -80891,7 +82279,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "エレザード",
+    "romaji": "Elezard"
   },
   {
     "id": 696,
@@ -80986,7 +82376,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "チゴラス",
+    "romaji": "Chigoras"
   },
   {
     "id": 697,
@@ -81081,7 +82473,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ガチゴラス",
+    "romaji": "Gachigoras"
   },
   {
     "id": 698,
@@ -81175,7 +82569,9 @@
         "stat_name": "hp",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "アマルス",
+    "romaji": "Amarus"
   },
   {
     "id": 699,
@@ -81269,7 +82665,9 @@
         "stat_name": "hp",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "アマルルガ",
+    "romaji": "Amaruruga"
   },
   {
     "id": 700,
@@ -81467,7 +82865,9 @@
         "stat_name": "special-defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ニンフィア",
+    "romaji": "Nymphia"
   },
   {
     "id": 701,
@@ -81599,7 +82999,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ルチャブル",
+    "romaji": "Luchabull"
   },
   {
     "id": 702,
@@ -81682,7 +83084,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "デデンネ",
+    "romaji": "Dedenne"
   },
   {
     "id": 703,
@@ -81765,7 +83169,9 @@
         "stat_name": "special-defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "メレシー",
+    "romaji": "Melecie"
   },
   {
     "id": 704,
@@ -81877,7 +83283,9 @@
         "stat_name": "special-defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ヌメラ",
+    "romaji": "Numera"
   },
   {
     "id": 705,
@@ -82051,7 +83459,9 @@
         "stat_name": "special-defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ヌメイル",
+    "romaji": "Numeil"
   },
   {
     "id": 706,
@@ -82225,7 +83635,9 @@
         "stat_name": "special-defense",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ヌメルゴン",
+    "romaji": "Numelgon"
   },
   {
     "id": 707,
@@ -82303,7 +83715,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "クレッフィ",
+    "romaji": "Cleffy"
   },
   {
     "id": 708,
@@ -82402,7 +83816,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ボクレー",
+    "romaji": "Bokurei"
   },
   {
     "id": 709,
@@ -82501,7 +83917,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "オーロット",
+    "romaji": "Ohrot"
   },
   {
     "id": 710,
@@ -82781,7 +84199,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "バケッチャ",
+    "romaji": "Bakeccha"
   },
   {
     "id": 711,
@@ -83061,7 +84481,9 @@
         "stat_name": "defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "パンプジン",
+    "romaji": "Pumpjin"
   },
   {
     "id": 712,
@@ -83159,7 +84581,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "カチコール",
+    "romaji": "Kachikohru"
   },
   {
     "id": 713,
@@ -83319,7 +84743,9 @@
         "stat_name": "defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "クレベース",
+    "romaji": "Crebase"
   },
   {
     "id": 714,
@@ -83418,7 +84844,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "オンバット",
+    "romaji": "Onbat"
   },
   {
     "id": 715,
@@ -83517,7 +84945,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "オンバーン",
+    "romaji": "Onvern"
   },
   {
     "id": 716,
@@ -83590,7 +85020,9 @@
         "stat_name": "hp",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ゼルネアス",
+    "romaji": "Xerneas"
   },
   {
     "id": 717,
@@ -83664,7 +85096,9 @@
         "stat_name": "hp",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "イベルタル",
+    "romaji": "Yveltal"
   },
   {
     "id": 718,
@@ -83895,7 +85329,9 @@
         "stat_name": "hp",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ジガルデ",
+    "romaji": "Zygarde"
   },
   {
     "id": 719,
@@ -84031,7 +85467,9 @@
         "stat_name": "special-defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ディアンシー",
+    "romaji": "Diancie"
   },
   {
     "id": 720,
@@ -84159,7 +85597,9 @@
         "stat_name": "special-attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "フーパ",
+    "romaji": "Hoopa"
   },
   {
     "id": 721,
@@ -84233,7 +85673,9 @@
         "stat_name": "special-attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ボルケニオン",
+    "romaji": "Volcanion"
   },
   {
     "id": 722,
@@ -84342,7 +85784,9 @@
         "stat_name": "hp",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "モクロー",
+    "romaji": "Mokuroh"
   },
   {
     "id": 723,
@@ -84451,7 +85895,9 @@
         "stat_name": "hp",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "フクスロー",
+    "romaji": "Fukuthrow"
   },
   {
     "id": 724,
@@ -84618,7 +86064,9 @@
         "stat_name": "attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ジュナイパー",
+    "romaji": "Junaiper"
   },
   {
     "id": 725,
@@ -84726,7 +86174,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ニャビー",
+    "romaji": "Nyabby"
   },
   {
     "id": 726,
@@ -84834,7 +86284,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ニャヒート",
+    "romaji": "Nyaheat"
   },
   {
     "id": 727,
@@ -84943,7 +86395,9 @@
         "stat_name": "attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ガオガエン",
+    "romaji": "Gaogaen"
   },
   {
     "id": 728,
@@ -85052,7 +86506,9 @@
         "stat_name": "special-attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "アシマリ",
+    "romaji": "Ashimari"
   },
   {
     "id": 729,
@@ -85161,7 +86617,9 @@
         "stat_name": "special-attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "オシャマリ",
+    "romaji": "Osyamari"
   },
   {
     "id": 730,
@@ -85271,7 +86729,9 @@
         "stat_name": "special-attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "アシレーヌ",
+    "romaji": "Ashirene"
   },
   {
     "id": 731,
@@ -85384,7 +86844,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ツツケラ",
+    "romaji": "Tsutsukera"
   },
   {
     "id": 732,
@@ -85497,7 +86959,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ケララッパ",
+    "romaji": "Kerarappa"
   },
   {
     "id": 733,
@@ -85610,7 +87074,9 @@
         "stat_name": "attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ドデカバシ",
+    "romaji": "Dodekabashi"
   },
   {
     "id": 734,
@@ -85707,7 +87173,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ヤングース",
+    "romaji": "Youngoose"
   },
   {
     "id": 735,
@@ -85804,7 +87272,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "デカグース",
+    "romaji": "Dekagoose"
   },
   {
     "id": 736,
@@ -85908,7 +87378,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "アゴジムシ",
+    "romaji": "Agojimushi"
   },
   {
     "id": 737,
@@ -86013,7 +87485,9 @@
         "stat_name": "defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "デンヂムシ",
+    "romaji": "Dendimushi"
   },
   {
     "id": 738,
@@ -86118,7 +87592,9 @@
         "stat_name": "special-attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "クワガノン",
+    "romaji": "Kuwagannon"
   },
   {
     "id": 739,
@@ -86215,7 +87691,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "マケンカニ",
+    "romaji": "Makenkani"
   },
   {
     "id": 740,
@@ -86362,7 +87840,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ケケンカニ",
+    "romaji": "Kekenkani"
   },
   {
     "id": 741,
@@ -86594,7 +88074,9 @@
         "stat_name": "special-attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "オドリドリ",
+    "romaji": "Odoridori"
   },
   {
     "id": 742,
@@ -86693,7 +88175,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "アブリー",
+    "romaji": "Abuly"
   },
   {
     "id": 743,
@@ -86792,7 +88276,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "アブリボン",
+    "romaji": "Aburibbon"
   },
   {
     "id": 744,
@@ -86941,7 +88427,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "イワンコ",
+    "romaji": "Iwanko"
   },
   {
     "id": 745,
@@ -87150,7 +88638,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ルガルガン",
+    "romaji": "Lugarugan"
   },
   {
     "id": 746,
@@ -87276,7 +88766,9 @@
         "stat_name": "hp",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ヨワシ",
+    "romaji": "Yowashi"
   },
   {
     "id": 747,
@@ -87374,7 +88866,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ヒドイデ",
+    "romaji": "Hidoide"
   },
   {
     "id": 748,
@@ -87472,7 +88966,9 @@
         "stat_name": "defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ドヒドイデ",
+    "romaji": "Dohidoide"
   },
   {
     "id": 749,
@@ -87569,7 +89065,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ドロバンコ",
+    "romaji": "Dorobanko"
   },
   {
     "id": 750,
@@ -87666,7 +89164,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "バンバドロ",
+    "romaji": "Banbadoro"
   },
   {
     "id": 751,
@@ -87761,7 +89261,9 @@
         "stat_name": "special-defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "シズクモ",
+    "romaji": "Shizukumo"
   },
   {
     "id": 752,
@@ -87856,7 +89358,9 @@
         "stat_name": "special-defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "オニシズクモ",
+    "romaji": "Onishizukumo"
   },
   {
     "id": 753,
@@ -87949,7 +89453,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "カリキリ",
+    "romaji": "Karikiri"
   },
   {
     "id": 754,
@@ -88042,7 +89548,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ラランテス",
+    "romaji": "Lalantes"
   },
   {
     "id": 755,
@@ -88140,7 +89648,9 @@
         "stat_name": "special-defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ネマシュ",
+    "romaji": "Nemasyu"
   },
   {
     "id": 756,
@@ -88238,7 +89748,9 @@
         "stat_name": "special-defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "マシェード",
+    "romaji": "Mashade"
   },
   {
     "id": 757,
@@ -88333,7 +89845,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ヤトウモリ",
+    "romaji": "Yatoumori"
   },
   {
     "id": 758,
@@ -88428,7 +89942,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "エンニュート",
+    "romaji": "Ennewt"
   },
   {
     "id": 759,
@@ -88526,7 +90042,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ヌイコグマ",
+    "romaji": "Nuikoguma"
   },
   {
     "id": 760,
@@ -88624,7 +90142,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "キテルグマ",
+    "romaji": "Kiteruguma"
   },
   {
     "id": 761,
@@ -88736,7 +90256,9 @@
         "stat_name": "hp",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "アマカジ",
+    "romaji": "Amakaji"
   },
   {
     "id": 762,
@@ -88848,7 +90370,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "アママイコ",
+    "romaji": "Amamaiko"
   },
   {
     "id": 763,
@@ -88960,7 +90484,9 @@
         "stat_name": "attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "アマージョ",
+    "romaji": "Amajo"
   },
   {
     "id": 764,
@@ -89041,7 +90567,9 @@
         "stat_name": "special-defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "キュワワー",
+    "romaji": "Cuwawa"
   },
   {
     "id": 765,
@@ -89123,7 +90651,9 @@
         "stat_name": "special-defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ヤレユータン",
+    "romaji": "Yareyuutan"
   },
   {
     "id": 766,
@@ -89200,7 +90730,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ナゲツケサル",
+    "romaji": "Nagetukesaru"
   },
   {
     "id": 767,
@@ -89291,7 +90823,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "コソクムシ",
+    "romaji": "Kosokumushi"
   },
   {
     "id": 768,
@@ -89426,7 +90960,9 @@
         "stat_name": "defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "グソクムシャ",
+    "romaji": "Gusokumusha"
   },
   {
     "id": 769,
@@ -89520,7 +91056,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "スナバァ",
+    "romaji": "Sunaba"
   },
   {
     "id": 770,
@@ -89614,7 +91152,9 @@
         "stat_name": "defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "シロデスナ",
+    "romaji": "Sirodethna"
   },
   {
     "id": 771,
@@ -89691,7 +91231,9 @@
         "stat_name": "special-defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ナマコブシ",
+    "romaji": "Namakobushi"
   },
   {
     "id": 772,
@@ -89780,7 +91322,9 @@
         "stat_name": "hp",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "タイプ：ヌル",
+    "romaji": "Null"
   },
   {
     "id": 773,
@@ -89869,7 +91413,9 @@
         "stat_name": "hp",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "シルヴァディ",
+    "romaji": "Silvady"
   },
   {
     "id": 774,
@@ -90677,7 +92223,9 @@
         "stat_name": "special-defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "メテノ",
+    "romaji": "Meteno"
   },
   {
     "id": 775,
@@ -90750,7 +92298,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ネッコアラ",
+    "romaji": "Nekkoara"
   },
   {
     "id": 776,
@@ -90825,7 +92375,9 @@
         "stat_name": "defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "バクガメス",
+    "romaji": "Bakugames"
   },
   {
     "id": 777,
@@ -90908,7 +92460,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "トゲデマル",
+    "romaji": "Togedemaru"
   },
   {
     "id": 778,
@@ -91036,7 +92590,9 @@
         "stat_name": "special-defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ミミッキュ",
+    "romaji": "Mimikkyu"
   },
   {
     "id": 779,
@@ -91118,7 +92674,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ハギギシリ",
+    "romaji": "Hagigishiri"
   },
   {
     "id": 780,
@@ -91250,7 +92808,9 @@
         "stat_name": "special-attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ジジーロン",
+    "romaji": "Jijilong"
   },
   {
     "id": 781,
@@ -91324,7 +92884,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ダダリン",
+    "romaji": "Dadarin"
   },
   {
     "id": 782,
@@ -91436,7 +92998,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ジャラコ",
+    "romaji": "Jyarako"
   },
   {
     "id": 783,
@@ -91549,7 +93113,9 @@
         "stat_name": "defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ジャランゴ",
+    "romaji": "Jyarango"
   },
   {
     "id": 784,
@@ -91662,7 +93228,9 @@
         "stat_name": "defense",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ジャラランガ",
+    "romaji": "Jyararanga"
   },
   {
     "id": 785,
@@ -91740,7 +93308,9 @@
         "stat_name": "speed",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "カプ・コケコ",
+    "romaji": "Kokeko"
   },
   {
     "id": 786,
@@ -91818,7 +93388,9 @@
         "stat_name": "special-attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "カプ・テテフ",
+    "romaji": "Tetefu"
   },
   {
     "id": 787,
@@ -91896,7 +93468,9 @@
         "stat_name": "attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "カプ・ブルル",
+    "romaji": "Bulul"
   },
   {
     "id": 788,
@@ -91974,7 +93548,9 @@
         "stat_name": "special-defense",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "カプ・レヒレ",
+    "romaji": "Rehire"
   },
   {
     "id": 789,
@@ -92093,7 +93669,9 @@
         "stat_name": "hp",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "コスモッグ",
+    "romaji": "Cosmog"
   },
   {
     "id": 790,
@@ -92216,7 +93794,9 @@
         "stat_name": "special-defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "コスモウム",
+    "romaji": "Cosmovum"
   },
   {
     "id": 791,
@@ -92336,7 +93916,9 @@
         "stat_name": "attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ソルガレオ",
+    "romaji": "Solgaleo"
   },
   {
     "id": 792,
@@ -92456,7 +94038,9 @@
         "stat_name": "special-attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ルナアーラ",
+    "romaji": "Lunala"
   },
   {
     "id": 793,
@@ -92530,7 +94114,9 @@
         "stat_name": "special-defense",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ウツロイド",
+    "romaji": "Uturoid"
   },
   {
     "id": 794,
@@ -92608,7 +94194,9 @@
         "stat_name": "defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "マッシブーン",
+    "romaji": "Massivoon"
   },
   {
     "id": 795,
@@ -92682,7 +94270,9 @@
         "stat_name": "speed",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "フェローチェ",
+    "romaji": "Pheroache"
   },
   {
     "id": 796,
@@ -92755,7 +94345,9 @@
         "stat_name": "special-attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "デンジュモク",
+    "romaji": "Denjyumoku"
   },
   {
     "id": 797,
@@ -92837,7 +94429,9 @@
         "stat_name": "special-attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "テッカグヤ",
+    "romaji": "Tekkaguya"
   },
   {
     "id": 798,
@@ -92911,7 +94505,9 @@
         "stat_name": "attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "カミツルギ",
+    "romaji": "Kamiturugi"
   },
   {
     "id": 799,
@@ -92985,7 +94581,9 @@
         "stat_name": "hp",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "アクジキング",
+    "romaji": "Akuziking"
   },
   {
     "id": 800,
@@ -93228,7 +94826,9 @@
         "stat_name": "special-attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ネクロズマ",
+    "romaji": "Necrozma"
   },
   {
     "id": 801,
@@ -93441,7 +95041,9 @@
         "stat_name": "special-attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "マギアナ",
+    "romaji": "Magearna"
   },
   {
     "id": 802,
@@ -93519,7 +95121,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "マーシャドー",
+    "romaji": "Marshadow"
   },
   {
     "id": 803,
@@ -93608,7 +95212,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ベベノム",
+    "romaji": "Bevenom"
   },
   {
     "id": 804,
@@ -93698,7 +95304,9 @@
         "stat_name": "special-attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "アーゴヨン",
+    "romaji": "Agoyon"
   },
   {
     "id": 805,
@@ -93772,7 +95380,9 @@
         "stat_name": "defense",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ツンデツンデ",
+    "romaji": "Tundetunde"
   },
   {
     "id": 806,
@@ -93846,7 +95456,9 @@
         "stat_name": "special-attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ズガドーン",
+    "romaji": "Zugadoon"
   },
   {
     "id": 807,
@@ -93962,7 +95574,9 @@
         "stat_name": "speed",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ゼラオラ",
+    "romaji": "Zeraora"
   },
   {
     "id": 808,
@@ -94035,7 +95649,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "メルタン",
+    "romaji": "Meltan"
   },
   {
     "id": 809,
@@ -94161,7 +95777,9 @@
         "stat_name": "attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "メルメタル",
+    "romaji": "Melmetal"
   },
   {
     "id": 810,
@@ -94270,7 +95888,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "サルノリ",
+    "romaji": "Sarunori"
   },
   {
     "id": 811,
@@ -94379,7 +95999,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "バチンキー",
+    "romaji": "Bachinkey"
   },
   {
     "id": 812,
@@ -94545,7 +96167,9 @@
         "stat_name": "attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ゴリランダー",
+    "romaji": "Gorirander"
   },
   {
     "id": 813,
@@ -94654,7 +96278,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ヒバニー",
+    "romaji": "Hibanny"
   },
   {
     "id": 814,
@@ -94763,7 +96389,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ラビフット",
+    "romaji": "Rabbifuto"
   },
   {
     "id": 815,
@@ -94929,7 +96557,9 @@
         "stat_name": "speed",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "エースバーン",
+    "romaji": "Aceburn"
   },
   {
     "id": 816,
@@ -95042,7 +96672,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "メッソン",
+    "romaji": "Messon"
   },
   {
     "id": 817,
@@ -95151,7 +96783,9 @@
         "stat_name": "special-attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ジメレオン",
+    "romaji": "Jimereon"
   },
   {
     "id": 818,
@@ -95317,7 +96951,9 @@
         "stat_name": "speed",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "インテレオン",
+    "romaji": "Intereon"
   },
   {
     "id": 819,
@@ -95410,7 +97046,9 @@
         "stat_name": "hp",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ホシガリス",
+    "romaji": "Hoshigarisu"
   },
   {
     "id": 820,
@@ -95503,7 +97141,9 @@
         "stat_name": "hp",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ヨクバリス",
+    "romaji": "Yokubarisu"
   },
   {
     "id": 821,
@@ -95615,7 +97255,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ココガラ",
+    "romaji": "Kokogara"
   },
   {
     "id": 822,
@@ -95727,7 +97369,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "アオガラス",
+    "romaji": "Aogarasu"
   },
   {
     "id": 823,
@@ -95902,7 +97546,9 @@
         "stat_name": "defense",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "アーマーガア",
+    "romaji": "Armorga"
   },
   {
     "id": 824,
@@ -96014,7 +97660,9 @@
         "stat_name": "special-defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "サッチムシ",
+    "romaji": "Sacchimushi"
   },
   {
     "id": 825,
@@ -96127,7 +97775,9 @@
         "stat_name": "special-defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "レドームシ",
+    "romaji": "Redomushi"
   },
   {
     "id": 826,
@@ -96302,7 +97952,9 @@
         "stat_name": "special-defense",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "イオルブ",
+    "romaji": "Eolb"
   },
   {
     "id": 827,
@@ -96399,7 +98051,9 @@
         "stat_name": "special-defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "クスネ",
+    "romaji": "Kusune"
   },
   {
     "id": 828,
@@ -96496,7 +98150,9 @@
         "stat_name": "special-defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "フォクスライ",
+    "romaji": "Foxly"
   },
   {
     "id": 829,
@@ -96593,7 +98249,9 @@
         "stat_name": "special-defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ヒメンカ",
+    "romaji": "Himenka"
   },
   {
     "id": 830,
@@ -96690,7 +98348,9 @@
         "stat_name": "special-defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ワタシラガ",
+    "romaji": "Watashiraga"
   },
   {
     "id": 831,
@@ -96787,7 +98447,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ウールー",
+    "romaji": "Wooluu"
   },
   {
     "id": 832,
@@ -96884,7 +98546,9 @@
         "stat_name": "defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "バイウールー",
+    "romaji": "Baiwooluu"
   },
   {
     "id": 833,
@@ -96982,7 +98646,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "カムカメ",
+    "romaji": "Kamukame"
   },
   {
     "id": 834,
@@ -97143,7 +98809,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "カジリガメ",
+    "romaji": "Kajirigame"
   },
   {
     "id": 835,
@@ -97236,7 +98904,9 @@
         "stat_name": "hp",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ワンパチ",
+    "romaji": "Wanpachi"
   },
   {
     "id": 836,
@@ -97329,7 +98999,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "パルスワン",
+    "romaji": "Pulsewan"
   },
   {
     "id": 837,
@@ -97441,7 +99113,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "タンドン",
+    "romaji": "Tandon"
   },
   {
     "id": 838,
@@ -97554,7 +99228,9 @@
         "stat_name": "defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "トロッゴン",
+    "romaji": "Toroggon"
   },
   {
     "id": 839,
@@ -97729,7 +99405,9 @@
         "stat_name": "defense",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "セキタンザン",
+    "romaji": "Sekitanzan"
   },
   {
     "id": 840,
@@ -97873,7 +99551,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "カジッチュ",
+    "romaji": "Kajicchu"
   },
   {
     "id": 841,
@@ -98079,7 +99759,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "アップリュー",
+    "romaji": "Appryu"
   },
   {
     "id": 842,
@@ -98285,7 +99967,9 @@
         "stat_name": "hp",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "タルップル",
+    "romaji": "Tarupple"
   },
   {
     "id": 843,
@@ -98383,7 +100067,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "スナヘビ",
+    "romaji": "Sunahebi"
   },
   {
     "id": 844,
@@ -98542,7 +100228,9 @@
         "stat_name": "defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "サダイジャ",
+    "romaji": "Sadaija"
   },
   {
     "id": 845,
@@ -98723,7 +100411,9 @@
         "stat_name": "special-defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ウッウ",
+    "romaji": "Uu"
   },
   {
     "id": 846,
@@ -98816,7 +100506,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "サシカマス",
+    "romaji": "Sasikamasu"
   },
   {
     "id": 847,
@@ -98909,7 +100601,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "カマスジョー",
+    "romaji": "Kamasujaw"
   },
   {
     "id": 848,
@@ -99007,7 +100701,9 @@
         "stat_name": "special-attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "エレズン",
+    "romaji": "Eleson"
   },
   {
     "id": 849,
@@ -99288,7 +100984,9 @@
         "stat_name": "special-attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ストリンダー",
+    "romaji": "Strinder"
   },
   {
     "id": 850,
@@ -99386,7 +101084,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ヤクデ",
+    "romaji": "Yakude"
   },
   {
     "id": 851,
@@ -99546,7 +101246,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "マルヤクデ",
+    "romaji": "Maruyakude"
   },
   {
     "id": 852,
@@ -99640,7 +101342,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "タタッコ",
+    "romaji": "Tatakko"
   },
   {
     "id": 853,
@@ -99734,7 +101438,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "オトスパス",
+    "romaji": "Otosupus"
   },
   {
     "id": 854,
@@ -99828,7 +101534,9 @@
         "stat_name": "special-attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ヤバチャ",
+    "romaji": "Yabacha"
   },
   {
     "id": 855,
@@ -99922,7 +101630,9 @@
         "stat_name": "special-attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ポットデス",
+    "romaji": "Potdeath"
   },
   {
     "id": 856,
@@ -100034,7 +101744,9 @@
         "stat_name": "special-attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ミブリム",
+    "romaji": "Mibrim"
   },
   {
     "id": 857,
@@ -100146,7 +101858,9 @@
         "stat_name": "special-attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "テブリム",
+    "romaji": "Tebrim"
   },
   {
     "id": 858,
@@ -100321,7 +102035,9 @@
         "stat_name": "special-attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ブリムオン",
+    "romaji": "Brimuon"
   },
   {
     "id": 859,
@@ -100435,7 +102151,9 @@
         "stat_name": "special-attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ベロバー",
+    "romaji": "Beroba"
   },
   {
     "id": 860,
@@ -100549,7 +102267,9 @@
         "stat_name": "special-attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ギモー",
+    "romaji": "Gimoh"
   },
   {
     "id": 861,
@@ -100725,7 +102445,9 @@
         "stat_name": "attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "オーロンゲ",
+    "romaji": "Ohlonge"
   },
   {
     "id": 862,
@@ -100838,7 +102560,9 @@
         "stat_name": "defense",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "タチフサグマ",
+    "romaji": "Tachifusaguma"
   },
   {
     "id": 863,
@@ -100950,7 +102674,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ニャイキング",
+    "romaji": "Nyaiking"
   },
   {
     "id": 864,
@@ -101044,7 +102770,9 @@
         "stat_name": "special-attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "サニゴーン",
+    "romaji": "Sunigoon"
   },
   {
     "id": 865,
@@ -101138,7 +102866,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ネギガナイト",
+    "romaji": "Negigaknight"
   },
   {
     "id": 866,
@@ -101251,7 +102981,9 @@
         "stat_name": "special-attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "バリコオル",
+    "romaji": "Barrikohru"
   },
   {
     "id": 867,
@@ -101357,7 +103089,9 @@
         "stat_name": "defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "デスバーン",
+    "romaji": "Deathbarn"
   },
   {
     "id": 868,
@@ -101451,7 +103185,9 @@
         "stat_name": "special-defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "マホミル",
+    "romaji": "Mahomil"
   },
   {
     "id": 869,
@@ -101602,7 +103338,9 @@
         "stat_name": "special-defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "マホイップ",
+    "romaji": "Mawhip"
   },
   {
     "id": 870,
@@ -101727,7 +103465,9 @@
         "stat_name": "special-defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "タイレーツ",
+    "romaji": "Tairetsu"
   },
   {
     "id": 871,
@@ -101805,7 +103545,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "バチンウニ",
+    "romaji": "Bachinuni"
   },
   {
     "id": 872,
@@ -101899,7 +103641,9 @@
         "stat_name": "special-attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ユキハミ",
+    "romaji": "Yukihami"
   },
   {
     "id": 873,
@@ -101993,7 +103737,9 @@
         "stat_name": "special-attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "モスノウ",
+    "romaji": "Mothnow"
   },
   {
     "id": 874,
@@ -102066,7 +103812,9 @@
         "stat_name": "defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "イシヘンジン",
+    "romaji": "Ishihengin"
   },
   {
     "id": 875,
@@ -102193,7 +103941,9 @@
         "stat_name": "defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "コオリッポ",
+    "romaji": "Korippo"
   },
   {
     "id": 876,
@@ -102337,7 +104087,9 @@
         "stat_name": "special-attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "イエッサン",
+    "romaji": "Yessan"
   },
   {
     "id": 877,
@@ -102466,7 +104218,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "モルペコ",
+    "romaji": "Morpeko"
   },
   {
     "id": 878,
@@ -102560,7 +104314,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ゾウドウ",
+    "romaji": "Zoudou"
   },
   {
     "id": 879,
@@ -102711,7 +104467,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ダイオウドウ",
+    "romaji": "Daioudou"
   },
   {
     "id": 880,
@@ -102793,7 +104551,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "パッチラゴン",
+    "romaji": "Patchiragon"
   },
   {
     "id": 881,
@@ -102875,7 +104635,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "パッチルドン",
+    "romaji": "Patchilldon"
   },
   {
     "id": 882,
@@ -102957,7 +104719,9 @@
         "stat_name": "defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ウオノラゴン",
+    "romaji": "Uonoragon"
   },
   {
     "id": 883,
@@ -103039,7 +104803,9 @@
         "stat_name": "defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ウオチルドン",
+    "romaji": "Uochilldon"
   },
   {
     "id": 884,
@@ -103200,7 +104966,9 @@
         "stat_name": "special-attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ジュラルドン",
+    "romaji": "Duraludon"
   },
   {
     "id": 885,
@@ -103314,7 +105082,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ドラメシヤ",
+    "romaji": "Dorameshiya"
   },
   {
     "id": 886,
@@ -103428,7 +105198,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ドロンチ",
+    "romaji": "Doronch"
   },
   {
     "id": 887,
@@ -103542,7 +105314,9 @@
         "stat_name": "speed",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ドラパルト",
+    "romaji": "Dorapult"
   },
   {
     "id": 888,
@@ -103669,7 +105443,9 @@
         "stat_name": "speed",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ザシアン",
+    "romaji": "Zacian"
   },
   {
     "id": 889,
@@ -103796,7 +105572,9 @@
         "stat_name": "speed",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ザマゼンタ",
+    "romaji": "Zamazenta"
   },
   {
     "id": 890,
@@ -103924,7 +105702,9 @@
         "stat_name": "hp",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ムゲンダイナ",
+    "romaji": "Mugendina"
   },
   {
     "id": 891,
@@ -104013,7 +105793,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ダクマ",
+    "romaji": "Dakuma"
   },
   {
     "id": 892,
@@ -104262,7 +106044,9 @@
         "stat_name": "attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ウーラオス",
+    "romaji": "Wulaosu"
   },
   {
     "id": 893,
@@ -104390,7 +106174,9 @@
         "stat_name": "attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ザルード",
+    "romaji": "Zarude"
   },
   {
     "id": 894,
@@ -104463,7 +106249,9 @@
         "stat_name": "speed",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "レジエレキ",
+    "romaji": "Regieleki"
   },
   {
     "id": 895,
@@ -104536,7 +106324,9 @@
         "stat_name": "hp",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "レジドラゴ",
+    "romaji": "Regidorago"
   },
   {
     "id": 896,
@@ -104609,7 +106399,9 @@
         "stat_name": "attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ブリザポス",
+    "romaji": "Blizzapos"
   },
   {
     "id": 897,
@@ -104682,7 +106474,9 @@
         "stat_name": "special-attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "レイスポス",
+    "romaji": "Wraithpos"
   },
   {
     "id": 898,
@@ -104862,7 +106656,9 @@
         "stat_name": "hp",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "バドレックス",
+    "romaji": "Budrex"
   },
   {
     "id": 899,
@@ -104964,7 +106760,9 @@
         "stat_name": "special-attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "アヤシシ",
+    "romaji": "Ayashishi"
   },
   {
     "id": 900,
@@ -105077,7 +106875,9 @@
         "stat_name": "attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "バサギリ",
+    "romaji": "Basagiri"
   },
   {
     "id": 901,
@@ -105244,7 +107044,9 @@
         "stat_name": "attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ガチグマ",
+    "romaji": "Gachiguma"
   },
   {
     "id": 902,
@@ -105404,7 +107206,9 @@
         "stat_name": "hp",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "イダイトウ",
+    "romaji": "Idaitou"
   },
   {
     "id": 903,
@@ -105517,7 +107321,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "オオニューラ",
+    "romaji": "Oonyura"
   },
   {
     "id": 904,
@@ -105615,7 +107421,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ハリーマン",
+    "romaji": "Hariman"
   },
   {
     "id": 905,
@@ -105747,7 +107555,9 @@
         "stat_name": "special-attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ラブトロス",
+    "romaji": "Lovetolos"
   },
   {
     "id": 906,
@@ -105856,7 +107666,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ニャオハ",
+    "romaji": "Nyahoja"
   },
   {
     "id": 907,
@@ -105965,7 +107777,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ニャローテ",
+    "romaji": "Nyarote"
   },
   {
     "id": 908,
@@ -106075,7 +107889,9 @@
         "stat_name": "speed",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "マスカーニャ",
+    "romaji": "Masquernya"
   },
   {
     "id": 909,
@@ -106183,7 +107999,9 @@
         "stat_name": "hp",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ホゲータ",
+    "romaji": "Hogator"
   },
   {
     "id": 910,
@@ -106291,7 +108109,9 @@
         "stat_name": "special-attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "アチゲータ",
+    "romaji": "Achigator"
   },
   {
     "id": 911,
@@ -106400,7 +108220,9 @@
         "stat_name": "special-attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ラウドボーン",
+    "romaji": "Laudbon"
   },
   {
     "id": 912,
@@ -106509,7 +108331,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "クワッス",
+    "romaji": "Kuwassu"
   },
   {
     "id": 913,
@@ -106618,7 +108442,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ウェルカモ",
+    "romaji": "Welkamo"
   },
   {
     "id": 914,
@@ -106728,7 +108554,9 @@
         "stat_name": "attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ウェーニバル",
+    "romaji": "Wanival"
   },
   {
     "id": 915,
@@ -106825,7 +108653,9 @@
         "stat_name": "hp",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "グルトン",
+    "romaji": "Gourton"
   },
   {
     "id": 916,
@@ -106983,7 +108813,9 @@
         "stat_name": "hp",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "パフュートン",
+    "romaji": "Perfuton"
   },
   {
     "id": 917,
@@ -107076,7 +108908,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "タマンチュラ",
+    "romaji": "Tamantula"
   },
   {
     "id": 918,
@@ -107169,7 +109003,9 @@
         "stat_name": "defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ワナイダー",
+    "romaji": "Wanaider"
   },
   {
     "id": 919,
@@ -107262,7 +109098,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "マメバッタ",
+    "romaji": "Mamebatta"
   },
   {
     "id": 920,
@@ -107356,7 +109194,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "エクスレッグ",
+    "romaji": "Exleg"
   },
   {
     "id": 921,
@@ -107468,7 +109308,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "パモ",
+    "romaji": "Pamo"
   },
   {
     "id": 922,
@@ -107581,7 +109423,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "パモット",
+    "romaji": "Pamot"
   },
   {
     "id": 923,
@@ -107694,7 +109538,9 @@
         "stat_name": "attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "パーモット",
+    "romaji": "Parmot"
   },
   {
     "id": 924,
@@ -107792,7 +109638,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ワッカネズミ",
+    "romaji": "Wakkanezumi"
   },
   {
     "id": 925,
@@ -107951,7 +109799,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "イッカネズミ",
+    "romaji": "Ikkanezumi"
   },
   {
     "id": 926,
@@ -108045,7 +109895,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "パピモッチ",
+    "romaji": "Pupimocchi"
   },
   {
     "id": 927,
@@ -108139,7 +109991,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "バウッツェル",
+    "romaji": "Bowtzel"
   },
   {
     "id": 928,
@@ -108248,7 +110102,9 @@
         "stat_name": "special-attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ミニーブ",
+    "romaji": "Minive"
   },
   {
     "id": 929,
@@ -108357,7 +110213,9 @@
         "stat_name": "special-attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "オリーニョ",
+    "romaji": "Olinyo"
   },
   {
     "id": 930,
@@ -108466,7 +110324,9 @@
         "stat_name": "special-attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "オリーヴァ",
+    "romaji": "Oliva"
   },
   {
     "id": 931,
@@ -108730,7 +110590,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "イキリンコ",
+    "romaji": "Ikirinko"
   },
   {
     "id": 932,
@@ -108842,7 +110704,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "コジオ",
+    "romaji": "Kojio"
   },
   {
     "id": 933,
@@ -108954,7 +110818,9 @@
         "stat_name": "defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ジオヅム",
+    "romaji": "Jiodumu"
   },
   {
     "id": 934,
@@ -109066,7 +110932,9 @@
         "stat_name": "defense",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "キョジオーン",
+    "romaji": "Kyojiohn"
   },
   {
     "id": 935,
@@ -109174,7 +111042,9 @@
         "stat_name": "special-attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "カルボウ",
+    "romaji": "Carbou"
   },
   {
     "id": 936,
@@ -109283,7 +111153,9 @@
         "stat_name": "special-attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "グレンアルマ",
+    "romaji": "Gurenarma"
   },
   {
     "id": 937,
@@ -109392,7 +111264,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ソウブレイズ",
+    "romaji": "Soublades"
   },
   {
     "id": 938,
@@ -109489,7 +111363,9 @@
         "stat_name": "hp",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ズピカ",
+    "romaji": "Zupika"
   },
   {
     "id": 939,
@@ -109586,7 +111462,9 @@
         "stat_name": "hp",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ハラバリー",
+    "romaji": "Harabarie"
   },
   {
     "id": 940,
@@ -109685,7 +111563,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "カイデン",
+    "romaji": "Kaiden"
   },
   {
     "id": 941,
@@ -109784,7 +111664,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "タイカイデン",
+    "romaji": "Taikaiden"
   },
   {
     "id": 942,
@@ -109881,7 +111763,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "オラチフ",
+    "romaji": "Orachifu"
   },
   {
     "id": 943,
@@ -109978,7 +111862,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "マフィティフ",
+    "romaji": "Mafitiff"
   },
   {
     "id": 944,
@@ -110076,7 +111962,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "シルシュルー",
+    "romaji": "Shirushrew"
   },
   {
     "id": 945,
@@ -110174,7 +112062,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "タギングル",
+    "romaji": "Taggingru"
   },
   {
     "id": 946,
@@ -110268,7 +112158,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "アノクサ",
+    "romaji": "Anokusa"
   },
   {
     "id": 947,
@@ -110362,7 +112254,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "アノホラグサ",
+    "romaji": "Anohoragusa"
   },
   {
     "id": 948,
@@ -110452,7 +112346,9 @@
         "stat_name": "special-defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ノノクラゲ",
+    "romaji": "Nonokurage"
   },
   {
     "id": 949,
@@ -110542,7 +112438,9 @@
         "stat_name": "special-defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "リククラゲ",
+    "romaji": "Rikukurage"
   },
   {
     "id": 950,
@@ -110623,7 +112521,9 @@
         "stat_name": "defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ガケガニ",
+    "romaji": "Gakegani"
   },
   {
     "id": 951,
@@ -110720,7 +112620,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "カプサイジ",
+    "romaji": "Capsaiji"
   },
   {
     "id": 952,
@@ -110867,7 +112769,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "スコヴィラン",
+    "romaji": "Scovillain"
   },
   {
     "id": 953,
@@ -110960,7 +112864,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "シガロコ",
+    "romaji": "Shigaroko"
   },
   {
     "id": 954,
@@ -111054,7 +112960,9 @@
         "stat_name": "special-attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ベラカス",
+    "romaji": "Beracas"
   },
   {
     "id": 955,
@@ -111151,7 +113059,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ヒラヒナ",
+    "romaji": "Hirahina"
   },
   {
     "id": 956,
@@ -111248,7 +113158,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "クエスパトラ",
+    "romaji": "Cuespatra"
   },
   {
     "id": 957,
@@ -111361,7 +113273,9 @@
         "stat_name": "special-defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "カヌチャン",
+    "romaji": "Kanuchan"
   },
   {
     "id": 958,
@@ -111474,7 +113388,9 @@
         "stat_name": "special-defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ナカヌチャン",
+    "romaji": "Nakanuchan"
   },
   {
     "id": 959,
@@ -111587,7 +113503,9 @@
         "stat_name": "special-defense",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "デカヌチャン",
+    "romaji": "Dekanuchan"
   },
   {
     "id": 960,
@@ -111684,7 +113602,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ウミディグダ",
+    "romaji": "Umidigda"
   },
   {
     "id": 961,
@@ -111781,7 +113701,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ウミトリオ",
+    "romaji": "Umitrio"
   },
   {
     "id": 962,
@@ -111863,7 +113785,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "オトシドリ",
+    "romaji": "Otoshidori"
   },
   {
     "id": 963,
@@ -111953,7 +113877,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ナミイルカ",
+    "romaji": "Namiiruka"
   },
   {
     "id": 964,
@@ -112096,7 +114022,9 @@
         "stat_name": "hp",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "イルカマン",
+    "romaji": "Irukaman"
   },
   {
     "id": 965,
@@ -112190,7 +114118,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ブロロン",
+    "romaji": "Buroron"
   },
   {
     "id": 966,
@@ -112284,7 +114214,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ブロロローム",
+    "romaji": "Burororoom"
   },
   {
     "id": 967,
@@ -112362,7 +114294,9 @@
         "stat_name": "speed",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "モトトカゲ",
+    "romaji": "Mototokage"
   },
   {
     "id": 968,
@@ -112439,7 +114373,9 @@
         "stat_name": "defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ミミズズ",
+    "romaji": "Mimizuzu"
   },
   {
     "id": 969,
@@ -112533,7 +114469,9 @@
         "stat_name": "special-attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "キラーメ",
+    "romaji": "Kirame"
   },
   {
     "id": 970,
@@ -112676,7 +114614,9 @@
         "stat_name": "special-attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "キラフロル",
+    "romaji": "Kiraflor"
   },
   {
     "id": 971,
@@ -112769,7 +114709,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ボチ",
+    "romaji": "Bochi"
   },
   {
     "id": 972,
@@ -112862,7 +114804,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ハカドッグ",
+    "romaji": "Hakadog"
   },
   {
     "id": 973,
@@ -112944,7 +114888,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "カラミンゴ",
+    "romaji": "Karamingo"
   },
   {
     "id": 974,
@@ -113041,7 +114987,9 @@
         "stat_name": "hp",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "アルクジラ",
+    "romaji": "Arukujira"
   },
   {
     "id": 975,
@@ -113138,7 +115086,9 @@
         "stat_name": "hp",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ハルクジラ",
+    "romaji": "Hulkujira"
   },
   {
     "id": 976,
@@ -113216,7 +115166,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ミガルーサ",
+    "romaji": "Migalusa"
   },
   {
     "id": 977,
@@ -113297,7 +115249,9 @@
         "stat_name": "hp",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ヘイラッシャ",
+    "romaji": "Heyrusher"
   },
   {
     "id": 978,
@@ -113616,7 +115570,9 @@
         "stat_name": "special-attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "シャリタツ",
+    "romaji": "Syaritatsu"
   },
   {
     "id": 979,
@@ -113729,7 +115685,9 @@
         "stat_name": "attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "コノヨザル",
+    "romaji": "Konoyozaru"
   },
   {
     "id": 980,
@@ -113843,7 +115801,9 @@
         "stat_name": "hp",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ドオー",
+    "romaji": "Dooh"
   },
   {
     "id": 981,
@@ -113941,7 +115901,9 @@
         "stat_name": "hp",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "リキキリン",
+    "romaji": "Rikikirin"
   },
   {
     "id": 982,
@@ -114099,7 +116061,9 @@
         "stat_name": "hp",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ノココッチ",
+    "romaji": "Nokokocchi"
   },
   {
     "id": 983,
@@ -114212,7 +116176,9 @@
         "stat_name": "attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ドドゲザン",
+    "romaji": "Dodogezan"
   },
   {
     "id": 984,
@@ -114286,7 +116252,9 @@
         "stat_name": "attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "イダイナキバ",
+    "romaji": "Idainakiba"
   },
   {
     "id": 985,
@@ -114360,7 +116328,9 @@
         "stat_name": "hp",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "サケブシッポ",
+    "romaji": "Sakebushippo"
   },
   {
     "id": 986,
@@ -114434,7 +116404,9 @@
         "stat_name": "attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "アラブルタケ",
+    "romaji": "Araburutake"
   },
   {
     "id": 987,
@@ -114516,7 +116488,9 @@
         "stat_name": "speed",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "ハバタクカミ",
+    "romaji": "Habatakukami"
   },
   {
     "id": 988,
@@ -114590,7 +116564,9 @@
         "stat_name": "attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "チヲハウハネ",
+    "romaji": "Chiwohauhane"
   },
   {
     "id": 989,
@@ -114664,7 +116640,9 @@
         "stat_name": "special-attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "スナノケガワ",
+    "romaji": "Sunanokegawa"
   },
   {
     "id": 990,
@@ -114738,7 +116716,9 @@
         "stat_name": "defense",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "テツノワダチ",
+    "romaji": "Tetsunowadachi"
   },
   {
     "id": 991,
@@ -114812,7 +116792,9 @@
         "stat_name": "speed",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "テツノツツミ",
+    "romaji": "Tetsunotsutsumi"
   },
   {
     "id": 992,
@@ -114886,7 +116868,9 @@
         "stat_name": "attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "テツノカイナ",
+    "romaji": "Tetsunokaina"
   },
   {
     "id": 993,
@@ -114960,7 +116944,9 @@
         "stat_name": "special-attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "テツノコウベ",
+    "romaji": "Tetsunokoube"
   },
   {
     "id": 994,
@@ -115034,7 +117020,9 @@
         "stat_name": "special-attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "テツノドクガ",
+    "romaji": "Tetsunodokuga"
   },
   {
     "id": 995,
@@ -115108,7 +117096,9 @@
         "stat_name": "attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "テツノイバラ",
+    "romaji": "Tetsunoibara"
   },
   {
     "id": 996,
@@ -115218,7 +117208,9 @@
         "stat_name": "attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "セビエ",
+    "romaji": "Sebie"
   },
   {
     "id": 997,
@@ -115328,7 +117320,9 @@
         "stat_name": "attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "セゴール",
+    "romaji": "Segohru"
   },
   {
     "id": 998,
@@ -115482,7 +117476,9 @@
         "stat_name": "attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "セグレイブ",
+    "romaji": "Seglaive"
   },
   {
     "id": 999,
@@ -115624,7 +117620,9 @@
         "stat_name": "special-attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "コレクレー",
+    "romaji": "Collecurei"
   },
   {
     "id": 1000,
@@ -115714,7 +117712,9 @@
         "stat_name": "special-attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "サーフゴー",
+    "romaji": "Surfugo"
   },
   {
     "id": 1001,
@@ -115788,7 +117788,9 @@
         "stat_name": "special-defense",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "チオンジェン",
+    "romaji": "Chionjen"
   },
   {
     "id": 1002,
@@ -115862,7 +117864,9 @@
         "stat_name": "speed",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "パオジアン",
+    "romaji": "Paojian"
   },
   {
     "id": 1003,
@@ -115936,7 +117940,9 @@
         "stat_name": "defense",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ディンルー",
+    "romaji": "Dinlu"
   },
   {
     "id": 1004,
@@ -116010,7 +118016,9 @@
         "stat_name": "special-attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "イーユイ",
+    "romaji": "Yiyui"
   },
   {
     "id": 1005,
@@ -116084,7 +118092,9 @@
         "stat_name": "attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "トドロクツキ",
+    "romaji": "Todorokutsuki"
   },
   {
     "id": 1006,
@@ -116158,7 +118168,9 @@
         "stat_name": "attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "テツノブジン",
+    "romaji": "Tetsunobujin"
   },
   {
     "id": 1007,
@@ -116237,7 +118249,9 @@
         "stat_name": "attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "コライドン",
+    "romaji": "Koraidon"
   },
   {
     "id": 1008,
@@ -116316,7 +118330,9 @@
         "stat_name": "special-attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ミライドン",
+    "romaji": "Miraidon"
   },
   {
     "id": 1009,
@@ -116390,7 +118406,9 @@
         "stat_name": "special-attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ウネルミナモ",
+    "romaji": "Uneruminamo"
   },
   {
     "id": 1010,
@@ -116464,7 +118482,9 @@
         "stat_name": "attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "テツノイサハ",
+    "romaji": "Tetsunoisaha"
   },
   {
     "id": 1011,
@@ -116608,7 +118628,9 @@
         "stat_name": "defense",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "カミッチュ",
+    "romaji": null
   },
   {
     "id": 1012,
@@ -116703,7 +118725,9 @@
         "stat_name": "special-attack",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "チャデス",
+    "romaji": null
   },
   {
     "id": 1013,
@@ -116798,7 +118822,9 @@
         "stat_name": "special-attack",
         "effort": 2
       }
-    ]
+    ],
+    "name_jp": "ヤバソチャ",
+    "romaji": null
   },
   {
     "id": 1014,
@@ -116876,7 +118902,9 @@
         "stat_name": "attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "イイネイヌ",
+    "romaji": null
   },
   {
     "id": 1015,
@@ -116954,7 +118982,9 @@
         "stat_name": "special-attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "マシマシラ",
+    "romaji": null
   },
   {
     "id": 1016,
@@ -117032,7 +119062,9 @@
         "stat_name": "special-defense",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "キチキギス",
+    "romaji": null
   },
   {
     "id": 1017,
@@ -117263,7 +119295,9 @@
         "stat_name": "attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "オーガポン",
+    "romaji": null
   },
   {
     "id": 1018,
@@ -117362,7 +119396,9 @@
         "stat_name": "defense",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ブリジュラス",
+    "romaji": null
   },
   {
     "id": 1019,
@@ -117506,7 +119542,9 @@
         "stat_name": "special-attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "カミツオロチ",
+    "romaji": null
   },
   {
     "id": 1020,
@@ -117580,7 +119618,9 @@
         "stat_name": "defense",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "ウガツホムラ",
+    "romaji": null
   },
   {
     "id": 1021,
@@ -117654,7 +119694,9 @@
         "stat_name": "special-attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "タケルライコ",
+    "romaji": null
   },
   {
     "id": 1022,
@@ -117728,7 +119770,9 @@
         "stat_name": "speed",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "テツノイワオ",
+    "romaji": null
   },
   {
     "id": 1023,
@@ -117802,7 +119846,9 @@
         "stat_name": "special-attack",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "テツノカシラ",
+    "romaji": null
   },
   {
     "id": 1024,
@@ -117983,7 +120029,9 @@
         "stat_name": "defense",
         "effort": 1
       }
-    ]
+    ],
+    "name_jp": "テラパゴス",
+    "romaji": null
   },
   {
     "id": 1025,
@@ -118057,6 +120105,8 @@
         "stat_name": "defense",
         "effort": 3
       }
-    ]
+    ],
+    "name_jp": "モモワロウ",
+    "romaji": null
   }
 ]

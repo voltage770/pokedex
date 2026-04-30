@@ -2,6 +2,8 @@
   {
     "id": 1,
     "name": "master-ball",
+    "name_jp": "マスターボール",
+    "romaji": null,
     "cost": 0,
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/master-ball.png",
     "effect": "Catches a wild Pokémon every time.",
@@ -11,6 +13,8 @@
   {
     "id": 2,
     "name": "ultra-ball",
+    "name_jp": "ハイパーボール",
+    "romaji": null,
     "cost": 800,
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/ultra-ball.png",
     "effect": "Tries to catch a wild Pokémon.  Success rate is 2×.",
@@ -20,6 +24,8 @@
   {
     "id": 3,
     "name": "great-ball",
+    "name_jp": "スーパーボール",
+    "romaji": null,
     "cost": 600,
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/great-ball.png",
     "effect": "Tries to catch a wild Pokémon.  Success rate is 1.5×.",
@@ -29,6 +35,8 @@
   {
     "id": 4,
     "name": "poke-ball",
+    "name_jp": "モンスターボール",
+    "romaji": null,
     "cost": 200,
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png",
     "effect": "Tries to catch a wild Pokémon.",
@@ -38,6 +46,8 @@
   {
     "id": 5,
     "name": "safari-ball",
+    "name_jp": "サファリボール",
+    "romaji": null,
     "cost": 0,
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/safari-ball.png",
     "effect": "Tries to catch a wild Pokémon in the Great Marsh or Safari Zone.  Success rate is 1.5×.",
@@ -47,6 +57,8 @@
   {
     "id": 6,
     "name": "net-ball",
+    "name_jp": "ネットボール",
+    "romaji": null,
     "cost": 1000,
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/net-ball.png",
     "effect": "Tries to catch a wild Pokémon.  Success rate is 3× for water and bug Pokémon.",
@@ -56,6 +68,8 @@
   {
     "id": 7,
     "name": "dive-ball",
+    "name_jp": "ダイブボール",
+    "romaji": null,
     "cost": 1000,
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/dive-ball.png",
     "effect": "Tries to catch a wild Pokémon. Success rate is 3.5× when underwater, fishing, or surfing.",
@@ -65,6 +79,8 @@
   {
     "id": 8,
     "name": "nest-ball",
+    "name_jp": "ネストボール",
+    "romaji": null,
     "cost": 1000,
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/nest-ball.png",
     "effect": "Tries to catch a wild Pokémon.  Success rate is 3.9× for level 1 Pokémon, and drops steadily to 1× at level 30.",
@@ -74,6 +90,8 @@
   {
     "id": 9,
     "name": "repeat-ball",
+    "name_jp": "リピートボール",
+    "romaji": null,
     "cost": 1000,
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/repeat-ball.png",
     "effect": "Tries to catch a wild Pokémon.  Success rate is 3× for previously-caught Pokémon.",
@@ -83,6 +101,8 @@
   {
     "id": 10,
     "name": "timer-ball",
+    "name_jp": "タイマーボール",
+    "romaji": null,
     "cost": 1000,
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/timer-ball.png",
     "effect": "Tries to catch a wild Pokémon. Success rate increases by 0.1× (Gen V: 0.3×) every turn, to a max of 4×.",
@@ -92,6 +112,8 @@
   {
     "id": 11,
     "name": "luxury-ball",
+    "name_jp": "ゴージャスボール",
+    "romaji": null,
     "cost": 3000,
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/luxury-ball.png",
     "effect": "Tries to catch a wild Pokémon.  Caught Pokémon start with 200 happiness.",
@@ -101,6 +123,8 @@
   {
     "id": 12,
     "name": "premier-ball",
+    "name_jp": "プレミアボール",
+    "romaji": null,
     "cost": 20,
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/premier-ball.png",
     "effect": "Tries to catch a wild Pokémon.",
@@ -110,6 +134,8 @@
   {
     "id": 13,
     "name": "dusk-ball",
+    "name_jp": "ダークボール",
+    "romaji": null,
     "cost": 1000,
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/dusk-ball.png",
     "effect": "Tries to catch a wild Pokémon.  Success rate is 3.5× at night and in caves.",
@@ -119,6 +145,8 @@
   {
     "id": 14,
     "name": "heal-ball",
+    "name_jp": "ヒールボール",
+    "romaji": null,
     "cost": 300,
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/heal-ball.png",
     "effect": "Tries to catch a wild Pokémon.  Caught Pokémon are immediately healed.",
@@ -128,6 +156,8 @@
   {
     "id": 15,
     "name": "quick-ball",
+    "name_jp": "クイックボール",
+    "romaji": null,
     "cost": 1000,
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/quick-ball.png",
     "effect": "Tries to catch a wild Pokémon. Success rate is 4× (Gen V: 5×), but only on the first turn.",
@@ -137,6 +167,8 @@
   {
     "id": 449,
     "name": "lure-ball",
+    "name_jp": "ルアーボール",
+    "romaji": null,
     "cost": 0,
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/lure-ball.png",
     "effect": "3× effectiveness while fishing. Made from Blu Apricorn.",
@@ -146,6 +178,8 @@
   {
     "id": 450,
     "name": "level-ball",
+    "name_jp": "レベルボール",
+    "romaji": null,
     "cost": 0,
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/level-ball.png",
     "effect": "Success rate based off of fraction target Pokémon is of user’s Pokémon. Made from Red Apricorn.",
@@ -155,6 +189,8 @@
   {
     "id": 451,
     "name": "moon-ball",
+    "name_jp": "ムーンボール",
+    "romaji": null,
     "cost": 0,
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/moon-ball.png",
     "effect": "4× effectiveness on familes of Pokémon with a Moon Stone evolution. Made from Ylw Apricorn.",
@@ -164,6 +200,8 @@
   {
     "id": 452,
     "name": "heavy-ball",
+    "name_jp": "ヘビーボール",
+    "romaji": null,
     "cost": 0,
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/heavy-ball.png",
     "effect": "Has flat bonus or penalty to catch rate depending on weight class of target. Made from Blk Apricorn.",
@@ -173,6 +211,8 @@
   {
     "id": 453,
     "name": "fast-ball",
+    "name_jp": "スピードボール",
+    "romaji": null,
     "cost": 0,
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/fast-ball.png",
     "effect": "4× effectiveness on Pokémon with 100 or greater base speed. (Gen II: Roaming or Fleeing Pokémon). Made from Wht Apricorn.",
@@ -182,6 +222,8 @@
   {
     "id": 454,
     "name": "friend-ball",
+    "name_jp": "フレンドボール",
+    "romaji": null,
     "cost": 0,
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/friend-ball.png",
     "effect": "Caught Pokémon start with 200 happiness. Made from Grn Apricorn.",
@@ -191,6 +233,8 @@
   {
     "id": 455,
     "name": "love-ball",
+    "name_jp": "ラブラブボール",
+    "romaji": null,
     "cost": 0,
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/love-ball.png",
     "effect": "8× effectiveness on opposite sex, same species targets of the Active Pokémon. Made from Pnk Apricorn.",
@@ -200,6 +244,8 @@
   {
     "id": 457,
     "name": "sport-ball",
+    "name_jp": "コンペボール",
+    "romaji": null,
     "cost": 300,
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/sport-ball.png",
     "effect": "Tries to catch a Pokémon in the Bug-Catching contest in National Park. (Gen II: Park Ball)",
@@ -209,6 +255,8 @@
   {
     "id": 617,
     "name": "dream-ball",
+    "name_jp": "ドリームボール",
+    "romaji": null,
     "cost": 0,
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/dream-ball.png",
     "effect": "Catches Pokémon found in the Dream World.",
@@ -218,6 +266,8 @@
   {
     "id": 887,
     "name": "beast-ball",
+    "name_jp": "ウルトラボール",
+    "romaji": null,
     "cost": 0,
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/beast-ball.png",
     "effect": "Tries to catch a wild Pokémon.  Success rate is 5× for Ultra Beasts and 0.1× for all other Pokémon.",

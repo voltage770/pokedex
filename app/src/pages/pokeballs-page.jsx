@@ -36,7 +36,14 @@ function BallModal({ ball, modalRef, onClose, onPrev, onNext, closing, bump }) {
           <button className="modal-cycle-arrow modal-cycle-arrow--prev" onClick={onPrev} aria-label="previous">‹</button>
           <div className="ball-modal__title">
             {ball.sprite && <img src={ball.sprite} alt={ball.name} />}
-            <h2>{formatSlugLower(ball.name)}</h2>
+            <div className="ball-modal__title-text">
+              <h2>{formatSlugLower(ball.name)}</h2>
+              {ball.name_jp && (
+                <small className="jp-subtitle">
+                  {ball.name_jp}{ball.romaji ? ` · ${ball.romaji}` : ''}
+                </small>
+              )}
+            </div>
           </div>
           <button className="modal-cycle-arrow modal-cycle-arrow--next" onClick={onNext} aria-label="next">›</button>
         </div>

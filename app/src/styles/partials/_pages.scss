@@ -714,11 +714,11 @@
   }
 
   &__flavor {
-    font-size: .78rem;
+    font-size: .85rem;
     font-style: italic;
     color: var(--text-muted);
-    margin: 0 0 12px;
-    line-height: 1.5;
+    margin: 0 0 10px;
+    line-height: 1.45;
   }
 
   // hero sprite block — used by the badge modal to feature the badge image
@@ -1006,6 +1006,222 @@
     text-underline-offset: 2px;
 
     &:hover { color: var(--text); }
+  }
+}
+
+
+// ─── gym leaders page ─────────────────────────────────────────────────────────
+
+// VS portraits are tall (taller than wide) so the leader grid uses a wider
+// minmax than .ball-grid to give each portrait room without squashing.
+.leader-grid {
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+}
+
+// override .ball-thumb img sizing (designed for 48x48 sprites). leader thumbs
+// are detailed character art — Masters EX VS portraits where available
+// (uniform headshot framing across the dex) and full-body trainer art as
+// fallback. fixed square frame + object-position: top crops the fallback
+// images to the head/upper-body so the row reads uniformly regardless of
+// source aspect ratio.
+.leader-thumb {
+  padding: 10px 8px 10px;
+
+  img {
+    width: 96px;
+    height: 96px;
+    object-fit: cover;
+    object-position: top center;
+    border-radius: var(--radius-sm);
+    image-rendering: auto; // full-color png, not pixel sprite
+  }
+
+  span {
+    text-transform: capitalize;
+    font-size: .78rem;
+  }
+}
+
+// constant-size leader modal: header (cycle arrows + name + jp subtitle)
+// and a fixed-height static section (hero portrait + value chart) sit
+// at the top, then the flavor section scrolls inside its own bounded
+// box. every leader's modal is identical dimensions regardless of flavor
+// length — short bios don't shrink the modal, long bios don't push the
+// info chart off the bottom of the viewport.
+.ball-modal--leader {
+  height: 580px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  // override .ball-modal's overflow-y: auto — the inner scroll region
+  // owns scrolling instead, so the title + hero + chart stay pinned.
+  overflow-y: hidden;
+
+  .ball-modal__title {
+    flex-direction: column;
+    gap: 2px;
+
+    h2 { text-transform: capitalize; }
+  }
+
+  .ball-modal__meta {
+    grid-template-columns: 1fr;
+  }
+
+  .info-cell {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 7px 12px;
+    gap: 12px;
+
+    &__label  { flex-shrink: 0; }
+    &__value  {
+      font-weight: var(--fw-bold);
+      text-transform: capitalize;
+      text-align: right;
+    }
+    &__value--types { justify-content: flex-end; }
+  }
+}
+
+// upper static section — hero + info chart, never scrolls.
+.leader-modal__static {
+  flex-shrink: 0;
+}
+
+// lower scroll region — flavor text expands to fill remaining space and
+// scrolls when content overflows. flavor is rendered as multiple <p>
+// elements (one per scraped paragraph), with spacing between them.
+.leader-modal__flavor-scroll {
+  flex: 1 1 0;
+  min-height: 0;       // critical: lets flex item shrink below content
+  overflow-y: auto;
+  margin-top: 12px;
+  padding-right: 4px;
+  // subtle top divider — visual cue that there's content above the
+  // scroll boundary, mirrors what users expect from scrollable regions.
+  border-top: 1px solid var(--border);
+  padding-top: 12px;
+
+  // bigger + cleaner flavor text since it owns its own viewport now
+  // and isn't competing with the chart for vertical space. paragraphs
+  // get bottom-margin spacing; last one doesn't (stops trailing space
+  // from making the scrollbar look like there's still content).
+  .ball-modal__flavor {
+    font-size: .92rem;
+    line-height: 1.55;
+    margin: 0 0 12px;
+
+    &:last-child { margin-bottom: 0; }
+  }
+}
+
+.leader-modal__jp {
+  font-size: .72rem;
+  color: var(--text-muted);
+  font-weight: var(--fw-regular);
+  letter-spacing: .02em;
+}
+
+// shared japanese subtitle — sits under the english name in any modal
+// header (ability, pokeball, berry, etc). matches the visual treatment
+// already used for the gym leader modal's `name_jp · romaji` subtitle
+// so the kana practice surface looks consistent everywhere.
+.jp-subtitle {
+  display: block;
+  font-size: .7rem;
+  font-weight: var(--fw-regular);
+  color: var(--text-muted);
+  letter-spacing: .02em;
+  margin-top: 1px;
+  text-transform: none;  // override capitalize from parent .ball-modal__name etc.
+}
+
+// stack the english name + jp subtitle inside the title block.
+.ball-modal__title-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+
+  h2 { margin: 0; }
+}
+
+.leader-modal__hero {
+  // official trainer artwork (portrait_url) is tall — full-body poses with
+  // detailed character art. give it room so the face/details read clearly
+  // without dominating the modal. modal min-height is 340px and max-height
+  // is 85vh, so 240px hero leaves space for flavor text + 3 info cells.
+  img {
+    max-height: 240px;
+    width: auto;
+    object-fit: contain;
+  }
+}
+
+// badge link inside the leader modal — small inline pill with sprite + name
+// that navigates to the badges gallery on click.
+.leader-modal__badge-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: inherit;
+  font-weight: var(--fw-bold);
+
+  img {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+  }
+
+  &:hover { color: var(--accent); }
+}
+
+// fallback styling for "various" + "unknown" type chips (Blue's various-type
+// gym, leaders whose template type field couldn't be parsed). neutral grey
+// so the chip still reads correctly without a real type color.
+.type-badge.type-various,
+.type-badge.type-unknown {
+  background: var(--bg-sidebar);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+}
+
+// inline list (multi-leader badges, multi-city leaders) — wraps each value
+// in its own span so a clickable link can sit next to a static pipe
+// separator. items wrap to the next line when the cell can't fit them all.
+.info-cell__value--inline-list {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 6px;
+  justify-content: flex-end;
+
+  .inline-list-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .inline-list-pipe {
+    color: var(--text-subtle);
+    opacity: .55;
+    font-weight: var(--fw-regular);
+  }
+}
+
+// link inside an info-cell value — picks up accent on hover.
+.info-cell__link {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px dotted color-mix(in srgb, var(--text) 30%, transparent);
+  transition: color .12s ease, border-color .12s ease;
+
+  &:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
   }
 }
 

@@ -13,6 +13,16 @@ async function fetchJSON(url) {
   return res.json();
 }
 
+function pickJP(names) {
+  if (!names) return { name_jp: null, romaji: null };
+  // PokeAPI item endpoints only expose `ja-hrkt` (no kanji, no romaji).
+  // see fetch-abilities.js for full language code reference.
+  const ja = names.find(n => n.language?.name === 'ja')
+          || names.find(n => n.language?.name === 'ja-hrkt');
+  const ro = names.find(n => n.language?.name === 'ja-roma');
+  return { name_jp: ja?.name || null, romaji: ro?.name || null };
+}
+
 async function main() {
   // get full berry list
   const list = await fetchJSON(`${API}/berry/?limit=100`);
@@ -37,9 +47,12 @@ async function main() {
       if (f.potency > 0) flavors[f.flavor.name] = f.potency;
     }
 
+    const jp = pickJP(item.names);
     berries.push({
       id: berry.id,
       name: berry.name,
+      name_jp: jp.name_jp,
+      romaji:  jp.romaji,
       item_name: item.name,
       sprite: item.sprites?.default || null,
       growth_time: berry.growth_time,

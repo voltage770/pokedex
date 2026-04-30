@@ -125,12 +125,17 @@ export default function PullToRefresh({ onRefresh, enabled = true }) {
       startY.current  = e.touches[0].clientY;
       pullRef.current = 0;
       direction       = null;
-      // promote #root to a compositor layer for the lifetime of this gesture
-      // so transforms paint live during touchmove on ios. cleared on touchend
-      // (after the snap-back transition) so modals — which use position:fixed
-      // — anchor to the viewport at rest, not to #root.
-      const root = document.getElementById('root');
-      if (root) root.style.willChange = 'transform';
+      // willChange: 'transform' is deferred to onMove — it gets set only
+      // once the gesture is identified as a downward pull (direction ===
+      // 'down'). setting it here unconditionally, on every touchstart at
+      // scrollTop=0, was promoting #root to a new compositor layer EVERY
+      // first touch in a fresh ios standalone session. that layer-creation
+      // pause interrupted the in-progress scroll mid-gesture: the user
+      // would scroll ~10px, the layer would commit, ios would lose
+      // ownership of the scroll, the gesture would die. releasing and
+      // re-swiping found the layer already established and worked fine.
+      // moving the promotion to direction-lock means regular upward
+      // scrolls (the common case) never trigger the layer change.
     };
 
     const onMove = (e) => {
@@ -142,6 +147,17 @@ export default function PullToRefresh({ onRefresh, enabled = true }) {
       if (direction == null) {
         if (Math.abs(dy) < DIRECTION_LOCK) return;
         direction = dy > 0 ? 'down' : 'up';
+        // promote #root to a compositor layer ONLY when we know the gesture
+        // is a pull. transforms during touchmove only paint reliably on ios
+        // when #root is composited (will-change + translate3d), so the layer
+        // must exist before the first writeRoot below. setting it here vs.
+        // at touchstart trades a tiny first-frame paint cost on the first
+        // pull (negligible — pull animation is slow enough to mask it) for
+        // not interrupting the much-more-common upward scroll gesture.
+        if (direction === 'down') {
+          const root = document.getElementById('root');
+          if (root) root.style.willChange = 'transform';
+        }
       }
       if (direction === 'up') return;
 

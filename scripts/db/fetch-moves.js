@@ -13,6 +13,21 @@ async function fetchJSON(url) {
   return res.json();
 }
 
+// pull japanese name + romaji out of pokeapi's names[] array. PokeAPI
+// codes: `ja` (kanji), `ja-hrkt` (hiragana fallback), `ja-roma` (romaji).
+// most non-species endpoints only have `ja-hrkt`, so fall back to that
+// for name_jp; romaji stays null when missing.
+function pickJP(names) {
+  if (!names) return { name_jp: null, romaji: null };
+  const ja = names.find(n => n.language?.name === 'ja')
+          || names.find(n => n.language?.name === 'ja-hrkt');
+  const ro = names.find(n => n.language?.name === 'ja-roma');
+  return {
+    name_jp: ja?.name || null,
+    romaji:  ro?.name || null,
+  };
+}
+
 async function main() {
   const list = await fetchJSON(`${API}/move/?limit=2000`);
   const total = list.results.length;
@@ -29,10 +44,13 @@ async function main() {
     const flavor = m.flavor_text_entries
       ?.filter(f => f.language.name === 'en')
       ?.pop();
+    const jp = pickJP(m.names);
 
     moves.push({
       id: m.id,
       name: m.name,
+      name_jp: jp.name_jp,
+      romaji:  jp.romaji,
       type: m.type?.name || null,
       power: m.power,
       pp: m.pp,

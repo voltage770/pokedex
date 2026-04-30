@@ -112,6 +112,15 @@ async function fetchOne(id) {
     : null;
 
   const genusEntry = sp.genera.find(g => g.language.name === 'en');
+
+  // japanese name + romaji from pokemon-species names[]. PokeAPI codes:
+  //   ja        — kanji/katakana (canonical, what the games render)
+  //   ja-hrkt   — hiragana variant (fallback when ja is missing)
+  //   ja-roma   — romaji (latin transliteration, learner-friendly)
+  // used as a language-learning subtitle in the pokemon detail header.
+  const jaEntry  = sp.names.find(n => n.language.name === 'ja')
+                || sp.names.find(n => n.language.name === 'ja-hrkt');
+  const romaEntry = sp.names.find(n => n.language.name === 'ja-roma');
   const evolutions = await getEvoChain(sp.evolution_chain.url);
 
   const nonDefault = sp.varieties.filter(v => !v.is_default).map(v => v.pokemon.name);
@@ -188,6 +197,8 @@ async function fetchOne(id) {
   return {
     id:              p.id,
     name:            p.name,
+    name_jp:         jaEntry?.name || null,
+    romaji:          romaEntry?.name || null,
     species_id:      sp.id,
     generation:      getGeneration(p.id),
     base_experience: p.base_experience,

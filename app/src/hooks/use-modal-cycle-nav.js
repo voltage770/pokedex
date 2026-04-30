@@ -27,8 +27,23 @@ import { useBodyScrollLock } from './use-body-scroll-lock';
 //   // and render arrows next to the modal:
 //   <button onClick={prev}>‹</button> <button onClick={next}>›</button>
 
-export function useModalCycleNav(sections) {
-  const [selected, setSelected] = useState(null); // { sectionIdx, index } | null
+// initialId (optional) lets a page that arrived via cross-modal navigation
+// open a specific item's modal on first render — the lookup runs inside
+// useState's lazy initializer so the modal is in the DOM at the very first
+// commit. that's load-bearing for the View Transitions cross-modal path:
+// `flushSync(navigate)` produces a synchronous render, and the browser
+// snapshots the new DOM right after. if the initial render didn't already
+// have the modal open, the snapshot would land on a blank destination and
+// the crossfade would lose the shared-element effect.
+export function useModalCycleNav(sections, initialId = null) {
+  const [selected, setSelected] = useState(() => {
+    if (!initialId) return null;
+    for (let s = 0; s < sections.length; s++) {
+      const idx = sections[s].items.findIndex(i => i.id === initialId);
+      if (idx !== -1) return { sectionIdx: s, index: idx };
+    }
+    return null;
+  });
   const [bump, setBump] = useState({ n: 0, dir: 0 });
 
   const sectionsRef = useRef(sections);

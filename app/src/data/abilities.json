@@ -1,311 +1,1427 @@
 {
-  "adaptability": "Increases the same-type attack bonus from 1.5× to 2×.",
-  "aftermath": "Damages the attacker for 1/4 its max HP when knocked out by a contact move.",
-  "air-lock": "Negates all effects of weather, but does not prevent the weather itself.",
-  "analytic": "Strengthens moves to 1.3× their power when moving last.",
-  "anger-point": "Raises Attack to the maximum of six stages upon receiving a critical hit.",
-  "anger-shell": "When the Pokémon's HP drops below half, Anger Shell lowers its Defense and Special Defense but its Attack, Special Attack and Speed are raised.",
-  "anticipation": "Notifies all trainers upon entering battle if an opponent has a super-effective move, self destruct, explosion, or a one-hit KO move.",
-  "arena-trap": "Prevents opponents from fleeing or switching out.  Eluded by flying-types and Pokémon in the air.",
-  "armor-tail": "Prevents the opponent from using any moves that have priority, such as Quick Attack.",
-  "aroma-veil": "Protects allies against moves that affect their mental state.",
-  "aura-break": "Makes dark aura and fairy aura weaken moves of their respective types.",
-  "bad-dreams": "Damages sleeping opponents for 1/8 their max HP after each turn.",
-  "ball-fetch": "If the Pokémon is not holding an item, it will fetch the Poké Ball from the first failed throw of the battle.",
-  "battery": "Ally Pokémon's moves have their power increased to 1.3×.",
-  "battle-armor": "Protects against critical hits.",
-  "beads-of-ruin": "Lowers Special Defense of all Pokémon except itself.",
-  "beast-boost": "Raises this Pokémon's highest stat by one stage when it faints another Pokémon.",
-  "berserk": "Raises this Pokémon's Special Attack by one stage every time its HP drops below half.",
-  "big-pecks": "Protects against Defense drops.",
-  "blaze": "Strengthens fire moves to inflict 1.5× damage at 1/3 max HP or less.",
-  "bulletproof": "Protects against bullet, ball, and bomb-based moves.",
-  "cheek-pouch": "Restores HP upon eating a Berry, in addition to the Berry's effect.",
-  "chilling-neigh": "Boosts Attack after knocking out a Pokémon.",
-  "chlorophyll": "Doubles Speed during strong sunlight.",
-  "clear-body": "Prevents stats from being lowered by other Pokémon.",
-  "cloud-nine": "Negates all effects of weather, but does not prevent the weather itself.",
-  "color-change": "Changes type to match when hit by a damaging move.",
-  "comatose": "This Pokémon always  acts as though it were Asleep.",
-  "commander": "Goes inside the mouth of an ally Dondozo if one is on the field.",
-  "competitive": "Raises Special Attack by two stages upon having any stat lowered.",
-  "compound-eyes": "Increases moves' accuracy to 1.3×.",
-  "contrary": "Inverts stat changes.",
-  "corrosion": "This Pokémon can inflict poison on Poison and Steel Pokémon.",
-  "costar": "Copies ally's stat changes on entering battle.",
-  "cotton-down": "When Ignores moves and abilities that draw in moves.",
-  "cud-chew": "Causes the Pokémon to reuse an already consumed Berry at the end of the next turn.",
-  "cursed-body": "Has a 30% chance of Disabling any move that hits the Pokémon.",
-  "cute-charm": "Has a 30% chance of infatuating attacking Pokémon on contact.",
-  "damp": "Prevents self destruct, explosion, and aftermath from working while the Pokémon is in battle.",
-  "dancer": "Whenever another Pokémon uses a dance move, this Pokémon will use the same move immediately afterwards.",
-  "dark-aura": "Strengthens dark moves to 1.33× their power for all friendly and opposing Pokémon.",
-  "dauntless-shield": "Boosts Defense in battle.",
-  "dazzling": "Opposing Pokémon cannot use priority attacks.",
-  "defeatist": "Halves Attack and Special Attack at 50% max HP or less.",
-  "defiant": "Raises Attack two stages upon having any stat lowered.",
-  "disguise": "Prevents the first instance of battle damage.",
-  "download": "Raises the attack stat corresponding to the opponents' weaker defense one stage upon entering battle.",
-  "dragons-maw": "Powers up Dragon-type moves.",
-  "drizzle": "Summons rain that lasts indefinitely upon entering battle.",
-  "drought": "Summons strong sunlight that lasts indefinitely upon entering battle.",
-  "dry-skin": "Causes 1/8 max HP in damage each turn during strong sunlight, but heals for 1/8 max HP during rain.  Increases damage from fire moves to 1.25×, but absorbs water moves, healing for 1/4 max HP.",
-  "early-bird": "Makes sleep pass twice as quickly.",
-  "earth-eater": "Restores HP when hit by a Ground-type move.",
-  "effect-spore": "Has a 30% chance of inflcting either paralysis, poison, or sleep on attacking Pokémon on contact.",
-  "electric-surge": "When this Pokémon enters battle, it changes the terrain to Electric Terrain.",
-  "electromorphosis": "When hit by an attack, the power of the next Electric-type move it uses is doubled.",
-  "emergency-exit": "This Pokémon automatically switches out when its HP drops below half.",
-  "fairy-aura": "Strengthens fairy moves to 1.33× their power for all friendly and opposing Pokémon.",
-  "filter": "Decreases damage taken from super-effective moves by 1/4.",
-  "flame-body": "Has a 30% chance of burning attacking Pokémon on contact.",
-  "flare-boost": "Increases Special Attack to 1.5× when burned.",
-  "flash-fire": "Protects against fire moves.  Once one has been blocked, the Pokémon's own Fire moves inflict 1.5× damage until it leaves battle.",
-  "flower-gift": "Increases friendly Pokémon's Attack and Special Defense to 1.5× during strong sunlight.",
-  "flower-veil": "Protects friendly grass Pokémon from having their stats lowered by other Pokémon.",
-  "fluffy": "Damage from contact moves is halved.  Damage from Fire moves is doubled.",
-  "forecast": "Changes castform's type and form to match the weather.",
-  "forewarn": "Reveals the opponents' strongest move upon entering battle.",
-  "friend-guard": "Decreases all direct damage taken by friendly Pokémon to 0.75×.",
-  "frisk": "Reveals an opponent's held item upon entering battle.",
-  "full-metal-body": "Other Pokémon cannot lower this Pokémon's stats.",
-  "fur-coat": "Halves damage from physical attacks.",
-  "gale-wings": "Raises flying moves' priority by one stage.",
-  "gluttony": "Makes the Pokémon eat any held Berry triggered by low HP below 1/2 its max HP.",
-  "good-as-gold": "Gives immunity to status moves.",
-  "gooey": "Lowers attacking Pokémon's Speed by one stage on contact.",
-  "grass-pelt": "Boosts Defense while grassy terrain is in effect.",
-  "grassy-surge": "When this Pokémon enters battle, it changes the terrain to Grassy Terrain.",
-  "grim-neigh": "Boosts Special Attack after knocking out a Pokémon.",
-  "guard-dog": "Boosts Attack if intimidated, and prevents being forced to switch out.",
-  "gulp-missile": "If a Cramorant with Gulp Missile uses Surf or Dive, it catches prey and changes its form depending on its remaining HP.",
-  "guts": "Increases Attack to 1.5× with a major status ailment.",
-  "hadron-engine": "Creates an Electric Terrain when entering battle, and boosts Special Attack while active.",
-  "harvest": "Has a 50% chance of restoring a used Berry after each turn if the Pokémon has held no items in the meantime.",
-  "healer": "Has a 30% chance of curing each adjacent ally of any major status ailment after each turn.",
-  "heatproof": "Halves damage from fire moves and burns.",
-  "heavy-metal": "Doubles the Pokémon's weight.",
-  "honey-gather": "The Pokémon may pick up honey after battle.",
-  "hospitality": "When a Pokémon with Hospitality enters a battle, it restores HP for an ally by 25%.",
-  "huge-power": "Doubles Attack in battle.",
-  "hunger-switch": "Causes Morpeko to change its form each turn, alternating between Full Belly Mode and Hangry Mode",
-  "hustle": "Strengthens physical moves to inflict 1.5× damage, but decreases their accuracy to 0.8×.",
-  "hydration": "Cures any major status ailment after each turn during rain.",
-  "hyper-cutter": "Prevents Attack from being lowered by other Pokémon.",
-  "ice-body": "Heals for 1/16 max HP after each turn during hail.  Protects against hail damage.",
-  "ice-face": "The Pokémon’s ice head can take a physical attack as a substitute, but the attack also changes the Pokémon’s appearance. The ice will be restored when it snows.",
-  "ice-scales": "Halves damage from Special moves.",
-  "illuminate": "Doubles the wild encounter rate.",
-  "illusion": "Takes the appearance of the last conscious party Pokémon upon being sent out until hit by a damaging move.",
-  "immunity": "Prevents poison.",
-  "imposter": "Transforms upon entering battle.",
-  "infiltrator": "Bypasses light screen, reflect, and safeguard.",
-  "innards-out": "When this Pokémon faints from an opponent's move, that opponent takes damage equal to the HP this Pokémon had remaining.",
-  "inner-focus": "Prevents flinching.",
-  "insomnia": "Prevents sleep.",
-  "intimidate": "Lowers opponents' Attack one stage upon entering battle.",
-  "intrepid-sword": "Boosts Attack in battle.",
-  "iron-barbs": "Damages attacking Pokémon for 1/8 their max HP on contact.",
-  "iron-fist": "Strengthens punch-based moves to 1.2× their power.",
-  "justified": "Raises Attack one stage upon taking damage from a dark move.",
-  "keen-eye": "Prevents accuracy from being lowered.",
-  "klutz": "Prevents the Pokémon from using its held item in battle.",
-  "leaf-guard": "Protects against major status ailments during strong sunlight.",
-  "levitate": "Evades ground moves.",
-  "libero": "Libero changes the Pokémon's type to that of its previously used attack.",
-  "light-metal": "Halves the Pokémon's weight.",
-  "lightning-rod": "Redirects single-target electric moves to this Pokémon where possible.  Absorbs Electric moves, raising Special Attack one stage.",
-  "limber": "Prevents paralysis.",
-  "lingering-aroma": "Contact changes the attacker's Ability to Lingering Aroma.",
-  "liquid-ooze": "Damages opponents using leeching moves for as much as they would heal.",
-  "liquid-voice": "Sound-based moves become Water-type.",
-  "long-reach": "This Pokémon's moves do not make contact.",
-  "magic-bounce": "Reflects most non-damaging moves back at their user.",
-  "magic-guard": "Protects against damage not directly caused by a move.",
-  "magician": "Steals the target's held item when the bearer uses a damaging move.",
-  "magma-armor": "Prevents freezing.",
-  "magnet-pull": "Prevents steel opponents from fleeing or switching out.",
-  "marvel-scale": "Increases Defense to 1.5× with a major status ailment.",
-  "mega-launcher": "Strengthens aura and pulse moves to 1.5× their power.",
-  "merciless": "This Pokémon's moves critical hit against poisoned targets.",
-  "minus": "Increases Special Attack to 1.5× when a friendly Pokémon has plus or minus.",
-  "mirror-armor": "Reflects any stat-lowering effects.",
-  "misty-surge": "When this Pokémon enters battle, it changes the terrain to Misty Terrain.",
-  "mold-breaker": "Bypasses targets' abilities if they could hinder or prevent a move.",
-  "moody": "Raises a random stat two stages and lowers another one stage after each turn.",
-  "motor-drive": "Absorbs electric moves, raising Speed one stage.",
-  "moxie": "Raises Attack one stage upon KOing a Pokémon.",
-  "multiscale": "Halves damage taken from full HP.",
-  "multitype": "Changes arceus's type and form to match its held Plate.",
-  "mummy": "Changes attacking Pokémon's abilities to Mummy on contact.",
-  "mycelium-might": "Status moves go last, but are not affected by the opponent's ability.",
-  "natural-cure": "Cures any major status ailment upon switching out.",
-  "neutralizing-gas": "Neutralizes abilities of all Pokémon in battle.",
-  "no-guard": "Ensures all moves used by and against the Pokémon hit.",
-  "normalize": "Makes the Pokémon's moves all act normal-type.",
-  "oblivious": "Prevents infatuation and protects against captivate.",
-  "opportunist": "Copies stat boosts by the opponent.",
-  "orichalcum-pulse": "Turns the sunlight harsh when entering battle, and boosts Attack while active.",
-  "overcoat": "Protects against damage from weather.",
-  "overgrow": "Strengthens grass moves to inflict 1.5× damage at 1/3 max HP or less.",
-  "own-tempo": "Prevents confusion.",
-  "perish-body": "When hit by a move that makes direct contact, the Pokémon and the attacker will faint after three turns unless they switch out of battle.",
-  "pickpocket": "Steals attacking Pokémon's held items on contact.",
-  "pickup": "Picks up other Pokémon's used and Flung held items.  May also pick up an item after battle.",
-  "pixilate": "Turns the bearer's normal moves into fairy moves and strengthens them to 1.3× their power.",
-  "plus": "Increases Special Attack to 1.5× when a friendly Pokémon has plus or minus.",
-  "poison-heal": "Heals for 1/8 max HP after each turn when poisoned in place of damage.",
-  "poison-point": "Has a 30% chance of poisoning attacking Pokémon on contact.",
-  "poison-puppeteer": "Pokémon poisoned by Pecharunt's moves will also become confused.",
-  "poison-touch": "Has a 30% chance of poisoning target Pokémon upon contact.",
-  "power-spot": "Just being next to the Pokémon powers up moves.",
-  "prankster": "Raises non-damaging moves' priority by one stage.",
-  "pressure": "Increases the PP cost of moves targetting the Pokémon by one.",
-  "prism-armor": "Reduces super-effective damage to 0.75×.",
-  "propeller-tail": "Ignores moves and abilities that draw in moves.",
-  "protean": "Changes the bearer's type to match each move it uses.",
-  "protosynthesis": "Raises highest stat in harsh sunlight, or if holding Booster Energy.",
-  "psychic-surge": "When this Pokémon enters battle, it changes the terrain to Psychic Terrain.",
-  "punk-rock": "Boosts sound-based moves and halves damage from the same moves.",
-  "pure-power": "Doubles Attack in battle.",
-  "purifying-salt": "Protects from status conditions and halves damage from Ghost-type moves.",
-  "quark-drive": "Raises highest stat on Electric Terrain, or if holding Booster Energy.",
-  "queenly-majesty": "Opposing Pokémon cannot use priority attacks.",
-  "quick-feet": "Increases Speed to 1.5× with a major status ailment.",
-  "rain-dish": "Heals for 1/16 max HP after each turn during rain.",
-  "rattled": "Raises Speed one stage upon being hit by a dark, ghost, or bug move.",
-  "receiver": "When an ally faints, this Pokémon gains its Ability.",
-  "reckless": "Strengthens recoil moves to 1.2× their power.",
-  "refrigerate": "Turns the bearer's normal moves into ice moves and strengthens them to 1.3× their power.",
-  "regenerator": "Heals for 1/3 max HP upon switching out.",
-  "ripen": "Doubles the effect of berries.",
-  "rivalry": "Increases damage inflicted to 1.25× against Pokémon of the same gender, but decreases damage to 0.75× against the opposite gender.",
-  "rks-system": "Changes this Pokémon's type to match its held Memory.",
-  "rock-head": "Protects against recoil damage.",
-  "rocky-payload": "Powers up Rock-type moves.",
-  "rough-skin": "Damages attacking Pokémon for 1/8 their max HP on contact.",
-  "run-away": "Ensures success fleeing from wild battles.",
-  "sand-force": "Strengthens rock, ground, and steel moves to 1.3× their power during a sandstorm.  Protects against sandstorm damage.",
-  "sand-rush": "Doubles Speed during a sandstorm.  Protects against sandstorm damage.",
-  "sand-spit": "Creates a sandstorm when hit by an attack.",
-  "sand-stream": "Summons a sandstorm that lasts indefinitely upon entering battle.",
-  "sand-veil": "Increases evasion to 1.25× during a sandstorm.  Protects against sandstorm damage.",
-  "sap-sipper": "Absorbs grass moves, raising Attack one stage.",
-  "schooling": "Wishiwashi becomes Schooling Form when its HP is 25% or higher.",
-  "scrappy": "Lets the Pokémon's normal and fighting moves hit ghost Pokémon.",
-  "screen-cleaner": "Nullifies effects of Light Screen, Reflect, and Aurora Veil.",
-  "seed-sower": "Turns the ground into Grassy Terrain when the Pokémon is hit by an attack.",
-  "serene-grace": "Doubles the chance of moves' extra effects occurring.",
-  "shadow-shield": "When this Pokémon has full HP, regular damage from moves is halved.",
-  "shadow-tag": "Prevents opponents from fleeing or switching out.",
-  "sharpness": "Powers up slicing moves.",
-  "shed-skin": "Has a 33% chance of curing any major status ailment after each turn.",
-  "sheer-force": "Strengthens moves with extra effects to 1.3× their power, but prevents their extra effects.",
-  "shell-armor": "Protects against critical hits.",
-  "shield-dust": "Protects against incoming moves' extra effects.",
-  "shields-down": "Transforms this Minior between Core Form and Meteor Form.  Prevents major status ailments and drowsiness while in Meteor Form.",
-  "simple": "Doubles the Pokémon's stat modifiers.  These doubled modifiers are still capped at -6 or 6 stages.",
-  "skill-link": "Extends two-to-five-hit moves and triple kick to their full length every time.",
-  "slow-start": "Halves Attack and Speed for five turns upon entering battle.",
-  "slush-rush": "During Hail, this Pokémon has double Speed.",
-  "sniper": "Strengthens critical hits to inflict 3× damage rather than 2×.",
-  "snow-cloak": "Increases evasion to 1.25× during hail.  Protects against hail damage.",
-  "snow-warning": "Summons hail that lasts indefinitely upon entering battle.",
-  "solar-power": "Increases Special Attack to 1.5× but costs 1/8 max HP after each turn during strong sunlight.",
-  "solid-rock": "Decreases damage taken from super-effective moves by 1/4.",
-  "soul-heart": "This Pokémon's Special Attack rises by one stage every time any Pokémon faints.",
-  "soundproof": "Protects against sound-based moves.",
-  "speed-boost": "Raises Speed one stage after each turn.",
-  "stakeout": "This Pokémon's moves have double power against Pokémon that switched in this turn.",
-  "stall": "Makes the Pokémon move last within its move's priority bracket.",
-  "stalwart": "Ignores moves and abilities that draw in moves.",
-  "stamina": "Raises this Pokémon's Defense by one stage when it takes damage from a move.",
-  "stance-change": "Changes aegislash to Blade Forme before using a damaging move, or Shield Forme before using kings shield.",
-  "static": "Has a 30% chance of paralyzing attacking Pokémon on contact.",
-  "steadfast": "Raises Speed one stage upon flinching.",
-  "steam-engine": "Boosts the Speed stat drastically when the Pokémon is hit by a Fire- or Water-type move.",
-  "steelworker": "This Pokémon's Steel moves have 1.5× power.",
-  "steely-spirit": "Powers up ally Pokémon's Steel-type moves.",
-  "stench": "Has a 10% chance of making target Pokémon flinch with each hit.",
-  "sticky-hold": "Prevents a held item from being removed by other Pokémon.",
-  "storm-drain": "Redirects single-target water moves to this Pokémon where possible.  Absorbs Water moves, raising Special Attack one stage.",
-  "strong-jaw": "Strengthens biting moves to 1.5× their power.",
-  "sturdy": "Prevents being KOed from full HP, leaving 1 HP instead.  Protects against the one-hit KO moves regardless of HP.",
-  "suction-cups": "Prevents being forced out of battle by other Pokémon's moves.",
-  "super-luck": "Raises moves' critical hit rates one stage.",
-  "supersweet-syrup": "Once per battle, when a Pokémon with Supersweet Syrup enters the battle, it lowers the evasion stat of all adjacent opponents by one stage. ",
-  "supreme-overlord": "Attack and Special Attack are boosted for each party Pokémon that has been defeated.",
-  "swarm": "Strengthens bug moves to inflict 1.5× damage at 1/3 max HP or less.",
-  "sweet-veil": "Prevents friendly Pokémon from sleeping.",
-  "swift-swim": "Doubles Speed during rain.",
-  "sword-of-ruin": "Lowers Defense of all Pokémon except itself.",
-  "symbiosis": "Passes the bearer's held item to an ally when the ally uses up its item.",
-  "synchronize": "Copies burns, paralysis, and poison received onto the Pokémon that inflicted them.",
-  "tablets-of-ruin": "Lowers Attack of all Pokémon except itself.",
-  "tangled-feet": "Doubles evasion when confused.",
-  "technician": "Strengthens moves of 60 base power or less to 1.5× their power.",
-  "telepathy": "Protects against friendly Pokémon's damaging moves.",
-  "tera-shift": "When Terapagos enters the battle, it turns into its Terastal Form until the end of the battle. ",
-  "teravolt": "Bypasses targets' abilities if they could hinder or prevent moves.",
-  "thermal-exchange": "Raises Attack when hit by a Fire-type move. Cannot be burned.",
-  "thick-fat": "Halves damage from fire and ice moves.",
-  "tinted-lens": "Doubles damage inflicted with not-very-effective moves.",
-  "torrent": "Strengthens water moves to inflict 1.5× damage at 1/3 max HP or less.",
-  "tough-claws": "Strengthens moves that make contact to 1.33× their power.",
-  "toxic-boost": "Increases Attack to 1.5× when poisoned.",
-  "toxic-chain": "May cause bad poisoning when the Pokémon hits an opponent with a move.",
-  "toxic-debris": "Scatters poison spikes at the feet of the opposing team when the Pokémon takes damage from physical moves.",
-  "trace": "Copies an opponent's ability upon entering battle.",
-  "transistor": "Powers up Electric-type moves.",
-  "triage": "This Pokémon's healing moves have their priority increased by 3.",
-  "truant": "Skips every second turn.",
-  "turboblaze": "Bypasses targets' abilities if they could hinder or prevent moves.",
-  "unaware": "Ignores other Pokémon's stat modifiers for damage and accuracy calculation.",
-  "unburden": "Doubles Speed upon using or losing a held item.",
-  "unnerve": "Prevents opposing Pokémon from eating held Berries.",
-  "unseen-fist": "Contact moves can strike through Protect/Detect.",
-  "vessel-of-ruin": "Lowers Special Attack of all Pokémon except itself.",
-  "victory-star": "Increases moves' accuracy to 1.1× for friendly Pokémon.",
-  "vital-spirit": "Prevents sleep.",
-  "volt-absorb": "Absorbs electric moves, healing for 1/4 max HP.",
-  "wandering-spirit": "Swaps abilities with opponents on contact.",
-  "water-absorb": "Absorbs water moves, healing for 1/4 max HP.",
-  "water-bubble": "Halves damage from Fire moves, doubles damage of Water moves, and prevents burns.",
-  "water-compaction": "Raises this Pokémon's Defense by two stages when it's hit by a Water move.",
-  "water-veil": "Prevents burns.",
-  "weak-armor": "Raises Speed and lowers Defense by one stage each upon being hit by a physical move.",
-  "well-baked-body": "Immune to Fire-type moves, and Defense is sharply boosted.",
-  "white-smoke": "Prevents stats from being lowered by other Pokémon.",
-  "wimp-out": "This Pokémon automatically switches out when its HP drops below half.",
-  "wind-power": "When hit by a wind move, the power of the next Electric-type move it uses is doubled.",
-  "wind-rider": "Gives immunity to wind moves, and causes the Pokémon's Attack to increase by one stage when hit by one.",
-  "wonder-guard": "Protects against damaging moves that are not super effective.",
-  "wonder-skin": "Lowers incoming non-damaging moves' base accuracy to exactly 50%.",
-  "zen-mode": "Changes darmanitan's form after each turn depending on its HP: Zen Mode below 50% max HP, and Standard Mode otherwise.",
-  "zero-to-hero": "Transforms into its Hero Form when switching out.",
-  "mega-sol": "The Pokémon can use its moves as if the weather were harsh sunlight.",
-  "dragonize": "The Pokémon's Normal-type moves become Dragon-type moves and their power is boosted by 20%.",
-  "piercing-drill": "When the Pokémon uses contact moves, it can hit even targets that are protecting themselves.",
-  "spicy-spray": "When the Pokémon takes damage from a move, it burns the attacker.",
-  "aerilate": "Turns the bearer's normal moves into flying moves and strengthens them to 1.3× their power.",
-  "parental-bond": "Lets the bearer hit twice with damaging moves.  The second hit has half power.",
-  "primordial-sea": "Creates heavy rain, which has all the properties of Rain Dance, cannot be replaced, and causes damaging Fire moves to fail.",
-  "desolate-land": "Creates extremely harsh sunlight, which has all the properties of Sunny Day, cannot be replaced, and causes damaging Water moves to fail.",
-  "delta-stream": "Creates a mysterious air current, which cannot be replaced and causes moves to never be super effective against Flying Pokémon.",
-  "galvanize": "This Pokémon's Normal moves are Electric and have their power increased to 1.2×.",
-  "surge-surfer": "Doubles this Pokémon's Speed on Electric Terrain.",
-  "battle-bond": "Transforms this Pokémon into Ash-Greninja after fainting an opponent.  Water Shuriken's power is 20 and always hits three times.",
-  "power-construct": "Transforms 10% or 50% Zygarde into Complete Forme when its HP is below 50%.",
-  "tangling-hair": "When this Pokémon takes regular damage from a contact move, the attacking Pokémon's Speed lowers by one stage.",
-  "power-of-alchemy": "When an ally faints, this Pokémon gains its Ability.",
-  "neuroforce": "Increases super-effective damage dealt to 1.25×.",
-  "mimicry": "Changes type depending on the terrain.",
-  "gorilla-tactics": "Boosts the Pokémon's Attack stat but only allows the use of the first selected move.",
-  "pastel-veil": "Prevents the Pokémon and its allies from being poisoned.",
-  "quick-draw": "Enables the Pokémon to move first occasionally.",
-  "curious-medicine": "Resets all stat changes upon entering battlefield.",
-  "minds-eye": "The Pokémon ignores changes to opponents' evasiveness, its accuracy can't be lowered, and it can hit Ghost types with Normal- and Fighting-type moves.",
-  "embody-aspect": "Embody Aspect boosts a particular stat, depending on the form of a Terastallized Ogerpon",
-  "tera-shell": "All damage-dealing moves that hit the Pokémon when its HP is full will not be very effective.",
-  "teraform-zero": "As soon as Terapagos assumes its Stellar Form, it will immediately neutralize weather and terrain effects. "
+  "adaptability": {
+    "effect": "Increases the same-type attack bonus from 1.5× to 2×.",
+    "name_jp": "てきおうりょく",
+    "romaji": null
+  },
+  "aftermath": {
+    "effect": "Damages the attacker for 1/4 its max HP when knocked out by a contact move.",
+    "name_jp": "ゆうばく",
+    "romaji": null
+  },
+  "air-lock": {
+    "effect": "Negates all effects of weather, but does not prevent the weather itself.",
+    "name_jp": "エアロック",
+    "romaji": null
+  },
+  "analytic": {
+    "effect": "Strengthens moves to 1.3× their power when moving last.",
+    "name_jp": "アナライズ",
+    "romaji": null
+  },
+  "anger-point": {
+    "effect": "Raises Attack to the maximum of six stages upon receiving a critical hit.",
+    "name_jp": "いかりのつぼ",
+    "romaji": null
+  },
+  "anger-shell": {
+    "effect": "When the Pokémon's HP drops below half, Anger Shell lowers its Defense and Special Defense but its Attack, Special Attack and Speed are raised.",
+    "name_jp": "いかりのこうら",
+    "romaji": null
+  },
+  "anticipation": {
+    "effect": "Notifies all trainers upon entering battle if an opponent has a super-effective move, Self-Destruct, Explosion, or a one-hit KO move.",
+    "name_jp": "きけんよち",
+    "romaji": null
+  },
+  "arena-trap": {
+    "effect": "Prevents opponents from fleeing or switching out.  Eluded by Flying-types and Pokémon in the air.",
+    "name_jp": "ありじごく",
+    "romaji": null
+  },
+  "armor-tail": {
+    "effect": "Prevents the opponent from using any moves that have priority, such as Quick Attack.",
+    "name_jp": "テイルアーマー",
+    "romaji": null
+  },
+  "aroma-veil": {
+    "effect": "Protects allies against moves that affect their mental state.",
+    "name_jp": "アロマベール",
+    "romaji": null
+  },
+  "aura-break": {
+    "effect": "Makes Dark Aura and Fairy Aura weaken moves of their respective types.",
+    "name_jp": "オーラブレイク",
+    "romaji": null
+  },
+  "bad-dreams": {
+    "effect": "Damages sleeping opponents for 1/8 their max HP after each turn.",
+    "name_jp": "ナイトメア",
+    "romaji": null
+  },
+  "ball-fetch": {
+    "effect": "If the Pokémon is not holding an item, it will fetch the Poké Ball from the first failed throw of the battle.",
+    "name_jp": "たまひろい",
+    "romaji": null
+  },
+  "battery": {
+    "effect": "Ally Pokémon's moves have their power increased to 1.3×.",
+    "name_jp": "バッテリー",
+    "romaji": null
+  },
+  "battle-armor": {
+    "effect": "Protects against critical hits.",
+    "name_jp": "カブトアーマー",
+    "romaji": null
+  },
+  "beads-of-ruin": {
+    "effect": "Lowers Special Defense of all Pokémon except itself.",
+    "name_jp": "わざわいのたま",
+    "romaji": null
+  },
+  "beast-boost": {
+    "effect": "Raises this Pokémon's highest stat by one stage when it faints another Pokémon.",
+    "name_jp": "ビーストブースト",
+    "romaji": null
+  },
+  "berserk": {
+    "effect": "Raises this Pokémon's Special Attack by one stage every time its HP drops below half.",
+    "name_jp": "ぎゃくじょう",
+    "romaji": null
+  },
+  "big-pecks": {
+    "effect": "Protects against Defense drops.",
+    "name_jp": "はとむね",
+    "romaji": null
+  },
+  "blaze": {
+    "effect": "Strengthens Fire moves to inflict 1.5× damage at 1/3 max HP or less.",
+    "name_jp": "もうか",
+    "romaji": null
+  },
+  "bulletproof": {
+    "effect": "Protects against bullet, ball, and bomb-based moves.",
+    "name_jp": "ぼうだん",
+    "romaji": null
+  },
+  "cheek-pouch": {
+    "effect": "Restores HP upon eating a Berry, in addition to the Berry's effect.",
+    "name_jp": "ほおぶくろ",
+    "romaji": null
+  },
+  "chilling-neigh": {
+    "effect": "Boosts Attack after knocking out a Pokémon.",
+    "name_jp": "しろのいななき",
+    "romaji": null
+  },
+  "chlorophyll": {
+    "effect": "Doubles Speed during strong sunlight.",
+    "name_jp": "ようりょくそ",
+    "romaji": null
+  },
+  "clear-body": {
+    "effect": "Prevents stats from being lowered by other Pokémon.",
+    "name_jp": "クリアボディ",
+    "romaji": null
+  },
+  "cloud-nine": {
+    "effect": "Negates all effects of weather, but does not prevent the weather itself.",
+    "name_jp": "ノーてんき",
+    "romaji": null
+  },
+  "color-change": {
+    "effect": "Changes type to match when hit by a damaging move.",
+    "name_jp": "へんしょく",
+    "romaji": null
+  },
+  "comatose": {
+    "effect": "This Pokémon always  acts as though it were Asleep.",
+    "name_jp": "ぜったいねむり",
+    "romaji": null
+  },
+  "commander": {
+    "effect": "Goes inside the mouth of an ally Dondozo if one is on the field.",
+    "name_jp": "しれいとう",
+    "romaji": null
+  },
+  "competitive": {
+    "effect": "Raises Special Attack by two stages upon having any stat lowered.",
+    "name_jp": "かちき",
+    "romaji": null
+  },
+  "compound-eyes": {
+    "effect": "Increases moves' accuracy to 1.3×.",
+    "name_jp": "ふくがん",
+    "romaji": null
+  },
+  "contrary": {
+    "effect": "Inverts stat changes.",
+    "name_jp": "あまのじゃく",
+    "romaji": null
+  },
+  "corrosion": {
+    "effect": "This Pokémon can inflict poison on Poison and Steel Pokémon.",
+    "name_jp": "ふしょく",
+    "romaji": null
+  },
+  "costar": {
+    "effect": "Copies ally's stat changes on entering battle.",
+    "name_jp": "きょうえん",
+    "romaji": null
+  },
+  "cotton-down": {
+    "effect": "When Ignores moves and abilities that draw in moves.",
+    "name_jp": "わたげ",
+    "romaji": null
+  },
+  "cud-chew": {
+    "effect": "Causes the Pokémon to reuse an already consumed Berry at the end of the next turn.",
+    "name_jp": "はんすう",
+    "romaji": null
+  },
+  "cursed-body": {
+    "effect": "Has a 30% chance of Disabling any move that hits the Pokémon.",
+    "name_jp": "のろわれボディ",
+    "romaji": null
+  },
+  "cute-charm": {
+    "effect": "Has a 30% chance of infatuating attacking Pokémon on contact.",
+    "name_jp": "メロメロボディ",
+    "romaji": null
+  },
+  "damp": {
+    "effect": "Prevents Self-Destruct, Explosion, and Aftermath from working while the Pokémon is in battle.",
+    "name_jp": "しめりけ",
+    "romaji": null
+  },
+  "dancer": {
+    "effect": "Whenever another Pokémon uses a dance move, this Pokémon will use the same move immediately afterwards.",
+    "name_jp": "おどりこ",
+    "romaji": null
+  },
+  "dark-aura": {
+    "effect": "Strengthens Dark moves to 1.33× their power for all friendly and opposing Pokémon.",
+    "name_jp": "ダークオーラ",
+    "romaji": null
+  },
+  "dauntless-shield": {
+    "effect": "Boosts Defense in battle.",
+    "name_jp": "ふくつのたて",
+    "romaji": null
+  },
+  "dazzling": {
+    "effect": "Opposing Pokémon cannot use priority attacks.",
+    "name_jp": "ビビッドボディ",
+    "romaji": null
+  },
+  "defeatist": {
+    "effect": "Halves Attack and Special Attack at 50% max HP or less.",
+    "name_jp": "よわき",
+    "romaji": null
+  },
+  "defiant": {
+    "effect": "Raises Attack two stages upon having any stat lowered.",
+    "name_jp": "まけんき",
+    "romaji": null
+  },
+  "disguise": {
+    "effect": "Prevents the first instance of battle damage.",
+    "name_jp": "ばけのかわ",
+    "romaji": null
+  },
+  "download": {
+    "effect": "Raises the attack stat corresponding to the opponents' weaker defense one stage upon entering battle.",
+    "name_jp": "ダウンロード",
+    "romaji": null
+  },
+  "dragons-maw": {
+    "effect": "Powers up Dragon-type moves.",
+    "name_jp": "りゅうのあぎと",
+    "romaji": null
+  },
+  "drizzle": {
+    "effect": "Summons rain that lasts indefinitely upon entering battle.",
+    "name_jp": "あめふらし",
+    "romaji": null
+  },
+  "drought": {
+    "effect": "Summons strong sunlight that lasts indefinitely upon entering battle.",
+    "name_jp": "ひでり",
+    "romaji": null
+  },
+  "dry-skin": {
+    "effect": "Causes 1/8 max HP in damage each turn during strong sunlight, but heals for 1/8 max HP during rain.  Increases damage from Fire moves to 1.25×, but absorbs Water moves, healing for 1/4 max HP.",
+    "name_jp": "かんそうはだ",
+    "romaji": null
+  },
+  "early-bird": {
+    "effect": "Makes sleep pass twice as quickly.",
+    "name_jp": "はやおき",
+    "romaji": null
+  },
+  "earth-eater": {
+    "effect": "Restores HP when hit by a Ground-type move.",
+    "name_jp": "どしょく",
+    "romaji": null
+  },
+  "effect-spore": {
+    "effect": "Has a 30% chance of inflcting either paralysis, poison, or sleep on attacking Pokémon on contact.",
+    "name_jp": "ほうし",
+    "romaji": null
+  },
+  "electric-surge": {
+    "effect": "When this Pokémon enters battle, it changes the terrain to Electric Terrain.",
+    "name_jp": "エレキメイカー",
+    "romaji": null
+  },
+  "electromorphosis": {
+    "effect": "When hit by an attack, the power of the next Electric-type move it uses is doubled.",
+    "name_jp": "でんきにかえる",
+    "romaji": null
+  },
+  "emergency-exit": {
+    "effect": "This Pokémon automatically switches out when its HP drops below half.",
+    "name_jp": "ききかいひ",
+    "romaji": null
+  },
+  "fairy-aura": {
+    "effect": "Strengthens Fairy moves to 1.33× their power for all friendly and opposing Pokémon.",
+    "name_jp": "フェアリーオーラ",
+    "romaji": null
+  },
+  "filter": {
+    "effect": "Decreases damage taken from super-effective moves by 1/4.",
+    "name_jp": "フィルター",
+    "romaji": null
+  },
+  "flame-body": {
+    "effect": "Has a 30% chance of burning attacking Pokémon on contact.",
+    "name_jp": "ほのおのからだ",
+    "romaji": null
+  },
+  "flare-boost": {
+    "effect": "Increases Special Attack to 1.5× when burned.",
+    "name_jp": "ねつぼうそう",
+    "romaji": null
+  },
+  "flash-fire": {
+    "effect": "Protects against Fire moves.  Once one has been blocked, the Pokémon's own Fire moves inflict 1.5× damage until it leaves battle.",
+    "name_jp": "もらいび",
+    "romaji": null
+  },
+  "flower-gift": {
+    "effect": "Increases friendly Pokémon's Attack and Special Defense to 1.5× during strong sunlight.",
+    "name_jp": "フラワーギフト",
+    "romaji": null
+  },
+  "flower-veil": {
+    "effect": "Protects friendly Grass Pokémon from having their stats lowered by other Pokémon.",
+    "name_jp": "フラワーベール",
+    "romaji": null
+  },
+  "fluffy": {
+    "effect": "Damage from contact moves is halved.  Damage from Fire moves is doubled.",
+    "name_jp": "もふもふ",
+    "romaji": null
+  },
+  "forecast": {
+    "effect": "Changes Castform's type and form to match the weather.",
+    "name_jp": "てんきや",
+    "romaji": null
+  },
+  "forewarn": {
+    "effect": "Reveals the opponents' strongest move upon entering battle.",
+    "name_jp": "よちむ",
+    "romaji": null
+  },
+  "friend-guard": {
+    "effect": "Decreases all direct damage taken by friendly Pokémon to 0.75×.",
+    "name_jp": "フレンドガード",
+    "romaji": null
+  },
+  "frisk": {
+    "effect": "Reveals an opponent's held item upon entering battle.",
+    "name_jp": "おみとおし",
+    "romaji": null
+  },
+  "full-metal-body": {
+    "effect": "Other Pokémon cannot lower this Pokémon's stats.",
+    "name_jp": "メタルプロテクト",
+    "romaji": null
+  },
+  "fur-coat": {
+    "effect": "Halves damage from physical attacks.",
+    "name_jp": "ファーコート",
+    "romaji": null
+  },
+  "gale-wings": {
+    "effect": "Raises Flying moves' priority by one stage.",
+    "name_jp": "はやてのつばさ",
+    "romaji": null
+  },
+  "gluttony": {
+    "effect": "Makes the Pokémon eat any held Berry triggered by low HP below 1/2 its max HP.",
+    "name_jp": "くいしんぼう",
+    "romaji": null
+  },
+  "good-as-gold": {
+    "effect": "Gives immunity to status moves.",
+    "name_jp": "おうごんのからだ",
+    "romaji": null
+  },
+  "gooey": {
+    "effect": "Lowers attacking Pokémon's Speed by one stage on contact.",
+    "name_jp": "ぬめぬめ",
+    "romaji": null
+  },
+  "grass-pelt": {
+    "effect": "Boosts Defense while Grassy Terrain is in effect.",
+    "name_jp": "くさのけがわ",
+    "romaji": null
+  },
+  "grassy-surge": {
+    "effect": "When this Pokémon enters battle, it changes the terrain to Grassy Terrain.",
+    "name_jp": "グラスメイカー",
+    "romaji": null
+  },
+  "grim-neigh": {
+    "effect": "Boosts Special Attack after knocking out a Pokémon.",
+    "name_jp": "くろのいななき",
+    "romaji": null
+  },
+  "guard-dog": {
+    "effect": "Boosts Attack if intimidated, and prevents being forced to switch out.",
+    "name_jp": "ばんけん",
+    "romaji": null
+  },
+  "gulp-missile": {
+    "effect": "If a Cramorant with Gulp Missile uses Surf or Dive, it catches prey and changes its form depending on its remaining HP.",
+    "name_jp": "うのミサイル",
+    "romaji": null
+  },
+  "guts": {
+    "effect": "Increases Attack to 1.5× with a major status ailment.",
+    "name_jp": "こんじょう",
+    "romaji": null
+  },
+  "hadron-engine": {
+    "effect": "Creates an Electric Terrain when entering battle, and boosts Special Attack while active.",
+    "name_jp": "ハドロンエンジン",
+    "romaji": null
+  },
+  "harvest": {
+    "effect": "Has a 50% chance of restoring a used Berry after each turn if the Pokémon has held no items in the meantime.",
+    "name_jp": "しゅうかく",
+    "romaji": null
+  },
+  "healer": {
+    "effect": "Has a 30% chance of curing each adjacent ally of any major status ailment after each turn.",
+    "name_jp": "いやしのこころ",
+    "romaji": null
+  },
+  "heatproof": {
+    "effect": "Halves damage from Fire moves and burns.",
+    "name_jp": "たいねつ",
+    "romaji": null
+  },
+  "heavy-metal": {
+    "effect": "Doubles the Pokémon's weight.",
+    "name_jp": "ヘヴィメタル",
+    "romaji": null
+  },
+  "honey-gather": {
+    "effect": "The Pokémon may pick up Honey after battle.",
+    "name_jp": "みつあつめ",
+    "romaji": null
+  },
+  "hospitality": {
+    "effect": "When a Pokémon with Hospitality enters a battle, it restores HP for an ally by 25%.",
+    "name_jp": "おもてなし",
+    "romaji": null
+  },
+  "huge-power": {
+    "effect": "Doubles Attack in battle.",
+    "name_jp": "ちからもち",
+    "romaji": null
+  },
+  "hunger-switch": {
+    "effect": "Causes Morpeko to change its form each turn, alternating between Full Belly Mode and Hangry Mode",
+    "name_jp": "はらぺこスイッチ",
+    "romaji": null
+  },
+  "hustle": {
+    "effect": "Strengthens physical moves to inflict 1.5× damage, but decreases their accuracy to 0.8×.",
+    "name_jp": "はりきり",
+    "romaji": null
+  },
+  "hydration": {
+    "effect": "Cures any major status ailment after each turn during rain.",
+    "name_jp": "うるおいボディ",
+    "romaji": null
+  },
+  "hyper-cutter": {
+    "effect": "Prevents Attack from being lowered by other Pokémon.",
+    "name_jp": "かいりきバサミ",
+    "romaji": null
+  },
+  "ice-body": {
+    "effect": "Heals for 1/16 max HP after each turn during hail.  Protects against hail damage.",
+    "name_jp": "アイスボディ",
+    "romaji": null
+  },
+  "ice-face": {
+    "effect": "The Pokémon’s ice head can take a physical attack as a substitute, but the attack also changes the Pokémon’s appearance. The ice will be restored when it snows.",
+    "name_jp": "アイスフェイス",
+    "romaji": null
+  },
+  "ice-scales": {
+    "effect": "Halves damage from Special moves.",
+    "name_jp": "こおりのりんぷん",
+    "romaji": null
+  },
+  "illuminate": {
+    "effect": "Doubles the wild encounter rate.",
+    "name_jp": "はっこう",
+    "romaji": null
+  },
+  "illusion": {
+    "effect": "Takes the appearance of the last conscious party Pokémon upon being sent out until hit by a damaging move.",
+    "name_jp": "イリュージョン",
+    "romaji": null
+  },
+  "immunity": {
+    "effect": "Prevents poison.",
+    "name_jp": "めんえき",
+    "romaji": null
+  },
+  "imposter": {
+    "effect": "Transforms upon entering battle.",
+    "name_jp": "かわりもの",
+    "romaji": null
+  },
+  "infiltrator": {
+    "effect": "Bypasses Light Screen, Reflect, and Safeguard.",
+    "name_jp": "すりぬけ",
+    "romaji": null
+  },
+  "innards-out": {
+    "effect": "When this Pokémon faints from an opponent's move, that opponent takes damage equal to the HP this Pokémon had remaining.",
+    "name_jp": "とびだすなかみ",
+    "romaji": null
+  },
+  "inner-focus": {
+    "effect": "Prevents flinching.",
+    "name_jp": "せいしんりょく",
+    "romaji": null
+  },
+  "insomnia": {
+    "effect": "Prevents sleep.",
+    "name_jp": "ふみん",
+    "romaji": null
+  },
+  "intimidate": {
+    "effect": "Lowers opponents' Attack one stage upon entering battle.",
+    "name_jp": "いかく",
+    "romaji": null
+  },
+  "intrepid-sword": {
+    "effect": "Boosts Attack in battle.",
+    "name_jp": "ふとうのけん",
+    "romaji": null
+  },
+  "iron-barbs": {
+    "effect": "Damages attacking Pokémon for 1/8 their max HP on contact.",
+    "name_jp": "てつのトゲ",
+    "romaji": null
+  },
+  "iron-fist": {
+    "effect": "Strengthens punch-based moves to 1.2× their power.",
+    "name_jp": "てつのこぶし",
+    "romaji": null
+  },
+  "justified": {
+    "effect": "Raises Attack one stage upon taking damage from a Dark move.",
+    "name_jp": "せいぎのこころ",
+    "romaji": null
+  },
+  "keen-eye": {
+    "effect": "Prevents accuracy from being lowered.",
+    "name_jp": "するどいめ",
+    "romaji": null
+  },
+  "klutz": {
+    "effect": "Prevents the Pokémon from using its held item in battle.",
+    "name_jp": "ぶきよう",
+    "romaji": null
+  },
+  "leaf-guard": {
+    "effect": "Protects against major status ailments during strong sunlight.",
+    "name_jp": "リーフガード",
+    "romaji": null
+  },
+  "levitate": {
+    "effect": "Evades Ground moves.",
+    "name_jp": "ふゆう",
+    "romaji": null
+  },
+  "libero": {
+    "effect": "Libero changes the Pokémon's type to that of its previously used attack.",
+    "name_jp": "リベロ",
+    "romaji": null
+  },
+  "light-metal": {
+    "effect": "Halves the Pokémon's weight.",
+    "name_jp": "ライトメタル",
+    "romaji": null
+  },
+  "lightning-rod": {
+    "effect": "Redirects single-target Electric moves to this Pokémon where possible.  Absorbs Electric moves, raising Special Attack one stage.",
+    "name_jp": "ひらいしん",
+    "romaji": null
+  },
+  "limber": {
+    "effect": "Prevents paralysis.",
+    "name_jp": "じゅうなん",
+    "romaji": null
+  },
+  "lingering-aroma": {
+    "effect": "Contact changes the attacker's Ability to Lingering Aroma.",
+    "name_jp": "とれないにおい",
+    "romaji": null
+  },
+  "liquid-ooze": {
+    "effect": "Damages opponents using leeching moves for as much as they would heal.",
+    "name_jp": "ヘドロえき",
+    "romaji": null
+  },
+  "liquid-voice": {
+    "effect": "Sound-based moves become Water-type.",
+    "name_jp": "うるおいボイス",
+    "romaji": null
+  },
+  "long-reach": {
+    "effect": "This Pokémon's moves do not make contact.",
+    "name_jp": "えんかく",
+    "romaji": null
+  },
+  "magic-bounce": {
+    "effect": "Reflects most non-damaging moves back at their user.",
+    "name_jp": "マジックミラー",
+    "romaji": null
+  },
+  "magic-guard": {
+    "effect": "Protects against damage not directly caused by a move.",
+    "name_jp": "マジックガード",
+    "romaji": null
+  },
+  "magician": {
+    "effect": "Steals the target's held item when the bearer uses a damaging move.",
+    "name_jp": "マジシャン",
+    "romaji": null
+  },
+  "magma-armor": {
+    "effect": "Prevents freezing.",
+    "name_jp": "マグマのよろい",
+    "romaji": null
+  },
+  "magnet-pull": {
+    "effect": "Prevents Steel opponents from fleeing or switching out.",
+    "name_jp": "じりょく",
+    "romaji": null
+  },
+  "marvel-scale": {
+    "effect": "Increases Defense to 1.5× with a major status ailment.",
+    "name_jp": "ふしぎなうろこ",
+    "romaji": null
+  },
+  "mega-launcher": {
+    "effect": "Strengthens aura and pulse moves to 1.5× their power.",
+    "name_jp": "メガランチャー",
+    "romaji": null
+  },
+  "merciless": {
+    "effect": "This Pokémon's moves critical hit against poisoned targets.",
+    "name_jp": "ひとでなし",
+    "romaji": null
+  },
+  "minus": {
+    "effect": "Increases Special Attack to 1.5× when a friendly Pokémon has Plus or Minus.",
+    "name_jp": "マイナス",
+    "romaji": null
+  },
+  "mirror-armor": {
+    "effect": "Reflects any stat-lowering effects.",
+    "name_jp": "ミラーアーマー",
+    "romaji": null
+  },
+  "misty-surge": {
+    "effect": "When this Pokémon enters battle, it changes the terrain to Misty Terrain.",
+    "name_jp": "ミストメイカー",
+    "romaji": null
+  },
+  "mold-breaker": {
+    "effect": "Bypasses targets' abilities if they could hinder or prevent a move.",
+    "name_jp": "かたやぶり",
+    "romaji": null
+  },
+  "moody": {
+    "effect": "Raises a random stat two stages and lowers another one stage after each turn.",
+    "name_jp": "ムラっけ",
+    "romaji": null
+  },
+  "motor-drive": {
+    "effect": "Absorbs Electric moves, raising Speed one stage.",
+    "name_jp": "でんきエンジン",
+    "romaji": null
+  },
+  "moxie": {
+    "effect": "Raises Attack one stage upon KOing a Pokémon.",
+    "name_jp": "じしんかじょう",
+    "romaji": null
+  },
+  "multiscale": {
+    "effect": "Halves damage taken from full HP.",
+    "name_jp": "マルチスケイル",
+    "romaji": null
+  },
+  "multitype": {
+    "effect": "Changes Arceus's type and form to match its held Plate.",
+    "name_jp": "マルチタイプ",
+    "romaji": null
+  },
+  "mummy": {
+    "effect": "Changes attacking Pokémon's abilities to Mummy on contact.",
+    "name_jp": "ミイラ",
+    "romaji": null
+  },
+  "mycelium-might": {
+    "effect": "Status moves go last, but are not affected by the opponent's ability.",
+    "name_jp": "きんしのちから",
+    "romaji": null
+  },
+  "natural-cure": {
+    "effect": "Cures any major status ailment upon switching out.",
+    "name_jp": "しぜんかいふく",
+    "romaji": null
+  },
+  "neutralizing-gas": {
+    "effect": "Neutralizes abilities of all Pokémon in battle.",
+    "name_jp": "かがくへんかガス",
+    "romaji": null
+  },
+  "no-guard": {
+    "effect": "Ensures all moves used by and against the Pokémon hit.",
+    "name_jp": "ノーガード",
+    "romaji": null
+  },
+  "normalize": {
+    "effect": "Makes the Pokémon's moves all act Normal-type.",
+    "name_jp": "ノーマルスキン",
+    "romaji": null
+  },
+  "oblivious": {
+    "effect": "Prevents infatuation and protects against Captivate.",
+    "name_jp": "どんかん",
+    "romaji": null
+  },
+  "opportunist": {
+    "effect": "Copies stat boosts by the opponent.",
+    "name_jp": "びんじょう",
+    "romaji": null
+  },
+  "orichalcum-pulse": {
+    "effect": "Turns the sunlight harsh when entering battle, and boosts Attack while active.",
+    "name_jp": "ひひいろのこどう",
+    "romaji": null
+  },
+  "overcoat": {
+    "effect": "Protects against damage from weather.",
+    "name_jp": "ぼうじん",
+    "romaji": null
+  },
+  "overgrow": {
+    "effect": "Strengthens Grass moves to inflict 1.5× damage at 1/3 max HP or less.",
+    "name_jp": "しんりょく",
+    "romaji": null
+  },
+  "own-tempo": {
+    "effect": "Prevents confusion.",
+    "name_jp": "マイペース",
+    "romaji": null
+  },
+  "perish-body": {
+    "effect": "When hit by a move that makes direct contact, the Pokémon and the attacker will faint after three turns unless they switch out of battle.",
+    "name_jp": "ほろびのボディ",
+    "romaji": null
+  },
+  "pickpocket": {
+    "effect": "Steals attacking Pokémon's held items on contact.",
+    "name_jp": "わるいてぐせ",
+    "romaji": null
+  },
+  "pickup": {
+    "effect": "Picks up other Pokémon's used and Flung held items.  May also pick up an item after battle.",
+    "name_jp": "ものひろい",
+    "romaji": null
+  },
+  "pixilate": {
+    "effect": "Turns the bearer's Normal moves into Fairy moves and strengthens them to 1.3× their power.",
+    "name_jp": "フェアリースキン",
+    "romaji": null
+  },
+  "plus": {
+    "effect": "Increases Special Attack to 1.5× when a friendly Pokémon has Plus or Minus.",
+    "name_jp": "プラス",
+    "romaji": null
+  },
+  "poison-heal": {
+    "effect": "Heals for 1/8 max HP after each turn when poisoned in place of damage.",
+    "name_jp": "ポイズンヒール",
+    "romaji": null
+  },
+  "poison-point": {
+    "effect": "Has a 30% chance of poisoning attacking Pokémon on contact.",
+    "name_jp": "どくのトゲ",
+    "romaji": null
+  },
+  "poison-puppeteer": {
+    "effect": "Pokémon poisoned by Pecharunt's moves will also become confused.",
+    "name_jp": "どくくぐつ",
+    "romaji": null
+  },
+  "poison-touch": {
+    "effect": "Has a 30% chance of poisoning target Pokémon upon contact.",
+    "name_jp": "どくしゅ",
+    "romaji": null
+  },
+  "power-construct": {
+    "effect": "Transforms 10% or 50% Zygarde into Complete Forme when its HP is below 50%.",
+    "name_jp": "スワームチェンジ",
+    "romaji": null
+  },
+  "power-spot": {
+    "effect": "Just being next to the Pokémon powers up moves.",
+    "name_jp": "パワースポット",
+    "romaji": null
+  },
+  "prankster": {
+    "effect": "Raises non-damaging moves' priority by one stage.",
+    "name_jp": "いたずらごころ",
+    "romaji": null
+  },
+  "pressure": {
+    "effect": "Increases the PP cost of moves targetting the Pokémon by one.",
+    "name_jp": "プレッシャー",
+    "romaji": null
+  },
+  "prism-armor": {
+    "effect": "Reduces super-effective damage to 0.75×.",
+    "name_jp": "プリズムアーマー",
+    "romaji": null
+  },
+  "propeller-tail": {
+    "effect": "Ignores moves and abilities that draw in moves.",
+    "name_jp": "スクリューおびれ",
+    "romaji": null
+  },
+  "protean": {
+    "effect": "Changes the bearer's type to match each move it uses.",
+    "name_jp": "へんげんじざい",
+    "romaji": null
+  },
+  "protosynthesis": {
+    "effect": "Raises highest stat in harsh sunlight, or if holding Booster Energy.",
+    "name_jp": "こだいかっせい",
+    "romaji": null
+  },
+  "psychic-surge": {
+    "effect": "When this Pokémon enters battle, it changes the terrain to Psychic Terrain.",
+    "name_jp": "サイコメイカー",
+    "romaji": null
+  },
+  "punk-rock": {
+    "effect": "Boosts sound-based moves and halves damage from the same moves.",
+    "name_jp": "パンクロック",
+    "romaji": null
+  },
+  "pure-power": {
+    "effect": "Doubles Attack in battle.",
+    "name_jp": "ヨガパワー",
+    "romaji": null
+  },
+  "purifying-salt": {
+    "effect": "Protects from status conditions and halves damage from Ghost-type moves.",
+    "name_jp": "きよめのしお",
+    "romaji": null
+  },
+  "quark-drive": {
+    "effect": "Raises highest stat on Electric Terrain, or if holding Booster Energy.",
+    "name_jp": "クォークチャージ",
+    "romaji": null
+  },
+  "queenly-majesty": {
+    "effect": "Opposing Pokémon cannot use priority attacks.",
+    "name_jp": "じょおうのいげん",
+    "romaji": null
+  },
+  "quick-feet": {
+    "effect": "Increases Speed to 1.5× with a major status ailment.",
+    "name_jp": "はやあし",
+    "romaji": null
+  },
+  "rain-dish": {
+    "effect": "Heals for 1/16 max HP after each turn during rain.",
+    "name_jp": "あめうけざら",
+    "romaji": null
+  },
+  "rattled": {
+    "effect": "Raises Speed one stage upon being hit by a Dark, Ghost, or Bug move.",
+    "name_jp": "びびり",
+    "romaji": null
+  },
+  "receiver": {
+    "effect": "When an ally faints, this Pokémon gains its Ability.",
+    "name_jp": "レシーバー",
+    "romaji": null
+  },
+  "reckless": {
+    "effect": "Strengthens recoil moves to 1.2× their power.",
+    "name_jp": "すてみ",
+    "romaji": null
+  },
+  "refrigerate": {
+    "effect": "Turns the bearer's Normal moves into Ice moves and strengthens them to 1.3× their power.",
+    "name_jp": "フリーズスキン",
+    "romaji": null
+  },
+  "regenerator": {
+    "effect": "Heals for 1/3 max HP upon switching out.",
+    "name_jp": "さいせいりょく",
+    "romaji": null
+  },
+  "ripen": {
+    "effect": "Doubles the effect of berries.",
+    "name_jp": "じゅくせい",
+    "romaji": null
+  },
+  "rivalry": {
+    "effect": "Increases damage inflicted to 1.25× against Pokémon of the same gender, but decreases damage to 0.75× against the opposite gender.",
+    "name_jp": "とうそうしん",
+    "romaji": null
+  },
+  "rks-system": {
+    "effect": "Changes this Pokémon's type to match its held Memory.",
+    "name_jp": "ＡＲシステム",
+    "romaji": null
+  },
+  "rock-head": {
+    "effect": "Protects against recoil damage.",
+    "name_jp": "いしあたま",
+    "romaji": null
+  },
+  "rocky-payload": {
+    "effect": "Powers up Rock-type moves.",
+    "name_jp": "いわはこび",
+    "romaji": null
+  },
+  "rough-skin": {
+    "effect": "Damages attacking Pokémon for 1/8 their max HP on contact.",
+    "name_jp": "さめはだ",
+    "romaji": null
+  },
+  "run-away": {
+    "effect": "Ensures success fleeing from wild battles.",
+    "name_jp": "にげあし",
+    "romaji": null
+  },
+  "sand-force": {
+    "effect": "Strengthens Rock, Ground, and Steel moves to 1.3× their power during a sandstorm.  Protects against sandstorm damage.",
+    "name_jp": "すなのちから",
+    "romaji": null
+  },
+  "sand-rush": {
+    "effect": "Doubles Speed during a sandstorm.  Protects against sandstorm damage.",
+    "name_jp": "すなかき",
+    "romaji": null
+  },
+  "sand-spit": {
+    "effect": "Creates a sandstorm when hit by an attack.",
+    "name_jp": "すなはき",
+    "romaji": null
+  },
+  "sand-stream": {
+    "effect": "Summons a sandstorm that lasts indefinitely upon entering battle.",
+    "name_jp": "すなおこし",
+    "romaji": null
+  },
+  "sand-veil": {
+    "effect": "Increases evasion to 1.25× during a sandstorm.  Protects against sandstorm damage.",
+    "name_jp": "すながくれ",
+    "romaji": null
+  },
+  "sap-sipper": {
+    "effect": "Absorbs Grass moves, raising Attack one stage.",
+    "name_jp": "そうしょく",
+    "romaji": null
+  },
+  "schooling": {
+    "effect": "Wishiwashi becomes Schooling Form when its HP is 25% or higher.",
+    "name_jp": "ぎょぐん",
+    "romaji": null
+  },
+  "scrappy": {
+    "effect": "Lets the Pokémon's Normal and Fighting moves hit Ghost Pokémon.",
+    "name_jp": "きもったま",
+    "romaji": null
+  },
+  "screen-cleaner": {
+    "effect": "Nullifies effects of Light Screen, Reflect, and Aurora Veil.",
+    "name_jp": "バリアフリー",
+    "romaji": null
+  },
+  "seed-sower": {
+    "effect": "Turns the ground into Grassy Terrain when the Pokémon is hit by an attack.",
+    "name_jp": "こぼれダネ",
+    "romaji": null
+  },
+  "serene-grace": {
+    "effect": "Doubles the chance of moves' extra effects occurring.",
+    "name_jp": "てんのめぐみ",
+    "romaji": null
+  },
+  "shadow-shield": {
+    "effect": "When this Pokémon has full HP, regular damage from moves is halved.",
+    "name_jp": "ファントムガード",
+    "romaji": null
+  },
+  "shadow-tag": {
+    "effect": "Prevents opponents from fleeing or switching out.",
+    "name_jp": "かげふみ",
+    "romaji": null
+  },
+  "sharpness": {
+    "effect": "Powers up slicing moves.",
+    "name_jp": "きれあじ",
+    "romaji": null
+  },
+  "shed-skin": {
+    "effect": "Has a 33% chance of curing any major status ailment after each turn.",
+    "name_jp": "だっぴ",
+    "romaji": null
+  },
+  "sheer-force": {
+    "effect": "Strengthens moves with extra effects to 1.3× their power, but prevents their extra effects.",
+    "name_jp": "ちからずく",
+    "romaji": null
+  },
+  "shell-armor": {
+    "effect": "Protects against critical hits.",
+    "name_jp": "シェルアーマー",
+    "romaji": null
+  },
+  "shield-dust": {
+    "effect": "Protects against incoming moves' extra effects.",
+    "name_jp": "りんぷん",
+    "romaji": null
+  },
+  "shields-down": {
+    "effect": "Transforms this Minior between Core Form and Meteor Form.  Prevents major status ailments and drowsiness while in Meteor Form.",
+    "name_jp": "リミットシールド",
+    "romaji": null
+  },
+  "simple": {
+    "effect": "Doubles the Pokémon's stat modifiers.  These doubled modifiers are still capped at -6 or 6 stages.",
+    "name_jp": "たんじゅん",
+    "romaji": null
+  },
+  "skill-link": {
+    "effect": "Extends two-to-five-hit moves and Triple Kick to their full length every time.",
+    "name_jp": "スキルリンク",
+    "romaji": null
+  },
+  "slow-start": {
+    "effect": "Halves Attack and Speed for five turns upon entering battle.",
+    "name_jp": "スロースタート",
+    "romaji": null
+  },
+  "slush-rush": {
+    "effect": "During Hail, this Pokémon has double Speed.",
+    "name_jp": "ゆきかき",
+    "romaji": null
+  },
+  "sniper": {
+    "effect": "Strengthens critical hits to inflict 3× damage rather than 2×.",
+    "name_jp": "スナイパー",
+    "romaji": null
+  },
+  "snow-cloak": {
+    "effect": "Increases evasion to 1.25× during hail.  Protects against hail damage.",
+    "name_jp": "ゆきがくれ",
+    "romaji": null
+  },
+  "snow-warning": {
+    "effect": "Summons hail that lasts indefinitely upon entering battle.",
+    "name_jp": "ゆきふらし",
+    "romaji": null
+  },
+  "solar-power": {
+    "effect": "Increases Special Attack to 1.5× but costs 1/8 max HP after each turn during strong sunlight.",
+    "name_jp": "サンパワー",
+    "romaji": null
+  },
+  "solid-rock": {
+    "effect": "Decreases damage taken from super-effective moves by 1/4.",
+    "name_jp": "ハードロック",
+    "romaji": null
+  },
+  "soul-heart": {
+    "effect": "This Pokémon's Special Attack rises by one stage every time any Pokémon faints.",
+    "name_jp": "ソウルハート",
+    "romaji": null
+  },
+  "soundproof": {
+    "effect": "Protects against sound-based moves.",
+    "name_jp": "ぼうおん",
+    "romaji": null
+  },
+  "speed-boost": {
+    "effect": "Raises Speed one stage after each turn.",
+    "name_jp": "かそく",
+    "romaji": null
+  },
+  "stakeout": {
+    "effect": "This Pokémon's moves have double power against Pokémon that switched in this turn.",
+    "name_jp": "はりこみ",
+    "romaji": null
+  },
+  "stall": {
+    "effect": "Makes the Pokémon move last within its move's priority bracket.",
+    "name_jp": "あとだし",
+    "romaji": null
+  },
+  "stalwart": {
+    "effect": "Ignores moves and abilities that draw in moves.",
+    "name_jp": "すじがねいり",
+    "romaji": null
+  },
+  "stamina": {
+    "effect": "Raises this Pokémon's Defense by one stage when it takes damage from a move.",
+    "name_jp": "じきゅうりょく",
+    "romaji": null
+  },
+  "stance-change": {
+    "effect": "Changes Aegislash to Blade Forme before using a damaging move, or Shield Forme before using King’s Shield.",
+    "name_jp": "バトルスイッチ",
+    "romaji": null
+  },
+  "static": {
+    "effect": "Has a 30% chance of paralyzing attacking Pokémon on contact.",
+    "name_jp": "せいでんき",
+    "romaji": null
+  },
+  "steadfast": {
+    "effect": "Raises Speed one stage upon flinching.",
+    "name_jp": "ふくつのこころ",
+    "romaji": null
+  },
+  "steam-engine": {
+    "effect": "Boosts the Speed stat drastically when the Pokémon is hit by a Fire- or Water-type move.",
+    "name_jp": "じょうききかん",
+    "romaji": null
+  },
+  "steelworker": {
+    "effect": "This Pokémon's Steel moves have 1.5× power.",
+    "name_jp": "はがねつかい",
+    "romaji": null
+  },
+  "steely-spirit": {
+    "effect": "Powers up ally Pokémon's Steel-type moves.",
+    "name_jp": "はがねのせいしん",
+    "romaji": null
+  },
+  "stench": {
+    "effect": "Has a 10% chance of making target Pokémon flinch with each hit.",
+    "name_jp": "あくしゅう",
+    "romaji": null
+  },
+  "sticky-hold": {
+    "effect": "Prevents a held item from being removed by other Pokémon.",
+    "name_jp": "ねんちゃく",
+    "romaji": null
+  },
+  "storm-drain": {
+    "effect": "Redirects single-target Water moves to this Pokémon where possible.  Absorbs Water moves, raising Special Attack one stage.",
+    "name_jp": "よびみず",
+    "romaji": null
+  },
+  "strong-jaw": {
+    "effect": "Strengthens biting moves to 1.5× their power.",
+    "name_jp": "がんじょうあご",
+    "romaji": null
+  },
+  "sturdy": {
+    "effect": "Prevents being KOed from full HP, leaving 1 HP instead.  Protects against the one-hit KO moves regardless of HP.",
+    "name_jp": "がんじょう",
+    "romaji": null
+  },
+  "suction-cups": {
+    "effect": "Prevents being forced out of battle by other Pokémon's moves.",
+    "name_jp": "きゅうばん",
+    "romaji": null
+  },
+  "super-luck": {
+    "effect": "Raises moves' critical hit rates one stage.",
+    "name_jp": "きょううん",
+    "romaji": null
+  },
+  "supersweet-syrup": {
+    "effect": "Once per battle, when a Pokémon with Supersweet Syrup enters the battle, it lowers the evasion stat of all adjacent opponents by one stage. ",
+    "name_jp": "かんろなミツ",
+    "romaji": null
+  },
+  "supreme-overlord": {
+    "effect": "Attack and Special Attack are boosted for each party Pokémon that has been defeated.",
+    "name_jp": "そうだいしょう",
+    "romaji": null
+  },
+  "swarm": {
+    "effect": "Strengthens Bug moves to inflict 1.5× damage at 1/3 max HP or less.",
+    "name_jp": "むしのしらせ",
+    "romaji": null
+  },
+  "sweet-veil": {
+    "effect": "Prevents friendly Pokémon from sleeping.",
+    "name_jp": "スイートベール",
+    "romaji": null
+  },
+  "swift-swim": {
+    "effect": "Doubles Speed during rain.",
+    "name_jp": "すいすい",
+    "romaji": null
+  },
+  "sword-of-ruin": {
+    "effect": "Lowers Defense of all Pokémon except itself.",
+    "name_jp": "わざわいのつるぎ",
+    "romaji": null
+  },
+  "symbiosis": {
+    "effect": "Passes the bearer's held item to an ally when the ally uses up its item.",
+    "name_jp": "きょうせい",
+    "romaji": null
+  },
+  "synchronize": {
+    "effect": "Copies burns, paralysis, and poison received onto the Pokémon that inflicted them.",
+    "name_jp": "シンクロ",
+    "romaji": null
+  },
+  "tablets-of-ruin": {
+    "effect": "Lowers Attack of all Pokémon except itself.",
+    "name_jp": "わざわいのおふだ",
+    "romaji": null
+  },
+  "tangled-feet": {
+    "effect": "Doubles evasion when confused.",
+    "name_jp": "ちどりあし",
+    "romaji": null
+  },
+  "technician": {
+    "effect": "Strengthens moves of 60 base power or less to 1.5× their power.",
+    "name_jp": "テクニシャン",
+    "romaji": null
+  },
+  "telepathy": {
+    "effect": "Protects against friendly Pokémon's damaging moves.",
+    "name_jp": "テレパシー",
+    "romaji": null
+  },
+  "tera-shift": {
+    "effect": "When Terapagos enters the battle, it turns into its Terastal Form until the end of the battle. ",
+    "name_jp": "テラスチェンジ",
+    "romaji": null
+  },
+  "teravolt": {
+    "effect": "Bypasses targets' abilities if they could hinder or prevent moves.",
+    "name_jp": "テラボルテージ",
+    "romaji": null
+  },
+  "thermal-exchange": {
+    "effect": "Raises Attack when hit by a Fire-type move. Cannot be burned.",
+    "name_jp": "ねつこうかん",
+    "romaji": null
+  },
+  "thick-fat": {
+    "effect": "Halves damage from Fire and Ice moves.",
+    "name_jp": "あついしぼう",
+    "romaji": null
+  },
+  "tinted-lens": {
+    "effect": "Doubles damage inflicted with not-very-effective moves.",
+    "name_jp": "いろめがね",
+    "romaji": null
+  },
+  "torrent": {
+    "effect": "Strengthens Water moves to inflict 1.5× damage at 1/3 max HP or less.",
+    "name_jp": "げきりゅう",
+    "romaji": null
+  },
+  "tough-claws": {
+    "effect": "Strengthens moves that make contact to 1.33× their power.",
+    "name_jp": "かたいツメ",
+    "romaji": null
+  },
+  "toxic-boost": {
+    "effect": "Increases Attack to 1.5× when poisoned.",
+    "name_jp": "どくぼうそう",
+    "romaji": null
+  },
+  "toxic-chain": {
+    "effect": "May cause bad poisoning when the Pokémon hits an opponent with a move.",
+    "name_jp": "どくのくさり",
+    "romaji": null
+  },
+  "toxic-debris": {
+    "effect": "Scatters poison spikes at the feet of the opposing team when the Pokémon takes damage from physical moves.",
+    "name_jp": "どくげしょう",
+    "romaji": null
+  },
+  "trace": {
+    "effect": "Copies an opponent's ability upon entering battle.",
+    "name_jp": "トレース",
+    "romaji": null
+  },
+  "transistor": {
+    "effect": "Powers up Electric-type moves.",
+    "name_jp": "トランジスタ",
+    "romaji": null
+  },
+  "triage": {
+    "effect": "This Pokémon's healing moves have their priority increased by 3.",
+    "name_jp": "ヒーリングシフト",
+    "romaji": null
+  },
+  "truant": {
+    "effect": "Skips every second turn.",
+    "name_jp": "なまけ",
+    "romaji": null
+  },
+  "turboblaze": {
+    "effect": "Bypasses targets' abilities if they could hinder or prevent moves.",
+    "name_jp": "ターボブレイズ",
+    "romaji": null
+  },
+  "unaware": {
+    "effect": "Ignores other Pokémon's stat modifiers for damage and accuracy calculation.",
+    "name_jp": "てんねん",
+    "romaji": null
+  },
+  "unburden": {
+    "effect": "Doubles Speed upon using or losing a held item.",
+    "name_jp": "かるわざ",
+    "romaji": null
+  },
+  "unnerve": {
+    "effect": "Prevents opposing Pokémon from eating held Berries.",
+    "name_jp": "きんちょうかん",
+    "romaji": null
+  },
+  "unseen-fist": {
+    "effect": "Contact moves can strike through Protect/Detect.",
+    "name_jp": "ふかしのこぶし",
+    "romaji": null
+  },
+  "vessel-of-ruin": {
+    "effect": "Lowers Special Attack of all Pokémon except itself.",
+    "name_jp": "わざわいのうつわ",
+    "romaji": null
+  },
+  "victory-star": {
+    "effect": "Increases moves' accuracy to 1.1× for friendly Pokémon.",
+    "name_jp": "しょうりのほし",
+    "romaji": null
+  },
+  "vital-spirit": {
+    "effect": "Prevents sleep.",
+    "name_jp": "やるき",
+    "romaji": null
+  },
+  "volt-absorb": {
+    "effect": "Absorbs Electric moves, healing for 1/4 max HP.",
+    "name_jp": "ちくでん",
+    "romaji": null
+  },
+  "wandering-spirit": {
+    "effect": "Swaps abilities with opponents on contact.",
+    "name_jp": "さまようたましい",
+    "romaji": null
+  },
+  "water-absorb": {
+    "effect": "Absorbs Water moves, healing for 1/4 max HP.",
+    "name_jp": "ちょすい",
+    "romaji": null
+  },
+  "water-bubble": {
+    "effect": "Halves damage from Fire moves, doubles damage of Water moves, and prevents burns.",
+    "name_jp": "すいほう",
+    "romaji": null
+  },
+  "water-compaction": {
+    "effect": "Raises this Pokémon's Defense by two stages when it's hit by a Water move.",
+    "name_jp": "みずがため",
+    "romaji": null
+  },
+  "water-veil": {
+    "effect": "Prevents burns.",
+    "name_jp": "みずのベール",
+    "romaji": null
+  },
+  "weak-armor": {
+    "effect": "Raises Speed and lowers Defense by one stage each upon being hit by a physical move.",
+    "name_jp": "くだけるよろい",
+    "romaji": null
+  },
+  "well-baked-body": {
+    "effect": "Immune to Fire-type moves, and Defense is sharply boosted.",
+    "name_jp": "こんがりボディ",
+    "romaji": null
+  },
+  "white-smoke": {
+    "effect": "Prevents stats from being lowered by other Pokémon.",
+    "name_jp": "しろいけむり",
+    "romaji": null
+  },
+  "wimp-out": {
+    "effect": "This Pokémon automatically switches out when its HP drops below half.",
+    "name_jp": "にげごし",
+    "romaji": null
+  },
+  "wind-power": {
+    "effect": "When hit by a wind move, the power of the next Electric-type move it uses is doubled.",
+    "name_jp": "ふうりょくでんき",
+    "romaji": null
+  },
+  "wind-rider": {
+    "effect": "Gives immunity to wind moves, and causes the Pokémon's Attack to increase by one stage when hit by one.",
+    "name_jp": "かぜのり",
+    "romaji": null
+  },
+  "wonder-guard": {
+    "effect": "Protects against damaging moves that are not super effective.",
+    "name_jp": "ふしぎなまもり",
+    "romaji": null
+  },
+  "wonder-skin": {
+    "effect": "Lowers incoming non-damaging moves' base accuracy to exactly 50%.",
+    "name_jp": "ミラクルスキン",
+    "romaji": null
+  },
+  "zen-mode": {
+    "effect": "Changes Darmanitan's form after each turn depending on its HP: Zen Mode below 50% max HP, and Standard Mode otherwise.",
+    "name_jp": "ダルマモード",
+    "romaji": null
+  },
+  "zero-to-hero": {
+    "effect": "Transforms into its Hero Form when switching out.",
+    "name_jp": "マイティチェンジ",
+    "romaji": null
+  }
 }

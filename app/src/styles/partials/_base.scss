@@ -46,6 +46,18 @@ html, body {
   overflow-y: auto;
   overscroll-behavior-y: contain;
   -webkit-overflow-scrolling: touch; // momentum scroll on older ios
+  // declare scroll intent statically so ios starts the scroll immediately
+  // on first touch instead of waiting to resolve whether the page's
+  // `passive: false` touchmove listeners (the <PullToRefresh> component
+  // installs one on window) want to preventDefault. without this, the
+  // very first touch in a fresh ios standalone session stalls for
+  // ~500ms while ios resolves intent — user describes it as "first
+  // scroll briefly starts, fails, then works." `pan-y` allows native
+  // vertical panning without that delay; PTR's downward-from-top
+  // gesture still works because pull-to-refresh activates only when
+  // the scroller is already at scrollTop=0, where pan-y has nothing
+  // to scroll and the JS handler takes over.
+  touch-action: pan-y;
   // no bottom reserve by default — desktop footer is hidden right now
   // (see .site-footer-strip in _header.scss). standalone still needs the
   // home-indicator zone reserved, handled in the html[data-standalone]

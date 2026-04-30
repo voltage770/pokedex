@@ -27,6 +27,14 @@ async function fetchJSON(url) {
   return res.json();
 }
 
+function pickJP(names) {
+  if (!names) return { name_jp: null, romaji: null };
+  const ja = names.find(n => n.language?.name === 'ja')
+          || names.find(n => n.language?.name === 'ja-Hrkt');
+  const ro = names.find(n => n.language?.name === 'roomaji');
+  return { name_jp: ja?.name || null, romaji: ro?.name || null };
+}
+
 async function main() {
   // gather all ball item URLs from categories
   const itemUrls = [];
@@ -53,9 +61,12 @@ async function main() {
       ?.filter(f => f.language.name === 'en')
       ?.pop();
 
+    const jp = pickJP(item.names);
     balls.push({
       id: item.id,
       name: item.name,
+      name_jp: jp.name_jp,
+      romaji:  jp.romaji,
       cost: item.cost,
       sprite: item.sprites?.default || null,
       effect: en?.short_effect || en?.effect || null,

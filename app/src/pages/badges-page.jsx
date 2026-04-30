@@ -1,8 +1,12 @@
 import { useEffect } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useModalAnimation } from '../hooks/use-modal-animation';
 import { useModalCycleNav } from '../hooks/use-modal-cycle-nav';
 import { pulseElement } from '../utils/pulse';
+import { crossModalNavigate } from '../utils/cross-modal-nav';
+import { STORAGE_KEYS, getString } from '../utils/storage';
 import badges from '../data/badges.json';
+import leaders from '../data/gym-leaders.json';
 
 // region order matches the games' release sequence — kanto first, paldea last.
 const REGIONS = [
@@ -66,7 +70,38 @@ function splitTypes(t) {
   return (t || '').split(',').map(s => s.trim()).filter(Boolean);
 }
 
+// split a comma-separated multi-value field, dedupe (the trio + legend
+// badges in the unova roster have repeated leader names from the scraper's
+// alt-leader column), preserve first-seen order.
+function splitDedup(s) {
+  const seen = new Set();
+  return (s || '').split(/,\s*/).filter(Boolean).filter(v => {
+    if (seen.has(v)) return false;
+    seen.add(v);
+    return true;
+  });
+}
+
+// derive a leader's id (matches gym-leaders.json conventions: <name-slug>-<region>)
+// from a name + region pair so the modal can deep-link straight to the leader.
+// returns the leader record if found, null otherwise — falls back to plain
+// text rendering when there's no match (legacy data, future leaders, etc.).
+function findLeader(name, region) {
+  const slug = name.replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+  // unova badges live as -unova in the merged page but leaders.json keeps the
+  // bw/b2w2 split — try the merged id first (matches gym-leaders-page output),
+  // then fall back to the granular ids.
+  const tries = [`${slug}-${region}`, `${slug}-${region}-bw`, `${slug}-${region}-b2w2`];
+  for (const id of tries) {
+    const hit = leaders.find(l => l.id === id);
+    if (hit) return hit;
+  }
+  return null;
+}
+
 function BadgeModal({ badge, modalRef, onClose, onPrev, onNext, closing, bump }) {
+  const navigate = useNavigate();
+
   // cycle pulse via WAAPI on every keyboard / tap-arrow cycle.
   useEffect(() => {
     if (bump.n === 0) return;
@@ -74,7 +109,25 @@ function BadgeModal({ badge, modalRef, onClose, onPrev, onNext, closing, bump })
     return () => anim?.cancel();
   }, [bump.n, modalRef]);
 
-  const types = splitTypes(badge.type);
+  const types       = splitTypes(badge.type);
+  const leaderNames = splitDedup(badge.leader);
+  const cityNames   = splitDedup(badge.city);
+
+  // hand-off across pages — strategy chosen by the visuals settings picker
+  // (MOCKUP). dispatches to one of snap/view/dip/curtain in cross-modal-nav.js.
+  // modalRef passed so snap can fade the source via inline opacity (skips
+  // the bouncy CSS pop-out animation that was reading as "trashed text").
+  const goToLeader = (e, leaderId) => {
+    e.preventDefault();
+    const mode = getString(STORAGE_KEYS.XFADE_MODE, 'snap');
+    crossModalNavigate(mode, {
+      modalRef,
+      onClose,
+      navigate,
+      toPath: '/leaders',
+      openId: leaderId,
+    });
+  };
 
   return (
     <div className={`ability-modal-overlay${closing ? ' closing' : ''}`} onClick={onClose}>
@@ -96,11 +149,27 @@ function BadgeModal({ badge, modalRef, onClose, onPrev, onNext, closing, bump })
         <div className="ball-modal__meta">
           <div className="info-cell">
             <span className="info-cell__label">earned by defeating</span>
-            <span className="info-cell__value">{badge.leader || '—'}</span>
+            <span className="info-cell__value info-cell__value--inline-list">
+              {leaderNames.length === 0
+                ? '—'
+                : leaderNames.map((name, i) => {
+                    const leader = findLeader(name, badge.region);
+                    return (
+                      <span key={name} className="inline-list-item">
+                        {i > 0 && <span className="inline-list-pipe" aria-hidden="true">|</span>}
+                        {leader
+                          ? <a href="/leaders"
+                               className="info-cell__link"
+                               onClick={(e) => goToLeader(e, leader.id)}>{name}</a>
+                          : <span>{name}</span>}
+                      </span>
+                    );
+                  })}
+            </span>
           </div>
           <div className="info-cell">
             <span className="info-cell__label">location</span>
-            <span className="info-cell__value">{badge.city || '—'}</span>
+            <span className="info-cell__value">{cityNames.length ? cityNames.join(' | ') : '—'}</span>
           </div>
           <div className="info-cell">
             <span className="info-cell__label">gym type</span>
@@ -109,10 +178,6 @@ function BadgeModal({ badge, modalRef, onClose, onPrev, onNext, closing, bump })
                 ? types.map(t => <span key={t} className={`type-badge type-${t}`}>{t}</span>)
                 : '—'}
             </span>
-          </div>
-          <div className="info-cell">
-            <span className="info-cell__label">gen</span>
-            <span className="info-cell__value">{badge.generation}</span>
           </div>
           <div className="info-cell">
             <span className="info-cell__label">obey to</span>
@@ -129,8 +194,25 @@ function BadgeModal({ badge, modalRef, onClose, onPrev, onNext, closing, bump })
 }
 
 export default function BadgesPage() {
-  const { current: currentBadge, bump, modalRef, open, close, prev, next } = useModalCycleNav(SECTIONED_BADGES);
+  const location = useLocation();
+  const navigate = useNavigate();
+  // pre-open via initial state for the View Transitions path; same render-
+  // time wiring used by gym-leaders-page so behavior is consistent both
+  // directions of the hand-off.
+  const initialOpenId = location.state?.openId ?? null;
+  const { current: currentBadge, bump, modalRef, open, close, prev, next } =
+    useModalCycleNav(SECTIONED_BADGES, initialOpenId);
   const { displayed: shownBadge, isClosing } = useModalAnimation(currentBadge);
+
+  useEffect(() => {
+    if (!initialOpenId) return;
+    navigate(location.pathname, { replace: true, state: null });
+    const mode = getString(STORAGE_KEYS.XFADE_MODE, 'snap');
+    if (mode !== 'view') {
+      setTimeout(() => { if (modalRef.current) pulseElement(modalRef.current); }, 60);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="items-page">

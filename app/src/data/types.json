@@ -1,0 +1,20 @@
+{
+  "normal":   { "name_jp": "ノーマル", "romaji": "Nōmaru" },
+  "fire":     { "name_jp": "ほのお",   "romaji": "Honoo" },
+  "water":    { "name_jp": "みず",     "romaji": "Mizu" },
+  "electric": { "name_jp": "でんき",   "romaji": "Denki" },
+  "grass":    { "name_jp": "くさ",     "romaji": "Kusa" },
+  "ice":      { "name_jp": "こおり",   "romaji": "Kōri" },
+  "fighting": { "name_jp": "かくとう", "romaji": "Kakutō" },
+  "poison":   { "name_jp": "どく",     "romaji": "Doku" },
+  "ground":   { "name_jp": "じめん",   "romaji": "Jimen" },
+  "flying":   { "name_jp": "ひこう",   "romaji": "Hikō" },
+  "psychic":  { "name_jp": "エスパー", "romaji": "Esupā" },
+  "bug":      { "name_jp": "むし",     "romaji": "Mushi" },
+  "rock":     { "name_jp": "いわ",     "romaji": "Iwa" },
+  "ghost":    { "name_jp": "ゴースト", "romaji": "Gōsuto" },
+  "dragon":   { "name_jp": "ドラゴン", "romaji": "Doragon" },
+  "dark":     { "name_jp": "あく",     "romaji": "Aku" },
+  "steel":    { "name_jp": "はがね",   "romaji": "Hagane" },
+  "fairy":    { "name_jp": "フェアリー", "romaji": "Fearī" }
+}
