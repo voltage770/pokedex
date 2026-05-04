@@ -486,7 +486,7 @@ export default function PokemonPage() {
               <h1>{formatName(pokemon.name)}</h1>
               {pokemon.name_jp && (
                 <small className="jp-subtitle detail-jp">
-                  {pokemon.name_jp}{pokemon.romaji ? ` · ${pokemon.romaji}` : ''}
+                  {pokemon.name_jp}{pokemon.romaji ? ` [${pokemon.romaji}]` : ''}
                 </small>
               )}
               {pokemon.genus && <p className="detail-genus">{pokemon.genus}</p>}

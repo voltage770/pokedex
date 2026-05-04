@@ -17,6 +17,8 @@ import BerriesPage from './pages/berries-page';
 import MovesPage from './pages/moves-page';
 import BadgesPage from './pages/badges-page';
 import GymLeadersPage from './pages/gym-leaders-page';
+import TCGPocketPage from './pages/tcgp-page';
+import TCGPocketAccessoriesPage from './pages/tcgp-accessories-page';
 import AboutPage from './pages/about-page';
 import TransitionVeil from './components/transition-veil';
 import TwitchLiveBadge from './components/twitch-live-badge';
@@ -32,6 +34,10 @@ import { useTwitchLive } from './hooks/use-twitch-live';
 //                   so the eye can lock onto a category in one scan rather
 //                   than reading 9 sibling links
 const NAV_SECTIONS = [
+  // news sits at the very top alone — it's the landing page, gets visual
+  // primacy. pokedex sits in its own divided section right below so the
+  // user can scan the menu and immediately see "news" + "the dex" as two
+  // distinct anchor points before the labeled sections begin.
   {
     items: [
       { to: '/', label: 'news' },
@@ -39,12 +45,22 @@ const NAV_SECTIONS = [
   },
   {
     divider: true,
+    items: [
+      { to: '/pokedex', label: 'pokedex' },
+    ],
+  },
+  // visual catalogs. world content (gym leaders + lore) folded in here so
+  // the catalog/world distinction collapses into one bucket — both are
+  // browsable trainer/encyclopedic catalogs.
+  {
+    divider: true,
     label:   'gallery',
     items: [
       { to: '/badges',    label: 'badges' },
       { to: '/berries',   label: 'berries' },
       { to: '/pokeballs', label: 'pokéballs' },
-      { to: '/pokedex',   label: 'pokemon' },
+      { to: '/leaders',   label: 'gym leaders'    },
+      { to: '/lore',      label: 'lore & legends' },
     ],
   },
   {
@@ -57,12 +73,14 @@ const NAV_SECTIONS = [
       { to: '/moves',   label: 'moves' },
     ],
   },
+  // separate game gets its own section. links inside lose the "tcg pocket"
+  // prefix since the section header already says it.
   {
     divider: true,
-    label: 'world',
+    label: 'tcg pocket',
     items: [
-      { to: '/leaders', label: 'gym leaders'    },
-      { to: '/lore',    label: 'lore & legends' },
+      { to: '/tcgp',             label: 'cards' },
+      { to: '/tcgp-accessories', label: 'accessories' },
     ],
   },
   {
@@ -585,6 +603,8 @@ export default function App() {
           <Route path="/berries"     element={<BerriesPage />} />
           <Route path="/badges"      element={<BadgesPage />} />
           <Route path="/leaders"     element={<GymLeadersPage />} />
+          <Route path="/tcgp"        element={<TCGPocketPage />} />
+          <Route path="/tcgp-accessories" element={<TCGPocketAccessoriesPage />} />
           <Route path="/team"        element={<TeamPage />} />
           <Route path="/lore"        element={<LorePage />} />
           <Route path="/about"       element={<AboutPage />} />

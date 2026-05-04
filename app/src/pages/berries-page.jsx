@@ -44,7 +44,7 @@ function BerryModal({ berry, modalRef, onClose, onPrev, onNext, closing, bump })
               <h2>{formatSlugLower(berry.name)} berry</h2>
               {berry.name_jp && (
                 <small className="jp-subtitle">
-                  {berry.name_jp}{berry.romaji ? ` · ${berry.romaji}` : ''}
+                  {berry.name_jp}{berry.romaji ? ` [${berry.romaji}]` : ''}
                 </small>
               )}
             </div>

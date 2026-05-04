@@ -149,24 +149,26 @@ function LeaderModal({ leader, modalRef, onClose, onPrev, onNext, closing, bump 
             <h2>{leader.name}</h2>
             {leader.name_jp && (
               <span className="leader-modal__jp">
-                {leader.name_jp}{leader.romaji ? ` · ${leader.romaji}` : ''}
+                {leader.name_jp}{leader.romaji ? ` [${leader.romaji}]` : ''}
               </span>
             )}
           </div>
           <button className="modal-cycle-arrow modal-cycle-arrow--next" onClick={onNext} aria-label="next">›</button>
         </div>
 
-        {/* TEST RUN — `portrait_url` is the alphabetically-first image from
-            each leader's bulbagarden archives category (scrape-leader-portraits.js).
-            falls back to the VS sprite when missing. evaluating whether this
-            yields a more standardized art style than the scattered VS sprites
-            that the original scraper picked up; keep the grid thumb on `sprite`
-            for now since some first-images are group shots (e.g. cilan's first
-            image is the BW trio) and would read wrong as a single-leader thumb. */}
-        {/* fixed-height upper section: hero + value chart. content below
-            this scrolls so the modal dimensions stay constant across all
-            leaders regardless of flavor-text length. */}
-        <div className="leader-modal__static">
+        {/* everything below the header scrolls together — hero + info chart
+            + flavor. only the title bar stays pinned so the user can see the
+            current leader's name while reading the bio. previously the hero
+            and chart were also pinned and only the flavor scrolled, which
+            left a tiny window for reading on shorter viewports. */}
+        <div className="leader-modal__scroll">
+          {/* TEST RUN — `portrait_url` is the alphabetically-first image from
+              each leader's bulbagarden archives category (scrape-leader-portraits.js).
+              falls back to the VS sprite when missing. evaluating whether this
+              yields a more standardized art style than the scattered VS sprites
+              that the original scraper picked up; keep the grid thumb on `sprite`
+              for now since some first-images are group shots (e.g. cilan's first
+              image is the BW trio) and would read wrong as a single-leader thumb. */}
           {(leader.portrait_url || leader.sprite) && (
             <div className="ball-modal__hero leader-modal__hero">
               <img
@@ -206,21 +208,18 @@ function LeaderModal({ leader, modalRef, onClose, onPrev, onNext, closing, bump 
               </span>
             </div>
           </div>
-        </div>
 
-        {/* flavor-text scroll region. variable-length content scrolls
-            inside this fixed-size box so short bios don't shrink the
-            modal and long bios don't push the layout. flavor_text is
-            stored with `\n\n` between paragraphs (multi-paragraph scrape);
-            split + render each as its own <p> so paragraph spacing
-            survives the trip from the scraper. */}
-        {leader.flavor_text && (
-          <div className="leader-modal__flavor-scroll">
-            {tightenFlavor(leader.flavor_text).split('\n\n').map((para, i) => (
-              <p key={i} className="ball-modal__flavor">{para}</p>
-            ))}
-          </div>
-        )}
+          {/* flavor_text is stored with `\n\n` between paragraphs (multi-
+              paragraph scrape); split + render each as its own <p> so the
+              paragraph spacing survives the trip from the scraper. */}
+          {leader.flavor_text && (
+            <div className="leader-modal__flavor">
+              {tightenFlavor(leader.flavor_text).split('\n\n').map((para, i) => (
+                <p key={i} className="ball-modal__flavor">{para}</p>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

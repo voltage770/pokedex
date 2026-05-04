@@ -40,7 +40,7 @@ function BallModal({ ball, modalRef, onClose, onPrev, onNext, closing, bump }) {
               <h2>{formatSlugLower(ball.name)}</h2>
               {ball.name_jp && (
                 <small className="jp-subtitle">
-                  {ball.name_jp}{ball.romaji ? ` · ${ball.romaji}` : ''}
+                  {ball.name_jp}{ball.romaji ? ` [${ball.romaji}]` : ''}
                 </small>
               )}
             </div>

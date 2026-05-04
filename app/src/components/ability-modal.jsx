@@ -23,7 +23,7 @@ export default function AbilityModal({ ability, onClose, closing = false }) {
             {ability.name.replace(/-/g, ' ')}
             {data.name_jp && (
               <small className="jp-subtitle">
-                {data.name_jp}{data.romaji ? ` · ${data.romaji}` : ''}
+                {data.name_jp}{data.romaji ? ` [${data.romaji}]` : ''}
               </small>
             )}
           </span>

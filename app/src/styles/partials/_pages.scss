@@ -1085,24 +1085,24 @@
   }
 }
 
-// upper static section — hero + info chart, never scrolls.
-.leader-modal__static {
-  flex-shrink: 0;
-}
-
-// lower scroll region — flavor text expands to fill remaining space and
-// scrolls when content overflows. flavor is rendered as multiple <p>
-// elements (one per scraped paragraph), with spacing between them.
-.leader-modal__flavor-scroll {
+// scroll region — covers everything below the title bar (hero, info chart,
+// flavor). only the header pins; the rest scrolls together so users have
+// the full modal height to read/swipe rather than a tiny strip below a
+// fixed hero. flavor rendered as multiple <p> (one per scraped paragraph).
+.leader-modal__scroll {
   flex: 1 1 0;
   min-height: 0;       // critical: lets flex item shrink below content
   overflow-y: auto;
   margin-top: 12px;
   padding-right: 4px;
-  // subtle top divider — visual cue that there's content above the
-  // scroll boundary, mirrors what users expect from scrollable regions.
-  border-top: 1px solid var(--border);
-  padding-top: 12px;
+
+  // breathing room between the info chart (location/type/badge cells) and
+  // the bio text underneath. without this, the cells' bottom edge sits
+  // flush against the first paragraph and the two sections read as one
+  // visual block.
+  .leader-modal__flavor {
+    margin-top: 14px;
+  }
 
   // bigger + cleaner flavor text since it owns its own viewport now
   // and isn't competing with the chart for vertical space. paragraphs
@@ -1118,7 +1118,7 @@
 }
 
 .leader-modal__jp {
-  font-size: .72rem;
+  font-size: .85rem;
   color: var(--text-muted);
   font-weight: var(--fw-regular);
   letter-spacing: .02em;
@@ -1126,11 +1126,13 @@
 
 // shared japanese subtitle — sits under the english name in any modal
 // header (ability, pokeball, berry, etc). matches the visual treatment
-// already used for the gym leader modal's `name_jp · romaji` subtitle
-// so the kana practice surface looks consistent everywhere.
+// already used for the gym leader modal's `name_jp [romaji]` subtitle
+// so the kana practice surface looks consistent everywhere. romaji is
+// bracketed rather than separated by a glyph because dash / pipe / dot
+// separators all risk being misread as kana characters.
 .jp-subtitle {
   display: block;
-  font-size: .7rem;
+  font-size: .85rem;
   font-weight: var(--fw-regular);
   color: var(--text-muted);
   letter-spacing: .02em;
@@ -1223,6 +1225,695 @@
     color: var(--accent);
     border-bottom-color: var(--accent);
   }
+}
+
+
+// ─── tcg pocket page ──────────────────────────────────────────────────────────
+// grid of card thumbs (~140px wide portrait images) sectioned by tcg pocket
+// set. modal uses the leader-modal pattern (fixed height, top section static,
+// bottom section scrolls) since card content varies a lot — some have
+// abilities, some don't; some have 1 attack, some have 2; flavor presence
+// varies. fixed dims keep the layout from jumping between cards.
+
+// 2-column × 2-row grid:
+//   col 1 — filter by set / filter by attribute (stacked)
+//   col 2 — group / sort                        (stacked)
+// `grid-auto-flow: column` fills the JSX-order items column-first so the two
+// filters land in the left column and the two controls land in the right
+// column without explicit grid-area assignments. collapses to a single
+// stacked column under 480px.
+.tcgp-filters {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(2, auto);
+  grid-auto-flow: column;
+  gap: 10px 12px;
+  margin-bottom: 18px;
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    grid-auto-flow: row;
+  }
+}
+
+// multi-select set/attribute filter — dropdown trigger collapses to a single
+// line summary; clicking opens a panel with checkboxes for each option. default
+// (no selection) on the set filter is the implicit "newest set + show-previous"
+// progressive mode handled by the page state machine.
+.tcgp-filter {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+// group + sort single-select controls — sit in the same .tcgp-filters grid as
+// the multi-select dropdowns. native <select> styled minimally to match.
+// label above the box mirrors .tcgp-filter so all four cells align.
+.tcgp-control {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+
+  &__label {
+    font-size: .68rem;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: var(--text-muted);
+    padding-left: 2px;
+  }
+
+  &__select {
+    appearance: none;
+    -webkit-appearance: none;
+    // explicit width:100% — without it native <select> auto-sizes to its
+    // content, so the group box (short labels) ends up narrower than the
+    // sort box. setting both to 100% lets the parent grid cell drive width
+    // so group + sort line up perfectly in the right column.
+    width: 100%;
+    padding: 10px 28px 10px 14px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-family: inherit;
+    font-size: .85rem;
+    color: var(--text);
+    cursor: pointer;
+    transition: border-color .15s, box-shadow .15s;
+    // chevron — same glyph as the multi-select trigger so the row reads as
+    // one consistent control set.
+    background-image: linear-gradient(45deg, transparent 50%, var(--text-muted) 50%),
+                      linear-gradient(135deg, var(--text-muted) 50%, transparent 50%);
+    background-position: calc(100% - 14px) calc(50% - 2px),
+                         calc(100% - 9px)  calc(50% - 2px);
+    background-size: 5px 5px, 5px 5px;
+    background-repeat: no-repeat;
+
+    &:hover  { border-color: var(--accent); }
+    &:focus  { outline: none; border-color: var(--accent);
+               box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 30%, transparent); }
+  }
+}
+
+// sort variant: hide the chevron background-image (the asc/desc arrow takes
+// its visual slot) and bump padding-right to leave room for the absolute-
+// positioned arrow button.
+.tcgp-control--sort .tcgp-control__select {
+  padding-right: 38px;
+  background-image: none;
+}
+
+.tcgp-control__sort-wrap {
+  position: relative;
+  display: flex;
+  width: 100%;
+
+  // inner select takes flex:1 so it fills the wrap regardless of any
+  // cascading auto-width on native <select>. mirrors the .sort-control
+  // pattern from _home.scss.
+  .tcgp-control__select {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+}
+
+.tcgp-control__sort-arrow {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: color .15s ease, transform .15s ease;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover { color: var(--accent); }
+  }
+  &:active { transform: translateY(-50%) scale(.85); color: var(--accent); }
+}
+
+.tcgp-filter__trigger {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: .85rem;
+  color: var(--text);
+  cursor: pointer;
+  text-align: left;
+  transition: border-color .15s, box-shadow .15s;
+
+  &:hover { border-color: var(--accent); }
+  &.is-open {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 30%, transparent);
+  }
+}
+
+.tcgp-filter__current {
+  font-weight: var(--fw-medium);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tcgp-filter__chevron {
+  font-size: .75rem;
+  color: var(--text-muted);
+  transition: transform .15s;
+  .tcgp-filter__trigger.is-open & { transform: rotate(180deg); }
+}
+
+.tcgp-filter__panel {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  z-index: 10;
+  max-height: 360px;
+  overflow-y: auto;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-lg);
+  padding: 8px;
+}
+
+.tcgp-filter__actions {
+  display: flex;
+  gap: 8px;
+  padding: 0 4px 8px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 6px;
+}
+
+.tcgp-filter__action {
+  font-size: .72rem;
+  padding: 4px 10px;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-family: inherit;
+  text-transform: lowercase;
+  transition: color .15s, border-color .15s;
+
+  &:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+}
+
+.tcgp-filter__option {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 8px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: .82rem;
+  color: var(--text);
+  transition: background .12s;
+
+  &:hover { background: var(--bg-sidebar); }
+  &.is-checked { background: color-mix(in srgb, var(--accent) 10%, transparent); }
+
+  input[type="checkbox"] {
+    margin: 0;
+    cursor: pointer;
+    accent-color: var(--accent);
+  }
+}
+
+.tcgp-filter__option-label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tcgp-filter__option-count {
+  font-size: .7rem;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+// attribute filter groups options under category headers (rarity, type, tags).
+// each group prefixed by a small uppercase label so the panel reads as
+// sectioned rather than one long flat list.
+.tcgp-filter__group {
+  & + & { margin-top: 6px; padding-top: 6px; border-top: 1px solid var(--border); }
+}
+
+.tcgp-filter__group-label {
+  font-size: .65rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--text-subtle);
+  padding: 4px 8px 2px;
+}
+
+.tcgp-grid {
+  display: grid;
+  // ~140px thumbs hit ~5-6 columns on the 900px content width — comfortable
+  // browsing without losing the art detail. card aspect is 367×512 (≈ 0.72:1)
+  // so each cell renders at ~140×196.
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 10px;
+}
+
+.tcgp-card-thumb {
+  display: block;
+  padding: 0;
+  background: transparent;
+  border: 1px solid var(--border);
+  // card art's own corner-rounding is *less* pronounced than the default
+  // --radius-sm (14px) — at any radius near or above the card's natural
+  // corner, our clip eats into card content. 8px stays well under the
+  // image's intrinsic rounding so the corners read as part of the card,
+  // not as a wrapper trying to reshape it.
+  border-radius: 8px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: border-color .15s ease, transform .15s ease;
+  font-family: inherit;
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 367 / 512;   // matches limitless thumb dims; keeps layout
+                               // from reflowing as images load
+    object-fit: cover;
+    transition: transform .15s ease;
+  }
+
+  &:hover {
+    border-color: var(--accent);
+
+    img { transform: scale(1.05); }
+  }
+}
+
+// fixed-height modal — same vertical-split pattern as the leader modal.
+// hero card image + title pin to the top; everything else (stats, attacks,
+// ability, flavor, illustrator) lives in a scrollable lower region.
+//
+// max-width override matters: .ball-modal sets max-width:380px, which would
+// clamp this modal narrower than its 480px width. listing max-width here
+// (after .ball-modal in the cascade) wins via source order.
+.tcgp-modal {
+  width: 480px;
+  max-width: min(92vw, 480px);
+  height: 720px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  // override .ball-modal's overflow-y: auto — inner scroll region owns it
+  overflow-y: hidden;
+}
+
+.tcgp-modal__title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+
+  h2 {
+    margin: 0;
+    font-size: 1.1rem;
+    text-align: center;
+  }
+}
+
+.tcgp-modal__sub {
+  font-size: .72rem;
+  color: var(--text-muted);
+  letter-spacing: .03em;
+}
+
+.tcgp-modal__hero {
+  display: flex;
+  justify-content: center;
+  margin: 12px 0 14px;
+
+  img {
+    max-width: 100%;
+    // 280px (down from 380px) so the scroll region below has room for stats +
+    // ability + attacks + flavor + illustrator without the modal's bottom
+    // content getting cropped on iPad landscape (~750px tall viewport).
+    max-height: 280px;
+    width: auto;
+    height: auto;
+    // matches the thumb's 8px clip — see thumb comment for reasoning.
+    border-radius: 8px;
+    // subtle shadow lifts the card off the modal bg without overpowering
+    box-shadow: 0 4px 16px color-mix(in srgb, #000 18%, transparent);
+  }
+}
+
+.tcgp-modal__scroll {
+  flex: 1 1 0;
+  min-height: 0;             // critical: lets flex item shrink below content
+  overflow-y: auto;
+  border-top: 1px solid var(--border);
+  padding-top: 12px;
+  padding-right: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tcgp-stat-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 8px;
+}
+
+.tcgp-stat {
+  display: flex;
+  flex-direction: column;
+  padding: 6px 10px;
+  background: var(--bg-sidebar);
+  border-radius: var(--radius-sm);
+  font-size: .78rem;
+
+  &__label {
+    font-size: .65rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: .05em;
+  }
+  &__value {
+    font-weight: var(--fw-bold);
+    text-transform: capitalize;
+  }
+}
+
+.tcgp-ability {
+  padding: 10px 12px;
+  background: color-mix(in srgb, var(--accent) 8%, var(--bg-card));
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius-sm);
+
+  &__name {
+    font-weight: var(--fw-bold);
+    font-size: .9rem;
+  }
+  &__effect {
+    margin: 4px 0 0;
+    font-size: .82rem;
+    color: var(--text);
+    line-height: 1.4;
+  }
+}
+
+.tcgp-attacks {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tcgp-attack {
+  padding: 8px 12px;
+  background: var(--bg-sidebar);
+  border-radius: var(--radius-sm);
+
+  &__row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  &__cost {
+    display: inline-flex;
+    gap: 2px;
+  }
+  &__name {
+    flex: 1;
+    font-weight: var(--fw-bold);
+    font-size: .88rem;
+  }
+  &__damage {
+    font-weight: var(--fw-bold);
+    font-size: 1rem;
+  }
+  &__effect {
+    margin: 6px 0 0;
+    font-size: .78rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+}
+
+// energy cost pip — single-letter code (R/W/G/L/P/F/D/M/C/Y/N) shown as
+// a small colored circle. limitless's `<span class="ptcg-symbol">RCC</span>`
+// is parsed character-by-character; each letter renders here.
+.tcgp-energy {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  font-size: .68rem;
+  font-weight: var(--fw-bold);
+  color: #fff;
+  background: var(--bg-sidebar);
+
+  &--fire       { background: #ff4f3a; }
+  &--water      { background: #3a8fff; }
+  &--grass      { background: #4ea84e; }
+  &--lightning  { background: #f0c200; color: #1a1a1a; }
+  &--psychic    { background: #b450c8; }
+  &--fighting   { background: #c8763a; }
+  &--darkness   { background: #2c2c2c; }
+  &--metal      { background: #8e9aa8; }
+  &--colorless  { background: #c8c2b6; color: #1a1a1a; }
+  &--fairy      { background: #ec9bd1; color: #1a1a1a; }
+  &--dragon     { background: #ddb52d; color: #1a1a1a; }
+}
+
+.tcgp-flavor {
+  margin: 0;
+  font-style: italic;
+  font-size: .82rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+}
+
+.tcgp-illustrator {
+  margin: 0;
+  font-size: .72rem;
+  color: var(--text-subtle);
+  text-align: right;
+}
+
+
+// ─── tcg pocket accessories page ──────────────────────────────────────────────
+// catalog of cosmetics from bulbagarden archives — icons / sleeves / coins /
+// playmats / backdrops / binder covers / emblems. category tabs at the top
+// (single-select, default = first category); grid of thumbnails; modal with
+// full-res image + dimensions.
+
+// category tabs — equal-width grid so labels of varying length all render
+// the same visual size. on narrow viewports the grid wraps to fewer
+// columns, but cells in the same row stay equal-width so the tab strip
+// never looks ragged. count rendered on its own row underneath the label
+// so size differences in the count don't shift the label horizontally.
+.tcgp-cat-tabs {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  margin-bottom: 18px;
+
+  @media (max-width: 720px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  @media (max-width: 480px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.tcgp-cat-tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  padding: 8px 6px;
+  min-width: 0;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: .82rem;
+  color: var(--text);
+  cursor: pointer;
+  text-transform: lowercase;
+  letter-spacing: .03em;
+  transition: background .15s, border-color .15s, color .15s;
+
+  &:hover { border-color: var(--accent); }
+
+  &.is-active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--bg-card);
+    font-weight: var(--fw-bold);
+  }
+
+  &__label {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+  }
+
+  &__count {
+    font-size: .68rem;
+    opacity: .65;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+.tcgp-accessory-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 10px;
+}
+
+.tcgp-accessory-thumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  // square cell — items have varied native aspect ratios (square icons,
+  // portrait sleeves, landscape backdrops). object-fit:contain keeps each
+  // image visible end-to-end inside the same uniform cell so the grid reads
+  // as a clean catalog rather than a ragged collage.
+  aspect-ratio: 1;
+  transition: transform .15s ease, filter .15s ease;
+  font-family: inherit;
+
+  img {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    // drop-shadow on the image (not the cell) so it follows the image's
+    // actual shape (square icon, portrait sleeve, landscape backdrop)
+    // rather than a uniform card silhouette.
+    filter: drop-shadow(0 2px 6px color-mix(in srgb, #000 22%, transparent));
+    transition: transform .15s ease, filter .15s ease;
+  }
+
+  &:hover img {
+    transform: scale(1.06);
+    filter: drop-shadow(0 4px 10px color-mix(in srgb, #000 30%, transparent));
+  }
+}
+
+// modal — same fixed-height + scrollable-rest pattern as the tcgp card modal
+// so the title pins and the hero/meta scroll. width is narrower since
+// accessories are displayed at native res rather than the larger card art.
+.tcgp-accessory-modal {
+  width: 460px;
+  max-width: min(92vw, 460px);
+  height: 640px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow-y: hidden;
+}
+
+.tcgp-accessory-modal__title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+
+  h2 { margin: 0; font-size: 1.1rem; text-align: center; }
+}
+
+.tcgp-accessory-modal__sub {
+  font-size: .72rem;
+  color: var(--text-muted);
+  letter-spacing: .03em;
+  text-transform: lowercase;
+}
+
+.tcgp-accessory-modal__scroll {
+  flex: 1 1 0;
+  min-height: 0;
+  overflow-y: auto;
+  margin-top: 12px;
+  padding-right: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tcgp-accessory-modal__hero {
+  display: flex;
+  justify-content: center;
+
+  img {
+    max-width: 100%;
+    max-height: 460px;
+    width: auto;
+    height: auto;
+    // drop-shadow (not box-shadow) so the shadow follows the rendered alpha
+    // — circular icons get circular shadows, portrait sleeves get sleeve-
+    // shaped shadows, etc. box-shadow would paint a rectangular shadow
+    // around the alpha corners and read as "square card behind a circle".
+    filter: drop-shadow(0 4px 14px color-mix(in srgb, #000 26%, transparent));
+  }
+}
+
+.tcgp-accessory-modal__obtain {
+  margin: 0;
+  padding: 8px 12px;
+  background: var(--bg-sidebar);
+  border-radius: var(--radius-sm);
+  font-size: .85rem;
+  line-height: 1.45;
+  color: var(--text);
+  text-align: center;
+}
+
+.tcgp-accessory-modal__meta {
+  margin: 0;
+  font-size: .72rem;
+  color: var(--text-subtle);
+  text-align: center;
+  font-variant-numeric: tabular-nums;
 }
 
 
